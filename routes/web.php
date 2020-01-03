@@ -18,4 +18,9 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test', 'Admin\CategoryController@index')->name('category.index');
+
+Route::group(['namespace' => 'Web\v1\Admin'], function () {
+
+    Route::get('/test', 'CategoryController@index')->name('category.index');
+
+});

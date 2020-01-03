@@ -28,6 +28,9 @@ class AlterThemeAudiosTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('theme_audios', function (Blueprint $table) {
+            $table->dropForeign(['theme_id']);
+            $table->dropColumn('theme_id');
+        });
     }
 }

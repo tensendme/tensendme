@@ -36,6 +36,16 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+
+            $table->dropForeign(['city_id']);
+            $table->dropForeign(['level_id']);
+            $table->dropColumn('city_id');
+            $table->dropColumn('level_id');
+            $table->dropColumn('device_token');
+            $table->dropColumn('promo_code');
+            $table->dropColumn('nickname');
+            $table->dropColumn('image_path');
+        });
     }
 }

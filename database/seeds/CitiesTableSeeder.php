@@ -1,6 +1,6 @@
 <?php
 
-use App\City;
+use App\Models\Profiles\City;
 use Illuminate\Database\Seeder;
 
 class CitiesTableSeeder extends Seeder
@@ -14,6 +14,7 @@ class CitiesTableSeeder extends Seeder
     {
         City::insert([
             'name' => 'Алматы',
+            'country_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

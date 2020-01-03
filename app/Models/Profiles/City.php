@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models\Profiles;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class City extends Model
 {
     //
 }
