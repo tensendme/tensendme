@@ -38,6 +38,42 @@
                     <span>Категории</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link  {{Helper::urlActiveHelper('level')}}"
+                   href="{{route('level.index')}}">
+                    <i class="material-icons">vertical_split</i>
+                    <span>Уровни</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  {{Helper::urlActiveHelper('country')}}"
+                   href="{{route('country.index')}}">
+                    <i class="material-icons">vertical_split</i>
+                    <span>Страны</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  {{Helper::urlActiveHelper('city')}}"
+                   href="{{route('city.index')}}">
+                    <i class="material-icons">vertical_split</i>
+                    <span>Города</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  {{Helper::urlActiveHelper('subscription')}}"
+                   href="{{route('subscription.index')}}">
+                    <i class="material-icons">vertical_split</i>
+                    <span>Подписки</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  {{Helper::urlActiveHelper('subscription_type')}}"
+                   href="{{route('subscription.type.index')}}">
+                    <i class="material-icons">vertical_split</i>
+                    <span>Типы подписок</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </aside>

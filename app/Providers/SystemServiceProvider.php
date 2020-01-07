@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\v1\impl\CategoryServiceImpl;
+use App\Services\v1\impl\LevelServiceImpl;
 use Illuminate\Support\ServiceProvider;
 
 class SystemServiceProvider extends ServiceProvider
@@ -16,6 +17,10 @@ class SystemServiceProvider extends ServiceProvider
     {
         $this->app->bind('App\Services\v1\CategoryService', function ($app) {
             return new CategoryServiceImpl();
+        });
+
+        $this->app->bind('App\Services\v1\LevelService', function ($app) {
+            return new LevelServiceImpl();
         });
     }
 

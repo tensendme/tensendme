@@ -2,7 +2,6 @@
 
 namespace App\Models\Categories;
 
-use App\Models\Categories\CategoryType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

@@ -10,4 +10,13 @@ class City extends Model
     use SoftDeletes;
 
     public $timestamps = false;
+
+    protected $fillable = [
+        'name','country_id'
+    ];
+    public function Country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
 }

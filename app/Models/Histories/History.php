@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models\Subscriptions;
+namespace App\Models\Histories;
 
-use App\Models\Profiles\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Subscription extends Model
+class History extends Model
 {
+
     protected $fillable = [
-        'name','user_id','subscription_type_id','actual_price','expired_at'
+        'name','amount','balance_id','follower_id','transaction_id','history_type_id','course_id','subscription_id','withdrawal_request_id'
     ];
 
 
