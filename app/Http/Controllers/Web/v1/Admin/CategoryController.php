@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Category;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebBaseController;
 use App\Services\v1\CategoryService;
 use Illuminate\Http\Request;
 use Session;
 
 
-
-class CategoryController extends Controller
+class CategoryController extends WebBaseController
 {
 
     protected $categoryService;
@@ -23,37 +22,38 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->categoryService->findAll();
+        $categories = $this->categoryService->findAllPaginated();
         return view('admin/category/index', compact('categories'));
     }
 
 
     public function create()
-    {   $categories = Category::all();
-        return view('admin.categories.create')
-            ->with('categories',$categories);
+    {
+        $categories = Category::all();
+        return view('admin.category.create')
+            ->with('categories', $categories);
     }
 
 
     public function store(Request $request)
     {
-        $this->validate($request,[
-           'name'=> 'required',
-            'type'=>'required',
+        $this->validate($request, [
+            'name' => 'required',
+            'type' => 'required',
         ]);
 
         $category = Category::create([
-            'name'=>$request->name,
-            'type'=>$request->type,
-            'parent_category_id'=>$request->parent_category_id
+            'name' => $request->name,
+            'type' => $request->type,
+            'parent_category_id' => $request->parent_category_id
 
         ]);
 
         $category->save();
 
-        Session::flash('success','Category created successfully');
+        $this->added();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 
     public function show($id)
@@ -66,32 +66,32 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         return view('admin.categories.edit')
-            ->with('categories',$categories)
+            ->with('categories', $categories)
             ->with('category', Category::findOrFail($id));
 
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name'=> 'required',
-            'type'=>'required',
+        $this->validate($request, [
+            'name' => 'required',
+            'type' => 'required',
         ]);
 
         Category::findOrFail($id)
             ->update([
-                'name'=>$request->name,
-                'type'=>$request->type,
-                'parent_category_id'=>$request->parent_category_id
+                'name' => $request->name,
+                'type' => $request->type,
+                'parent_category_id' => $request->parent_category_id
             ]);
 //        $category->name = $request->name;
 //        $category->type = $request->type;
 //        $category->parent_category_id = $request->parent_category_id;
 //        $category->save();
 
-        Session::flash('success','Category updated successfully');
+        $this->edited();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
 
     }
 
@@ -103,8 +103,8 @@ class CategoryController extends Controller
 
         Category::destroy($id);
 
-        Session::flash('success','Category deleted successfully');
+        $this->deleted();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 }

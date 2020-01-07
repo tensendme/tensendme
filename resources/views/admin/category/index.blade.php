@@ -25,15 +25,19 @@
                         </thead>
                         <tbody>
                         @foreach($categories as $category)
-                        <tr>
-                            <td>{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->type}}</td>
-                            <td>{{$category->parent_category_id}}</td>
-                        </tr>
-                            @endforeach
+                            <tr>
+                                <td>{{$category->id}}</td>
+                                <td>{{$category->name}}</td>
+                                <td>{{$category->type}}</td>
+                                <td>{{$category->parent_category_id}}</td>
+                            </tr>
+                        @endforeach
                         </tbody>
+
                     </table>
+                </div>
+                <div class="card-footer">
+                    {{ $categories->links() }}
                 </div>
             </div>
         </div>

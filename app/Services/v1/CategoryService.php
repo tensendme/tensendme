@@ -12,4 +12,6 @@ namespace App\Services\v1;
 interface CategoryService
 {
     public function findAll();
+
+    public function findAllPaginated($pageSize = 10);
 }
