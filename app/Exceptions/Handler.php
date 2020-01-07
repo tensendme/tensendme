@@ -29,7 +29,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -40,12 +40,32 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
+        if ($request->wantsJson() || \Illuminate\Support\Facades\Request::is('api/*')) {
+            return parent::render($request, $exception);
+        } else {
+            return $this->handleWebException($request, $exception);
+        }
+
+
+    }
+
+    private function handleWebException($request, Exception $exception)
+    {
+
+        if ($exception instanceof WebServiceException) {
+            return redirect()->back()->withErrors($exception->getValidator())->withInput();
+        }
+
+        if ($exception instanceof WebServiceErroredException) {
+            return redirect()->back()->with('error', $exception->getExplanation());
+        }
         return parent::render($request, $exception);
     }
+
 }

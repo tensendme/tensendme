@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Category;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebBaseController;
 use App\Services\v1\CategoryService;
 use Illuminate\Http\Request;
 use Session;
 
 
-
-class CategoryController extends Controller
+class CategoryController extends WebBaseController
 {
 
     protected $categoryService;
@@ -23,15 +22,16 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->categoryService->findAll();
+        $categories = $this->categoryService->findAllPaginated();
         return view('admin/category/index', compact('categories'));
     }
 
 
     public function create()
-    {   $categories = Category::all();
-        return view('admin/category/create')
-            ->with('categories',$categories);
+    {
+        $categories = Category::all();
+        return view('admin.category.create')
+            ->with('categories', $categories);
     }
 
 
@@ -51,9 +51,9 @@ class CategoryController extends Controller
 
         $category->save();
 
-        Session::flash('success','Category created successfully');
+        $this->added();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 
     public function show($id)
@@ -89,9 +89,9 @@ class CategoryController extends Controller
 //        $category->parent_category_id = $request->parent_category_id;
 //        $category->save();
 
-        Session::flash('success','Category updated successfully');
+        $this->edited();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
 
     }
 
@@ -103,8 +103,8 @@ class CategoryController extends Controller
 
         Category::destroy($id);
 
-        Session::flash('success','Category deleted successfully');
+        $this->deleted();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 }

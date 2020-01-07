@@ -19,4 +19,11 @@ class CategoryServiceImpl implements CategoryService
     {
         return Category::all();
     }
+
+    public function findAllPaginated($pageSize = 10)
+    {
+        return Category::paginate($pageSize);
+    }
+
+
 }
