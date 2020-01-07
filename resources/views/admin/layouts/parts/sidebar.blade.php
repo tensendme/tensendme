@@ -41,35 +41,36 @@
             <li class="nav-item">
                 <a class="nav-link  {{Helper::urlActiveHelper('level')}}"
                    href="{{route('level.index')}}">
-                    <i class="material-icons">vertical_split</i>
+                    <i class="material-icons">filter_list
+                    </i>
                     <span>Уровни</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link  {{Helper::urlActiveHelper('country')}}"
                    href="{{route('country.index')}}">
-                    <i class="material-icons">vertical_split</i>
+                    <i class="material-icons">business</i>
                     <span>Страны</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link  {{Helper::urlActiveHelper('city')}}"
                    href="{{route('city.index')}}">
-                    <i class="material-icons">vertical_split</i>
+                    <i class="material-icons">home_work</i>
                     <span>Города</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link  {{Helper::urlActiveHelper('subscription')}}"
                    href="{{route('subscription.index')}}">
-                    <i class="material-icons">vertical_split</i>
+                    <i class="material-icons">people</i>
                     <span>Подписки</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link  {{Helper::urlActiveHelper('subscription_type')}}"
                    href="{{route('subscription.type.index')}}">
-                    <i class="material-icons">vertical_split</i>
+                    <i class="material-icons">playlist_add_check</i>
                     <span>Типы подписок</span>
                 </a>
             </li>
