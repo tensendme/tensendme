@@ -6,3 +6,32 @@
 <script src="{{asset('admin/scripts/extras.1.1.0.min.js')}}"></script>
 <script src="{{asset('admin/scripts/shards-dashboards.1.1.0.min.js')}}"></script>
 <script src="{{asset('admin/scripts/app/app-blog-overview.1.1.0.js')}}"></script>
+<script src="{{asset('js/toastr.js')}}"></script>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+
+<script>
+    toastr.options.closeButton = true;
+    @if(Session::has('success'))
+    toastr.success("{{Session::get('success')}}");
+    @endif
+
+    @if(Session::has('info'))
+    toastr.info("{{Session::get('info')}}");
+    @endif
+
+    @if(Session::has('error'))
+    toastr.error("{{Session::get('error')}}");
+    @endif
+
+    @if(Session::has('warning'))
+    toastr.info("{{Session::get('warning')}}");
+    @endif
+
+</script>

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Category;
+use App\Exceptions\WebServiceErroredException;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\CategoryControllerRequests\StoreAndUpdateRequest;
 use App\Models\Categories\CategoryType;
 use App\Services\v1\CategoryService;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 
@@ -39,9 +41,16 @@ class CategoryController extends WebBaseController
 
     public function store(StoreAndUpdateRequest $request)
     {
-        Category::create($request->all());
-        $this->added();
-        return redirect()->route('category.index');
+        DB::beginTransaction();
+        try {
+            Category::create($request->all());
+            DB::commit();
+            $this->added();
+            return redirect()->route('category.index');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            throw new WebServiceErroredException(trans('admin.error') . ': ' . $exception->getMessage());
+        }
     }
 
     public function show($id)
