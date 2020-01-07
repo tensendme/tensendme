@@ -31,57 +31,70 @@
                     <span>Главное</span>
                 </a>
             </li>
+
+
             <li class="nav-item">
-                <a class="nav-link  {{Helper::urlActiveHelper('category')}}"
-                   href="{{route('category.index')}}">
-                    <i class="material-icons">vertical_split</i>
-                    <span>Категории</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link  {{Helper::urlActiveHelper('level')}}"
-                   href="{{route('level.index')}}">
-                    <i class="material-icons">filter_list
-                    </i>
-                    <span>Уровни</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link  {{Helper::urlActiveHelper('country')}}"
-                   href="{{route('country.index')}}">
-                    <i class="material-icons">business</i>
-                    <span>Страны</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link  {{Helper::urlActiveHelper('city')}}"
-                   href="{{route('city.index')}}">
-                    <i class="material-icons">home_work</i>
-                    <span>Города</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link  {{Helper::urlActiveHelper('subscription')}}"
+                <a class="nav-link  {{Helper::urlActiveHelper('subscription.index')}}"
                    href="{{route('subscription.index')}}">
                     <i class="material-icons">people</i>
                     <span>Подписки</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link  {{Helper::urlActiveHelper('subscription_type')}}"
-                   href="{{route('subscription.type.index')}}">
-                    <i class="material-icons">playlist_add_check</i>
-                    <span>Типы подписок</span>
-                </a>
-            </li>
 
             <li class="nav-item">
-                <a class="nav-link  {{Helper::urlActiveHelper('course')}}"
-                   href="{{route('course.index')}}">
-                    <i class="material-icons">book</i>
-                    <span>Курсы</span>
-                </a>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">perm_media</i>
+                        <span>Медиа</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="{{route('course.index')}}"
+                           class="nav-link dropdown-item {{Helper::urlActiveHelper('course')}}">
+                            <i class=" material-icons">book</i>
+                            <span>Курсы</span>
+                        </a>
+                    </div>
+                </div>
             </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">settings_applications</i>
+                        <span>Настройки</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('category')}}"
+                           href="{{route('category.index')}}">
+                            <i class="material-icons">vertical_split</i>
+                            <span>Категории</span>
+                        </a>
+                        <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('level')}}"
+                           href="{{route('level.index')}}">
+                            <i class="material-icons">filter_list
+                            </i>
+                            <span>Уровни</span>
+                        </a>
+                        <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('country')}}"
+                           href="{{route('country.index')}}">
+                            <i class="material-icons">business</i>
+                            <span>Страны</span>
+                        </a>
+                        <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('city')}}"
+                           href="{{route('city.index')}}">
+                            <i class="material-icons">home_work</i>
+                            <span>Города</span>
+                        </a>
+                        <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('subscription.type.index')}}"
+                           href="{{route('subscription.type.index')}}">
+                            <i class="material-icons">playlist_add_check</i>
+                            <span>Типы подписок</span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+
         </ul>
     </div>
 </aside>
