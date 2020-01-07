@@ -14,6 +14,7 @@
     <div class="form-group col-md-12">
         <input type="number" class="form-control"
                name="start_count"
+               min="1"
                value="{{$level ? $level->start_count : old('start_count')}}"
                placeholder="Старт"
                id="start_сount"
@@ -25,6 +26,7 @@
     <div class="form-group col-md-12">
         <input type="number" class="form-control"
                name="end_count"
+               min="1"
                value="{{$level ? $level->end_count : old('end_count')}}"
                placeholder="Финиш"
                id="end_count"
@@ -36,6 +38,7 @@
     <div class="form-group col-md-12">
         <input type="number" class="form-control"
                name="discount_percentage"
+               min="1"
                value="{{$level ? $level->discount_percentage : old('discount_percentage')}}"
                placeholder="Процент скидки"
                id="discount_percentage"

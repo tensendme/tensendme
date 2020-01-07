@@ -12,8 +12,9 @@
 </div>
 <div class="form-row">
     <div class="form-group col-md-12">
-        <input type="text" class="form-control"
+        <input type="number" class="form-control"
                name="price"
+               min="1"
                value="{{$subscription_type ? $subscription_type->price : old('price')}}"
                placeholder="Цена"
                id="price"
@@ -23,7 +24,8 @@
 </div>
 <div class="form-row">
     <div class="form-group col-md-12">
-        <input type="text" class="form-control"
+        <input type="number" class="form-control"
+               min="1"
                name="expired_at"
                value="{{$subscription_type ? $subscription_type->expired_at : old('expired_at')}}"
                placeholder="Срок истечения(дни)"
