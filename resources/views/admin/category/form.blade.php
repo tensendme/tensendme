@@ -7,7 +7,7 @@
                placeholder="Наименование"
                id="name"
                required>
-        <label class="form-control-plaintext" class="form-control-plaintext" for="name">Пожалуйста введите название категории</label>
+        <label class="form-control-plaintext" for="name">Пожалуйста введите название категории</label>
     </div>
 </div>
 <div class="form-row">

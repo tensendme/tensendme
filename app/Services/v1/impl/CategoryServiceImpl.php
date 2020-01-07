@@ -9,7 +9,7 @@
 namespace App\Services\v1\impl;
 
 
-use App\Category;
+use App\Models\Categories\Category;
 use App\Services\v1\CategoryService;
 
 class CategoryServiceImpl implements CategoryService

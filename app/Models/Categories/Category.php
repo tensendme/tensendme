@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Categories;
 
 use App\Models\Categories\CategoryType;
 use Illuminate\Database\Eloquent\Model;

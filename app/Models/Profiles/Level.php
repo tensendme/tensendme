@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models\Profiles;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Subscription extends Model
+class Level extends Model
 {
     //
 }

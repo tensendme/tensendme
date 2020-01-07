@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Web\v1\Admin;
 
-use App\Category;
+use App\Models\Categories\Category;
 use App\Exceptions\WebServiceErroredException;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\CategoryControllerRequests\StoreAndUpdateRequest;

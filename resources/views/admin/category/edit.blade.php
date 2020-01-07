@@ -10,6 +10,9 @@
         <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
+                    <a href="{{route('category.index')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
+                        <i class="material-icons md-12">arrow_back</i> Назад
+                    </a>
                     <h6 class="m-0">Обновление категории</h6>
                 </div>
                 <div class="card-body p-2 pb-2 text-center">
