@@ -8,6 +8,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 abstract class WebBaseRequest extends FormRequest
 {
+
+    public $data = [];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -39,5 +42,9 @@ abstract class WebBaseRequest extends FormRequest
         throw new WebServiceException($validator, request()->all());
     }
 
+    public function addCellToDataArray($key, $value)
+    {
+        $this->data[$key] = $value;
+    }
 
 }
