@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Web\v1\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebBaseController;
+use App\Http\Requests\Web\V1\SubscriptionTypeControllerRequests\StoreAndUpdateRequest;
 use App\Models\Subscriptions\SubscriptionType;
-use App\Http\Requests\Web\V1\SubControllerRequests\StoreAndUpdateRequest;
-
-use Illuminate\Http\Request;
 
 class SubscriptionTypeController extends WebBaseController
 {
@@ -15,7 +12,7 @@ class SubscriptionTypeController extends WebBaseController
     {
         $subscription_types = SubscriptionType::all();
 
-        return view('admin.subscriptionTypes.index',compact('subscription_types'));
+        return view('admin.subscriptionTypes.index', compact('subscription_types'));
     }
 
     public function create()
@@ -30,10 +27,10 @@ class SubscriptionTypeController extends WebBaseController
     {
 
 
-            SubscriptionType::create($request->all());
-            $this->added();
+        SubscriptionType::create($request->all());
+        $this->added();
 
-            return redirect()->route('subscription.type.index');
+        return redirect()->route('subscription.type.index');
 
     }
 
