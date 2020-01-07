@@ -12,7 +12,7 @@
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Обновление категории</h6>
                 </div>
-                <div class="card-body p-0 pb-3 text-center">
+                <div class="card-body p-2 pb-2 text-center">
                     <form method="post" action="{{route('category.update', ['id' => $category->id])}}">
                         @include('admin.category.form')
                     </form>

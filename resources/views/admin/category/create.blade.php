@@ -12,7 +12,7 @@
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Добавление категории</h6>
                 </div>
-                <div class="card-body p-2 pb-3 text-center">
+                <div class="card-body p-2 pb-4 text-center">
                     <form method="post" action="{{route('category.store')}}">
                         @include('admin.category.form')
                     </form>
