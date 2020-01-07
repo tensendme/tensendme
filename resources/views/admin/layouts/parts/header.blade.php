@@ -63,8 +63,12 @@
                             <div class="dropdown-menu dropdown-menu-small">
                                 <a class="dropdown-item" href="#">
                                     <i class="material-icons">&#xE7FD;</i> Профиль</a>
-                                <a class="dropdown-item text-danger" href="#">
-                                    <i class="material-icons text-danger">&#xE879;</i> Выйти </a>
+
+                                <form action="{{route('logout')}}" method="post">
+                                    {{csrf_field()}}
+                                    <button type="submit" class="dropdown-item text-danger" href="{{route('logout')}}">
+                                        <i class="material-icons text-danger">&#xE879;</i> Выйти </button>
+                                </form>
                             </div>
                         </li>
                     </ul>
