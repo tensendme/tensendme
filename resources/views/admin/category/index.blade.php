@@ -23,6 +23,7 @@
                             <th scope="col" class="border-0">Название</th>
                             <th scope="col" class="border-0">Относится к</th>
                             <th scope="col" class="border-0">Родительская категория</th>
+                            <th scope="col" class="border-0">Дествия</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -30,8 +31,13 @@
                             <tr>
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
-                                <td>{{$category->type}}</td>
-                                <td>{{$category->parent_category_id}}</td>
+                                <td>{{$category->categoryType->name}}</td>
+                                <td>{{($category->parentCategory) ? $category->parentCategory->name : ''}}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{route('category.edit', ['id' => $category->id])}}">
+                                        Изменить
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

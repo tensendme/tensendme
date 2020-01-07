@@ -35,11 +35,10 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Web\v1\Admin'], function () {
-
-    Route::get('/categories', 'CategoryController@index')->name('category.index');
-    Route::get('/category/create','CategoryController@create')->name('category.create');
-    Route::post('/category/store','CategoryController@store')->name('category.store');
-    Route::get('/category/edit/{id}','CategoryController@edit')->name('category.edit');
-    Route::post('/category/update/{id}','CategoryController@update')->name('category.update');
-    Route::delete('/category/delete/{id}','CategoryController@destroy')->name('category.destroy');
+    Route::get('/categories', ['uses' => 'CategoryController@index', 'as' => 'category.index']);
+    Route::get('/category/create', ['uses' => 'CategoryController@create', 'as' => 'category.create']);
+    Route::post('/category/store', ['uses' => 'CategoryController@store', 'as' => 'category.store']);
+    Route::get('/category/edit/{id}', ['uses' => 'CategoryController@edit', 'as' => 'category.edit']);
+    Route::post('/category/update/{id}', ['uses' => 'CategoryController@update', 'as' => 'category.update']);
+    Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.destroy']);
 });

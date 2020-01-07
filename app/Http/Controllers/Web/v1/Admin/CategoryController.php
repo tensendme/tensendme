@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Category;
 use App\Http\Controllers\WebBaseController;
+use App\Http\Requests\CategoryControllerRequests\StoreAndUpdateRequest;
+use App\Models\Categories\CategoryType;
 use App\Services\v1\CategoryService;
-use Illuminate\Http\Request;
 use Session;
 
 
@@ -30,29 +31,16 @@ class CategoryController extends WebBaseController
     public function create()
     {
         $categories = Category::all();
-        return view('admin.category.create')
-            ->with('categories', $categories);
+        $category = new Category();
+        $categoryTypes = CategoryType::all();
+        return view('admin.category.create', compact('categories', 'category', 'categoryTypes'));
     }
 
 
-    public function store(Request $request)
+    public function store(StoreAndUpdateRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'type' => 'required',
-        ]);
-
-        $category = Category::create([
-            'name' => $request->name,
-            'type' => $request->type,
-            'parent_category_id' => $request->parent_category_id
-
-        ]);
-
-        $category->save();
-
+        Category::create($request->all());
         $this->added();
-
         return redirect()->route('category.index');
     }
 
@@ -64,33 +52,18 @@ class CategoryController extends WebBaseController
 
     public function edit($id)
     {
-        $categories = Category::all();
-        return view('admin.categories.edit')
-            ->with('categories', $categories)
-            ->with('category', Category::findOrFail($id));
+        $categories = Category::where('id', '<>', $id)->get();
+        $category = Category::findOrFail($id);
+        $categoryTypes = CategoryType::all();
+        return view('admin.category.edit', compact('categories', 'category', 'categoryTypes'));
 
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreAndUpdateRequest $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'type' => 'required',
-        ]);
-
         Category::findOrFail($id)
-            ->update([
-                'name' => $request->name,
-                'type' => $request->type,
-                'parent_category_id' => $request->parent_category_id
-            ]);
-//        $category->name = $request->name;
-//        $category->type = $request->type;
-//        $category->parent_category_id = $request->parent_category_id;
-//        $category->save();
-
+            ->update($request->all());
         $this->edited();
-
         return redirect()->route('category.index');
 
     }
