@@ -1,5 +1,4 @@
 @extends('admin.layouts.admin')
-
 @section('content')
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
@@ -12,6 +11,9 @@
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Категории</h6>
+                </div>
+                <div class="card-header border-bottom">
+                    <a href="{{route('category.create')}}" type="button" class="mb-2 btn btn-primary mr-1">Добавить</a>
                 </div>
                 <div class="card-body p-0 pb-3 text-center">
                     <table class="table mb-0">
