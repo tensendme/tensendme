@@ -13,11 +13,15 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         Category::insert([
-            'name' => 'TestCategory',
-            'created_at' => now(),
-            'updated_at' => now(),
-            'parent_category_id' => 0,
-            'type' => 1,
+            'name' => 'TestCourseCategory',
+            'parent_category_id' => null,
+            'category_type_id' => 1,
+        ]);
+
+        Category::insert([
+            'name' => 'TestMeditationCategory',
+            'parent_category_id' => null,
+            'category_type_id' => 2,
         ]);
     }
 }

@@ -21,6 +21,7 @@ class CreateThemesTable extends Migration
                 ->references('id')
                 ->on('meditations');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

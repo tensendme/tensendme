@@ -26,6 +26,7 @@ class CreateCoursesTable extends Migration
             $table->double('scale');
             $table->integer('view_count');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

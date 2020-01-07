@@ -17,8 +17,6 @@ class LevelsTableSeeder extends Seeder
             'start_count' => 0,
             'end_count' => 10,
             'discount_percentage' => 10,
-            'created_at'    => now(),
-            'updated_at'    => now(),
         ]);
     }
 }

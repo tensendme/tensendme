@@ -20,6 +20,7 @@ class CreateNewsTable extends Migration
             $table->string('description');
             $table->string('banner_position');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

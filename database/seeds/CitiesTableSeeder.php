@@ -15,8 +15,6 @@ class CitiesTableSeeder extends Seeder
         City::insert([
             'name' => 'Алматы',
             'country_id' => 1,
-            'created_at' => now(),
-            'updated_at' => now(),
         ]);
     }
 }

@@ -1,14 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models\Meditations;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Theme extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
-        'name', 'type', 'parent_category_id'
+        'title',
+        'meditation_id'
     ];
 }

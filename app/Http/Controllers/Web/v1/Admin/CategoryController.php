@@ -23,7 +23,7 @@ class CategoryController extends WebBaseController
     public function index()
     {
         $categories = $this->categoryService->findAllPaginated();
-        return view('admin/category/index', compact('categories'));
+        return view('admin.category.index', compact('categories'));
     }
 
 
@@ -37,15 +37,15 @@ class CategoryController extends WebBaseController
 
     public function store(Request $request)
     {
-        $this->validate($request,[
-           'name'=> 'required',
-            'type'=>'required',
+        $this->validate($request, [
+            'name' => 'required',
+            'type' => 'required',
         ]);
 
         $category = Category::create([
-            'name'=>$request->name,
-            'type'=>$request->type,
-            'parent_category_id'=>$request->parent_category_id
+            'name' => $request->name,
+            'type' => $request->type,
+            'parent_category_id' => $request->parent_category_id
 
         ]);
 
@@ -66,23 +66,23 @@ class CategoryController extends WebBaseController
     {
         $categories = Category::all();
         return view('admin.categories.edit')
-            ->with('categories',$categories)
+            ->with('categories', $categories)
             ->with('category', Category::findOrFail($id));
 
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name'=> 'required',
-            'type'=>'required',
+        $this->validate($request, [
+            'name' => 'required',
+            'type' => 'required',
         ]);
 
         Category::findOrFail($id)
             ->update([
-                'name'=>$request->name,
-                'type'=>$request->type,
-                'parent_category_id'=>$request->parent_category_id
+                'name' => $request->name,
+                'type' => $request->type,
+                'parent_category_id' => $request->parent_category_id
             ]);
 //        $category->name = $request->name;
 //        $category->type = $request->type;

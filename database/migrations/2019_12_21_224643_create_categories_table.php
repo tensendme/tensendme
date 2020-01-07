@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('type');
             $table->bigInteger('parent_category_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

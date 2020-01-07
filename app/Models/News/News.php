@@ -1,14 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models\News;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class News extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
-        'name', 'type', 'parent_category_id'
+        'title',
+        'image_path',
+        'description',
+        'banner_position',
     ];
 }

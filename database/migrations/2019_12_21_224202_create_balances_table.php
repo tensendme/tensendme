@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateBalancesTable extends Migration
 {
+
+
     /**
      * Run the migrations.
      *
@@ -20,7 +22,6 @@ class CreateBalancesTable extends Migration
                 ->references('id')
                 ->on('users');
             $table->double('balance');
-            $table->timestamps();
         });
     }
 
