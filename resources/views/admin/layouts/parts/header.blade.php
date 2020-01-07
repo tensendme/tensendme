@@ -57,7 +57,9 @@
                         {{--</li>--}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <img class="user-avatar rounded-circle mr-2" src="{{asset('admin/images/avatars/0.jpg')}}" alt="User Avatar">
+                                <span class="user-avatar rounded-circle mr-2 material-icons">
+                                tag_faces
+                                </span>
                                 <span class="d-none d-md-inline-block">Админ тест</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-small">
