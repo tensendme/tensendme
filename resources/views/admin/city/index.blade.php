@@ -34,14 +34,15 @@
                                 <td>{{$city->name}}</td>
                                 <td>{{$city->country->name}}</td>
                                 <td>
-                                    <a href="{{route('city.edit', ['id' => $city->id])}}">
-                                        <i class="material-icons md-24">edit</i>
+                                    <a class="btn btn-outline-primary mb-2 "
+                                       href="{{route('city.edit', ['id' => $city->id])}}">
+                                        <i class="material-icons md-12">edit</i>
                                     </a>
-                                    <form method="post" action="{{route('city.delete', ['id' => $city->id])}}">
+                                    <form class="d-inline" method="post" action="{{route('city.delete', ['id' => $city->id])}}">
                                         {{csrf_field()}}
                                         {{method_field('DELETE')}}
-                                        <button  class="mb-2 btn btn-sm btn-danger mr-1" type="submit">
-                                            <i class="material-icons md-18">delete</i>
+                                        <button  class="btn btn-outline-danger mr-20 mb-2 " type="submit">
+                                            <i class="material-icons md-50">delete</i>
                                         </button>
                                     </form>
                                 </td>

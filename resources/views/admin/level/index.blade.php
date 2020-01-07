@@ -38,8 +38,9 @@
                                 <td>{{$level->end_count}}</td>
                                 <td>{{$level->discount_percentage}}%</td>
                                 <td>
-                                    <a href="{{route('level.edit', ['id' => $level->id])}}">
-                                        <i class="material-icons md-24">edit</i>
+                                    <a class="btn btn-outline-primary mb-2 "
+                                       href="{{route('level.edit', ['id' => $level->id])}}">
+                                        <i class="material-icons md-12">edit</i>
                                     </a>
                                 </td>
                             </tr>

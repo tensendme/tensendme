@@ -36,8 +36,9 @@
                                 <td>{{$subscription_type->price}}</td>
                                 <td>{{$subscription_type->expired_at}}</td>
                                 <td>
-                                    <a href="{{route('subscription.type.edit', ['id' => $subscription_type->id])}}">
-                                        <i class="material-icons md-24">edit</i>
+                                    <a class="btn btn-outline-primary mb-2 "
+                                       href="{{route('subscription.type.edit', ['id' => $subscription_type->id])}}">
+                                        <i class="material-icons md-12">edit</i>
                                     </a>
                                 </td>
                             </tr>

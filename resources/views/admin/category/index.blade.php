@@ -36,8 +36,9 @@
                                 <td>{{$category->categoryType->name}}</td>
                                 <td>{{($category->parentCategory) ? $category->parentCategory->name : ''}}</td>
                                 <td>
-                                    <a href="{{route('category.edit', ['id' => $category->id])}}">
-                                        <i class="material-icons md-24">edit</i>
+                                    <a class="btn btn-outline-primary mb-2 "
+                                       href="{{route('category.edit', ['id' => $category->id])}}">
+                                        <i class="material-icons md-12">edit</i>
                                     </a>
                                 </td>
                             </tr>
