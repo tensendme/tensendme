@@ -38,6 +38,20 @@
                     <span>Категории</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link  {{Helper::urlActiveHelper('course')}}"
+                   href="{{route('course.index')}}">
+                    <i class="material-icons">book</i>
+                    <span>Курсы</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  {{Helper::urlActiveHelper('course')}}"
+                   href="{{route('course.material.index')}}">
+                    <i class="material-icons">bookmark</i>
+                    <span>Материалы</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>
