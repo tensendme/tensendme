@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web\v1\Admin;
 use App\Models\Categories\Category;
 use App\Exceptions\WebServiceErroredException;
 use App\Http\Controllers\WebBaseController;
-use App\Http\Requests\CategoryControllerRequests\StoreAndUpdateRequest;
+use App\Http\Requests\Web\V1\CategoryControllerRequests\StoreAndUpdateRequest;
 use App\Models\Categories\CategoryType;
 use App\Services\v1\CategoryService;
 use Illuminate\Support\Facades\DB;

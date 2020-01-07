@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\CategoryControllerRequests;
+namespace App\Http\Requests\Web\V1\CategoryControllerRequests;
 
 use App\Http\Requests\WebBaseRequest;
 
