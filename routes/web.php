@@ -70,4 +70,20 @@ Route::group(['namespace' => 'Web\v1\Admin'], function () {
 
     Route::get('/subscriptions', ['uses' => 'SubscriptionController@index', 'as' => 'subscription.index']);
 
+    Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.destroy']);
+
+    Route::get('/courses', ['uses' => 'CourseController@index', 'as' => 'course.index']);
+    Route::get('/courses/create', ['uses' => 'CourseController@create', 'as' => 'course.create']);
+    Route::get('/courses/edit/{id}', ['uses' => 'CourseController@edit', 'as' => 'course.edit']);
+    Route::post('/courses/edit/{id}', ['uses' => 'CourseController@update', 'as' => 'course.update']);
+    Route::post('/courses/create', ['uses' => 'CourseController@store', 'as' => 'course.store']);
+    Route::post('/courses/visible/{id}', ['uses' => 'CourseController@visibleChange', 'as' => 'course.visible']);
+
+    Route::get('/course/materials', ['uses' => 'CourseMaterialController@index', 'as' => 'course.material.index']);
+    Route::get('/course/materials/create', ['uses' => 'CourseMaterialController@create', 'as' => 'course.material.create']);
+    Route::post('/course/materials/create', ['uses' => 'CourseMaterialController@store', 'as' => 'course.material.store']);
+    Route::get('/course/materials/edit/{id}', ['uses' => 'CourseMaterialController@edit', 'as' => 'course.material.edit']);
+    Route::post('/course/materials/edit/{id}', ['uses' => 'CourseMaterialController@update', 'as' => 'course.material.update']);
+    Route::delete('/course/materials/delete/{id}', ['uses' => 'CourseMaterialController@delete', 'as' => 'course.material.delete']);
+
 });
