@@ -25,7 +25,7 @@
                             <th scope="col" class="border-0">Название</th>
                             <th scope="col" class="border-0">Категория</th>
                             <th scope="col" class="border-0">Виден</th>
-                            <th scope="col" class="border-0">Оценка</th>
+                            <th scope="col" class="border-0">Рейтинг</th>
                             <th scope="col" class="border-0">Просмотрено</th>
                             <th scope="col" class="border-0">Создан</th>
                             <th scope="col" class="border-0">Действия</th>
@@ -37,19 +37,37 @@
                                 <td>{{$course->id}}</td>
                                 <td>{{$course->title}}</td>
                                 <td>{{$course->category->name}}</td>
-                                <td>{{$course->is_visible}}</td>
+                                <td>
+                                    @if($course->is_visible)
+                                        <span class="text-success">
+                                            Виден
+                                        </span>
+                                    @else
+                                        <span class="text-danger">
+                                            Не виден
+                                        </span>
+                                    @endif
+                                </td>
                                 <td>{{$course->scale}}</td>
                                 <td>{{$course->view_count}}</td>
                                 <td>{{$course->created_at}}</td>
                                 <td>
-                                    <a href="{{route('course.edit', ['id' => $course->id])}}">
-                                        <i class="material-icons md-24">edit</i>
+                                    <a class="btn btn-outline-primary mb-2 "
+                                       href="{{route('course.edit', ['id' => $course->id])}}">
+                                        <i class="material-icons md-12">edit</i>
                                     </a>
-                                    <form method="post" action="{{route('course.visible', ['id' => $course->id])}}">
+                                    <form class="d-inline" method="post"
+                                          action="{{route('course.visible', ['id' => $course->id])}}">
                                         {{csrf_field()}}
-                                        <button  class="mb-2 btn btn-primary mr-1" type="submit">
-                                            <i class="material-icons md-12">remove_red_eye</i>
-                                        </button>
+                                        @if($course->is_visible)
+                                            <button class="mb-2 btn  btn-outline-success mr-1" type="submit">
+                                                <i class="material-icons md-12">remove_red_eye</i>
+                                            </button>
+                                        @else
+                                            <button class="mb-2 btn  btn-outline-danger mr-1" type="submit">
+                                                <i class="material-icons md-12">remove_red_eye</i>
+                                            </button>
+                                        @endif
                                     </form>
                                 </td>
                             </tr>

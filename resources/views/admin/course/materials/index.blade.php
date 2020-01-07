@@ -13,7 +13,8 @@
                     <h6 class="m-0">Все материалы</h6>
                 </div>
                 <div class="card-header border-bottom">
-                    <a href="{{route('course.material.create')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Добавить
+                    <a href="{{route('course.material.create')}}" type="button"
+                       class="mb-2 btn btn-medium btn-primary mr-1">Добавить
                         <i class="material-icons md-12">add_circle</i>
                     </a>
                 </div>
@@ -36,21 +37,26 @@
                                 <td>{{$material->title}}</td>
                                 <td>{{$material->course->title}}</td>
                                 @if($material->video_path)
-                                    <td><video src="{{asset('videos'.$material->video_path)}}" controls
-                                               style="height: 130px; width: 150px"></video></td>
-                                    @else <td>Нет видео!</td>
+                                    <td>
+                                        <video src="{{asset('videos'.$material->video_path)}}" controls
+                                               style="height: 130px; width: 150px"></video>
+                                    </td>
+                                @else
+                                    <td>Нет видео!</td>
                                 @endif
                                 <td>#{{$material->ordering}}</td>
                                 <td>{{$material->created_at}}</td>
                                 <td>
-                                    <a href="{{route('course.material.edit', ['id' => $material->id])}}">
-                                        <i class="material-icons md-24">edit</i>
+                                    <a class="btn btn-outline-primary mb-2"
+                                       href="{{route('course.material.edit', ['id' => $material->id])}}">
+                                        <i class="material-icons md-12">edit</i>
                                     </a>
-                                    <form method="post" action="{{route('course.material.delete', ['id' => $material->id])}}">
+                                    <form class="d-inline" method="post"
+                                          action="{{route('course.material.delete', ['id' => $material->id])}}">
                                         {{csrf_field()}}
                                         {{method_field('DELETE')}}
-                                        <button  class="mb-2 btn btn-sm btn-danger mr-1" type="submit">
-                                            <i class="material-icons md-18">delete</i>
+                                        <button class="mb-2 btn btn-outline-danger mr-1" type="submit">
+                                            <i class="material-icons md-12">delete</i>
                                         </button>
                                     </form>
                                 </td>

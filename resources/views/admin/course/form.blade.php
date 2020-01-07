@@ -13,12 +13,10 @@
 <div class="form-row">
     <div class="form-group col-md-12">
         <textarea type="text" class="form-control"
-               name="description"
-               placeholder="Краткое описание курса"
-               id="description"
-                  required>
-            {{$course ? $course->description : old('description')}}
-        </textarea>
+                  name="description"
+                  placeholder="Краткое описание курса"
+                  id="description"
+                  required>{{$course ? $course->description : old('description')}}</textarea>
         <label class="form-control-plaintext" for="description">Пожалуйста введите название курса</label>
     </div>
 </div>
@@ -44,7 +42,7 @@
     </div>
 </div>
 <div class="form-group col-md-12 text-right">
-    <button  class="mb-2 btn btn-primary mr-1" type="submit">Сохранить
+    <button class="mb-2 btn btn-primary mr-1" type="submit">Сохранить
         <i class="material-icons md-12">check_circle</i>
     </button>
 </div>
