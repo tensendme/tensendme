@@ -10,18 +10,17 @@ use File;
 
 class CourseMaterialController extends WebBaseController
 {
-    public function index(){
-        $materials = CourseMaterial::paginate(10);
-        return view('admin.course.materials.index', compact('materials'));
+    public function index($course_id){
+        $materials = CourseMaterial::where('course_id', $course_id)->get();
+        return view('admin.course.materials.index', compact('materials', 'course_id'));
     }
 
-    public function create() {
-        $courses = Course::all();
+    public function create($course_id) {
         $material = new CourseMaterial();
-        return view('admin.course.materials.create', compact('material', 'courses'));
+        return view('admin.course.materials.create', compact('material', 'course_id'));
     }
 
-    public function store(StoreAndUpdateRequest $request) {
+    public function store(StoreAndUpdateRequest $request, $course_id) {
         $path = '';
         if($request->file('video')) {
             $filename = $request->title.time().'.'.$request->file('video')->getClientOriginalExtension();
@@ -31,12 +30,12 @@ class CourseMaterialController extends WebBaseController
         CourseMaterial::create([
             'title' => $request->title,
             'video_path' => $path,
-            'course_id' => $request->course_id,
+            'course_id' => $course_id,
             'ordering' => $request->ordering
 
         ]);
         $this->added();
-        return redirect()->route('course.material.index');
+        return redirect()->route('course.material.index', compact('course_id'));
     }
 
     public function edit($id) {
@@ -57,17 +56,19 @@ class CourseMaterialController extends WebBaseController
         $material->update([
             'title' => $request->title,
             'video_path' => $path,
-            'course_id' => $request->course_id,
             'ordering' => $request->ordering
         ]);
+        $course_id = $material->course->id;
         $this->edited();
-        return redirect()->route('course.material.index');
+        return redirect()->route('course.material.index', compact('course_id'));
     }
 
     public function delete($id) {
-        CourseMaterial::destroy($id);
+        $material = CourseMaterial::findOrFail($id);
+        $course_id = $material->course->id;
+        $material->delete();
         $this->deleted();
-        return redirect()->route('course.material.index');
+        return redirect()->route('course.material.index', compact('course_id'));
 
 
     }

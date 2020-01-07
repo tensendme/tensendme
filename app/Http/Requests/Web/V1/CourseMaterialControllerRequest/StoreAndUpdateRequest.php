@@ -10,7 +10,6 @@ class StoreAndUpdateRequest extends WebBaseRequest
     {
         return [
             'title' => ['required', 'string'],
-            'course_id' => ['required', 'numeric'],
             'ordering' => ['required', 'numeric'],
             'video' => ['mimetypes:video/*']
         ];

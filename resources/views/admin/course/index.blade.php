@@ -69,6 +69,10 @@
                                             </button>
                                         @endif
                                     </form>
+                                    <a class="btn btn-outline-primary mb-2 "
+                                       href="{{route('course.material.index', ['course_id' => $course->id])}}">
+                                        <i class="material-icons md-12">bookmark</i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

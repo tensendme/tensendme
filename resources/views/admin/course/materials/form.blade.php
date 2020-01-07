@@ -1,6 +1,6 @@
 {{csrf_field()}}
 <div class="form-row">
-    <div class="form-group col-md-8">
+    <div class="form-group col-md-12">
         <input type="text" class="form-control"
                name="title"
                value="{{$material ? $material->title : old('title')}}"
@@ -9,7 +9,10 @@
                required>
         <label class="form-control-plaintext" for="title">Пожалуйста введите название материала</label>
     </div>
-    <div class="form-group col-md-4">
+
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
         <input type="number" class="form-control"
                min="1"
                name="ordering"
@@ -17,21 +20,6 @@
                id="ordering"
                required>
         <label class="form-control-plaintext" for="ordering">Пожалуйста введите номер урока</label>
-    </div>
-</div>
-<div class="form-row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <select class="form-control" name="course_id" id="course_id">
-                @foreach($courses as $course)
-                    <option {{$material->course_id == $course->id ? ' selected ': ''}}
-                            value="{{$course->id}}">
-                        {{$course->title}}
-                    </option>
-                @endforeach
-            </select>
-            <label class="form-control-plaintext" for="course_id">Пожалуйста выберите курс</label>
-        </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">

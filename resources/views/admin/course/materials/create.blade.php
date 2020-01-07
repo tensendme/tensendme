@@ -10,13 +10,13 @@
         <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
-                    <a href="{{route('course.material.index')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
+                    <a href="{{route('course.material.index', ['course_id' => $course_id])}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
                         <i class="material-icons md-12">arrow_back</i> Назад
                     </a>
                     <h6 class="m-0">Добавление материала</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
-                    <form method="post" action="{{route('course.material.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{route('course.material.store', ['course_id' => $course_id])}}" enctype="multipart/form-data">
                         @include('admin.course.materials.form')
                     </form>
                 </div>
