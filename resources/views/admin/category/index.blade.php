@@ -39,13 +39,6 @@
                                     <a href="{{route('category.edit', ['id' => $category->id])}}">
                                         <i class="material-icons md-24">edit</i>
                                     </a>
-                                    <form method="post" action="{{route('category.destroy', ['id' => $category->id])}}">
-                                        {{csrf_field()}}
-                                        {{method_field('DELETE')}}
-                                        <button  class="mb-2 btn btn-sm btn-danger mr-1" type="submit">
-                                            <i class="material-icons md-18">delete</i>
-                                        </button>
-                                    </form>
                                 </td>
                             </tr>
                         @endforeach

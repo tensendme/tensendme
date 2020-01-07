@@ -41,13 +41,6 @@
                                     <a href="{{route('level.edit', ['id' => $level->id])}}">
                                         <i class="material-icons md-24">edit</i>
                                     </a>
-                                    <form method="post" action="{{route('level.delete', ['id' => $level->id])}}">
-                                        {{csrf_field()}}
-                                        {{method_field('DELETE')}}
-                                        <button  class="mb-2 btn btn-sm btn-danger mr-1" type="submit">
-                                            <i class="material-icons md-18">delete</i>
-                                        </button>
-                                    </form>
                                 </td>
                             </tr>
                         @endforeach
