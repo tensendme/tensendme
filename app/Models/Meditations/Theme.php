@@ -13,4 +13,12 @@ class Theme extends Model
         'title',
         'meditation_id'
     ];
+
+    public function audios(){
+        return $this->hasMany(ThemeAudio::class, 'theme_id', 'id');
+    }
+
+    public function meditation(){
+        return $this->belongsTo(Meditation::class, 'meditation_id', 'id');
+    }
 }

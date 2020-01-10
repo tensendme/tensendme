@@ -2,7 +2,7 @@
 
 namespace App\Models\Meditations;
 
-use App\Category;
+use App\Models\Categories\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

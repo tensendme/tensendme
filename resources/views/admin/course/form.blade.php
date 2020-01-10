@@ -17,7 +17,7 @@
                   placeholder="Краткое описание курса"
                   id="description"
                   required>{{$course ? $course->description : old('description')}}</textarea>
-        <label class="form-control-plaintext" for="description">Пожалуйста введите название курса</label>
+        <label class="form-control-plaintext" for="description">Пожалуйста введите описание курса</label>
     </div>
 </div>
 <div class="form-row">

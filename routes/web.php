@@ -97,6 +97,16 @@ Route::group(['namespace' => 'Web\v1'], function () {
         Route::post('/course/materials/edit/{id}', ['uses' => 'CourseMaterialController@update', 'as' => 'course.material.update']);
         Route::delete('/course/materials/delete/{id}', ['uses' => 'CourseMaterialController@delete', 'as' => 'course.material.delete']);
 
+        Route::get('/meditations', ['uses' => 'MeditationController@index', 'as' => 'meditation.index']);
+        Route::get('/meditation/create', ['uses' => 'MeditationController@create', 'as' => 'meditation.create']);
+        Route::post('/meditation/create', ['uses' => 'MeditationController@store', 'as' => 'meditation.store']);
+        Route::get('/meditation/edit/{id}', ['uses' => 'MeditationController@edit', 'as' => 'meditation.edit']);
+        Route::post('/meditation/edit/{id}', ['uses' => 'MeditationController@update', 'as' => 'meditation.update']);
+
+        Route::get('/meditations/themes/{meditationId}', ['uses' => 'MeditationThemeController@index', 'as' => 'meditation.theme.index']);
+        Route::get('/meditations/theme/create/{meditationId}', ['uses' => 'MeditationThemeController@create', 'as' => 'meditation.theme.create']);
+        Route::post('/meditations/theme/create/{meditationId}', ['uses' => 'MeditationThemeController@store', 'as' => 'meditation.theme.store']);
+
     });
 
 });
