@@ -26,8 +26,8 @@ class DropColumnBannerPositionInNews extends Migration
      */
     public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->string('banner_position');
-        });
+//        Schema::table('news', function (Blueprint $table) {
+//            $table->string('banner_position');
+//        });
     }
 }

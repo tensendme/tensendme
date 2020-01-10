@@ -27,9 +27,6 @@ class DropColumnExpiredAtInSubscriptionTypes extends Migration
      */
     public function down()
     {
-        Schema::table('subscription_types', function (Blueprint $table) {
-            $table->dateTime('expired_at');
 
-        });
     }
 }
