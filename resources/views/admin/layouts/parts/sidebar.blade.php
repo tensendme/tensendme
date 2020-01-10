@@ -124,11 +124,6 @@
                             <i class="material-icons">playlist_add_check</i>
                             <span>Типы подписок</span>
                         </a>
-                        <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('location.index')}}"
-                           href="{{route('location.index')}}">
-                            <i class="material-icons">playlist_add_check</i>
-                            <span>Типы подписок</span>
-                        </a>
                     </div>
                 </div>
             </li>
