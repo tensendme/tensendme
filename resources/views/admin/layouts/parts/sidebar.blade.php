@@ -57,7 +57,7 @@
                         </a>
                         <a href="{{route('meditation.index')}}"
                            class="nav-link dropdown-item {{Helper::urlActiveHelper('meditation')}}">
-                            <i class=" material-icons">book</i>
+                            <i class=" material-icons">library_music</i>
                             <span>Медитация</span>
                         </a>
                     </div>
@@ -67,23 +67,23 @@
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">perm_media</i>
+                        <i class="material-icons">camera_alt</i>
                         <span>Реклама</span>
                     </a>
                     <div class="dropdown-menu">
                         <a href="{{route('location.index')}}"
                            class="nav-link dropdown-item {{Helper::urlActiveHelper('location')}}">
-                            <i class=" material-icons">book</i>
+                            <i class=" material-icons">mobile_screen_share</i>
                             <span>Локации</span>
                         </a>
                         <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('news')}}"
                            href="{{route('news.index')}}">
-                            <i class="material-icons">home_work</i>
+                            <i class="material-icons">local_play</i>
                             <span>Новости</span>
                         </a>
                         <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('banner')}}"
                            href="{{route('banner.index')}}">
-                            <i class="material-icons">home_work</i>
+                            <i class="material-icons">flag</i>
                             <span>Банера</span>
                         </a>
                     </div>
