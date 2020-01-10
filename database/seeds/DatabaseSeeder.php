@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(CategoryTypesTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
+        $this->call(AudioLanguageSeeder::class);
     }
 }

@@ -17,7 +17,7 @@ class CreateSubscriptionTypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->double('price');
-            $table->dateTime('expired_at')->nullable();
+            $table->dateTime('expired_at')->default(null);
             $table->timestamps();
         });
     }

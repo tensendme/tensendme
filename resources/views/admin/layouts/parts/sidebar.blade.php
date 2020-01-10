@@ -55,6 +55,11 @@
                             <i class=" material-icons">book</i>
                             <span>Курсы</span>
                         </a>
+                        <a href="{{route('meditation.index')}}"
+                           class="nav-link dropdown-item {{Helper::urlActiveHelper('meditation')}}">
+                            <i class=" material-icons">book</i>
+                            <span>Медитация</span>
+                        </a>
                     </div>
                 </div>
             </li>

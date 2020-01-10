@@ -1,7 +1,8 @@
 <?php
 
 
-namespace App\Http\Requests\Web\V1\SubControllerRequests;
+namespace App\Http\Requests\Web\V1\SubscriptionTypeControllerRequests;
+
 use App\Http\Requests\WebBaseRequest;
 
 
@@ -11,8 +12,8 @@ class StoreAndUpdateRequest extends WebBaseRequest
     {
         return [
             'name' => ['required', 'string'],
-            'price' => ['required','numeric'],
-            'expired_at'=>['required','numeric']
+            'price' => ['required', 'numeric'],
+            'expired_at' => ['required', 'numeric']
 
         ];
     }

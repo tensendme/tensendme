@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($request->wantsJson() || \Illuminate\Support\Facades\Request::is('api/*')) {
-            return parent::render($request, $exception);
+            return $this->handleApiException($request, $exception);
         } else {
             return $this->handleWebException($request, $exception);
         }
@@ -65,6 +65,21 @@ class Handler extends ExceptionHandler
         if ($exception instanceof WebServiceErroredException) {
             return redirect()->back()->with('error', $exception->getExplanation());
         }
+        return parent::render($request, $exception);
+    }
+
+
+    private function handleApiException($request, Exception $exception)
+    {
+        $exception = $this->prepareException($exception);
+
+        if ($exception instanceof \App\Exceptions\ApiServiceException) {
+            return $exception->getApiResponse();
+        }
+        if ($exception instanceof \Illuminate\Auth\AuthenticationException) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+
         return parent::render($request, $exception);
     }
 

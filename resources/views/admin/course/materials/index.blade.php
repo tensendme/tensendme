@@ -13,6 +13,9 @@
                     <h6 class="m-0">Все материалы</h6>
                 </div>
                 <div class="card-header border-bottom">
+                    <a href="{{route('course.index')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
+                        <i class="material-icons md-12">arrow_back</i> Назад
+                    </a>
                     <a href="{{route('course.material.create', ['course_id' => $course_id])}}" type="button"
                        class="mb-2 btn btn-medium btn-primary mr-1">Добавить урок
                         <i class="material-icons md-12">add_circle</i>
