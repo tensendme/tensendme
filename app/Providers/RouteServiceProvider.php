@@ -16,6 +16,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
+    protected $namespaceAPI_V1 = 'App\Http\Controllers\Api\V1';
+    protected $namespaceAPI_V2 = 'App\Http\Controllers\Api\V2';
+
+
     /**
      * The path to the "home" route for your application.
      *
@@ -42,7 +46,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiRoutes();
+        $this->mapApiV1Routes();
+
+        $this->mapApiV2Routes();
 
         $this->mapWebRoutes();
 
@@ -59,8 +65,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -70,11 +76,20 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes()
+    protected function mapApiV1Routes()
     {
-        Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+        Route::prefix('api/v1')
+            ->middleware('api')
+            ->namespace($this->namespaceAPI_V1)
+            ->group(base_path('routes/api/V1/api.php'));
+    }
+
+
+    protected function mapApiV2Routes()
+    {
+        Route::prefix('api/v2')
+            ->middleware('api')
+            ->namespace($this->namespaceAPI_V2)
+            ->group(base_path('routes/api/V2/api.php'));
     }
 }
