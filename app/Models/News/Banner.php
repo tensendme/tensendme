@@ -3,11 +3,11 @@
 namespace App\Models\Banners;
 
 
-use App\Models\News\Locations;
+use App\Models\News\Location;
 use App\Models\News\News;
 use Illuminate\Database\Eloquent\Model;
 
-class Banners extends Model
+class Banner extends Model
 {
     protected $fillable = [
         'title',
@@ -23,7 +23,7 @@ class Banners extends Model
 
     public function location()
     {
-        return $this->belongsTo(Locations::class, 'location_id', 'id');
+        return $this->belongsTo(Location::class, 'location_id', 'id');
     }
 
 }

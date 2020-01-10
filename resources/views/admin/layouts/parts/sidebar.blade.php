@@ -41,6 +41,7 @@
                 </a>
             </li>
 
+
             <li class="nav-item">
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
@@ -55,6 +56,33 @@
                             <span>Курсы</span>
                         </a>
                     </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">perm_media</i>
+                        <span>Реклама</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="{{route('location.index')}}"
+                           class="nav-link dropdown-item {{Helper::urlActiveHelper('location')}}">
+                            <i class=" material-icons">book</i>
+                            <span>Локации</span>
+                        </a>
+                        <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('news')}}"
+                           href="{{route('news.index')}}">
+                            <i class="material-icons">home_work</i>
+                            <span>Новости</span>
+                        </a>
+                        <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('banner')}}"
+                           href="{{route('banner.index')}}">
+                            <i class="material-icons">home_work</i>
+                            <span>Банера</span>
+                        </a>
+                    </div>
+
                 </div>
             </li>
             <li class="nav-item">
@@ -88,6 +116,11 @@
                         </a>
                         <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('subscription.type.index')}}"
                            href="{{route('subscription.type.index')}}">
+                            <i class="material-icons">playlist_add_check</i>
+                            <span>Типы подписок</span>
+                        </a>
+                        <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('location.index')}}"
+                           href="{{route('location.index')}}">
                             <i class="material-icons">playlist_add_check</i>
                             <span>Типы подписок</span>
                         </a>

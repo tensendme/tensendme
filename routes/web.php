@@ -86,4 +86,25 @@ Route::group(['namespace' => 'Web\v1\Admin'], function () {
     Route::post('/course/materials/edit/{id}', ['uses' => 'CourseMaterialController@update', 'as' => 'course.material.update']);
     Route::delete('/course/materials/delete/{id}', ['uses' => 'CourseMaterialController@delete', 'as' => 'course.material.delete']);
 
+
+    Route::get('/locations', ['uses' => 'LocationController@index', 'as' => 'location.index']);
+    Route::get('/location/create', ['uses' => 'LocationController@create', 'as' => 'location.create']);
+    Route::post('/location/store', ['uses' => 'LocationController@store', 'as' => 'location.store']);
+    Route::get('/location/edit/{id}', ['uses' => 'LocationController@edit', 'as' => 'location.edit']);
+    Route::post('/location/update/{id}', ['uses' => 'LocationController@update', 'as' => 'location.update']);
+    Route::delete('/location/delete/{id}', ['uses' => 'LocationController@destroy', 'as' => 'location.delete']);
+
+    Route::get('/news', ['uses' => 'NewsController@index', 'as' => 'news.index']);
+    Route::get('/news/create', ['uses' => 'NewsController@create', 'as' => 'news.create']);
+    Route::post('/news/store', ['uses' => 'NewsController@store', 'as' => 'news.store']);
+    Route::get('/news/edit/{id}', ['uses' => 'NewsController@edit', 'as' => 'news.edit']);
+    Route::post('/news/update/{id}', ['uses' => 'NewsController@update', 'as' => 'news.update']);
+    Route::delete('/news/delete/{id}', ['uses' => 'NewsController@destroy', 'as' => 'news.delete']);
+
+    Route::get('/banners', ['uses' => 'BannerController@index', 'as' => 'banner.index']);
+    Route::get('/banner/create', ['uses' => 'BannerController@create', 'as' => 'banner.create']);
+    Route::post('/banner/store', ['uses' => 'BannerController@store', 'as' => 'banner.store']);
+    Route::get('/banner/edit/{id}', ['uses' => 'BannerController@edit', 'as' => 'banner.edit']);
+    Route::post('/banner/update/{id}', ['uses' => 'BannerController@update', 'as' => 'banner.update']);
+    Route::delete('/banner/delete/{id}', ['uses' => 'BannerController@destroy', 'as' => 'banner.delete']);
 });
