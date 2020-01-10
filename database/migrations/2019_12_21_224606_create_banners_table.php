@@ -13,7 +13,7 @@ class CreateBannersTable extends Migration
      */
     public function up()
     {
-        Schema::create('banner', function (Blueprint $table) {
+        Schema::create('banners', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('news_id');
             $table->foreign('news_id')
@@ -32,6 +32,6 @@ class CreateBannersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banner');
+        Schema::dropIfExists('banners');
     }
 }

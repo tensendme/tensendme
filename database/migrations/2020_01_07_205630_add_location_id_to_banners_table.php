@@ -13,7 +13,7 @@ class AddLocationIdToBannersTable extends Migration
      */
     public function up()
     {
-        Schema::table('banner', function (Blueprint $table) {
+        Schema::table('banners', function (Blueprint $table) {
             $table->unsignedBigInteger('location_id')
                 ->nullable(false);
 
@@ -30,7 +30,7 @@ class AddLocationIdToBannersTable extends Migration
      */
     public function down()
     {
-        Schema::table('banner', function (Blueprint $table) {
+        Schema::table('banners', function (Blueprint $table) {
             $table->dropForeign(['location_id']);
             $table->dropColumn(['location_id']);
         });
