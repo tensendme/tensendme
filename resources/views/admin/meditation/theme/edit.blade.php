@@ -3,7 +3,7 @@
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
             <span class="text-uppercase page-subtitle">Медитация</span>
-            <h3 class="page-title">Медитация</h3>
+            <h3 class="page-title">Темы</h3>
         </div>
     </div>
     <div class="row">
@@ -13,12 +13,11 @@
                     <a href="{{route('meditation.index')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
                         <i class="material-icons md-12">arrow_back</i> Назад
                     </a>
-                    <h6 class="m-0">Редактирование медитации</h6>
+                    <h6 class="m-0">Редактирование темы</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
-{{--                    <img src="{{asset('images/'.$course->image_path)}}" style="width: 300px; height: 280px">--}}
-                    <form method="post" action="{{route('meditation.update', ['id' => $meditation->id])}}" enctype="multipart/form-data">
-                        @include('admin.meditation.form')
+                    <form method="post" action="{{route('meditation.theme.update', ['id' => $theme->id])}}" enctype="multipart/form-data">
+                        @include('admin.meditation.theme.form')
                     </form>
                 </div>
             </div>

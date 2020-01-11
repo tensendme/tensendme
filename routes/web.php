@@ -106,6 +106,8 @@ Route::group(['namespace' => 'Web\v1'], function () {
         Route::get('/meditations/themes/{meditationId}', ['uses' => 'MeditationThemeController@index', 'as' => 'meditation.theme.index']);
         Route::get('/meditations/theme/create/{meditationId}', ['uses' => 'MeditationThemeController@create', 'as' => 'meditation.theme.create']);
         Route::post('/meditations/theme/create/{meditationId}', ['uses' => 'MeditationThemeController@store', 'as' => 'meditation.theme.store']);
+        Route::get('/meditations/theme/edit/{id}', ['uses' => 'MeditationThemeController@edit', 'as' => 'meditation.theme.edit']);
+        Route::post('/meditations/theme/update/{id}', ['uses' => 'MeditationThemeController@update', 'as' => 'meditation.theme.update']);
 
 
 

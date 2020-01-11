@@ -16,7 +16,7 @@
                     <h6 class="m-0">Добавление темы</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
-                    <form method="post" action="{{route('meditation.theme.store', ['meditationId' => $meditationId])}}">
+                    <form method="post" action="{{route('meditation.theme.store', ['meditationId' => $meditationId])}}" enctype="multipart/form-data">
                         @include('admin.meditation.theme.form')
                     </form>
                 </div>
