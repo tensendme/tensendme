@@ -10,7 +10,7 @@
         <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
-                    <a href="{{route('meditation.index')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
+                    <a href="{{route('meditation.theme.index', ['meditationId' => $theme->meditation_id])}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
                         <i class="material-icons md-12">arrow_back</i> Назад
                     </a>
                     <h6 class="m-0">Редактирование темы</h6>
