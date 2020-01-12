@@ -77,7 +77,10 @@ class Handler extends ExceptionHandler
             return $exception->getApiResponse();
         }
         if ($exception instanceof \Illuminate\Auth\AuthenticationException) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
+        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+            return response()->json(['error' => 'Not found'], 404);
         }
 
         return parent::render($request, $exception);
