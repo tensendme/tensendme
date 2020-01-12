@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Services\v1\impl\CategoryServiceImpl;
+use App\Services\v1\impl\CodeServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
+use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
 
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +29,14 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\NewsService', function ($app) {
             return new NewsServiceImpl();
+        });
+
+        $this->app->bind('App\Services\v1\SmsService', function ($app) {
+            return new SmsServiceImpl();
+        });
+
+        $this->app->bind('App\Services\v1\CodeService', function ($app) {
+            return new CodeServiceImpl(new SmsServiceImpl());
         });
     }
 
