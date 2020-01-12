@@ -1,0 +1,98 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "TenSendMe Swagger API",
+        "description": "TenSendMe Swagger API description",
+        "contact": {
+            "email": "tenSendMe@gmail.com"
+        },
+        "version": "2.0.0"
+    },
+    "host": "tensendme.edu-elt.kz",
+    "basePath": "/api/v1/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "description": "Login by login and password to get token and etc",
+                "parameters": [
+                    {
+                        "name": "email and password",
+                        "in": "body",
+                        "description": "Login user(phone) or email and password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Invalid login or password"
+                    }
+                }
+            }
+        },
+        "/me": {
+            "post": {
+                "description": "Get user info by token",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "id": {
+                    "description": "UUID",
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "device_token": {
+                    "type": "string"
+                },
+                "promo_code": {
+                    "type": "string"
+                },
+                "role_id": {
+                    "type": "integer"
+                },
+                "level_id": {
+                    "type": "integer"
+                },
+                "city_id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

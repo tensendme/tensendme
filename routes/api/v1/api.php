@@ -23,8 +23,6 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::get('/news', ['uses' => 'NewsController@getAllNews']);
         Route::get('/newsPaginated', ['uses' => 'NewsController@getAllNewsPaginated']);
-
-
     });
 
     //AUTHENTICATED

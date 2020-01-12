@@ -6,6 +6,21 @@ namespace App\Http\Controllers;
 use App\Core\Interfaces\WithUser;
 use App\Http\Utils\ResponseUtil;
 use Illuminate\Support\Facades\Auth;
+/**
+ * @SWG\Swagger(
+ *     basePath="/api/v1",
+ *     schemes={"http", "https"},
+ *     host=L5_SWAGGER_CONST_HOST,
+ *     @SWG\Info(
+ *         version="2.0.0",
+ *         title="TenSendMe Swagger API",
+ *         description="TenSendMe Swagger API description",
+ *         @SWG\Contact(
+ *             email="tenSendMe@gmail.com"
+ *         ),
+ *     )
+ * )
+ */
 
 class ApiBaseController extends Controller implements WithUser
 {
