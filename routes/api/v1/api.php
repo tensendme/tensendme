@@ -10,6 +10,21 @@ Route::group(['middleware' => 'api'], function () {
 
     });
 
+    Route::group(['namespace' => 'Category'], function () {
+
+        Route::get('/categories', ['uses' => 'CategoryController@getAllCategories']);
+
+
+    });
+
+    Route::group(['namespace' => 'Advertisement'], function () {
+
+        Route::get('/news', ['uses' => 'NewsController@getAllNews']);
+        Route::get('/newsPaginated', ['uses' => 'NewsController@getAllNewsPaginated']);
+
+
+    });
+
     //AUTHENTICATED
     Route::group(['middleware' => 'auth:api'], function () {
 
