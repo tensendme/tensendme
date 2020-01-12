@@ -7,6 +7,8 @@ use App\Services\v1\impl\CodeServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
+use App\Services\v1\impl\BannerServiceImpl;
+
 
 use Illuminate\Support\ServiceProvider;
 
@@ -37,6 +39,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\CodeService', function ($app) {
             return new CodeServiceImpl(new SmsServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\BannerService', function ($app) {
+            return (new BannerServiceImpl());
         });
     }
 

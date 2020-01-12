@@ -18,4 +18,8 @@ class NewsServiceImpl implements NewsService
         return News::paginate($pageSize);
     }
 
+    public function findAllById($id)
+    {
+        return News::where('id', $id)->get();
+    }
 }
