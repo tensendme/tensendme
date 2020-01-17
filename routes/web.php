@@ -21,6 +21,7 @@
 //Route::post('register', ['as' => 'register.post', 'uses' => 'RegisterController@register']);
 
 Route::group(['namespace' => 'Auth'], function () {
+    Route::get('/', ['as' => 'login', 'uses' => 'HomeController@welcome']);
     Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
     Route::post('login', ['as' => 'login.post', 'uses' => 'LoginController@login']);
     Route::post('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
