@@ -20,8 +20,10 @@
 //Route::get('register', ['as' => 'register', 'uses' => 'RegisterController@showRegistrationForm']);
 //Route::post('register', ['as' => 'register.post', 'uses' => 'RegisterController@register']);
 
+
+
 Route::group(['namespace' => 'Auth'], function () {
-    Route::get('/', ['as' => 'login', 'uses' => 'HomeController@welcome']);
+
     Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
     Route::post('login', ['as' => 'login.post', 'uses' => 'LoginController@login']);
     Route::post('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
@@ -33,9 +35,9 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'ResetPasswordController@reset']);
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Web\v1'], function () {
+    Route::get('/', ['as' => 'welcome', 'uses' => 'HomeController@welcome']);
 
     Route::get('/secure/config/migrate-refresh', ['uses' => 'ConfigController@migrateRefresh']);
     Route::get('/secure/config/migrate', ['uses' => 'ConfigController@migrate']);
@@ -47,6 +49,9 @@ Route::group(['namespace' => 'Web\v1'], function () {
     Route::get('/config/locale/{locale}', ['as' => 'locale', 'uses' => 'LocalizationController@index']);
 
     Route::group(['namespace' => 'Admin', 'middleware' => ['auth']], function () {
+
+        Route::get('/home', ['uses' => 'HomeController@index']);
+
         Route::get('/categories', ['uses' => 'CategoryController@index', 'as' => 'category.index']);
         Route::get('/category/create', ['uses' => 'CategoryController@create', 'as' => 'category.create']);
         Route::post('/category/store', ['uses' => 'CategoryController@store', 'as' => 'category.store']);
@@ -109,7 +114,6 @@ Route::group(['namespace' => 'Web\v1'], function () {
         Route::post('/meditations/theme/create/{meditationId}', ['uses' => 'MeditationThemeController@store', 'as' => 'meditation.theme.store']);
         Route::get('/meditations/theme/edit/{id}', ['uses' => 'MeditationThemeController@edit', 'as' => 'meditation.theme.edit']);
         Route::post('/meditations/theme/update/{id}', ['uses' => 'MeditationThemeController@update', 'as' => 'meditation.theme.update']);
-
 
 
         Route::get('/locations', ['uses' => 'LocationController@index', 'as' => 'location.index']);
