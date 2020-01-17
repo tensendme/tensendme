@@ -49,7 +49,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
     Route::group(['middleware' => ['auth']], function () {
 
-        Route::get('/home', ['uses' => 'HomeController@index']);
+        Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
 
 
         Route::group(['namespace' => 'Admin'], function () {
