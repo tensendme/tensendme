@@ -15,9 +15,9 @@ use App\Services\v1\CategoryService;
 class CategoryServiceImpl implements CategoryService
 {
 
-    public function findAll()
+    public function findAll($perPage)
     {
-        return Category::all();
+        return Category::paginate($perPage);
     }
 
     public function findAllPaginated($pageSize = 10)

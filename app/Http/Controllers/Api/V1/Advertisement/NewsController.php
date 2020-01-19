@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1\Advertisement;
 
 use App\Http\Controllers\ApiBaseController;
 use App\Services\v1\NewsService;
-
+use Illuminate\Http\Request;
 
 class NewsController extends ApiBaseController
 {
@@ -24,9 +24,16 @@ class NewsController extends ApiBaseController
     }
 
 
-    public function getAllNewsPaginated()
+    public function getAllNewsPaginated(Request $request)
     {
-        $news = $this->newsService->findAllPaginated($pageSize=10);
+        if ($request->has('size')){
+
+            $pageSize = (int)$request->size;
+        }
+
+
+
+        $news = $this->newsService->findAllPaginated($pageSize=1);
 
         return $this->successResponse(['news' => $news]);
 

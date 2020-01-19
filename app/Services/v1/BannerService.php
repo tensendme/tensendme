@@ -10,6 +10,6 @@ interface BannerService
     public function findAllById($id);
     public function findAllByLocation($location_id);
 
-    public function findAllPaginated($pageSize = 10, $page = 0);
+    public function findAllPaginated($perPage  );
 
 }

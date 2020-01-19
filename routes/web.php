@@ -131,6 +131,15 @@ Route::group(['namespace' => 'Web\v1'], function () {
         Route::get('/banner/edit/{id}', ['uses' => 'BannerController@edit', 'as' => 'banner.edit']);
         Route::post('/banner/update/{id}', ['uses' => 'BannerController@update', 'as' => 'banner.update']);
         Route::delete('/banner/delete/{id}', ['uses' => 'BannerController@destroy', 'as' => 'banner.delete']);
+
+
+
+        Route::get('/faqs', ['uses' => 'FAQController@index', 'as' => 'faq.index']);
+        Route::get('/faq/create', ['uses' => 'FAQController@create', 'as' => 'faq.create']);
+        Route::post('/faq/store', ['uses' => 'FAQController@store', 'as' => 'faq.store']);
+        Route::get('/faq/edit/{id}', ['uses' => 'FAQController@edit', 'as' => 'faq.edit']);
+        Route::post('/faq/update/{id}', ['uses' => 'FAQController@update', 'as' => 'faq.update']);
+        Route::delete('/faq/delete/{id}', ['uses' => 'FAQController@destroy', 'as' => 'faq.delete']);
     });
 
 });
