@@ -40,6 +40,61 @@
                 }
             }
         },
+        "/code/send": {
+            "post": {
+                "description": "Send code to user",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "body",
+                        "description": "Login user(phone) or email ",
+                        "schema": {
+                            "$ref": "#/definitions/Code"
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/code/check": {
+            "post": {
+                "description": "Check the code",
+                "parameters": [
+                    {
+                        "name": "phone and code",
+                        "in": "body",
+                        "description": "Login user(phone) or email ",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Code"
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+       "/categories": {
+           "get":{
+               "description": "Information About all category",
+               "responses": {
+                   "200": {
+                       "description": "OK"
+                   }
+               }
+
+           }
+       },
+            
         "/me": {
             "post": {
                 "description": "Get user info by token",
@@ -52,9 +107,47 @@
                     }
                 }
             }
-        }
+        },
+
+
     },
+
     "definitions": {
+        "Code": {
+            "required": [
+                "phone",
+                "code"
+            ],
+            "properties": {
+                "id": {
+                    "description": "UUID",
+                    "type": "integer"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+        "Category":{
+            "properties": {
+                "id": {
+                    "description": "UUID",
+                    "type": "integer"
+                },
+                "name":{
+                    "type":"string"
+                },
+                "category_type_id":{
+                    "type": "integer"
+                },
+                "parent_category_id": {
+                    "type": "integer"
+                }
+            }
+            },
         "User": {
             "required": [
                 "email",

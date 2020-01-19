@@ -16,7 +16,6 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::get('/categories', ['uses' => 'CategoryController@getAllCategories']);
 
-
     });
 
     Route::group(['namespace' => 'Advertisement'], function () {
@@ -29,9 +28,10 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/bannersPaginated', ['uses' => 'BannerController@getAllBannersPaginated']);
         Route::get('/banner/{id}', ['uses' => 'BannerController@getBannerById']);
         Route::get('/banner/by/location/{id}', ['uses' => 'BannerController@getBannerByLocation']);
+    });
 
-
-
+    Route::group(['namespace' => 'Cabinet'], function (){
+        Route::get('cabinet', ['uses'=>'CabinetController']);
     });
 
     //AUTHENTICATED
