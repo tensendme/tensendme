@@ -17,6 +17,20 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/categories', ['uses' => 'CategoryController@getAllCategories']);
 
 
+
+
+    });
+
+    Route::group(['namespace' => 'Meditation'], function () {
+
+        Route::get('/meditations', ['uses' => 'MeditationController@getAllMeditations']);
+
+    });
+
+    Route::group(['namespace' => 'Course'], function () {
+
+        Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
+
     });
 
     Route::group(['namespace' => 'Advertisement'], function () {
