@@ -11,7 +11,8 @@ namespace App\Services\v1;
 
 interface CategoryService
 {
-    public function findAll($perPage);
+    public function findCoursesCategories($size);
+    public function findMeditationsCategories($size);
 
     public function findAllPaginated($pageSize = 10);
 }

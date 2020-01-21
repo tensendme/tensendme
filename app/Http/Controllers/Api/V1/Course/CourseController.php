@@ -40,7 +40,8 @@ class CourseController extends ApiBaseController
     }
 
     public function getCoursesByCategory($categoryId, Request $request) {
-        $courses = $this->courseService->findByCategory($categoryId, $request->size);
+        $size = $request->size ? $request->size : 10;
+        $courses = $this->courseService->findByCategory($categoryId, $size);
         return $this->successResponse(['courses' => $courses]);
     }
 
