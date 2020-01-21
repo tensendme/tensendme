@@ -20,7 +20,6 @@ class MeditationController extends ApiBaseController
     public function getAllMeditations(Request $request)
     {
 
-
         $perPage = $request->size ? $request->size : 10;
 
         $meditations = $this->meditationService->findAll($perPage);

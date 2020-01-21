@@ -29,7 +29,8 @@ Route::group(['middleware' => 'api'], function () {
     Route::group(['namespace' => 'Course'], function () {
 
         Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
-        Route::get('/user/courses', ['uses' => 'CourseController@getUserCourses']);
+        Route::get('/courses/category/{categoryId}', ['uses' => 'CourseController@getCoursesByCategory']);
+        Route::get('courses/{id}', ['uses' => 'CourseController@getById']);
 
 
     });
@@ -62,6 +63,11 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('/me', ['uses' => 'AuthController@me']);
 
         });
+        Route::group(['namespace' => 'Course'], function () {
+            Route::get('/user/courses', ['uses' => 'CourseController@getUserCourses']);
+
+        });
+
     });
 
 });

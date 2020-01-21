@@ -20,7 +20,6 @@ class CategoryController extends ApiBaseController
     public function getAllCategories(Request $request)
     {
 
-
         $perPage = $request->size ? $request->size : 10;
 
         $categories = $this->categoryService->findAll($perPage);
