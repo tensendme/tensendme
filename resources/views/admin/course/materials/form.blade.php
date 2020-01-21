@@ -7,7 +7,7 @@
                placeholder="Наименование"
                id="title"
                required>
-        <label class="form-control-plaintext" for="title">Пожалуйста введите название материала</label>
+        <label class="form-control-plaintext" for="title">Пожалуйста введите название урока</label>
     </div>
 
 </div>
@@ -25,6 +25,12 @@
         <div class="form-group">
             <input class="form-control" type="file" name="video" id="video" accept="video/*">
             <label class="form-control-plaintext" for="video">Пожалуйста выберите видео материал</label>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <input class="form-control" type="file" name="doc" id="doc" accept="['pdf', 'doc', 'ppt', 'xls', 'docx', 'pptx', 'xlsx', 'rar', 'zip']">
+            <label class="form-control-plaintext" for="video">Пожалуйста выберите документ </label>
         </div>
     </div>
 </div>

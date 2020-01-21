@@ -27,4 +27,14 @@ class CourseController extends ApiBaseController
         return $this->successResponse(['courses' => $courses]);
 
     }
+
+    public function getUserCourses(Request $request)
+    {
+        $perPage = $request->size ? $request->size : 10;
+        $userId = $request->user_id;
+        $courses = $this->courseService->findUserCourses($perPage,$userId);
+
+        return $this->successResponse(['courses' => $courses]);
+
+    }
 }
