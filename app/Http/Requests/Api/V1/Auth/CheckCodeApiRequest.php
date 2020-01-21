@@ -10,8 +10,8 @@ class CheckCodeApiRequest extends ApiBaseRequest
     public function injectedRules()
     {
         return [
-            'phone' => 'required',
-            'code' => 'required'
+            'login' => ['string', 'required'],
+            'code' => ['required']
         ];
     }
 

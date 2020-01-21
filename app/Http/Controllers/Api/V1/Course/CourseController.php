@@ -22,7 +22,9 @@ class CourseController extends ApiBaseController
     {
         $perPage = $request->size ? $request->size : 10;
 
-        $courses = $this->courseService->findAll($perPage);
+        $title = $request->title ? $request->title : null;
+
+        $courses = $this->courseService->findAll($perPage,$title);
 
         return $this->successResponse(['courses' => $courses]);
 
@@ -33,6 +35,7 @@ class CourseController extends ApiBaseController
         $perPage = $request->size ? $request->size : 10;
         $userId = $request->user_id;
         $courses = $this->courseService->findUserCourses($perPage,$userId);
+
         return $this->successResponse(['courses' => $courses]);
     }
 
@@ -44,4 +47,6 @@ class CourseController extends ApiBaseController
     public function getById($id) {
         return $this->successResponse(['course' => $this->courseService->findById($id)]);
     }
+
+
 }

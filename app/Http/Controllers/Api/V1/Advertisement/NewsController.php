@@ -26,14 +26,10 @@ class NewsController extends ApiBaseController
 
     public function getAllNewsPaginated(Request $request)
     {
-        if ($request->has('size')){
-
-            $pageSize = (int)$request->size;
-        }
+        $perPage = $request->size ? $request->size : 10;
 
 
-
-        $news = $this->newsService->findAllPaginated($pageSize=1);
+        $news = $this->newsService->findAllPaginated($perPage);
 
         return $this->successResponse(['news' => $news]);
 
