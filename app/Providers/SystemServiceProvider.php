@@ -9,6 +9,8 @@ use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
 use App\Services\v1\impl\BannerServiceImpl;
+use App\Services\v1\impl\MeditationServiceImpl;
+use App\Services\v1\impl\CourseServiceImpl;
 
 
 use Illuminate\Support\ServiceProvider;
@@ -46,8 +48,18 @@ class SystemServiceProvider extends ServiceProvider
             return (new BannerServiceImpl());
         });
 
-        $this ->app->bind('App\Services\v1\CabinetService',function ($app){
-           return (new CabinetServiceImpl());
+
+//        $this ->app->bind('App\Services\v1\CabinetService',function ($app){
+//           return (new CabinetServiceImpl());
+//        });
+
+        $this->app->bind('App\Services\v1\MeditationService', function ($app) {
+            return (new MeditationServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\CourseService', function ($app) {
+            return (new CourseServiceImpl());
+
         });
     }
 

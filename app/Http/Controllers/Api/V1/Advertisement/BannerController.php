@@ -28,9 +28,9 @@ class BannerController extends ApiBaseController
 
     public function getAllBannersPaginated(Request $request)
     {
-        $page = $request->page ? $request->page : 0;
+        $perPage = $request->size ? $request->size : 10;
 
-        $banners = $this->bannerService->findAllPaginated($pageSize = 1, $page);
+        $banners = $this->bannerService->findAllPaginated($perPage);
 
         return $this->successResponse(['banners' => $banners]);
 

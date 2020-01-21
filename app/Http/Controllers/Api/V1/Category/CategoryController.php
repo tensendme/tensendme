@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Category;
 
 use App\Services\v1\CategoryService;
 use App\Http\Controllers\ApiBaseController;
+use Illuminate\Http\Request;
 
 
 class CategoryController extends ApiBaseController
@@ -16,9 +17,13 @@ class CategoryController extends ApiBaseController
         $this->categoryService = $categoryService;
     }
 
-    public function getAllCategories()
+    public function getAllCategories(Request $request)
     {
-        $categories = $this->categoryService->findAll();
+
+
+        $perPage = $request->size ? $request->size : 10;
+
+        $categories = $this->categoryService->findAll($perPage);
 
         return $this->successResponse(['categories' => $categories]);
 
