@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\v1\impl\CabinetServiceImpl;
+use App\Services\v1\impl\AuthServiceImpl;
 use App\Services\v1\impl\CategoryServiceImpl;
 use App\Services\v1\impl\CodeServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
@@ -61,6 +62,11 @@ class SystemServiceProvider extends ServiceProvider
             return (new CourseServiceImpl());
 
         });
+
+        $this->app->bind('App\Services\v1\AuthService', function ($app) {
+            return (new AuthServiceImpl());
+        });
+
     }
 
     /**

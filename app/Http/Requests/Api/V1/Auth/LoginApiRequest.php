@@ -9,7 +9,8 @@ class LoginApiRequest extends ApiBaseRequest
     public function injectedRules()
     {
         return [
-            'email' => ['required', 'string'],
+            'phone' => ['string'],
+            'email' => ['email', 'string'],
             'password' => ['required', 'string']
         ];
     }

@@ -34,6 +34,4 @@ class CodeController extends ApiBaseController
         $isRight = $this->codeService->checkCode($phone, $code);
         return $this->successResponse(['is_right' => $isRight]);
     }
-
-
 }
