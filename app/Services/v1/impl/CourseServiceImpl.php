@@ -6,11 +6,8 @@ namespace App\Services\v1\impl;
 
 use App\Exceptions\ApiServiceException;
 use App\Http\Errors\ErrorCode;
-use App\Http\Errors\ErrorCode;
 use App\Models\Courses\Course;
 
-use App\Models\Courses\CourseMaterial;
-use App\Models\Education\Passing;
 use App\Services\v1\CourseService;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -43,9 +40,10 @@ class CourseServiceImpl implements CourseService
         return $courses;
     }
 
-    public function findByCategory($categoryId)
+    public function findByCategory($categoryId, $size)
     {
-        return Course::where('category_id', $categoryId)->where('is_visible', true)->get();
+        return Course::where('category_id', $categoryId)->where('is_visible', true)
+            ->paginate($size ? $size : 10);
     }
 
     public function findById($id)
