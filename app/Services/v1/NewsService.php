@@ -9,6 +9,6 @@ interface NewsService
     public function findAll();
     public function findAllById($id);
 
-    public function findAllPaginated($pageSize = 10);
+    public function findAllPaginated($perPage);
 
 }
