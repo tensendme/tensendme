@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\v1\impl\CabinetServiceImpl;
 use App\Services\v1\impl\CategoryServiceImpl;
 use App\Services\v1\impl\CodeServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
@@ -47,12 +48,18 @@ class SystemServiceProvider extends ServiceProvider
             return (new BannerServiceImpl());
         });
 
+
+//        $this ->app->bind('App\Services\v1\CabinetService',function ($app){
+//           return (new CabinetServiceImpl());
+//        });
+
         $this->app->bind('App\Services\v1\MeditationService', function ($app) {
             return (new MeditationServiceImpl());
         });
 
         $this->app->bind('App\Services\v1\CourseService', function ($app) {
             return (new CourseServiceImpl());
+
         });
     }
 

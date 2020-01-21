@@ -32,6 +32,7 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
         Route::get('/user/courses', ['uses' => 'CourseController@getUserCourses']);
 
+
     });
 
     Route::group(['namespace' => 'Advertisement'], function () {
@@ -44,10 +45,11 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/bannersPaginated', ['uses' => 'BannerController@getAllBannersPaginated']);
         Route::get('/banner/{id}', ['uses' => 'BannerController@getBannerById']);
         Route::get('/banner/by/location/{id}', ['uses' => 'BannerController@getBannerByLocation']);
-
-
-
     });
+
+//    Route::group(['namespace' => 'Cabinet'], function (){
+//        Route::get('cabinet', ['uses'=>'CabinetController']);
+//    });
 
     //AUTHENTICATED
     Route::group(['middleware' => 'auth:api'], function () {

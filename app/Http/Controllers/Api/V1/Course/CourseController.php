@@ -37,4 +37,5 @@ class CourseController extends ApiBaseController
         return $this->successResponse(['courses' => $courses]);
 
     }
+
 }
