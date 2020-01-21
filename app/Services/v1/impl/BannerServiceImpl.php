@@ -12,7 +12,7 @@ class BannerServiceImpl implements BannerService
         return Banner::all();
     }
 
-    public function findAllPaginated($perPage )
+    public function findAllPaginated($perPage)
     {
 //        return Banner::limit($pageSize)->offset($page * $pageSize)->get();
         return Banner::paginate($perPage);

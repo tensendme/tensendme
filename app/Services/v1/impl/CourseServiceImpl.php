@@ -4,6 +4,8 @@
 namespace App\Services\v1\impl;
 
 
+use App\Exceptions\ApiServiceException;
+use App\Http\Errors\ErrorCode;
 use App\Models\Courses\Course;
 
 use App\Models\Courses\CourseMaterial;
@@ -30,6 +32,23 @@ class CourseServiceImpl implements CourseService
             ->paginate($perPage);
 
         return $courses;
+    }
+
+    public function findByCategory($categoryId)
+    {
+        return Course::where('category_id', $categoryId)->where('is_visible', true)->get();
+    }
+
+    public function findById($id)
+    {
+        $course = Course::find($id);
+        if(!$course) throw new ApiServiceException(404, false, [
+            'errors' => [
+                'Такого курса не существует'
+            ],
+            'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
+        ]);
+        return $course;
     }
 
 }
