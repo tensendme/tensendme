@@ -11,7 +11,7 @@ namespace App\Services\v1;
 
 interface CodeService
 {
-    public function createAndSendCode($phone);
+    public function createAndSendCode($login, $isEmail = false);
 
-    public function checkCode($phone, $code) :bool ;
+    public function checkCode($phone, $code): bool;
 }

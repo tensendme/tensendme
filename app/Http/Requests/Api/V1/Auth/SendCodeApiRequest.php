@@ -8,9 +8,15 @@ class SendCodeApiRequest extends ApiBaseRequest
 {
     public function injectedRules()
     {
-        return [
-            'phone' => ['required', 'string']
-        ];
+        if (request()->has('email')) {
+            return [
+                'email' => ['email']
+            ];
+        } else {
+            return [
+                'phone' => ['string'],
+            ];
+        }
     }
 
 }
