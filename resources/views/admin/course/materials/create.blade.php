@@ -2,8 +2,8 @@
 @section('content')
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <span class="text-uppercase page-subtitle">Курс Материалы</span>
-            <h3 class="page-title">Материалы</h3>
+            <span class="text-uppercase page-subtitle">Курс Уроки</span>
+            <h3 class="page-title">Уроки</h3>
         </div>
     </div>
     <div class="row">
@@ -13,7 +13,7 @@
                     <a href="{{route('course.material.index', ['course_id' => $course_id])}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
                         <i class="material-icons md-12">arrow_back</i> Назад
                     </a>
-                    <h6 class="m-0">Добавление материала</h6>
+                    <h6 class="m-0">Добавление урока</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
                     <form method="post" action="{{route('course.material.store', ['course_id' => $course_id])}}" enctype="multipart/form-data">
