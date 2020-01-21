@@ -6,6 +6,7 @@ use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\CourseMaterialControllerRequest\StoreAndUpdateRequest;
 use App\Models\Courses\Course;
 use App\Models\Courses\CourseMaterial;
+use App\Models\Docs\Doc;
 use File;
 
 class CourseMaterialController extends WebBaseController
@@ -27,13 +28,27 @@ class CourseMaterialController extends WebBaseController
             $request->video->move(public_path('videos/courses'), $filename);
             $path = '/courses/'.$filename;
         }
-        CourseMaterial::create([
+        $material = CourseMaterial::create([
             'title' => $request->title,
             'video_path' => $path,
             'course_id' => $course_id,
             'ordering' => $request->ordering
 
         ]);
+        if($request->has('docs')) {
+            if($request->docs) {
+                foreach ($request->docs as $document) {
+                    $filename = $request->title . time() . '.' . $document->getClientOriginalExtension();
+                    $path = '/documents/'  .$filename;
+                    $document->move(public_path('documents'), $filename);
+                    Doc::create([
+                        'course_material_id' => $material->id,
+                        'type' => $document->getClientOriginalExtension(),
+                        'doc_path' => $path
+                    ]);
+                }
+            }
+        }
         $this->added();
         return redirect()->route('course.material.index', compact('course_id'));
     }

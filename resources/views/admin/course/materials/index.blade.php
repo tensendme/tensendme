@@ -2,15 +2,15 @@
 @section('content')
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <span class="text-uppercase page-subtitle">Материалы Курсов</span>
-            <h3 class="page-title">Материалы</h3>
+            <span class="text-uppercase page-subtitle">Уроки Курсов</span>
+            <h3 class="page-title">Уроки</h3>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
-                    <h6 class="m-0">Все материалы</h6>
+                    <h6 class="m-0">Все уроки</h6>
                 </div>
                 <div class="card-header border-bottom">
                     <a href="{{route('course.index')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
