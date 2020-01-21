@@ -43,7 +43,7 @@ class CourseServiceImpl implements CourseService
     public function findByCategory($categoryId, $size)
     {
         return Course::where('category_id', $categoryId)->where('is_visible', true)
-            ->paginate($size ? $size : 10);
+            ->paginate($size);
     }
 
     public function findById($id)

@@ -15,9 +15,14 @@ use App\Services\v1\CategoryService;
 class CategoryServiceImpl implements CategoryService
 {
 
-    public function findAll($perPage)
+    public function findCoursesCategories($size = 10)
     {
-        return Category::paginate($perPage);
+        return Category::where('category_type_id', 1)->paginate($size);
+    }
+
+    public function findMeditationsCategories($size = 10)
+    {
+        return Category::where('category_type_id', 2)->paginate($size);
     }
 
     public function findAllPaginated($pageSize = 10)

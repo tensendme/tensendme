@@ -17,15 +17,22 @@ class CategoryController extends ApiBaseController
         $this->categoryService = $categoryService;
     }
 
-    public function getAllCategories(Request $request)
+    public function getCoursesCategories(Request $request)
     {
 
         $perPage = $request->size ? $request->size : 10;
 
-        $categories = $this->categoryService->findAll($perPage);
+        $categories = $this->categoryService->findCoursesCategories($perPage);
 
         return $this->successResponse(['categories' => $categories]);
 
+    }
+
+    public function getMeditationsCategories(Request $request)
+    {
+        $size = $request->size ? $request->size : 10;
+        $categories = $this->categoryService->findMeditationsCategories($size);
+        return $this->successResponse(['categories' => $categories]);
     }
 
 
