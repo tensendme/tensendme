@@ -59,13 +59,18 @@ class CodeServiceImpl implements CodeService
         }
     }
 
-    public function checkCode($phone, $code): bool
+    public function checkCode($login, $code)
     {
-        return !!Code::where('login', '=', $phone)
+        return !!Code::where('login', '=', $login)
                 ->where('code', '=', $code)
                 ->first()
             ||
             $code == '0000';
+    }
+
+    public function resetPassword($login, $password, $code, $isEmail)
+    {
+
     }
 
 

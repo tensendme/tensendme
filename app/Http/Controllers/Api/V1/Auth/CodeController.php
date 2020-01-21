@@ -34,10 +34,9 @@ class CodeController extends ApiBaseController
 
     public function checkCode(CheckCodeApiRequest $request)
     {
-        $email = $request->email;
-        $phone = $request->phone;
+        $login = $request->login;
         $code = $request->code;
-        $isRight = $this->codeService->checkCode($phone, $code);
+        $isRight = $this->codeService->checkCode($login, $code);
         return $this->successResponse(['is_right' => $isRight]);
     }
 }
