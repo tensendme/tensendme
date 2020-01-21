@@ -7,6 +7,7 @@ use App\Services\v1\impl\AuthServiceImpl;
 use App\Services\v1\impl\CategoryServiceImpl;
 use App\Services\v1\impl\CodeServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
+use App\Services\v1\impl\MailServiceImpl;
 use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
 use App\Services\v1\impl\BannerServiceImpl;
@@ -37,12 +38,16 @@ class SystemServiceProvider extends ServiceProvider
             return new NewsServiceImpl();
         });
 
+        $this->app->bind('App\Services\v1\MailService', function ($app) {
+            return (new MailServiceImpl());
+        });
+
         $this->app->bind('App\Services\v1\SmsService', function ($app) {
             return new SmsServiceImpl();
         });
 
         $this->app->bind('App\Services\v1\CodeService', function ($app) {
-            return new CodeServiceImpl(new SmsServiceImpl());
+            return new CodeServiceImpl(new SmsServiceImpl(), new MailServiceImpl());
         });
 
         $this->app->bind('App\Services\v1\BannerService', function ($app) {
@@ -66,6 +71,7 @@ class SystemServiceProvider extends ServiceProvider
         $this->app->bind('App\Services\v1\AuthService', function ($app) {
             return (new AuthServiceImpl());
         });
+
 
     }
 

@@ -11,5 +11,5 @@ namespace App\Services\v1;
 
 interface SmsService
 {
-    public function sendMessage($phone, $code);
+    public function sendSms($phone, $message);
 }

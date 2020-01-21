@@ -13,6 +13,7 @@ use App\Core\ErrorTrait;
 use App\Http\Utils\ApiUtil;
 use App\Models\Auth\Code;
 use App\Services\v1\CodeService;
+use App\Services\v1\MailService;
 use App\Services\v1\SmsService;
 use Illuminate\Support\Facades\DB;
 
@@ -21,25 +22,27 @@ class CodeServiceImpl implements CodeService
     use ErrorTrait;
 
     protected $smsService;
+    protected $mailService;
 
     /**
      * CodeServiceImpl constructor.
      * @param $smsService
      */
-    public function __construct(SmsService $smsService)
+    public function __construct(SmsService $smsService, MailService $mailService)
     {
+        $this->mailService = $mailService;
         $this->smsService = $smsService;
     }
 
 
-    public function createAndSendCode($phone)
+    public function createAndSendCode($login, $isEmail = false)
     {
         DB::beginTransaction();
         try {
-            Code::where('phone', $phone)->delete();
+            Code::where('login', $login)->delete();
             $code = ApiUtil::generateSmsCode();
             Code::create([
-                'phone' => $phone,
+                'login' => $login,
                 'code' => $code
             ]);
             DB::commit();
@@ -48,12 +51,17 @@ class CodeServiceImpl implements CodeService
             $this->throwError($exception);
         }
 
-        $this->smsService->sendMessage($phone, $code);
+        $message = 'Authorization code: ' . $code;
+        if ($isEmail) {
+            $this->mailService->sendEmail($login, $message);
+        } else {
+            $this->smsService->sendSms($login, $message);
+        }
     }
 
     public function checkCode($phone, $code): bool
     {
-        return !!Code::where('phone', '=', $phone)
+        return !!Code::where('login', '=', $phone)
                 ->where('code', '=', $code)
                 ->first()
             ||

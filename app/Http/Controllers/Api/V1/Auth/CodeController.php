@@ -23,12 +23,18 @@ class CodeController extends ApiBaseController
     public function sendCode(SendCodeApiRequest $request)
     {
         $phone = $request->phone;
-        $this->codeService->createAndSendCode($phone);
+        $email = $request->email;
+        if ($phone) {
+            $this->codeService->createAndSendCode($phone);
+        } else {
+            $this->codeService->createAndSendCode($email, true);
+        }
         return $this->successResponse(['message' => 'Code sent']);
     }
 
     public function checkCode(CheckCodeApiRequest $request)
     {
+        $email = $request->email;
         $phone = $request->phone;
         $code = $request->code;
         $isRight = $this->codeService->checkCode($phone, $code);

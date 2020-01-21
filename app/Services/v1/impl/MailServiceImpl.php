@@ -1,0 +1,25 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: air
+ * Date: 21.01.2020
+ * Time: 22:20
+ */
+
+namespace App\Services\v1\impl;
+
+
+use App\Services\v1\MailService;
+use Illuminate\Support\Facades\Mail;
+
+class MailServiceImpl implements MailService
+{
+    public function sendEmail($to, string $message, $title = null)
+    {
+        Mail::send('mail.mail', ['data' => compact('message')], function ($msg) use ($to) {
+            $msg->to($to, 'Tensend me')
+                ->subject('Authorization code');
+        });
+    }
+
+}
