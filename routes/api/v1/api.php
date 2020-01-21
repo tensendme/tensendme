@@ -16,9 +16,6 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::get('/categories', ['uses' => 'CategoryController@getAllCategories']);
 
-
-
-
     });
 
     Route::group(['namespace' => 'Meditation'], function () {

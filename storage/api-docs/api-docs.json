@@ -20,14 +20,14 @@
                 "description": "Login by login and password to get token and etc",
                 "parameters": [
                     {
-                        "name": "email and password",
+                        "name": "email or login ",
                         "in": "body",
-                        "description": "Login user(phone) or email and password",
+                        "description": "Email or login of user",
                         "required": true,
+                        "type": "string",
                         "schema": {
-                            "$ref": "#/definitions/User"
-                        },
-                        "type": "string"
+                            "$ref": "#/definitions/Login"
+                        }
                     }
                 ],
                 "responses": {
@@ -70,9 +70,6 @@
                         "in": "body",
                         "description": "Login user(phone) or email ",
                         "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Code"
-                        },
                         "type": "string"
                     }
                 ],
@@ -94,7 +91,51 @@
 
            }
        },
-            
+        "/meditations": {
+            "get":{
+                "description": "Information About all category",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+
+            }
+        },
+        "/courses":{
+            "get":{
+                "description": "Information about all courses",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+
+            }
+        },
+        "/user/courses":{
+            "get":{
+                "description": "Information about user courses",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/news": {
+            "get":{
+                "description": "Information about user courses",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/"
+
         "/me": {
             "post": {
                 "description": "Get user info by token",
@@ -119,10 +160,7 @@
                 "code"
             ],
             "properties": {
-                "id": {
-                    "description": "UUID",
-                    "type": "integer"
-                },
+
                 "phone": {
                     "type": "string"
                 },
@@ -131,6 +169,24 @@
                 }
             }
         },
+
+        "Login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+
+
         "Category":{
             "properties": {
                 "id": {
@@ -148,6 +204,7 @@
                 }
             }
             },
+
         "User": {
             "required": [
                 "email",
