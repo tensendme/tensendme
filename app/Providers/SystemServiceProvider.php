@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\v1\impl\AuthServiceImpl;
 use App\Services\v1\impl\CategoryServiceImpl;
 use App\Services\v1\impl\CodeServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
@@ -44,6 +45,11 @@ class SystemServiceProvider extends ServiceProvider
         $this->app->bind('App\Services\v1\BannerService', function ($app) {
             return (new BannerServiceImpl());
         });
+
+        $this->app->bind('App\Services\v1\AuthService', function ($app) {
+            return (new AuthServiceImpl());
+        });
+
     }
 
     /**

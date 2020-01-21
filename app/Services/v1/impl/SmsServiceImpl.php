@@ -13,9 +13,13 @@ use App\Services\v1\SmsService;
 
 class SmsServiceImpl implements SmsService
 {
+
     public function sendMessage($phone, $code)
     {
-        //TODO SMS SERVICE CODE
+        $login = 'ayrinonline';
+        $password = 'sabyrzhanayrin0013392004';
+        $message = "Tensend.me: $code";
+        return file_get_contents("https://smsc.kz/sys/send.php?login=$login&psw=$password&phones=$phone&mes=$message");
     }
 
 }

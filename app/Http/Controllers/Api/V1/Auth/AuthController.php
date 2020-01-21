@@ -5,15 +5,28 @@
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
-use App\Exceptions\ApiServiceException;
 use App\Http\Controllers\ApiBaseController;
-use App\Http\Errors\ErrorCode;
+use App\Http\Requests\Api\V1\Auth\CheckLoginExistenceApiRequest;
 use App\Http\Requests\Api\V1\Auth\LoginApiRequest;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Requests\Api\V1\Auth\RegisterApiRequest;
+use App\Services\v1\AuthService;
 
 
 class AuthController extends ApiBaseController
 {
+
+    protected $authService;
+
+    /**
+     * AuthController constructor.
+     * @param $authService
+     */
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
+
     /**
      * @SWG\Post(
      *     path="/login",
@@ -38,18 +51,9 @@ class AuthController extends ApiBaseController
      */
     public function login(LoginApiRequest $request)
     {
-        $token = JWTAuth::attempt($request->all());
-
-        if (!$token) {
-            throw new ApiServiceException(401, false, [
-                'errors' => [
-                    'Invalid login or password'
-                ],
-                'errorCode' => ErrorCode::UNAUTHORIZED
-            ]);
-        }
-        return $this->successResponse(['token' => $token]);
+        return $this->successResponse(['token' => $this->authService->login($request)]);
     }
+
     /**
      * @SWG\Post(
      *     path="/me",
@@ -88,6 +92,14 @@ class AuthController extends ApiBaseController
         return $this->successResponse(['token' => (auth()->refresh())]);
     }
 
+    public function register(RegisterApiRequest $request)
+    {
+        return $this->successResponse(['token' => $this->authService->register($request)]);
+    }
 
+    public function checkLogin(CheckLoginExistenceApiRequest $request)
+    {
+        return $this->successResponse(['is_exists' => $this->authService->checkLoginExistence($request)]);
+    }
 
 }

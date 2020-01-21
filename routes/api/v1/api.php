@@ -7,8 +7,10 @@ Route::group(['middleware' => 'api'], function () {
     Route::group(['namespace' => 'Auth'], function () {
 
         Route::post('/login', ['uses' => 'AuthController@login']);
+        Route::post('/register', ['uses' => 'AuthController@register']);
         Route::post('/code/send', ['uses' => 'CodeController@sendCode']);
         Route::post('/code/check', ['uses' => 'CodeController@checkCode']);
+        Route::post('/login/check', ['uses' => 'AuthController@checkLogin']);
 
     });
 
@@ -29,7 +31,6 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/bannersPaginated', ['uses' => 'BannerController@getAllBannersPaginated']);
         Route::get('/banner/{id}', ['uses' => 'BannerController@getBannerById']);
         Route::get('/banner/by/location/{id}', ['uses' => 'BannerController@getBannerByLocation']);
-
 
 
     });
