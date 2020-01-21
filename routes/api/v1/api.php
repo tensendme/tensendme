@@ -18,6 +18,19 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::get('/categories', ['uses' => 'CategoryController@getAllCategories']);
 
+    });
+
+    Route::group(['namespace' => 'Meditation'], function () {
+
+        Route::get('/meditations', ['uses' => 'MeditationController@getAllMeditations']);
+
+    });
+
+    Route::group(['namespace' => 'Course'], function () {
+
+        Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
+        Route::get('/user/courses', ['uses' => 'CourseController@getUserCourses']);
+
 
     });
 
@@ -34,6 +47,10 @@ Route::group(['middleware' => 'api'], function () {
 
 
     });
+
+//    Route::group(['name space' => 'Cabinet'], function (){
+//        Route::get('cabinet', ['uses'=>'CabinetController']);
+//    });
 
     //AUTHENTICATED
     Route::group(['middleware' => 'auth:api'], function () {

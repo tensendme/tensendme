@@ -20,14 +20,14 @@
                 "description": "Login by login and password to get token and etc",
                 "parameters": [
                     {
-                        "name": "email and password",
+                        "name": "email or login ",
                         "in": "body",
-                        "description": "Login user(phone) or email and password",
+                        "description": "Email or login of user",
                         "required": true,
+                        "type": "string",
                         "schema": {
-                            "$ref": "#/definitions/User"
-                        },
-                        "type": "string"
+                            "$ref": "#/definitions/Login"
+                        }
                     }
                 ],
                 "responses": {
@@ -40,6 +40,102 @@
                 }
             }
         },
+        "/code/send": {
+            "post": {
+                "description": "Send code to user",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "body",
+                        "description": "Login user(phone) or email ",
+                        "schema": {
+                            "$ref": "#/definitions/Code"
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/code/check": {
+            "post": {
+                "description": "Check the code",
+                "parameters": [
+                    {
+                        "name": "phone and code",
+                        "in": "body",
+                        "description": "Login user(phone) or email ",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+       "/categories": {
+           "get":{
+               "description": "Information About all category",
+               "responses": {
+                   "200": {
+                       "description": "OK"
+                   }
+               }
+
+           }
+       },
+        "/meditations": {
+            "get":{
+                "description": "Information About all category",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+
+            }
+        },
+        "/courses":{
+            "get":{
+                "description": "Information about all courses",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+
+            }
+        },
+        "/user/courses":{
+            "get":{
+                "description": "Information about user courses",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/news": {
+            "get":{
+                "description": "Information about user courses",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/"
+
         "/me": {
             "post": {
                 "description": "Get user info by token",
@@ -52,9 +148,63 @@
                     }
                 }
             }
-        }
+        },
+
+
     },
+
     "definitions": {
+        "Code": {
+            "required": [
+                "phone",
+                "code"
+            ],
+            "properties": {
+
+                "phone": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                }
+            }
+        },
+
+        "Login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+
+
+        "Category":{
+            "properties": {
+                "id": {
+                    "description": "UUID",
+                    "type": "integer"
+                },
+                "name":{
+                    "type":"string"
+                },
+                "category_type_id":{
+                    "type": "integer"
+                },
+                "parent_category_id": {
+                    "type": "integer"
+                }
+            }
+            },
+
         "User": {
             "required": [
                 "email",
