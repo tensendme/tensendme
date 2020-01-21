@@ -109,6 +109,45 @@ password: tensendme2020n
     }
 
 ```
+
+###Сбросить пароль
+####URL: https://tensend.me/api/v1/code/reset
+#### !Надо дополнительно отправить код
+ПО EMAIL:
+
+```
+    POST Request:
+    {
+    	"email" : "admin@mail.ru",
+    	"code" : "0000",
+    	"password" : "123123123"
+    }
+    
+    Response
+    {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvY29kZVwvcmVzZXQiLCJpYXQiOjE1Nzk2MzA3MTQsImV4cCI6MTU3OTYzNDMxNCwibmJmIjoxNTc5NjMwNzE0LCJqdGkiOiI5STRTazNIazZBUHVGZFBOIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.mtFTUDTuXJxTAoW-iflgu-tleCy04DsMsWPI9i5jRcY",
+        "success": true
+    }
+
+```
+
+ПО Номеру телефона:
+
+```
+    POST Request:
+    {
+    	"phone" : "77059049553",
+    	"code" : "0000",
+    	"password" : "123123123"
+    }
+    
+    Response
+    {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvY29kZVwvcmVzZXQiLCJpYXQiOjE1Nzk2MzA3MTQsImV4cCI6MTU3OTYzNDMxNCwibmJmIjoxNTc5NjMwNzE0LCJqdGkiOiI5STRTazNIazZBUHVGZFBOIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.mtFTUDTuXJxTAoW-iflgu-tleCy04DsMsWPI9i5jRcY",
+        "success": true
+    }
+
+```
 ###Проверка логина на существование
 ####URL: https://tensend.me/api/v1/login/check
 

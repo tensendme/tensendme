@@ -14,4 +14,6 @@ interface CodeService
     public function createAndSendCode($login, $isEmail = false);
 
     public function checkCode($login, $code);
+
+    public function resetPassword($login, $password, $code, $isEmail);
 }
