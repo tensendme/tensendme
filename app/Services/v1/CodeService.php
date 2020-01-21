@@ -13,5 +13,5 @@ interface CodeService
 {
     public function createAndSendCode($login, $isEmail = false);
 
-    public function checkCode($phone, $code): bool;
+    public function checkCode($login, $code);
 }
