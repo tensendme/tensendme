@@ -14,6 +14,11 @@ Route::group(['middleware' => 'api'], function () {
         Route::post('/login/check', ['uses' => 'AuthController@checkLogin']);
     });
 
+    Route::group(['namespace' => 'StaticFunc'], function () {
+        Route::get('/countries', ['uses' => 'StaticController@getAllCountries']);
+    });
+
+
     Route::group(['namespace' => 'Category'], function () {
 
         Route::get('/courses/categories', ['uses' => 'CategoryController@getCoursesCategories']);

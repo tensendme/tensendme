@@ -15,6 +15,7 @@ use App\Services\v1\impl\MeditationServiceImpl;
 use App\Services\v1\impl\CourseServiceImpl;
 
 
+use App\Services\v1\impl\StaticServiceImpl;
 use Illuminate\Support\ServiceProvider;
 
 class SystemServiceProvider extends ServiceProvider
@@ -52,6 +53,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\BannerService', function ($app) {
             return (new BannerServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\StaticService', function ($app) {
+            return (new StaticServiceImpl());
         });
 
 

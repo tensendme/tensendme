@@ -70,6 +70,11 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
 
             Route::get('/countries', ['uses' => 'CountryController@index', 'as' => 'country.index']);
+            Route::get('/country/create', ['uses' => 'CountryController@create', 'as' => 'country.create']);
+            Route::post('/country/store', ['uses' => 'CountryController@store', 'as' => 'country.store']);
+            Route::get('/country/edit/{id}', ['uses' => 'CountryController@edit', 'as' => 'country.edit']);
+            Route::post('/country/update/{id}', ['uses' => 'CountryController@update', 'as' => 'country.update']);
+
 
             Route::get('/cities', ['uses' => 'CityController@index', 'as' => 'city.index']);
             Route::get('/city/create', ['uses' => 'CityController@create', 'as' => 'city.create']);

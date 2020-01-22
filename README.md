@@ -604,3 +604,25 @@ password: tensendme2020n
         "success": true
     }
 ```
+###Полчение всех стран
+####URL: https://tensend.me/api/v1/countries
+```
+    GET Request
+    
+    RESPONSE
+    {
+        "countries": [
+            {
+                "id": 1,
+                "name": "Казахстан",
+                "phone_prefix": "+7"
+            },
+            {
+                "id": 2,
+                "name": "Россия",
+                "phone_prefix": "+7"
+            }
+        ],
+        "success": true
+    }
+```
