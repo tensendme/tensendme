@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\v1\impl\AuthServiceImpl;
 use App\Services\v1\impl\BannerServiceImpl;
 use App\Services\v1\impl\CategoryServiceImpl;
+use App\Services\v1\impl\CloudPaymentServiceImpl;
 use App\Services\v1\impl\CodeServiceImpl;
 use App\Services\v1\impl\CourseServiceImpl;
 use App\Services\v1\impl\FileServiceImpl;
