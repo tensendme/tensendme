@@ -38,7 +38,18 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/courses/category/{categoryId}', ['uses' => 'CourseController@getCoursesByCategory']);
         Route::get('courses/{id}', ['uses' => 'CourseController@getById']);
 
+        //Material
+        Route::get('courses/material/{id}', ['uses' => 'MaterialController@getMaterialById']);
 
+
+
+    });
+    Route::group(['namespace' => 'Subscription'], function () {
+
+        Route::get('/subscription/types', ['uses' => 'SubscriptionController@getSubscriptionTypes']);
+        Route::group(['middleware' => 'auth:api'], function () {
+            Route::post('/subscribe/{subscribeTypeId}', ['uses' => 'SubscriptionController@subscribe']);
+        });
     });
 
     Route::group(['namespace' => 'Advertisement'], function () {

@@ -2,6 +2,7 @@
 
 namespace App\Models\Profiles;
 
+use App\Models\Subscriptions\Subscription;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -42,7 +43,8 @@ class User extends Authenticatable implements JWTSubject
         'nickname',
         'image_path',
         'role_id',
-        'phone_number'
+        'phone_number',
+        'subscribed'
     ];
 
     /**
@@ -107,5 +109,19 @@ class User extends Authenticatable implements JWTSubject
     public function isUser()
     {
         return $this->role_id == Role::USER_ID;
+    }
+
+    public function lastSubscription() {
+        return Subscription::where('user_id', $this->id)->where('expired_at', '>', now())
+            ->orderBy('id', 'desc')->first();
+    }
+
+    public function activeSubscriptions() {
+        return $this->hasMany(Subscription::class, 'user_id', 'id')
+            ->where('expired_at', '>', now());
+    }
+
+    public function subscriptions() {
+        return $this->hasMany(Subscription::class, 'user_id', 'id');
     }
 }

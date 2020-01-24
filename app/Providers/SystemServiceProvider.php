@@ -5,9 +5,12 @@ namespace App\Providers;
 use App\Services\v1\impl\CabinetServiceImpl;
 use App\Services\v1\impl\AuthServiceImpl;
 use App\Services\v1\impl\CategoryServiceImpl;
+use App\Services\v1\impl\CloudPaymentServiceImpl;
 use App\Services\v1\impl\CodeServiceImpl;
+use App\Services\v1\impl\HistoryServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\MailServiceImpl;
+use App\Services\v1\impl\MaterialServiceImpl;
 use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
 use App\Services\v1\impl\BannerServiceImpl;
@@ -16,6 +19,7 @@ use App\Services\v1\impl\CourseServiceImpl;
 
 
 use App\Services\v1\impl\StaticServiceImpl;
+use App\Services\v1\impl\SubscriptionServiceImpl;
 use Illuminate\Support\ServiceProvider;
 
 class SystemServiceProvider extends ServiceProvider
@@ -57,6 +61,20 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\StaticService', function ($app) {
             return (new StaticServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\MaterialService', function ($app) {
+            return (new MaterialServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\SubscriptionService', function ($app) {
+            return (new SubscriptionServiceImpl(new CloudPaymentServiceImpl(), new HistoryServiceImpl()));
+        });
+        $this->app->bind('App\Services\v1\PaymentService', function ($app) {
+            return (new CloudPaymentServiceImpl());
+        });
+        $this->app->bind('App\Services\v1\HistoryService', function ($app) {
+            return (new HistoryServiceImpl());
         });
 
 

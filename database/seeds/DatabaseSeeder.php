@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryTypesTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
         $this->call(AudioLanguageSeeder::class);
+        $this->call(HistoryTypeSeeder::class);
     }
 }

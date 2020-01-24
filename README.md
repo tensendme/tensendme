@@ -604,7 +604,7 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Полчение всех стран
+###Получение всех стран
 ####URL: https://tensend.me/api/v1/countries
 ```
     GET Request
@@ -625,4 +625,61 @@ password: tensendme2020n
         ],
         "success": true
     }
+```
+
+###Получение материала
+####URL: https://tensend.me/api/v1/courses/materials/{materialId}
+```
+    GET Request
+    
+    RESPONSE
+    {
+       {
+           "material": {
+               "id": 1,
+               "title": "ffdsfsd",
+               "video_path": "",
+               "ordering": 2,
+               "course_id": 1,
+               "created_at": "2020-01-25 03:46:47",
+               "updated_at": "2020-01-25 03:46:47"
+           },
+           "success": true
+       }
+    }
+```
+###Получение типов подписок для(покупка разрешения на просмотров курсов)
+####URL: https://tensend.me/api/v1/subscription/types
+```
+    GET Request
+    
+    RESPONSE
+    {
+      {
+          "subscription_types": [
+              {
+                  "id": 1,
+                  "name": "Bekzat",
+                  "price": 43243,
+                  "created_at": "2020-01-25 03:41:58",
+                  "updated_at": "2020-01-25 03:41:58",
+                  "expired_at": 30
+              }
+          ],
+          "success": true
+      }
+    }
+```
+###Проверка кода
+####URL: https://tensend.me/api/v1/subscribe/{subscriptionTypeId}
+
+```
+    POST Request:
+    
+    RESPONSE:
+    {
+        "message": "Успешно!",
+        "success": true
+    }
+
 ```
