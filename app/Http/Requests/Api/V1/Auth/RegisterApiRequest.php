@@ -10,12 +10,12 @@ class RegisterApiRequest extends ApiBaseRequest
     {
         if (request()->has('email')) {
             return [
-                'email' => ['email', 'string', 'unique:users'],
-                'password' => ['password', 'string'],
+                'email' => ['email', 'string', 'unique:users', 'required'],
+                'password' => ['string', 'min:8'],
             ];
         } else {
             return [
-                'phone' => ['string', 'unique:users'],
+                'phone' => ['string', 'unique:users', 'required'],
                 'password' => ['string', 'min:8'],
             ];
         }

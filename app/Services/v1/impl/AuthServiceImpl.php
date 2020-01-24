@@ -17,6 +17,7 @@ use App\Http\Requests\Api\V1\Auth\RegisterApiRequest;
 use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Services\v1\AuthService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 
@@ -57,25 +58,21 @@ class AuthServiceImpl implements AuthService
     {
         $user = null;
         if ($request->has('phone')) {
-            $user = User::insert([
-                [
-                    'phone' => $request->phone,
-                    'password' => bcrypt($request->password),
-                    'remember_token' => '',
-                    'level_id' => 1,
-                    'role_id' => Role::USER_ID
-                ],
-            ]);
+            $user = new User();
+            $user->phone = $request->phone;
+            $user->password = bcrypt($request->password);
+            $user->remember_token = '';
+            $user->level_id = 1;
+            $user->role_id = Role::USER_ID;
+            $user->save();
         } else if ($request->has('email')) {
-            $user = User::insert([
-                [
-                    'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'remember_token' => '',
-                    'level_id' => 1,
-                    'role_id' => Role::USER_ID
-                ],
-            ]);
+            $user = new User();
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->remember_token = '';
+            $user->level_id = 1;
+            $user->role_id = Role::USER_ID;
+            $user->save();
         }
 
         if (!$user) {
@@ -128,6 +125,29 @@ class AuthServiceImpl implements AuthService
     public function checkPassword($password, $hashedPassword): bool
     {
         return Hash::check($password, $hashedPassword);
+    }
+
+    public function setDeviceToken($user, $deviceToken)
+    {
+        DB::beginTransaction();
+        try {
+            User::where('device_token', $deviceToken)->update([
+                'device_token' => null
+            ]);
+            $user->update([
+                'device_token' => $deviceToken
+            ]);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            throw new ApiServiceException(400, false, [
+                'errors' => [
+                    'Error occured when updating device token',
+                    $exception->getMessage()
+                ],
+                'errorCode' => ErrorCode::SYSTEM_ERROR
+            ]);
+        }
     }
 
 

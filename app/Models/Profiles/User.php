@@ -7,9 +7,9 @@ use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * 		@SWG\Definition(
- * 			definition="User",
- * 			required={"email", "password"},
+ * @SWG\Definition(
+ *            definition="User",
+ *            required={"email", "password"},
  * 			@SWG\Property(property="id", type="integer", description="UUID"),
  * 			@SWG\Property(property="email", type="string"),
  * 			@SWG\Property(property="password", type="string"),
@@ -20,7 +20,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * 			@SWG\Property(property="role_id", type="integer"),
  * 			@SWG\Property(property="level_id", type="integer"),
  * 			@SWG\Property(property="city_id", type="integer"),
- * 		),
+ *        ),
  */
 class User extends Authenticatable implements JWTSubject
 {

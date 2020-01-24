@@ -12,6 +12,7 @@ namespace App\Services\v1;
 use App\Http\Requests\Api\V1\Auth\CheckLoginExistenceApiRequest;
 use App\Http\Requests\Api\V1\Auth\LoginApiRequest;
 use App\Http\Requests\Api\V1\Auth\RegisterApiRequest;
+use App\Models\Profiles\User;
 
 interface AuthService
 {
@@ -26,4 +27,6 @@ interface AuthService
     public function checkPhoneExistence($phone): bool;
 
     public function checkPassword($password, $hashedPassword): bool;
+
+    public function setDeviceToken($user, $deviceToken);
 }

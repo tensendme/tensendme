@@ -9,7 +9,9 @@ use App\Http\Controllers\ApiBaseController;
 use App\Http\Requests\Api\V1\Auth\CheckLoginExistenceApiRequest;
 use App\Http\Requests\Api\V1\Auth\LoginApiRequest;
 use App\Http\Requests\Api\V1\Auth\RegisterApiRequest;
+use App\Http\Requests\Api\V1\Auth\SetDeviceTokenApiRequest;
 use App\Services\v1\AuthService;
+use Illuminate\Support\Facades\Auth;
 
 
 class AuthController extends ApiBaseController
@@ -100,6 +102,12 @@ class AuthController extends ApiBaseController
     public function checkLogin(CheckLoginExistenceApiRequest $request)
     {
         return $this->successResponse(['is_exists' => $this->authService->checkLoginExistence($request)]);
+    }
+
+    public function setDeviceToken(SetDeviceTokenApiRequest $request)
+    {
+        $this->authService->setDeviceToken(Auth::user(), $request->device_token);
+        return $this->successResponse(['message' => 'Device token set']);
     }
 
 }

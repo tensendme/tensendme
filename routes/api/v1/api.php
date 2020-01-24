@@ -66,6 +66,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('/logout', ['uses' => 'AuthController@logout']);
             Route::post('/refresh', ['uses' => 'AuthController@refresh']);
             Route::post('/me', ['uses' => 'AuthController@me']);
+            Route::post('/set-device-token', ['uses' => 'AuthController@setDeviceToken']);
 
         });
         Route::group(['namespace' => 'Course'], function () {
