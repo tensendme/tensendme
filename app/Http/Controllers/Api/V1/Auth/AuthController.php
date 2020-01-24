@@ -106,7 +106,7 @@ class AuthController extends ApiBaseController
 
     public function setDeviceToken(SetDeviceTokenApiRequest $request)
     {
-        $this->authService->setDeviceToken(Auth::user(), $request->device_token);
+        $this->authService->setDeviceToken(Auth::user(), $request->device_token, $request->platform);
         return $this->successResponse(['message' => 'Device token set']);
     }
 

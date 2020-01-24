@@ -127,15 +127,17 @@ class AuthServiceImpl implements AuthService
         return Hash::check($password, $hashedPassword);
     }
 
-    public function setDeviceToken($user, $deviceToken)
+    public function setDeviceToken($user, $deviceToken, $platform)
     {
         DB::beginTransaction();
         try {
             User::where('device_token', $deviceToken)->update([
-                'device_token' => null
+                'device_token' => null,
+                'platform' => null
             ]);
             $user->update([
-                'device_token' => $deviceToken
+                'device_token' => $deviceToken,
+                'platform' => $platform
             ]);
             DB::commit();
         } catch (\Exception $exception) {

@@ -28,5 +28,5 @@ interface AuthService
 
     public function checkPassword($password, $hashedPassword): bool;
 
-    public function setDeviceToken($user, $deviceToken);
+    public function setDeviceToken($user, $deviceToken, $platform);
 }

@@ -226,7 +226,8 @@ password: tensendme2020n
 ```
     POST Request:
     {
-    	"device_token" : "123"
+    	"device_token" : "123",
+    	"platform" : "" // IOS , ANDROID - передавайте стрингом одно из двух
     }
     
     RESPONSE:
