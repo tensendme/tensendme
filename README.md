@@ -645,7 +645,7 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Полчение всех стран
+###Получение всех стран
 ####URL: https://tensend.me/api/v1/countries
 ```
     GET Request
@@ -669,7 +669,7 @@ password: tensendme2020n
 ```
 
 ###Получение материала
-####URL: https://tensend.me/api/v1/courses/materials/{materialId}
+####URL: https://tensend.me/api/v1/courses/material/{materialId}
 ```
     GET Request
     
@@ -700,7 +700,7 @@ password: tensendme2020n
           "subscription_types": [
               {
                   "id": 1,
-                  "name": "Bekzat",
+                  "name": "Месяц",
                   "price": 43243,
                   "created_at": "2020-01-25 03:41:58",
                   "updated_at": "2020-01-25 03:41:58",
@@ -722,5 +722,12 @@ password: tensendme2020n
         "message": "Успешно!",
         "success": true
     }
+{
+    "errors": [
+        "Такой подписки не существует!"
+    ],
+    "errorCode": 7,
+    "success": false
+}
 
 ```
