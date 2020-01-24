@@ -5,7 +5,6 @@
                name="name"
                value="{{$country ? $country->name : old('name')}}"
                placeholder="Наименование"
-               id="name"
                required>
         <label class="form-control-plaintext" for="name">Пожалуйста введите название страны</label>
     </div>
@@ -14,9 +13,27 @@
                name="phone_prefix"
                value="{{$country->phone_prefix ? $country->phone_prefix : old('phone_prefix')}}"
                placeholder="Префикс"
-               id="name"
                required>
         <label class="form-control-plaintext" for="name">Пожалуйста введите префикс номера телефона</label>
+    </div>
+    <div class="form-group col-md-11">
+        <input type="file"
+               id="file"
+               class="form-control"
+               name="image"
+               accept="image/*"
+               placeholder="Фото"
+               required>
+        <label class="form-control-plaintext" for="name">Пожалуйста выберите фото</label>
+    </div>
+    <div class="form-group col-md-1">
+        <input type="checkbox"
+               data-on="Вкл"
+               data-off="Откл"
+               onchange="toggleImage(this)"
+               checked
+               data-toggle="toggle"
+               data-size="md">
     </div>
 </div>
 <div class="form-group col-md-12 text-right">
@@ -25,5 +42,12 @@
     </button>
 </div>
 
+@section('scripts')
+    <script>
+        function toggleImage(el) {
+            document.getElementById('file').disabled = !el.checked;
+        }
+    </script>
+@endsection
 
 @include('admin.layouts.parts.error')

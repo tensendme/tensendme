@@ -15,8 +15,11 @@
                     </a>
                     <h6 class="m-0">Обновление Страны</h6>
                 </div>
-                <div class="card-body p-2 pb-2 text-center">
-                    <form method="post" action="{{route('country.update', ['id' => $country->id])}}">
+                <div class="card-body p-2 pb-4 text-center">
+                    <img class="default_image_size" src="{{asset($country->image_path)}}">
+                    <form enctype="multipart/form-data"
+                          method="post"
+                          action="{{route('country.update', ['id' => $country->id])}}">
                         @include('admin.country.form')
                     </form>
                 </div>

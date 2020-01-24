@@ -4,7 +4,7 @@ namespace App\Http\Requests\Web\V1\BannerControllerRequests;
 
 use App\Http\Requests\WebBaseRequest;
 
-class StoreAndUpdateRequest extends WebBaseRequest
+class BannerStoreAndUpdateRequest extends WebBaseRequest
 {
     public function injectedRules(): array
     {

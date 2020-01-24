@@ -16,7 +16,7 @@
                     <h6 class="m-0">Добавление Города</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
-                    <form method="post" action="{{route('country.store')}}">
+                    <form method="post" action="{{route('country.store')}}" enctype="multipart/form-data">
                         @include('admin.country.form')
                     </form>
                 </div>

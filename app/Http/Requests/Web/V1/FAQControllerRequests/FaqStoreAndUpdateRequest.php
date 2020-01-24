@@ -4,7 +4,7 @@ namespace App\Http\Requests\Web\V1\FAQControllerRequests;
 
 use App\Http\Requests\WebBaseRequest;
 
-class StoreAndUpdateRequest extends WebBaseRequest
+class FaqStoreAndUpdateRequest extends WebBaseRequest
 {
     public function injectedRules(): array
     {

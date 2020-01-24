@@ -2,21 +2,20 @@
 
 namespace App\Providers;
 
-use App\Services\v1\impl\CabinetServiceImpl;
 use App\Services\v1\impl\AuthServiceImpl;
+use App\Services\v1\impl\BannerServiceImpl;
 use App\Services\v1\impl\CategoryServiceImpl;
 use App\Services\v1\impl\CodeServiceImpl;
+use App\Services\v1\impl\CourseServiceImpl;
+use App\Services\v1\impl\FileServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\MailServiceImpl;
-use App\Services\v1\impl\SmsServiceImpl;
-use App\Services\v1\impl\NewsServiceImpl;
-use App\Services\v1\impl\BannerServiceImpl;
 use App\Services\v1\impl\MeditationServiceImpl;
-use App\Services\v1\impl\CourseServiceImpl;
-
-
+use App\Services\v1\impl\NewsServiceImpl;
+use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\StaticServiceImpl;
 use Illuminate\Support\ServiceProvider;
+
 
 class SystemServiceProvider extends ServiceProvider
 {
@@ -57,6 +56,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\StaticService', function ($app) {
             return (new StaticServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\FileService', function ($app) {
+            return (new FileServiceImpl());
         });
 
 

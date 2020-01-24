@@ -1,4 +1,14 @@
 @extends('admin.layouts.admin')
+
+@section('styles')
+    <style>
+        .custom_image_size {
+            height: 50px;
+            width: auto;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
@@ -24,6 +34,7 @@
                             <th scope="col" class="border-0">#</th>
                             <th scope="col" class="border-0">Название</th>
                             <th scope="col" class="border-0">Префикс номера</th>
+                            <th scope="col" class="border-0">Фото</th>
                             <th scope="col" class="border-0">Действия</th>
                         </tr>
                         </thead>
@@ -33,6 +44,11 @@
                                 <td>{{$country->id}}</td>
                                 <td>{{$country->name}}</td>
                                 <td>{{$country->phone_prefix}}</td>
+                                <td>
+                                    @if($country->image_path)
+                                        <img class="custom_image_size" src="{{asset($country->image_path)}}">
+                                    @endif
+                                </td>
                                 <td>
                                     <a class="btn btn-outline-primary mb-2 "
                                        href="{{route('country.edit', ['id' => $country->id])}}">

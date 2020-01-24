@@ -3,30 +3,43 @@
 namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Http\Controllers\WebBaseController;
-use App\Http\Requests\Web\V1\NewsControllerRequests\StoreAndUpdateRequest;
-
+use App\Http\Requests\Web\V1\NewsControllerRequests\NewsStoreAndUpdateRequest;
 use App\Models\News\News;
-use File;
+use App\Services\v1\FileService;
+use App\Utils\StaticConstants;
 
 class NewsController extends WebBaseController
 {
-    public function index() {
+    protected $fileService;
+
+    /**
+     * NewsController constructor.
+     * @param $fileService
+     */
+    public function __construct(FileService $fileService)
+    {
+        $this->fileService = $fileService;
+    }
+
+
+    public function index()
+    {
         $news = News::paginate(10);
         return view('admin.news.index', compact('news'));
     }
 
-    public function create() {
+    public function create()
+    {
 
         $news = new News();
         return view('admin.news.create', compact('news'));
     }
 
-    public function store(StoreAndUpdateRequest $request) {
-        $path = '/news/default.png';
-        if($request->file('image')) {
-            $filename = $request->title.time().'.'.$request->file('image')->getClientOriginalExtension();
-            $request->image->move(public_path('images/news'), $filename);
-            $path = '/news/'.$filename;
+    public function store(NewsStoreAndUpdateRequest $request)
+    {
+        $path = StaticConstants::DEFAULT_IMAGE;
+        if ($request->file('image')) {
+            $path = $this->fileService->store($request->file('image'), News::DEFAULT_RESOURCE_DIRECTORY);
         }
         News::create([
             'title' => $request->title,
@@ -39,20 +52,17 @@ class NewsController extends WebBaseController
 
     public function edit($id)
     {
-
         $news = News::findOrFail($id);
         return view('admin.news.edit', compact('news'));
-
     }
 
-    public function update($id, StoreAndUpdateRequest $request) {
+    public function update($id, NewsStoreAndUpdateRequest $request)
+    {
         $news = News::findOrFail($id);
         $path = $news->image_path;
-        if($request->file('image')) {
-            $filename = $request->title.time().'.'.$request->file('image')->getClientOriginalExtension();
-            $request->image->move(public_path('images/news'), $filename);
-            $path = '/news/'.$filename;
-            if($news->image_path != '/news/default.png') File::delete('images/'.$news->image_path);
+        if ($request->file('image')) {
+            $path = $this->fileService
+                ->updateWithRemoveOrStore($request->file('image'), News::DEFAULT_RESOURCE_DIRECTORY, $path);
         }
         $news->update([
             'title' => $request->title,

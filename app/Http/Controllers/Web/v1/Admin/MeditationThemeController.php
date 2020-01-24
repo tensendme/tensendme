@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebBaseController;
-use App\Http\Requests\Web\V1\MeditationRequests\ThemeStoreAndUpdate;
+use App\Http\Requests\Web\V1\MeditationRequests\ThemeStoreAndUpdateRequest;
 use App\Models\Meditations\AudioLanguage;
 use App\Models\Meditations\Theme;
 use App\Models\Meditations\ThemeAudio;
@@ -26,7 +26,7 @@ class MeditationThemeController extends WebBaseController
         return view('admin.meditation.theme.create', compact('theme', 'meditationId', 'audioTypes'));
     }
 
-    public function store($meditationId, ThemeStoreAndUpdate $request) {
+    public function store($meditationId, ThemeStoreAndUpdateRequest $request) {
         DB::beginTransaction();
         try {
             $theme = Theme::create([
@@ -63,7 +63,7 @@ class MeditationThemeController extends WebBaseController
         return view('admin.meditation.theme.edit', compact('theme', 'audioTypes'));
     }
 
-    public function update($id, ThemeStoreAndUpdate $request) {
+    public function update($id, ThemeStoreAndUpdateRequest $request) {
         $theme = Theme::findOrFail($id);
         $meditationId = $theme->meditation_id;
         DB::beginTransaction();
