@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Http\Controllers\WebBaseController;
 use App\Models\News\Location;
-use App\Http\Requests\Web\V1\LocationControllerRequests\StoreAndUpdateRequest;
+use App\Http\Requests\Web\V1\LocationControllerRequests\LocationStoreAndUpdateRequest;
 
 use Illuminate\Http\Request;
 
@@ -43,7 +43,7 @@ class LocationController extends WebBaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAndUpdateRequest $request)
+    public function store(LocationStoreAndUpdateRequest $request)
     {
 
             Location::create($request->all());
@@ -80,7 +80,7 @@ class LocationController extends WebBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreAndUpdateRequest $request, $id)
+    public function update(LocationStoreAndUpdateRequest $request, $id)
     {
         Location::findOrFail($id)
             ->update($request->all());

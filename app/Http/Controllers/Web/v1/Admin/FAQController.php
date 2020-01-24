@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\v1\Admin;
 
 
 use App\Http\Controllers\WebBaseController;
-use App\Http\Requests\Web\V1\FAQControllerRequests\StoreAndUpdateRequest;
+use App\Http\Requests\Web\V1\FAQControllerRequests\FaqStoreAndUpdateRequest;
 
 use App\Models\FAQs\Faq;
 use File;
@@ -23,7 +23,7 @@ class FAQController extends WebBaseController
         return view('admin.faq.create', compact('faq'));
     }
 
-    public function store(StoreAndUpdateRequest $request) {
+    public function store(FaqStoreAndUpdateRequest $request) {
         $path = '/news/default.png';
         if($request->file('image')) {
             $filename = $request->title.time().'.'.$request->file('image')->getClientOriginalExtension();
@@ -47,7 +47,7 @@ class FAQController extends WebBaseController
 
     }
 
-    public function update($id, StoreAndUpdateRequest $request) {
+    public function update($id, FaqStoreAndUpdateRequest $request) {
         $faq = Faq::findOrFail($id);
         $path = $faq->image_path;
         if($request->file('image')) {

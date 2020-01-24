@@ -3,12 +3,26 @@
 namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Http\Controllers\WebBaseController;
-use App\Http\Requests\Web\V1\CountryControllerRequests\StoreAndUpdateRequest;
+use App\Http\Requests\Web\V1\CountryControllerRequests\CountryStoreAndUpdateRequest;
 use App\Models\Profiles\Country;
+use App\Services\v1\FileService;
+use App\Utils\StaticConstants;
 
 
 class CountryController extends WebBaseController
 {
+
+    protected $fileService;
+
+    /**
+     * CountryController constructor.
+     * @param $fileService
+     */
+    public function __construct(FileService $fileService)
+    {
+        $this->fileService = $fileService;
+    }
+
 
     public function index()
     {
@@ -23,9 +37,17 @@ class CountryController extends WebBaseController
         return view('admin.country.create', compact('country'));
     }
 
-    public function store(StoreAndUpdateRequest $request)
+    public function store(CountryStoreAndUpdateRequest $request)
     {
-        Country::create($request->all());
+        $path = StaticConstants::DEFAULT_IMAGE;
+        if ($request->file('image')) {
+            $path = $this->fileService->store($request->file('image'), Country::DEFAULT_RESOURCE_DIRECTORY);
+        }
+        Country::create([
+            'name' => $request->name,
+            'phone_prefix' => $request->phone_prefix,
+            'image_path' => $path
+        ]);
         $this->added();
         return redirect()->route('country.index');
     }
@@ -37,10 +59,19 @@ class CountryController extends WebBaseController
 
     }
 
-    public function update(StoreAndUpdateRequest $request, $id)
+    public function update(CountryStoreAndUpdateRequest $request, $id)
     {
-        Country::findOrFail($id)
-            ->update($request->all());
+        $country = Country::findOrFail($id);
+        $path = $country->image_path;
+        if ($request->file('image')) {
+            $path = $this->fileService
+                ->updateWithRemoveOrStore($request->file('image'), Country::DEFAULT_RESOURCE_DIRECTORY, $path);
+        }
+        $country->update([
+            'name' => $request->name,
+            'phone_prefix' => $request->phone_prefix,
+            'image_path' => $path
+        ]);
         $this->edited();
         return redirect()->route('country.index');
     }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class News extends Model
 {
+    public const DEFAULT_RESOURCE_DIRECTORY = 'images/news';
     use SoftDeletes;
 
     protected $fillable = [

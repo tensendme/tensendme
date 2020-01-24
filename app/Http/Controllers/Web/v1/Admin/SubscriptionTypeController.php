@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Http\Controllers\WebBaseController;
-use App\Http\Requests\Web\V1\SubscriptionTypeControllerRequests\StoreAndUpdateRequest;
+use App\Http\Requests\Web\V1\SubscriptionTypeControllerRequests\NewsStoreAndUpdateRequest;
 use App\Models\Subscriptions\SubscriptionType;
 
 class SubscriptionTypeController extends WebBaseController
@@ -23,7 +23,7 @@ class SubscriptionTypeController extends WebBaseController
         return view('admin.subscriptionTypes.create', compact('subscription_type'));
     }
 
-    public function store(StoreAndUpdateRequest $request)
+    public function store(NewsStoreAndUpdateRequest $request)
     {
 
 
@@ -43,7 +43,7 @@ class SubscriptionTypeController extends WebBaseController
 
     }
 
-    public function update(StoreAndUpdateRequest $request, $id)
+    public function update(NewsStoreAndUpdateRequest $request, $id)
     {
         SubscriptionType::findOrFail($id)
             ->update($request->all());

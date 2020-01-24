@@ -27,6 +27,9 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    public const PLATFORM_IOS = "IOS";
+    public const PLATFORM_ANDROID = "ANDROID";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -44,7 +47,7 @@ class User extends Authenticatable implements JWTSubject
         'image_path',
         'role_id',
         'phone_number',
-        'subscribed'
+        "platform"
     ];
 
     /**

@@ -196,6 +196,47 @@ password: tensendme2020n
     }
 
 ```
+
+
+### Регистрация
+#### URL: https://tensend.me/api/v1/register
+
+```
+    POST Request:
+    {
+    	"email" : "admin@mail.rr",
+    	"password" : "password"
+    }
+    ||
+    {
+        "phone" : "77059049554",//БЕЗ +
+        "password" : "password"
+    }
+    RESPONSE:
+    {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvcmVnaXN0ZXIiLCJpYXQiOjE1Nzk4OTk0MzksImV4cCI6MTU3OTkwMzAzOSwibmJmIjoxNTc5ODk5NDM5LCJqdGkiOiI1ZHo4UHRvZktPaDlqT2F6Iiwic3ViIjo4LCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.UFwfblZ-ODHRXzPkt7AenXHp_Z5bVoUM_nXAt4HE5EU",
+        "success": true
+    }
+
+```
+
+### Вставить Firebase push token  АВТОРИЗОВАННЫЙ
+#### URL: https://tensend.me/api/v1/set-device-token
+
+```
+    POST Request:
+    {
+    	"device_token" : "123",
+    	"platform" : "" // IOS , ANDROID - передавайте стрингом одно из двух
+    }
+    
+    RESPONSE:
+    {
+         "message": "Device token set",
+         "success": true
+    }
+
+```
 ###Получение всех категорий (пагинировано)
 ####URL: https://tensend.me/api/v1/courses/categories
 
@@ -604,7 +645,7 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение всех стран
+###Полчение всех стран
 ####URL: https://tensend.me/api/v1/countries
 ```
     GET Request

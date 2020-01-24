@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
         <textarea type="text" class="form-control"
                   name="description"
                   placeholder="Краткое описание курса"
@@ -19,8 +19,6 @@
                   required>{{$course ? $course->description : old('description')}}</textarea>
         <label class="form-control-plaintext" for="description">Пожалуйста введите описание курса</label>
     </div>
-</div>
-<div class="form-row">
     <div class="col-md-6">
         <div class="form-group">
             <select class="form-control" name="category_id" id="category_id">
@@ -34,11 +32,26 @@
             <label class="form-control-plaintext" for="category_id">Пожалуйста выберите категорию</label>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <input class="form-control" type="file" name="image" id="image" accept="image/*">
-            <label class="form-control-plaintext" for="image">Пожалуйста выберите фото</label>
-        </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-11">
+        <input type="file"
+               id="file"
+               class="form-control"
+               name="image"
+               accept="image/*"
+               placeholder="Фото"
+               required>
+        <label class="form-control-plaintext" for="name">Пожалуйста выберите фото</label>
+    </div>
+    <div class="form-group col-md-1">
+        <input type="checkbox"
+               data-on="Вкл"
+               data-off="Откл"
+               onchange="toggleImage(this)"
+               checked
+               data-toggle="toggle"
+               data-size="md">
     </div>
 </div>
 <div class="form-group col-md-12 text-right">
@@ -47,5 +60,12 @@
     </button>
 </div>
 
+@section('scripts')
+    <script>
+        function toggleImage(el) {
+            document.getElementById('file').disabled = !el.checked;
+        }
+    </script>
+@endsection
 
 @include('admin.layouts.parts.error')

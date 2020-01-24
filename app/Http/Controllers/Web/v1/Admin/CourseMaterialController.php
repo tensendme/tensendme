@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Http\Controllers\WebBaseController;
-use App\Http\Requests\Web\V1\CourseMaterialControllerRequest\StoreAndUpdateRequest;
+use App\Http\Requests\Web\V1\CourseMaterialControllerRequest\CourseMaterialStoreAndUpdateRequest;
 use App\Models\Courses\Course;
 use App\Models\Courses\CourseMaterial;
 use App\Models\Docs\Doc;
@@ -21,7 +21,7 @@ class CourseMaterialController extends WebBaseController
         return view('admin.course.materials.create', compact('material', 'course_id'));
     }
 
-    public function store(StoreAndUpdateRequest $request, $course_id) {
+    public function store(CourseMaterialStoreAndUpdateRequest $request, $course_id) {
         $path = '';
         if($request->file('video')) {
             $filename = $request->title.time().'.'.$request->file('video')->getClientOriginalExtension();
@@ -59,7 +59,7 @@ class CourseMaterialController extends WebBaseController
         return view('admin.course.materials.edit', compact('material', 'courses'));
     }
 
-    public function update($id, StoreAndUpdateRequest $request) {
+    public function update($id, CourseMaterialStoreAndUpdateRequest $request) {
         $material = CourseMaterial::findOrFail($id);
         $path = $material->video_path;
         if($request->file('video')) {

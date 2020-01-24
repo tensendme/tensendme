@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Services\v1\impl\CabinetServiceImpl;
 use App\Services\v1\impl\AuthServiceImpl;
+use App\Services\v1\impl\BannerServiceImpl;
 use App\Services\v1\impl\CategoryServiceImpl;
-use App\Services\v1\impl\CloudPaymentServiceImpl;
 use App\Services\v1\impl\CodeServiceImpl;
+use App\Services\v1\impl\CourseServiceImpl;
+use App\Services\v1\impl\FileServiceImpl;
 use App\Services\v1\impl\HistoryServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\MailServiceImpl;
@@ -61,6 +63,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\StaticService', function ($app) {
             return (new StaticServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\FileService', function ($app) {
+            return (new FileServiceImpl());
         });
 
         $this->app->bind('App\Services\v1\MaterialService', function ($app) {

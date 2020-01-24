@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Banner extends Model
 {
+    public const DEFAULT_RESOURCE_DIRECTORY = 'images/banner';
+
+
     protected $fillable = [
         'title',
         'news_id',

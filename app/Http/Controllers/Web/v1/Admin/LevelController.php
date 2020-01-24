@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Web\v1\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\v1\LevelService;
 use App\Http\Controllers\WebBaseController;
-use App\Http\Requests\Web\V1\LevelControllerRequests\StoreAndUpdateRequest;
+use App\Http\Requests\Web\V1\LevelControllerRequests\LevelStoreAndUpdateRequest;
 use App\Models\Profiles\Level;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\WebServiceErroredException;
@@ -35,7 +35,7 @@ class LevelController extends WebBaseController
         return view('admin.level.create', compact('level'));
     }
 
-    public function store(StoreAndUpdateRequest $request)
+    public function store(LevelStoreAndUpdateRequest $request)
     {
 
         DB::beginTransaction();
@@ -59,7 +59,7 @@ class LevelController extends WebBaseController
 
     }
 
-    public function update(StoreAndUpdateRequest $request, $id)
+    public function update(LevelStoreAndUpdateRequest $request, $id)
     {
         Level::findOrFail($id)
             ->update($request->all());

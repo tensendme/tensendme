@@ -7,7 +7,7 @@ use App\Http\Controllers\WebBaseController;
 use Illuminate\Http\Request;
 use App\Models\Profiles\City;
 use App\Models\Profiles\Country;
-use App\Http\Requests\Web\V1\CityControllerRequests\StoreAndUpdateRequest;
+use App\Http\Requests\Web\V1\CityControllerRequests\CityStoreAndUpdateRequest;
 
 
 
@@ -29,7 +29,7 @@ class CityController extends WebBaseController
         return view('admin.city.create', compact('countries', 'city'));
     }
 
-    public function store(StoreAndUpdateRequest $request)
+    public function store(CityStoreAndUpdateRequest $request)
     {
             City::create($request->all());
             $this->added();
@@ -47,7 +47,7 @@ class CityController extends WebBaseController
 
     }
 
-    public function update(StoreAndUpdateRequest $request, $id)
+    public function update(CityStoreAndUpdateRequest $request, $id)
     {
         City::findOrFail($id)
             ->update($request->all());

@@ -5,7 +5,7 @@ namespace App\Http\Requests\Web\V1\LevelControllerRequests;
 use App\Http\Requests\WebBaseRequest;
 
 
-class StoreAndUpdateRequest extends WebBaseRequest
+class LevelStoreAndUpdateRequest extends WebBaseRequest
 {
     public function injectedRules(): array
     {

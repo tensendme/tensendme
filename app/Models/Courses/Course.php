@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
+    public const DEFAULT_RESOURCE_DIRECTORY = 'images/courses';
+
     use SoftDeletes;
 
     protected $fillable = [
         'title', 'description', 'category_id', 'image_path', 'is_visible', 'view_count', 'scale'
     ];
 
-    public function category(){
-        return $this->belongsTo( Category::class, 'category_id', 'id');
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }
