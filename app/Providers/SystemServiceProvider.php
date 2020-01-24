@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Services\v1\impl\CabinetServiceImpl;
 use App\Services\v1\impl\AuthServiceImpl;
 use App\Services\v1\impl\BannerServiceImpl;
 use App\Services\v1\impl\CategoryServiceImpl;
@@ -15,9 +14,7 @@ use App\Services\v1\impl\MailServiceImpl;
 use App\Services\v1\impl\MaterialServiceImpl;
 use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
-use App\Services\v1\impl\BannerServiceImpl;
 use App\Services\v1\impl\MeditationServiceImpl;
-use App\Services\v1\impl\CourseServiceImpl;
 
 
 use App\Services\v1\impl\StaticServiceImpl;
