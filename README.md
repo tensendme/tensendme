@@ -111,8 +111,8 @@ password: tensendme2020n
 
 ```
 
-###Сбросить пароль
-####URL: https://tensend.me/api/v1/code/reset
+### Сбросить пароль
+#### URL: https://tensend.me/api/v1/code/reset
 #### !Надо дополнительно отправить код
 ПО EMAIL:
 
@@ -169,8 +169,8 @@ password: tensendme2020n
     }
 
 ```
-###Проверка логина на существование
-####URL: https://tensend.me/api/v1/login/check
+### Проверка логина на существование
+#### URL: https://tensend.me/api/v1/login/check
 
 ```
     POST Request:
@@ -324,8 +324,8 @@ password: tensendme2020n
     }
 
 ```
-###Получение всех медитаций (пагинировано)
-####URL: https://tensend.me/api/v1/meditations
+### Получение всех медитаций (пагинировано)
+#### URL: https://tensend.me/api/v1/meditations
 
 ```
     GET Request
@@ -372,8 +372,8 @@ password: tensendme2020n
     }
 
 ```
-###Получение всех курсов по категории id (пагинировано)
-####URL: https://tensend.me/api/v1/courses/category/{categoryId}
+### Получение всех курсов по категории id (пагинировано)
+#### URL: https://tensend.me/api/v1/courses/category/{categoryId}
 ```
     GET Request
     Query Parameter
@@ -426,8 +426,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение курса по id
-####URL: https://tensend.me/api/v1/courses/{id}
+### Получение курса по id
+#### URL: https://tensend.me/api/v1/courses/{id}
 ```
     GET Request
     
@@ -449,8 +449,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение курсов по title (пагинировано)
-####URL: https://tensend.me/api/v1/courses/?title=courseName
+### Получение курсов по title (пагинировано)
+#### URL: https://tensend.me/api/v1/courses/?title=courseName
 ```
     GET Request
     Query Parameter
@@ -491,8 +491,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение всех курсов (пагинировано)
-####URL: https://tensend.me/api/v1/courses
+### Получение всех курсов (пагинировано)
+#### URL: https://tensend.me/api/v1/courses
 ```
     GET Request
     Query Parameter
@@ -545,8 +545,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение всех баннеров
-####URL: https://tensend.me/api/v1/banners
+### Получение всех баннеров
+#### URL: https://tensend.me/api/v1/banners
 ```
     GET Request
     
@@ -566,9 +566,9 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение моих курсов (пагинировано)
-####URL: https://tensend.me/api/v1/user/courses
-#####Токен передается через HEADER: Authorization => Bearer Token
+### Получение моих курсов (пагинировано)
+#### URL: https://tensend.me/api/v1/user/courses
+##### Токен передается через HEADER: Authorization => Bearer Token
 ````
     Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
 ````
@@ -624,8 +624,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение новости по id он берется с баннеров news_id
-####URL: https://tensend.me/api/v1/news/{id}
+### Получение новости по id он берется с баннеров news_id
+#### URL: https://tensend.me/api/v1/news/{id}
 ```
     GET Request
     
@@ -645,8 +645,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение всех стран
-####URL: https://tensend.me/api/v1/countries
+### Получение всех стран
+#### URL: https://tensend.me/api/v1/countries
 ```
     GET Request
     
@@ -668,8 +668,8 @@ password: tensendme2020n
     }
 ```
 
-###Получение материала
-####URL: https://tensend.me/api/v1/courses/material/{materialId}
+### Получение материала
+#### URL: https://tensend.me/api/v1/courses/material/{materialId}
 ```
     GET Request
     
@@ -689,8 +689,8 @@ password: tensendme2020n
        }
     }
 ```
-###Получение типов подписок для(покупка разрешения на просмотров курсов)
-####URL: https://tensend.me/api/v1/subscription/types
+### Получение типов подписок для(покупка разрешения на просмотров курсов)
+#### URL: https://tensend.me/api/v1/subscription/types
 ```
     GET Request
     
@@ -711,8 +711,8 @@ password: tensendme2020n
       }
     }
 ```
-###Проверка кода
-####URL: https://tensend.me/api/v1/subscribe/{subscriptionTypeId}
+### Проверка кода
+#### URL: https://tensend.me/api/v1/subscribe/{subscriptionTypeId}
 
 ```
     POST Request:
