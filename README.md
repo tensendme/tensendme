@@ -11,6 +11,33 @@ password: tensendme2020n
 
 <h3> Примечание: знак ' || ' значит ИЛИ </h3>
 
+<hr>
+<br> INVALID_FIELD = 1;
+<br> UNAUTHORIZED = 2;
+<br> SYSTEM_ERROR = 3;
+<br> AUTH_ERROR = 4;
+<br> ACCESS_DENIED = 5;
+<br> UNIQUE_RESOURCE_CONFLICT = 6;
+<br> RESOURCE_NOT_FOUND = 7;
+<br> INVALID_ARGUMENT = 8;
+<br> INVALID_TOKEN = 9;
+<br> INVALID_RESET_CODE = 10;
+<br> INVALID_PASSWORD_FORMAT = 11;
+<br> INVALID_EMAIL_FORMAT = 12;
+<br> INVALID_USERNAME_FORMAT = 13;
+<br> EXPIRED_RESET_CODE = 14;
+<br> EXPIRED_TOKEN = 15;
+<br> EMPTY_CODE = 16;
+<br> FILE_NOT_FOUND = 17;
+<br> TOO_LARGE_FILE_SIZE = 18;
+<br> REQUIRED_PARAMS_NOT_FOUND = 19;
+<br> ALREADY_EXISTS = 20;
+<br> ALREADY_REQUESTED = 21;
+<br> NOT_ALLOWED = 22;
+<br> PASSWORDS_MISMATCH = 23;
+<br> FIELD_REQUIRED = 24;
+<hr>
+
 ### Авторизация:
 #### URL: https://tensend.me/api/v1/login
 #### IMAGE BASE URL: https://tensend.me/images/{$image_name}
