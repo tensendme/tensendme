@@ -10,10 +10,9 @@ use Illuminate\Http\Request;
 class SubscriptionController extends WebBaseController
 {
 
-    public function index($pageSize = 10)
+    public function index()
     {
-        $subscriptions = Subscription::paginate($pageSize);
-
-        return view('admin.subscription.index',compact('subscriptions'));
+        $subscriptions = Subscription::paginate(10);
+        return view('admin.userActions.subscriptions.index',compact('subscriptions'));
     }
 }

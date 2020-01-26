@@ -35,4 +35,5 @@ class ErrorCode
     public const NOT_ALLOWED = 22;
     public const PASSWORDS_MISMATCH = 23;
     public const FIELD_REQUIRED = 24;
+    public const NOT_ENOUGH_BALANCE = 25;
 }

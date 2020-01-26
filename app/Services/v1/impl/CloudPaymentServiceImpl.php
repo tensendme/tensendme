@@ -20,4 +20,10 @@ class CloudPaymentServiceImpl implements PaymentService
         // TODO: Implement getPay() method.
     }
 
+    public function withdrawPay()
+    {
+        // TODO: Implement withdrawPay() method.
+    }
+
+
 }

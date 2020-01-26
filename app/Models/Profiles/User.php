@@ -127,4 +127,13 @@ class User extends Authenticatable implements JWTSubject
     public function subscriptions() {
         return $this->hasMany(Subscription::class, 'user_id', 'id');
     }
+
+    public function balance() {
+        $balance = $this->hasOne(Balance::class, 'user_id', 'id');
+        if(!$balance) $balance = Balance::create([
+            'user_id' => $this->id,
+            'balance' => 0
+        ]);
+        return $balance;
+    }
 }

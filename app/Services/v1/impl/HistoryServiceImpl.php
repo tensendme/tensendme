@@ -11,32 +11,40 @@ namespace App\Services\v1\impl;
 
 use App\Models\Histories\History;
 use App\Models\Histories\HistoryType;
-use App\Models\Profiles\Balance;
-use App\Models\Profiles\Country;
+use App\Models\Profiles\User;
 use App\Services\v1\HistoryService;
-use App\Services\v1\PaymentService;
-use App\Services\v1\StaticService;
-use Illuminate\Support\Facades\DB;
-use Mockery\Exception;
+
 
 class HistoryServiceImpl implements HistoryService
 {
     public function subscription($subscription)
     {
-        $balance = Balance::where('user_id', $subscription->user_id)->first();
-            if (!$balance) {
-                $balance = Balance::create([
-                    'user_id' => $subscription->user_id,
-                    'balance' => 0,
-                ]);
-            }
+        $user = User::find($subscription->user_id);
+        $balance = $user->balance;
             History::create([
                 'balance_id' => $balance->id,
                 'history_type_id' => HistoryType::SUBSCRIPTION,
                 'amount' => $subscription->actual_price,
                 'subscription_id' => $subscription->id,
+                //'transaction_id' => '1' от банка что то должно быть
             ]);
 
     }
+
+    public function withdrawalMake($withdrawal)
+    {
+        $user = User::find($withdrawal->user_id);
+        $balance = $user->balance;
+        History::create([
+            'balance_id' => $balance->id,
+            'history_type_id' => HistoryType::WITHDRAWAL,
+            'amount' => $withdrawal->amount,
+            'withdrawal_request_id' => $withdrawal->id,
+//            'transaction_id' => '1' от банка что то должно быть
+        ]);
+
+
+    }
+
 
 }

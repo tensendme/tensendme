@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Subscription;
 
 use App\Http\Controllers\ApiBaseController;
-use App\Http\Controllers\Controller;
-use App\Services\v1\StaticService;
 use App\Services\v1\SubscriptionService;
-use Illuminate\Http\Request;
 
 class SubscriptionController extends ApiBaseController
 {

@@ -20,6 +20,7 @@ use App\Services\v1\impl\MeditationServiceImpl;
 
 use App\Services\v1\impl\StaticServiceImpl;
 use App\Services\v1\impl\SubscriptionServiceImpl;
+use App\Services\v1\impl\WithdrawalServiceImpl;
 use Illuminate\Support\ServiceProvider;
 
 class SystemServiceProvider extends ServiceProvider
@@ -79,6 +80,9 @@ class SystemServiceProvider extends ServiceProvider
         });
         $this->app->bind('App\Services\v1\HistoryService', function ($app) {
             return (new HistoryServiceImpl());
+        });
+        $this->app->bind('App\Services\v1\WithdrawalRequestService', function ($app) {
+            return (new WithdrawalServiceImpl(new CloudPaymentServiceImpl(), new HistoryServiceImpl()));
         });
 
 
