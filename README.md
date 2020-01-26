@@ -11,10 +11,10 @@ password: tensendme2020n
 
 <h3> Примечание: знак ' || ' значит ИЛИ </h3>
 
-###Авторизация:
-####URL: https://tensend.me/api/v1/login
-####IMAGE BASE URL: https://tensend.me/images/{$image_name}
-#####Токен передается через HEADER: Authorization => Bearer Token
+### Авторизация:
+#### URL: https://tensend.me/api/v1/login
+#### IMAGE BASE URL: https://tensend.me/images/{$image_name}
+##### Токен передается через HEADER: Authorization => Bearer Token
 ````
     Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
 ````
@@ -52,8 +52,8 @@ password: tensendme2020n
 
 ```
 
-###Отправка проверочного кода:
-####URL: https://tensend.me/api/v1/code/send
+### Отправка проверочного кода:
+#### URL: https://tensend.me/api/v1/code/send
 
 ПО EMAIL:
 
@@ -86,8 +86,8 @@ password: tensendme2020n
     }
 
 ```
-###Проверка кода
-####URL: https://tensend.me/api/v1/code/check
+### Проверка кода
+#### URL: https://tensend.me/api/v1/code/check
 
 ```
     POST Request:
@@ -237,8 +237,8 @@ password: tensendme2020n
     }
 
 ```
-###Получение всех категорий (пагинировано)
-####URL: https://tensend.me/api/v1/courses/categories
+### Получение всех категорий (пагинировано)
+#### URL: https://tensend.me/api/v1/courses/categories
 
 ```
     GET Request
@@ -285,8 +285,8 @@ password: tensendme2020n
     }
 
 ```
-###Получение всех категорий (пагинировано)
-####URL: https://tensend.me/api/v1/meditations/categories
+### Получение всех категорий (пагинировано)
+#### URL: https://tensend.me/api/v1/meditations/categories
 
 ```
     GET Request
