@@ -36,6 +36,7 @@ password: tensendme2020n
 <br> NOT_ALLOWED = 22;
 <br> PASSWORDS_MISMATCH = 23;
 <br> FIELD_REQUIRED = 24;
+<br> NOT_ENOUGH_BALANCE = 25;
 <hr>
 
 ### Авторизация:
@@ -740,15 +741,40 @@ password: tensendme2020n
       }
     }
 ```
-### Проверка кода
+### Подписаться на курс по типу подписок(месяц год)
 #### URL: https://tensend.me/api/v1/subscribe/{subscriptionTypeId}
 
 ```
     POST Request:
-    
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
     RESPONSE:
     {
         "message": "Успешно!",
+        "success": true
+    }
+{
+    "errors": [
+        "Такой подписки не существует!"
+    ],
+    "errorCode": 7,
+    "success": false
+}
+
+```
+### Запрос на вывода денег
+#### URL: https://tensend.me/api/v1/withdrawal/make
+
+```
+     POST Request:
+        {
+        	"amount" : "1000" сумма,
+        	"сomment" : "Please" nullable true,
+        }
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "message": "Ваш запрос успешно отправлен и тд!",
         "success": true
     }
 {
