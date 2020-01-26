@@ -51,7 +51,9 @@ password: tensendme2020n
     POST Request:
     {
     	"email" : "admin@mail.ru",
-    	"password" : "password"
+    	"password" : "password",
+        "device_token" : "fcm_token",
+        "platform" : "IOS" // IOS или ANDROID в стринге 
     }
     
     Response

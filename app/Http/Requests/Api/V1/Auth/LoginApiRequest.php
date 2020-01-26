@@ -11,7 +11,9 @@ class LoginApiRequest extends ApiBaseRequest
         return [
             'phone' => ['string'],
             'email' => ['email', 'string'],
-            'password' => ['required', 'string']
+            'password' => ['required', 'string'],
+            'device_token' => ['required', 'string'],
+            'platform' => ['required', 'string'],
         ];
     }
 

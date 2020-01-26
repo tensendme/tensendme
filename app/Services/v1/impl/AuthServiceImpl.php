@@ -32,7 +32,9 @@ class AuthServiceImpl implements AuthService
         } else if ($request->has('email')) {
             $user = User::where('email', $request->input('email'))
                 ->first();
-        } else {
+        }
+
+        if (!$user) {
             throw new ApiServiceException(401, false, [
                 'errors' => [
                     'provide with login or password'
@@ -40,6 +42,7 @@ class AuthServiceImpl implements AuthService
                 'errorCode' => ErrorCode::UNAUTHORIZED
             ]);
         }
+
 
         if (!$this->checkPassword($request->password, $user->password)) {
             throw new ApiServiceException(401, false, [
@@ -49,6 +52,8 @@ class AuthServiceImpl implements AuthService
                 'errorCode' => ErrorCode::UNAUTHORIZED
             ]);
         }
+
+        $this->setDeviceToken($user, $request->device_token, $request->platform);
 
         $token = JWTAuth::fromUser($user);
         return $token;
