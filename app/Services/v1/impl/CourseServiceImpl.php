@@ -8,6 +8,7 @@ use App\Exceptions\ApiServiceException;
 use App\Http\Errors\ErrorCode;
 use App\Models\Courses\Course;
 
+use App\Models\Courses\CourseMaterial;
 use App\Services\v1\CourseService;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -55,6 +56,15 @@ class CourseServiceImpl implements CourseService
             ],
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
         ]);
+        $courseMaterials = array();
+        $materials = CourseMaterial::where('course_id', $course->id)->orderBy('ordering')->get();
+        if($materials) {
+            foreach ($materials as $material) {
+                $courseMaterials[] = array('id' => $material->id, 'title' => $material->title);
+            }
+        }
+        $course->materials = $courseMaterials;
+
         return $course;
     }
 
