@@ -9,12 +9,39 @@ email: tensend.me@gmail.com
 password: tensendme2020n
 <hr/>
 
-<h3>Примечание: знак ' || ' значит ИЛИ</h3>
+<h3> Примечание: знак ' || ' значит ИЛИ </h3>
 
-###Авторизация:
-####URL: https://tensend.me/api/v1/login
-####IMAGE BASE URL: https://tensend.me/images/{$image_name}
-#####Токен передается через HEADER: Authorization => Bearer Token
+<hr>
+<br> INVALID_FIELD = 1;
+<br> UNAUTHORIZED = 2;
+<br> SYSTEM_ERROR = 3;
+<br> AUTH_ERROR = 4;
+<br> ACCESS_DENIED = 5;
+<br> UNIQUE_RESOURCE_CONFLICT = 6;
+<br> RESOURCE_NOT_FOUND = 7;
+<br> INVALID_ARGUMENT = 8;
+<br> INVALID_TOKEN = 9;
+<br> INVALID_RESET_CODE = 10;
+<br> INVALID_PASSWORD_FORMAT = 11;
+<br> INVALID_EMAIL_FORMAT = 12;
+<br> INVALID_USERNAME_FORMAT = 13;
+<br> EXPIRED_RESET_CODE = 14;
+<br> EXPIRED_TOKEN = 15;
+<br> EMPTY_CODE = 16;
+<br> FILE_NOT_FOUND = 17;
+<br> TOO_LARGE_FILE_SIZE = 18;
+<br> REQUIRED_PARAMS_NOT_FOUND = 19;
+<br> ALREADY_EXISTS = 20;
+<br> ALREADY_REQUESTED = 21;
+<br> NOT_ALLOWED = 22;
+<br> PASSWORDS_MISMATCH = 23;
+<br> FIELD_REQUIRED = 24;
+<hr>
+
+### Авторизация:
+#### URL: https://tensend.me/api/v1/login
+#### IMAGE BASE URL: https://tensend.me/images/{$image_name}
+##### Токен передается через HEADER: Authorization => Bearer Token
 ````
     Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
 ````
@@ -24,7 +51,9 @@ password: tensendme2020n
     POST Request:
     {
     	"email" : "admin@mail.ru",
-    	"password" : "password"
+    	"password" : "password",
+        "device_token" : "fcm_token",
+        "platform" : "IOS" // IOS или ANDROID в стринге 
     }
     
     Response
@@ -52,8 +81,8 @@ password: tensendme2020n
 
 ```
 
-###Отправка проверочного кода:
-####URL: https://tensend.me/api/v1/code/send
+### Отправка проверочного кода:
+#### URL: https://tensend.me/api/v1/code/send
 
 ПО EMAIL:
 
@@ -86,8 +115,8 @@ password: tensendme2020n
     }
 
 ```
-###Проверка кода
-####URL: https://tensend.me/api/v1/code/check
+### Проверка кода
+#### URL: https://tensend.me/api/v1/code/check
 
 ```
     POST Request:
@@ -111,8 +140,8 @@ password: tensendme2020n
 
 ```
 
-###Сбросить пароль
-####URL: https://tensend.me/api/v1/code/reset
+### Сбросить пароль
+#### URL: https://tensend.me/api/v1/code/reset
 #### !Надо дополнительно отправить код
 ПО EMAIL:
 
@@ -169,8 +198,8 @@ password: tensendme2020n
     }
 
 ```
-###Проверка логина на существование
-####URL: https://tensend.me/api/v1/login/check
+### Проверка логина на существование
+#### URL: https://tensend.me/api/v1/login/check
 
 ```
     POST Request:
@@ -237,8 +266,8 @@ password: tensendme2020n
     }
 
 ```
-###Получение всех категорий (пагинировано)
-####URL: https://tensend.me/api/v1/courses/categories
+### Получение всех категорий (пагинировано)
+#### URL: https://tensend.me/api/v1/courses/categories
 
 ```
     GET Request
@@ -285,8 +314,8 @@ password: tensendme2020n
     }
 
 ```
-###Получение всех категорий (пагинировано)
-####URL: https://tensend.me/api/v1/meditations/categories
+### Получение всех категорий (пагинировано)
+#### URL: https://tensend.me/api/v1/meditations/categories
 
 ```
     GET Request
@@ -324,8 +353,8 @@ password: tensendme2020n
     }
 
 ```
-###Получение всех медитаций (пагинировано)
-####URL: https://tensend.me/api/v1/meditations
+### Получение всех медитаций (пагинировано)
+#### URL: https://tensend.me/api/v1/meditations
 
 ```
     GET Request
@@ -372,8 +401,8 @@ password: tensendme2020n
     }
 
 ```
-###Получение всех курсов по категории id (пагинировано)
-####URL: https://tensend.me/api/v1/courses/category/{categoryId}
+### Получение всех курсов по категории id (пагинировано)
+#### URL: https://tensend.me/api/v1/courses/category/{categoryId}
 ```
     GET Request
     Query Parameter
@@ -426,8 +455,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение курса по id
-####URL: https://tensend.me/api/v1/courses/{id}
+### Получение курса по id
+#### URL: https://tensend.me/api/v1/courses/{id}
 ```
     GET Request
     
@@ -449,8 +478,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение курсов по title (пагинировано)
-####URL: https://tensend.me/api/v1/courses/?title=courseName
+### Получение курсов по title (пагинировано)
+#### URL: https://tensend.me/api/v1/courses/?title=courseName
 ```
     GET Request
     Query Parameter
@@ -491,8 +520,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение всех курсов (пагинировано)
-####URL: https://tensend.me/api/v1/courses
+### Получение всех курсов (пагинировано)
+#### URL: https://tensend.me/api/v1/courses
 ```
     GET Request
     Query Parameter
@@ -545,8 +574,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение всех баннеров
-####URL: https://tensend.me/api/v1/banners
+### Получение всех баннеров
+#### URL: https://tensend.me/api/v1/banners
 ```
     GET Request
     
@@ -566,9 +595,9 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение моих курсов (пагинировано)
-####URL: https://tensend.me/api/v1/user/courses
-#####Токен передается через HEADER: Authorization => Bearer Token
+### Получение моих курсов (пагинировано)
+#### URL: https://tensend.me/api/v1/user/courses
+##### Токен передается через HEADER: Authorization => Bearer Token
 ````
     Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
 ````
@@ -624,8 +653,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение новости по id он берется с баннеров news_id
-####URL: https://tensend.me/api/v1/news/{id}
+### Получение новости по id он берется с баннеров news_id
+#### URL: https://tensend.me/api/v1/news/{id}
 ```
     GET Request
     
@@ -645,8 +674,8 @@ password: tensendme2020n
         "success": true
     }
 ```
-###Получение всех стран
-####URL: https://tensend.me/api/v1/countries
+### Получение всех стран
+#### URL: https://tensend.me/api/v1/countries
 ```
     GET Request
     
@@ -668,8 +697,8 @@ password: tensendme2020n
     }
 ```
 
-###Получение материала
-####URL: https://tensend.me/api/v1/courses/material/{materialId}
+### Получение материала
+#### URL: https://tensend.me/api/v1/courses/material/{materialId}
 ```
     GET Request
     
@@ -689,8 +718,8 @@ password: tensendme2020n
        }
     }
 ```
-###Получение типов подписок для(покупка разрешения на просмотров курсов)
-####URL: https://tensend.me/api/v1/subscription/types
+### Получение типов подписок для(покупка разрешения на просмотров курсов)
+#### URL: https://tensend.me/api/v1/subscription/types
 ```
     GET Request
     
@@ -711,8 +740,8 @@ password: tensendme2020n
       }
     }
 ```
-###Проверка кода
-####URL: https://tensend.me/api/v1/subscribe/{subscriptionTypeId}
+### Проверка кода
+#### URL: https://tensend.me/api/v1/subscribe/{subscriptionTypeId}
 
 ```
     POST Request:
