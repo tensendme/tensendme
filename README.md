@@ -761,7 +761,7 @@ password: tensendme2020n
 }
 
 ```
-### Запрос на вывода денег
+### Запрос на перевод денег
 #### URL: https://tensend.me/api/v1/withdrawal/make
 
 ```
@@ -783,6 +783,136 @@ password: tensendme2020n
     ],
     "errorCode": 7,
     "success": false
+}
+
+```
+### Запрос на начальную чем вы интересуетесь категории
+#### URL: https://tensend.me/api/v1/categories
+
+```
+     GET Request:
+    RESPONSE:
+    {
+        {
+            "categories": [
+                {
+                    "id": 1,
+                    "name": "TestCourseCategory",
+                    "created_at": null,
+                    "updated_at": null,
+                    "deleted_at": null,
+                    "category_type_id": 1,
+                    "parent_category_id": null,
+                    "img_path": null
+                },
+                {
+                    "id": 2,
+                    "name": "TestMeditationCategory",
+                    "created_at": null,
+                    "updated_at": null,
+                    "deleted_at": null,
+                    "category_type_id": 2,
+                    "parent_category_id": null,
+                    "img_path": null
+                }
+            ],
+            "success": true
+        }
+    }
+}
+
+```
+### Запрос на выбранные категории для рекомендованных курсов
+#### URL: https://tensend.me/api/v1/recommended/categories
+
+```
+     POST Request:
+        {
+        	"categoryIds[]" : 1, id category_id
+        	"categoryIds[]" : 2, id category_id
+        }
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "success": true
+    }
+}
+
+```
+
+### Запрос на вам может понравиться вывод курсов
+#### URL: https://tensend.me/api/v1/courses/for/me
+
+```
+     GET Request
+     Query Parameter
+     size=10 // по дефолту можно не передавать, количество выводимых элементов
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        {
+            "courses": [
+                {
+                    "current_page": 1,
+                    "data": [
+                        {
+                            "id": 1,
+                            "category_id": 1,
+                            "title": "dsffdss",
+                            "description": "dvcxv",
+                            "image_path": "images/courses/1579933828738c3e35-8fe4-4473-a89a-7878fd810048CRAZY.jpg",
+                            "is_visible": 0,
+                            "scale": 0,
+                            "view_count": 0,
+                            "created_at": "2020-01-19 20:11:06",
+                            "updated_at": "2020-02-02 19:12:52",
+                            "deleted_at": null
+                        },
+                        {
+                            "id": 2,
+                            "category_id": 1,
+                            "title": "Как заработать миллион за час",
+                            "description": "Как заработать миллион за час",
+                            "image_path": "images/courses/1579896428402653d0-731d-47f6-8263-a4ad6b214c05mazda.jpg",
+                            "is_visible": 1,
+                            "scale": 0,
+                            "view_count": 0,
+                            "created_at": "2020-01-21 23:44:24",
+                            "updated_at": "2020-01-25 02:07:08",
+                            "deleted_at": null
+                        }
+                    ],
+                    "first_page_url": "https://tensend.me/api/v1/courses/for/me?page=1",
+                    "from": 1,
+                    "last_page": 1,
+                    "last_page_url": "https://tensend.me/api/v1/courses/for/me?page=1",
+                    "next_page_url": null,
+                    "path": "https://tensend.me/api/v1/courses/for/me",
+                    "per_page": 10,
+                    "prev_page_url": null,
+                    "to": 2,
+                    "total": 2
+                },
+                {
+                    "current_page": 1,
+                    "data": [],
+                    "first_page_url": "https://tensend.me/api/v1/courses/for/me?page=1",
+                    "from": null,
+                    "last_page": 1,
+                    "last_page_url": "https://tensend.me/api/v1/courses/for/me?page=1",
+                    "next_page_url": null,
+                    "path": "https://tensend.me/api/v1/courses/for/me",
+                    "per_page": 10,
+                    "prev_page_url": null,
+                    "to": null,
+                    "total": 0
+                }
+            ],
+            "success": true
+        }
+    }
 }
 
 ```
