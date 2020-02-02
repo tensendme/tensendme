@@ -21,8 +21,12 @@ Route::group(['middleware' => 'api'], function () {
 
     Route::group(['namespace' => 'Category'], function () {
 
+        Route::get('/categories', ['uses' => 'CategoryController@getCategories']);
         Route::get('/courses/categories', ['uses' => 'CategoryController@getCoursesCategories']);
         Route::get('/meditations/categories', ['uses' => 'CategoryController@getMeditationsCategories']);
+        Route::group(['middleware' => 'auth:api'], function () {
+            Route::post('/recommended/categories', ['uses' => 'CategoryController@recommendedCategories']);
+        });
 
     });
 
@@ -37,6 +41,10 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
         Route::get('/courses/category/{categoryId}', ['uses' => 'CourseController@getCoursesByCategory']);
         Route::get('courses/{id}', ['uses' => 'CourseController@getById']);
+
+        Route::group(['middleware' => 'auth:api'], function () {
+            Route::get('courses/for/me', ['uses' => 'CourseController@coursesForMe']);
+        });
 
         //Material
         Route::get('courses/material/{id}', ['uses' => 'MaterialController@getMaterialById']);

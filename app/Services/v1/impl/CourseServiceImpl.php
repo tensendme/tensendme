@@ -6,6 +6,7 @@ namespace App\Services\v1\impl;
 
 use App\Exceptions\ApiServiceException;
 use App\Http\Errors\ErrorCode;
+use App\Models\Categories\RecommendedCategory;
 use App\Models\Courses\Course;
 
 use App\Models\Courses\CourseMaterial;
@@ -68,6 +69,11 @@ class CourseServiceImpl implements CourseService
         return $course;
     }
 
+    public function forMe($size)
+    {
+        $user = Auth::user();
+        return $user->forMe($size);
+    }
 
 
 }

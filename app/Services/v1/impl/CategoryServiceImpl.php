@@ -10,7 +10,9 @@ namespace App\Services\v1\impl;
 
 
 use App\Models\Categories\Category;
+use App\Models\Categories\RecommendedCategory;
 use App\Services\v1\CategoryService;
+use Auth;
 
 class CategoryServiceImpl implements CategoryService
 {
@@ -28,6 +30,27 @@ class CategoryServiceImpl implements CategoryService
     public function findAllPaginated($pageSize = 10)
     {
         return Category::paginate($pageSize);
+    }
+
+    public function findAll()
+    {
+       return Category::where('parent_category_id', null)->get();
+    }
+
+    public function recommendedCategory($ids)
+    {
+        $user = Auth::user();
+        foreach ($ids as $id) {
+            $category = Category::find($id);
+            $recommendedCategory = RecommendedCategory::where('user_id', $user->id)->where('category_id', $category->id)->first();
+            if($category && !$recommendedCategory) {
+                RecommendedCategory::create([
+                    'category_id' => $id,
+                    'user_id' => $user->id
+                ]);
+            }
+        }
+        return true;
     }
 
 

@@ -49,5 +49,9 @@ class CourseController extends ApiBaseController
         return $this->successResponse(['course' => $this->courseService->findById($id)]);
     }
 
+    public function coursesForMe(Request $request) {
+        return $this->successResponse(['courses' => $this->courseService->forMe($request->size)]);
+    }
+
 
 }

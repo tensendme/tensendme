@@ -15,4 +15,6 @@ interface CategoryService
     public function findMeditationsCategories($size);
 
     public function findAllPaginated($pageSize = 10);
+    public function findAll();
+    public function recommendedCategory($ids);
 }

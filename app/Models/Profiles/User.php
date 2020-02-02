@@ -2,6 +2,8 @@
 
 namespace App\Models\Profiles;
 
+use App\Models\Categories\RecommendedCategory;
+use App\Models\Courses\Course;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -135,5 +137,19 @@ class User extends Authenticatable implements JWTSubject
             'balance' => 0
         ]);
         return $balance;
+    }
+
+    public function forMe($size) {
+        $recommendedCategories = $this->hasMany(RecommendedCategory::class, 'user_id', 'id')->get();
+        $courses = array();
+        if($recommendedCategories) {
+            foreach ($recommendedCategories as $recommendedCategory) {
+                $courses[] = $recommendedCategory->getCourses($size ? $size : 10);
+            }
+        }
+        else {
+            $courses = Course::paginate($size);
+        }
+        return $courses;
     }
 }
