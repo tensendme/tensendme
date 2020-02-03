@@ -20,7 +20,7 @@ class HistoryServiceImpl implements HistoryService
     public function subscription($subscription)
     {
         $user = User::find($subscription->user_id);
-        $balance = $user->balance;
+        $balance = $user->getBalance();
             History::create([
                 'balance_id' => $balance->id,
                 'history_type_id' => HistoryType::SUBSCRIPTION,
@@ -34,7 +34,7 @@ class HistoryServiceImpl implements HistoryService
     public function withdrawalMake($withdrawal)
     {
         $user = User::find($withdrawal->user_id);
-        $balance = $user->balance;
+        $balance = $user->getBalance();
         History::create([
             'balance_id' => $balance->id,
             'history_type_id' => HistoryType::WITHDRAWAL,

@@ -13,11 +13,11 @@
                 <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                         <div class="stats-small__data text-center">
-                            <span class="stats-small__label text-uppercase">Посты</span>
-                            <h6 class="stats-small__value count my-3">2,390</h6>
+                            <span class="stats-small__label text-uppercase">Подписки</span>
+                            <h6 class="stats-small__value count my-3">{{$subscriptionsCount}}</h6>
                         </div>
                         <div class="stats-small__data">
-                            <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
+                            <span class="stats-small__percentage stats-small__percentage--increase">0.0%</span>
                         </div>
                     </div>
                     <canvas height="120" class="blog-overview-stats-small-1"></canvas>
@@ -29,11 +29,11 @@
                 <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                         <div class="stats-small__data text-center">
-                            <span class="stats-small__label text-uppercase">Страницы</span>
-                            <h6 class="stats-small__value count my-3">182</h6>
+                            <span class="stats-small__label text-uppercase">История</span>
+                            <h6 class="stats-small__value count my-3">{{$historiesCount}}</h6>
                         </div>
                         <div class="stats-small__data">
-                            <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
+                            <span class="stats-small__percentage stats-small__percentage--increase">0.0%</span>
                         </div>
                     </div>
                     <canvas height="120" class="blog-overview-stats-small-2"></canvas>
@@ -45,11 +45,11 @@
                 <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                         <div class="stats-small__data text-center">
-                            <span class="stats-small__label text-uppercase">Комменты</span>
-                            <h6 class="stats-small__value count my-3">8,147</h6>
+                            <span class="stats-small__label text-uppercase">Оценили</span>
+                            <h6 class="stats-small__value count my-3">{{$ratingsCount}}</h6>
                         </div>
                         <div class="stats-small__data">
-                            <span class="stats-small__percentage stats-small__percentage--decrease">3.8%</span>
+                            <span class="stats-small__percentage stats-small__percentage--decrease">0.0%</span>
                         </div>
                     </div>
                     <canvas height="120" class="blog-overview-stats-small-3"></canvas>
@@ -61,11 +61,11 @@
                 <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                         <div class="stats-small__data text-center">
-                            <span class="stats-small__label text-uppercase">Users</span>
-                            <h6 class="stats-small__value count my-3">2,413</h6>
+                            <span class="stats-small__label text-uppercase">Пользователи</span>
+                            <h6 class="stats-small__value count my-3">{{$usersCount}}</h6>
                         </div>
                         <div class="stats-small__data">
-                            <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
+                            <span class="stats-small__percentage stats-small__percentage--increase">0.0%</span>
                         </div>
                     </div>
                     <canvas height="120" class="blog-overview-stats-small-4"></canvas>

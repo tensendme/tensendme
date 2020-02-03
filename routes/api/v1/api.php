@@ -79,9 +79,13 @@ Route::group(['middleware' => 'api'], function () {
 
     });
 
-//    Route::group(['name space' => 'Cabinet'], function (){
+//    Route::group(['namespace' => 'Cabinet'], function (){
 //        Route::get('cabinet', ['uses'=>'CabinetController']);
 //    });
+//
+       Route::group(['namespace' => 'Rating'], function (){
+        Route::get('/evaluate/course', ['uses'=>'RatingController@evaluate']);
+    });
 
     //AUTHENTICATED
     Route::group(['middleware' => 'auth:api'], function () {

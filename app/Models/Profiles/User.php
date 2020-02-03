@@ -130,13 +130,19 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Subscription::class, 'user_id', 'id');
     }
 
-    public function balance() {
-        $balance = $this->hasOne(Balance::class, 'user_id', 'id');
-        if(!$balance) $balance = Balance::create([
-            'user_id' => $this->id,
-            'balance' => 0
-        ]);
+    public function getBalance() {
+        $balance = $this->hasOne(Balance::class, 'user_id', 'id')->first();
+        if(!$balance) {
+            $balance = Balance::create([
+                'user_id' => $this->id,
+                'balance' => 0
+            ]);
+        }
         return $balance;
+    }
+
+    public function balance() {
+        return $this->hasOne(Balance::class, 'user_id', 'id')->first();
     }
 
     public function forMe($size) {

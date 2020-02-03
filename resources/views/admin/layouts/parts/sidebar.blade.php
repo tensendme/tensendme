@@ -77,7 +77,32 @@
                             <span>Банера</span>
                         </a>
                     </div>
-
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">accessibility</i>
+                        <span>Действия пользователей</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="nav-link  {{Helper::urlActiveHelper('subscription')}}"
+                           href="{{route('subscription.index')}}">
+                            <i class="material-icons">people</i>
+                            <span>Подписки</span>
+                        </a>
+                        <a href="{{route('withdrawal.index')}}"
+                           class="nav-link dropdown-item {{Helper::urlActiveHelper('withdrawal')}}">
+                            <i class=" material-icons">monetization_on</i>
+                            <span>Запросы</span>
+                        </a>
+                        <a href="{{route('history.index')}}"
+                           class="nav-link dropdown-item {{Helper::urlActiveHelper('history')}}">
+                            <i class=" material-icons">history</i>
+                            <span>Истории</span>
+                        </a>
+                    </div>
                 </div>
             </li>
             <li class="nav-item">
@@ -118,32 +143,6 @@
                            href="{{route('faq.index')}}">
                             <i class="material-icons">question_answer</i>
                             <span>FAQ</span>
-                        </a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">accessibility</i>
-                        <span>Действия пользователей</span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="nav-link  {{Helper::urlActiveHelper('subscription')}}"
-                           href="{{route('subscription.index')}}">
-                            <i class="material-icons">people</i>
-                            <span>Подписки</span>
-                        </a>
-                        <a href="{{route('withdrawal.index')}}"
-                           class="nav-link dropdown-item {{Helper::urlActiveHelper('withdrawal')}}">
-                            <i class=" material-icons">monetization_on</i>
-                            <span>Запросы</span>
-                        </a>
-                        <a href="{{route('history.index')}}"
-                           class="nav-link dropdown-item {{Helper::urlActiveHelper('history')}}">
-                            <i class=" material-icons">history</i>
-                            <span>Истории</span>
                         </a>
                     </div>
                 </div>

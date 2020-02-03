@@ -13,6 +13,7 @@ use App\Services\v1\impl\HistoryServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\MailServiceImpl;
 use App\Services\v1\impl\MaterialServiceImpl;
+use App\Services\v1\impl\RatingServiceImpl;
 use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
 use App\Services\v1\impl\MeditationServiceImpl;
@@ -101,6 +102,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\AuthService', function ($app) {
             return (new AuthServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\RatingService', function ($app) {
+            return (new RatingServiceImpl());
         });
 
 
