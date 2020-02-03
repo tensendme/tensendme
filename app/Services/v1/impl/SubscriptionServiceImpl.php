@@ -17,8 +17,6 @@ use App\Services\v1\PaymentService;
 use App\Services\v1\SubscriptionService;
 use Auth;
 use DateTime;
-use Illuminate\Support\Facades\DB;
-use Mockery\Exception;
 
 class SubscriptionServiceImpl implements SubscriptionService
 {

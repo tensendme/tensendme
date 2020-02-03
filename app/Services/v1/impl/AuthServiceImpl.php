@@ -14,6 +14,7 @@ use App\Http\Errors\ErrorCode;
 use App\Http\Requests\Api\V1\Auth\CheckLoginExistenceApiRequest;
 use App\Http\Requests\Api\V1\Auth\LoginApiRequest;
 use App\Http\Requests\Api\V1\Auth\RegisterApiRequest;
+use App\Models\Profiles\City;
 use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Services\v1\AuthService;
@@ -62,23 +63,32 @@ class AuthServiceImpl implements AuthService
     public function register(RegisterApiRequest $request)
     {
         $user = null;
-        if ($request->has('phone')) {
-            $user = new User();
-            $user->phone = $request->phone;
-            $user->password = bcrypt($request->password);
-            $user->remember_token = '';
-            $user->level_id = 1;
-            $user->role_id = Role::USER_ID;
-            $user->save();
-        } else if ($request->has('email')) {
-            $user = new User();
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->remember_token = '';
-            $user->level_id = 1;
-            $user->role_id = Role::USER_ID;
-            $user->save();
+        if($request->has('city_id')) {
+            $city = City::find($request->city_id);
+            if(!$city)  throw new ApiServiceException(404, false, [
+                'errors' => [
+                    'Город не найден!'
+                ],
+                'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
+            ]);
         }
+        $user = new User();
+        $user->password = bcrypt($request->password);
+        $user->remember_token = '';
+        $user->level_id = 1;
+        $user->role_id = Role::USER_ID;
+        $user->name = $request->name;
+        $user->nickname = $request->nickname;
+        $user->promo_code = $user->promoCode();
+        $user->city_id = $request->city_id ? $request->city_id : 1;
+        if ($request->has('phone')) {
+            $user->phone = $request->phone;
+            //VerifyPhone
+        } else if ($request->has('email')) {
+            $user->email = $request->email;
+            //VerifyEmail
+        }
+        $user->save();
 
         if (!$user) {
             throw new ApiServiceException(400, false, [
@@ -136,10 +146,10 @@ class AuthServiceImpl implements AuthService
     {
         DB::beginTransaction();
         try {
-            User::where('device_token', $deviceToken)->update([
-                'device_token' => null,
-                'platform' => null
-            ]);
+//            User::find('device_token', $deviceToken)->update([
+//                'device_token' => null,
+//                'platform' => null
+//            ]);
             $user->update([
                 'device_token' => $deviceToken,
                 'platform' => $platform

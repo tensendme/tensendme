@@ -60,6 +60,7 @@ class WithdrawalServiceImpl implements WithdrawalRequestService
             throw new WebServiceErroredException(trans('admin.error') . ': ' . 'Не хватает суммы!');
         }
         $balance->balance = $balance->balance - $withdrawal->amount;
+        $balance->save();
 
         $this->cloudPaymentService->withdrawPay();
         $withdrawal->status = WithdrawalRequest::APPROVED;
