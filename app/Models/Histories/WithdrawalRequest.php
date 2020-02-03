@@ -9,6 +9,7 @@ class WithdrawalRequest extends Model
 {
     protected $fillable = [
         "user_comment",
+        "amount",
         "approved_at",
         "approved_by",
         "status",

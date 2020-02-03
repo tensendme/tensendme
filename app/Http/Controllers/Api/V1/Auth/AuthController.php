@@ -37,7 +37,7 @@ class AuthController extends ApiBaseController
      *         name="email and password",
      *         in="body",
      *         type="string",
-     *         description="Login user(phone) or email and password",
+     *         description="Login users(phone) or email and password",
      *         required=true,
      * 			@SWG\Schema(ref="#/definitions/User"),
      *     ),
@@ -59,7 +59,7 @@ class AuthController extends ApiBaseController
     /**
      * @SWG\Post(
      *     path="/me",
-     *     description="Get user info by token",
+     *     description="Get users info by token",
      *     @SWG\SecurityScheme(
      *         securityDefinition="Bearer",
      *         type="apiKey",

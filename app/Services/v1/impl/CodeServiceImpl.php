@@ -94,7 +94,7 @@ class CodeServiceImpl implements CodeService
         if (!$user) {
             throw new ApiServiceException(400, false, [
                 'errors' => [
-                    'No user with such login'
+                    'No users with such login'
                 ],
                 'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
             ]);

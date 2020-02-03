@@ -6,7 +6,6 @@
             <h3 class="page-title">Новости</h3>
         </div>
     </div>
-    <?php dd($users);?>
     <div class="row">
         <div class="col">
             <div class="card card-small mb-4">
@@ -18,9 +17,10 @@
                         <thead class="bg-light">
                         <tr>
                             <th scope="col" class="border-0">#</th>
-                            <th scope="col" class="border-0">Название</th>
-                            <th scope="col" class="border-0">Описание</th>
-                            <th scope="col" class="border-0">Действия</th>
+                            <th scope="col" class="border-0">ФИО</th>
+                            <th scope="col" class="border-0">Логин</th>
+                            <th scope="col" class="border-0">Почта</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -28,13 +28,9 @@
                             <tr>
                                 <td>{{$u->id}}</td>
                                 <td>{{$u->name}}</td>
+                                <td>{{$u->nickname}}</td>
                                 <td>{{$u->email}}</td>
-                                <td>
-                                    <a class="btn btn-outline-primary mb-2 "
-                                       href="{{route('news.edit', ['id' => $n->id])}}">
-                                        <i class="material-icons md-12">edit</i>
-                                    </a>
-                                </td>
+                                
                             </tr>
                         @endforeach
                         </tbody>
