@@ -35,7 +35,7 @@ class CourseServiceImpl implements CourseService
             ->join('passings as p', 'p.course_material_id', '=', 'cm.id')
             ->where('p.user_id', $user->id)
             ->paginate($perPage);
-//        $passings = Passing::where('user_id', $user->id)->get();
+//        $passings = Passing::where('user_id', $users->id)->get();
 //        if(!$passings) return [];
 
 

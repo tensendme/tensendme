@@ -33,6 +33,14 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link {{Helper::urlActiveHelper('users')}}"
+                   href="{{route('users.index')}}">
+                    <i class="material-icons">face</i>
+                    <span>Пользователи</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">

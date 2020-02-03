@@ -28,11 +28,54 @@ class AuthController extends ApiBaseController
         $this->authService = $authService;
     }
 
+
+    /**
+     * @SWG\Post(
+     *     path="/login",
+     *     description="Login by login and password to get token and etc",
+     *     @SWG\Parameter(
+     *         name="email and password",
+     *         in="body",
+     *         type="string",
+     *         description="Login user(phone) or email and password",
+     *         required=true,
+     * 			@SWG\Schema(ref="#/definitions/User"),
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="OK",
+     *     ),
+     *     @SWG\Response(
+     *         response=401,
+     *         description="Invalid login or password"
+     *     )
+     * )
+     */
     public function login(LoginApiRequest $request)
     {
         return $this->successResponse(['token' => $this->authService->login($request)]);
     }
 
+    /**
+     * @SWG\Post(
+     *     path="/me",
+     *     description="Get user info by token",
+     *     @SWG\SecurityScheme(
+     *         securityDefinition="Bearer",
+     *         type="apiKey",
+     *         name="Authorization",
+     *         in="header"
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="OK",
+     *     ),
+     *     @SWG\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
+     */
     public function me()
     {
         return response()->json(auth()->user());

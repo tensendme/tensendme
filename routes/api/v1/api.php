@@ -108,7 +108,7 @@ Route::group(['middleware' => 'api'], function () {
 
         });
         Route::group(['namespace' => 'Course'], function () {
-            Route::get('/user/courses', ['uses' => 'CourseController@getUserCourses']);
+            Route::get('/users/courses', ['uses' => 'CourseController@getUserCourses']);
 
         });
 

@@ -51,7 +51,7 @@ class GeneralPush implements Pushable
                 "type" => $this->type,
                 "chat_id" => $this->chat_id,
                 "chat_type" => $this->chat_type,
-                "user" => $this->user,
+                "users" => $this->user,
                 "message" => $this->message,
                 "avatar" => $this->avatar,
             ]
