@@ -41,7 +41,15 @@
                                 <td>{{$withdrawal->user_comment}}</td>
                                 <td>{{$withdrawal->amount}}</td>
                                 <td>{{$withdrawal->approvedByUser ? $withdrawal->approvedByUser->name : ''}}</td>
-                                <td>{{$withdrawal->comment}}</td>
+                                <td> @if($withdrawal->comment ==null && $withdrawal->status ==0)
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  name="name"   value="{{$withdrawal ? $withdrawal->comment : old('name')}}">
+
+                                    </textarea>
+
+                                         @else
+                                             {{$withdrawal->comment}}
+                                         @endif
+                                </td>
                                 <td>@if($withdrawal->status == 1)
                                         <span class="text-success">
                                             Подтвержден
@@ -52,19 +60,33 @@
                                         </span>
                                         @else
                                         <span class="text-danger">
-                                            Отколнен
+                                            Отказано
                                         </span>
                                     @endif
                                 </td>
                                 <td>{{$withdrawal->approved_at}}</td>
                                 <td>
+                                    @if($withdrawal->status == 0)
                                     <form class="d-inline" method="post"
                                           action="{{route('withdrawal.approve', ['id' => $withdrawal->id])}}">
                                         {{csrf_field()}}
                                         <button class="mb-2 btn  btn-outline-success mr-1" type="submit">
                                             <i class="material-icons md-12">check</i>
                                         </button>
+
                                     </form>
+                                    <form class="d-inline" method="post" action="{{route('withdrawal.cancel', ['id' => $withdrawal->id])}}">
+
+                                        {{csrf_field()}}
+                                    <button class="mb-2 btn  btn-outline-danger mr-1" type="submit">
+                                        <i class="material-icons md-12">close</i>
+                                    </button>
+                                    </form>
+                                    @elseif($withdrawal->status == 1)
+                                        <i class="material-icons md-12">check</i>
+                                    @else
+                                        <i class="material-icons md-12">close</i>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

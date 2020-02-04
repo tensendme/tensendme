@@ -30,7 +30,7 @@
                                 <td>{{$u->name}}</td>
                                 <td>{{$u->nickname}}</td>
                                 <td>{{$u->email}}</td>
-                                
+
                             </tr>
                         @endforeach
                         </tbody>
@@ -38,8 +38,7 @@
                     </table>
                 </div>
                 <div class="card-footer">
-{{--                    {{ $users->links() }}--}}
-
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>

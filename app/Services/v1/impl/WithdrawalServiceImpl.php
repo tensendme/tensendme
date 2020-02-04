@@ -71,4 +71,17 @@ class WithdrawalServiceImpl implements WithdrawalRequestService
         $withdrawal->save();
     }
 
+    public function cancel($id){
+        $withdrawal = WithdrawalRequest::findOrFail($id);
+        if($withdrawal->status == WithdrawalRequest::CANCELLED) {
+            throw new WebServiceErroredException(trans('admin.error') . ': ' . 'Уже подтвержден!');
+        }
+        $withdrawal->status = WithdrawalRequest::CANCELLED;
+        $withdrawal->approved_by = Auth::user()->id;
+        $withdrawal->approved_at = now();
+
+        $this->historyService->withdrawalMake($withdrawal);
+        $withdrawal->save();
+    }
+
 }

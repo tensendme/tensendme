@@ -27,4 +27,10 @@ class WithdrawalController extends WebBaseController
         return redirect()->route('withdrawal.index');
 
     }
+
+    public  function cancel($id){
+        $this->withdrawalService->cancel($id);
+        $this->edited();
+        return redirect()->route('withdrawal.index');
+    }
 }
