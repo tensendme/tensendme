@@ -9,6 +9,7 @@ use App\Services\v1\impl\CloudPaymentServiceImpl;
 use App\Services\v1\impl\CodeServiceImpl;
 use App\Services\v1\impl\CourseServiceImpl;
 use App\Services\v1\impl\FileServiceImpl;
+use App\Services\v1\impl\FollowerServiceImpl;
 use App\Services\v1\impl\HistoryServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\MailServiceImpl;
@@ -107,6 +108,11 @@ class SystemServiceProvider extends ServiceProvider
         $this->app->bind('App\Services\v1\RatingService', function ($app) {
             return (new RatingServiceImpl());
         });
+
+        $this->app->bind('App\Services\v1\FollowerService', function ($app) {
+            return (new FollowerServiceImpl(new HistoryServiceImpl()));
+        });
+
 
 
     }

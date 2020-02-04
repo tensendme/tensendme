@@ -66,6 +66,13 @@ Route::group(['middleware' => 'api'], function () {
         });
     });
 
+    Route::group(['namespace' => 'Follower'], function () {
+
+        Route::group(['middleware' => 'auth:api'], function () {
+            Route::post('/follow', ['uses' => 'FollowerController@follow']);
+        });
+    });
+
     Route::group(['namespace' => 'Advertisement'], function () {
 
         Route::get('/news', ['uses' => 'NewsController@getAllNews']);
@@ -84,7 +91,9 @@ Route::group(['middleware' => 'api'], function () {
 //    });
 //
        Route::group(['namespace' => 'Rating'], function (){
-        Route::get('/evaluate/course', ['uses'=>'RatingController@evaluate']);
+           Route::group(['middleware' => 'auth:api'], function () {
+               Route::post('/evaluate/course', ['uses' => 'RatingController@evaluate']);
+           });
     });
 
     //AUTHENTICATED

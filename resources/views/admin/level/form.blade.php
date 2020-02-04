@@ -14,7 +14,7 @@
     <div class="form-group col-md-12">
         <input type="number" class="form-control"
                name="start_count"
-               min="1"
+               min="0"
                value="{{$level ? $level->start_count : old('start_count')}}"
                placeholder="Старт"
                id="start_сount"

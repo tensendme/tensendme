@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Balance extends Model
 {
     public $timestamps = false;
+    public const SUBSCRIPTION_BALANCE = 500;
 
     protected $fillable = [
         'user_id',

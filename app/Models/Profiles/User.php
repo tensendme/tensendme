@@ -4,6 +4,7 @@ namespace App\Models\Profiles;
 
 use App\Models\Categories\RecommendedCategory;
 use App\Models\Courses\Course;
+use App\Models\Histories\Follower;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -157,5 +158,36 @@ class User extends Authenticatable implements JWTSubject
             $courses = Course::paginate($size);
         }
         return $courses;
+    }
+
+    public function promoCode() {
+        $promoCode = null;
+        $user = true;
+        while($user) {
+            $promoCode = $this->generatePromoCode();
+            $user = User::where('promo_code', $promoCode)->first();
+        }
+        return $promoCode;
+    }
+
+
+    public function generatePromoCode() {
+        $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $input_length = strlen($permitted_chars);
+        $random_string = '';
+        for($i = 0; $i < 6; $i++) {
+            $random_character = $permitted_chars[mt_rand(0, $input_length - 1)];
+            $random_string .= $random_character;
+        }
+
+        return $random_string;
+    }
+
+    public function level() {
+        return $this->hasOne(Level::class, 'id', 'level_id');
+    }
+
+    public function followers() {
+        return $this->hasMany(Follower::class, 'host_user_id', 'id');
     }
 }
