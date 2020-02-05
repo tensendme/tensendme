@@ -38,7 +38,7 @@
                                 <td>{{$user->nickname}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>@if(!$user->phone && $user->city){{$user->city->country->phone_prefix}}
-                                @elseif($user->phone) +{{$user->phone}}@endif
+                                @elseif($user->phone) {{$user->phone}}@endif
                                 </td>
                                 <td>{{$user->promo_code}}</td>
                                 <td>@if($user->city){{$user->city->name}}@endif</td>
