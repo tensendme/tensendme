@@ -13,4 +13,6 @@ interface WithdrawalRequestService
 {
     public function withdrawalRequest($amount, $comment);
     public function approve($id);
+    public  function cancel($id);
+
 }

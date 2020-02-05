@@ -41,7 +41,9 @@
                                 <td>{{$withdrawal->user_comment}}</td>
                                 <td>{{$withdrawal->amount}}</td>
                                 <td>{{$withdrawal->approvedByUser ? $withdrawal->approvedByUser->name : ''}}</td>
-                                <td>{{$withdrawal->comment}}</td>
+                                <td>
+                                    {{$withdrawal->comment}}
+                                </td>
                                 <td>@if($withdrawal->status == 1)
                                         <span class="text-success">
                                             Подтвержден
@@ -52,19 +54,60 @@
                                         </span>
                                         @else
                                         <span class="text-danger">
-                                            Отколнен
+                                            Отказано
                                         </span>
                                     @endif
                                 </td>
                                 <td>{{$withdrawal->approved_at}}</td>
                                 <td>
-                                    <form class="d-inline" method="post"
-                                          action="{{route('withdrawal.approve', ['id' => $withdrawal->id])}}">
-                                        {{csrf_field()}}
-                                        <button class="mb-2 btn  btn-outline-success mr-1" type="submit">
-                                            <i class="material-icons md-12">check</i>
+                                    @if($withdrawal->status == 0)
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                            Принять решение
                                         </button>
-                                    </form>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Принятие решение</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <label for="exampleFormControlTextarea1">Комментария</label>
+                                                        <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3" placeholder="Пожалуйста, оставьте комментарий ..."></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form class="d-inline" method="post"
+                                                              action="{{route('withdrawal.cancel', ['id' => $withdrawal->id])}}">
+                                                            {{csrf_field()}}
+                                                            <button class="mb-2 btn  btn-outline-danger mr-1" type="submit">
+                                                                <i class="material-icons md-12">close</i>
+                                                                Не принять
+                                                            </button>
+
+                                                        </form>
+                                                        <form class="d-inline" method="post" action="{{route('withdrawal.approve', ['id' => $withdrawal->id])}}">
+
+                                                            {{csrf_field()}}
+
+                                                            <button class="mb-2 btn  btn-outline-success mr-1" type="submit">
+                                                                <i class="material-icons md-12">check</i>
+                                                                Принять
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @elseif($withdrawal->status == 1)
+                                        <i class="material-icons md-12">check</i>
+                                    @else
+                                        <i class="material-icons md-12">close</i>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
