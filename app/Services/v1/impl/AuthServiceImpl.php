@@ -14,6 +14,7 @@ use App\Http\Errors\ErrorCode;
 use App\Http\Requests\Api\V1\Auth\CheckLoginExistenceApiRequest;
 use App\Http\Requests\Api\V1\Auth\LoginApiRequest;
 use App\Http\Requests\Api\V1\Auth\RegisterApiRequest;
+use App\Http\Utils\ApiUtil;
 use App\Models\Profiles\City;
 use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
@@ -55,17 +56,15 @@ class AuthServiceImpl implements AuthService
         }
 
         $this->setDeviceToken($user, $request->device_token, $request->platform);
-
-        $token = JWTAuth::fromUser($user);
-        return $token;
+        return ApiUtil::generateTokenFromUser($user);
     }
 
     public function register(RegisterApiRequest $request)
     {
         $user = null;
-        if($request->has('city_id')) {
+        if ($request->has('city_id')) {
             $city = City::find($request->city_id);
-            if(!$city)  throw new ApiServiceException(404, false, [
+            if (!$city) throw new ApiServiceException(404, false, [
                 'errors' => [
                     'Город не найден!'
                 ],
@@ -99,7 +98,7 @@ class AuthServiceImpl implements AuthService
             ]);
         }
 
-        $token = JWTAuth::fromUser($user);
+        $token = ApiUtil::generateTokenFromUser($user);
         if (!$token) {
             throw new ApiServiceException(401, false, [
                 'errors' => [
