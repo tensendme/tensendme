@@ -187,6 +187,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Level::class, 'id', 'level_id');
     }
 
+    public function city() {
+        return $this->hasOne(City::class, 'id', 'city_id');
+    }
+
+    public function role() {
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+
     public function followers() {
         return $this->hasMany(Follower::class, 'host_user_id', 'id');
     }

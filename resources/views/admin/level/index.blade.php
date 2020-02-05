@@ -26,6 +26,8 @@
                             <th scope="col" class="border-0">Старт</th>
                             <th scope="col" class="border-0">Финиш</th>
                             <th scope="col" class="border-0">Процент скидки</th>
+                            <th scope="col" class="border-0">Сроки уровня</th>
+                            <th scope="col" class="border-0">Логотип</th>
                             <th scope="col" class="border-0">Действия</th>
                         </tr>
                         </thead>
@@ -34,9 +36,11 @@
                             <tr>
                                 <td>{{$level->id}}</td>
                                 <td>{{$level->name}}</td>
-                                <td>{{$level->start_count}}</td>
-                                <td>{{$level->end_count}}</td>
+                                <td>{{$level->start_count}} пользователей</td>
+                                <td>{{$level->end_count}} пользователей</td>
                                 <td>{{$level->discount_percentage}}%</td>
+                                <td>{{$level->period_date}} дней</td>
+                                <td><img src="{{asset($level->logo)}}" alt="Логотип" width="70" height="35"></td>
                                 <td>
                                     <a class="btn btn-outline-primary mb-2 "
                                        href="{{route('level.edit', ['id' => $level->id])}}">

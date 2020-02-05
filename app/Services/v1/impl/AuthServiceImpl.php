@@ -15,6 +15,7 @@ use App\Http\Requests\Api\V1\Auth\CheckLoginExistenceApiRequest;
 use App\Http\Requests\Api\V1\Auth\LoginApiRequest;
 use App\Http\Requests\Api\V1\Auth\RegisterApiRequest;
 use App\Models\Profiles\City;
+use App\Models\Profiles\Level;
 use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Services\v1\AuthService;
@@ -72,10 +73,11 @@ class AuthServiceImpl implements AuthService
                 'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
             ]);
         }
+        $level = Level::where('start_count', 0)->first();
         $user = new User();
         $user->password = bcrypt($request->password);
         $user->remember_token = '';
-        $user->level_id = 1;
+        $user->level_id = $level->id;
         $user->role_id = Role::USER_ID;
         $user->name = $request->name;
         $user->nickname = $request->nickname;
@@ -146,10 +148,10 @@ class AuthServiceImpl implements AuthService
     {
         DB::beginTransaction();
         try {
-//            User::find('device_token', $deviceToken)->update([
-//                'device_token' => null,
-//                'platform' => null
-//            ]);
+            User::find('device_token', $deviceToken)->update([
+                'device_token' => null,
+                'platform' => null
+            ]);
             $user->update([
                 'device_token' => $deviceToken,
                 'platform' => $platform

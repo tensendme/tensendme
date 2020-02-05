@@ -98,7 +98,12 @@
                         <a class="nav-link  {{Helper::urlActiveHelper('subscription')}}"
                            href="{{route('subscription.index')}}">
                             <i class="material-icons">people</i>
-                            <span>Подписки</span>
+                            <span>Подписки на приложение</span>
+                        </a>
+                        <a class="nav-link  {{Helper::urlActiveHelper('follower')}}"
+                           href="{{route('follower.index')}}">
+                            <i class="material-icons">assignment</i>
+                            <span>Подписчики</span>
                         </a>
                         <a href="{{route('withdrawal.index')}}"
                            class="nav-link dropdown-item {{Helper::urlActiveHelper('withdrawal')}}">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\v1\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Services\v1\FileService;
 use App\Services\v1\LevelService;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\LevelControllerRequests\LevelStoreAndUpdateRequest;
@@ -15,9 +16,11 @@ use Session;
 class LevelController extends WebBaseController
 {
     protected $levelService;
-    public function __construct(LevelService $levelService)
+    protected $fileService;
+    public function __construct(LevelService $levelService, FileService $fileService)
     {
         $this->levelService = $levelService;
+        $this->fileService = $fileService;
     }
 
     public function index()
@@ -39,8 +42,18 @@ class LevelController extends WebBaseController
     {
 
         DB::beginTransaction();
+        if ($request->file('logo')) {
+            $path = $this->fileService->store($request->file('logo'), Level::DEFAULT_RESOURCE_DIRECTORY);
+        }
         try {
-            Level::create($request->all());
+            Level::create([
+                'logo' => $path,
+                'discount_percentage' => $request->discount_percentage,
+                'start_count' => $request->start_count,
+                'end_count' => $request->end_count,
+                'name' => $request->name,
+                'period_date' => $request->period_date,
+            ]);
             DB::commit();
             $this->added();
             return redirect()->route('level.index');
@@ -61,8 +74,20 @@ class LevelController extends WebBaseController
 
     public function update(LevelStoreAndUpdateRequest $request, $id)
     {
-        Level::findOrFail($id)
-            ->update($request->all());
+        $level = Level::findOrFail($id);
+        $path = $level->logo;
+        if ($request->file('logo')) {
+            $path = $this->fileService->updateWithRemoveOrStore($request->file('logo'),
+                Level::DEFAULT_RESOURCE_DIRECTORY, $path);
+        }
+
+            $level->update([
+                'logo' => $path,
+                'discount_percentage' => $request->discount_percentage,
+                'start_count' => $request->start_count,
+                'end_count' => $request->end_count,
+                'name' => $request->name,
+                'period_date' => $request->period_date]);
         $this->edited();
         return redirect()->route('level.index');
 

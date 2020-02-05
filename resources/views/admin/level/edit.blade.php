@@ -16,7 +16,7 @@
                     <h6 class="m-0">Обновление уровня</h6>
                 </div>
                 <div class="card-body p-2 pb-2 text-center">
-                    <form method="post" action="{{route('level.update', ['id' => $level->id])}}">
+                    <form method="post" action="{{route('level.update', ['id' => $level->id])}}" enctype="multipart/form-data">
                         @include('admin.level.form')
                     </form>
                 </div>

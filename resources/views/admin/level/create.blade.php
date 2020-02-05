@@ -16,7 +16,7 @@
                     <h6 class="m-0">Добавление уровня</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
-                    <form method="post" action="{{route('level.store')}}">
+                    <form method="post" action="{{route('level.store')}}" enctype="multipart/form-data">
                         @include('admin.level.form')
                     </form>
                 </div>

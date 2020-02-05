@@ -53,7 +53,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
         Route::group(['namespace' => 'Admin'], function () {
             //users
-            Route::get('/users', ['users' => 'UserController@index', 'as' => 'users.index']);
+            Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
 
             Route::get('/categories', ['uses' => 'CategoryController@index', 'as' => 'category.index']);
             Route::get('/category/create', ['uses' => 'CategoryController@create', 'as' => 'category.create']);
@@ -93,6 +93,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
             Route::delete('/subscription/type/delete/{id}', ['uses' => 'SubscriptionTypeController@destroy', 'as' => 'subscription.type.delete']);
 
             Route::get('/subscriptions', ['uses' => 'SubscriptionController@index', 'as' => 'subscription.index']);
+            Route::get('/followers', ['uses' => 'FollowerController@index', 'as' => 'follower.index']);
             Route::get('/withdrawals', ['uses' => 'WithdrawalController@index', 'as' => 'withdrawal.index']);
             Route::post('/withdrawals/approve/{id}', ['uses' => 'WithdrawalController@approve', 'as' => 'withdrawal.approve']);
             Route::post('/withdrawals/cancel/{id}', ['uses' => 'WithdrawalController@cancel', 'as' => 'withdrawal.cancel']);

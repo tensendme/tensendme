@@ -25,10 +25,10 @@
                             <th scope="col" class="border-0">Пользователь</th>
                             <th scope="col" class="border-0">Тип</th>
                             <th scope="col" class="border-0">Сумма</th>
-                            <th scope="col" class="border-0">ID подписки</th>
+                            <th scope="col" class="border-0">ID подписки приложениия</th>
                             <th scope="col" class="border-0">ID транзакции</th>
                             <th scope="col" class="border-0">ID запроса</th>
-                            <th scope="col" class="border-0">ID подписанного пользователя</th>
+                            <th scope="col" class="border-0">ID подписчика</th>
                             <th scope="col" class="border-0">Произведен</th>
 
                         </tr>

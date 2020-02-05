@@ -37,17 +37,21 @@ class FollowerServiceImpl implements FollowerService
         if($follower) throw new ApiServiceException(400, false, [
             'errors' => ['Существующая подписка'],
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND]);
+
+        $level = $hostUser->level;
+
         $follower = Follower::create([
             'follower_user_id' => $followerUser->id,
-            'host_user_id' => $hostUser->id
+            'host_user_id' => $hostUser->id,
+            'level_id' => $level->id
         ]);
         $this->historyService->follower($follower);
+
         $date = new DateTime();
-        $date->modify('-' . 21 . 'days');
+        $date->modify('-' . $level->period_date . 'days');
         //$level->time должно быть вместо статичной времени
         $followers = $hostUser->followers;
-        $level = $hostUser->level;
-        $followersCount = $followers->where('created_at', '>', $date)->count();
+        $followersCount = $followers->where('level_id', $level->id)->where('created_at', '>', $date)->count();
         if($followersCount == $level->end_count) {
             $level = Level::where('start_count', $level->end_count)->first();
             if($level) {

@@ -20,17 +20,32 @@
                             <th scope="col" class="border-0">ФИО</th>
                             <th scope="col" class="border-0">Логин</th>
                             <th scope="col" class="border-0">Почта</th>
+                            <th scope="col" class="border-0">Телефон</th>
+                            <th scope="col" class="border-0">Промо-код</th>
+                            <th scope="col" class="border-0">Город</th>
+                            <th scope="col" class="border-0">Роль</th>
+                            <th scope="col" class="border-0">Уровень</th>
+                            <th scope="col" class="border-0">Платформа</th>
+                            <th scope="col" class="border-0">Баланс</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $u)
+                        @foreach($users as $user)
                             <tr>
-                                <td>{{$u->id}}</td>
-                                <td>{{$u->name}}</td>
-                                <td>{{$u->nickname}}</td>
-                                <td>{{$u->email}}</td>
-
+                                <td>{{$user->id}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->nickname}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>@if(!$user->phone && $user->city){{$user->city->country->phone_prefix}}
+                                @elseif($user->phone) +{{$user->phone}}@endif
+                                </td>
+                                <td>{{$user->promo_code}}</td>
+                                <td>@if($user->city){{$user->city->name}}@endif</td>
+                                <td>{{$user->role->name}}</td>
+                                <td>{{$user->level->name}}</td>
+                                <td>{{$user->platform}}</td>
+                                <td>{{$user->getBalance()->balance}}</td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -14,6 +14,8 @@ class LevelStoreAndUpdateRequest extends WebBaseRequest
             'start_count' => ['required','numeric'],
             'end_count' => ['required','numeric'],
             'discount_percentage' => ['required','numeric'],
+            'period_date' => ['required', 'numeric'],
+            'logo' => ['image']
         ];
     }
 }
