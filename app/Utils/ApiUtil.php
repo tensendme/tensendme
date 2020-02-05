@@ -4,7 +4,9 @@
 namespace App\Http\Utils;
 
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
+use JWTAuth;
 
 class ApiUtil
 {
@@ -26,8 +28,16 @@ class ApiUtil
         );
     }
 
-    public static function generateToken() : string {
-    	return Str::random(42);
+    public static function generateToken(): string
+    {
+        return Str::random(42);
+    }
+
+    public static function generateTokenFromUser($user): string
+    {
+        $expiration_date = Carbon::now()->addDays(7)->timestamp;
+        $customClaims = ['exp' => $expiration_date];
+        return JWTAuth::fromUser($user, $customClaims);
     }
 
 }
