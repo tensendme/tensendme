@@ -69,6 +69,7 @@ class WithdrawalServiceImpl implements WithdrawalRequestService
         $withdrawal->approved_at = now();
         $this->historyService->withdrawalMake($withdrawal);
         $withdrawal->save();
+        //Push notifcation
     }
 
 }

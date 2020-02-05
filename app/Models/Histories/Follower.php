@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Follower extends Model
 {
     protected $fillable = [
-        "follower_user_id",
-        "host_user_id",
+        'follower_user_id',
+        'host_user_id',
+        'level_id'
     ];
 
 
