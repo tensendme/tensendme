@@ -12,7 +12,7 @@ namespace App\Services\v1;
 interface WithdrawalRequestService
 {
     public function withdrawalRequest($amount, $comment);
-    public function approve($id);
-    public  function cancel($id);
+    public function approve($id, $comment);
+    public  function cancel($id, $comment);
 
 }

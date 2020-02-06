@@ -48,10 +48,10 @@ class WithdrawalServiceImpl implements WithdrawalRequestService
         return "Ваш запрос успешно отправлен, в течений 2-3 суток вам поступят деньги на карту которую вы привязали!";
     }
 
-    public function approve($id) {
+    public function approve($id, $comment) {
         $withdrawal = WithdrawalRequest::findOrFail($id);
-        if($withdrawal->status == WithdrawalRequest::APPROVED) {
-            throw new WebServiceErroredException(trans('admin.error') . ': ' . 'Уже подтвержден!');
+        if($withdrawal->status != WithdrawalRequest::PROCESSING) {
+            throw new WebServiceErroredException(trans('admin.error') . ': ' . 'Запрос уже обработан');
         }
         $user = User::find($withdrawal->user_id);
         $balance = $user->balance;
@@ -66,23 +66,26 @@ class WithdrawalServiceImpl implements WithdrawalRequestService
         $this->cloudPaymentService->withdrawPay();
         $withdrawal->status = WithdrawalRequest::APPROVED;
         $withdrawal->approved_by = Auth::user()->id;
+        $withdrawal->comment = $comment;
         $withdrawal->approved_at = now();
         $this->historyService->withdrawalMake($withdrawal);
         $withdrawal->save();
         //Push notifcation
     }
 
-    public function cancel($id){
+    public function cancel($id, $comment){
         $withdrawal = WithdrawalRequest::findOrFail($id);
-        if($withdrawal->status == WithdrawalRequest::CANCELLED) {
-            throw new WebServiceErroredException(trans('admin.error') . ': ' . 'Уже подтвержден!');
+        if($withdrawal->status != WithdrawalRequest::PROCESSING) {
+            throw new WebServiceErroredException(trans('admin.error') . ': ' . 'Запрос уже обработан!');
         }
         $withdrawal->status = WithdrawalRequest::CANCELLED;
         $withdrawal->approved_by = Auth::user()->id;
         $withdrawal->approved_at = now();
+        $withdrawal->comment = $comment;
 
         $this->historyService->withdrawalMake($withdrawal);
         $withdrawal->save();
+        // Push notification
     }
 
 }

@@ -28,7 +28,7 @@
                             <th scope="col" class="border-0">Изменен сотрудником</th>
                             <th scope="col" class="border-0">Комментарии</th>
                             <th scope="col" class="border-0">Статус</th>
-                            <th scope="col" class="border-0">Был подтвержден или отклонен в</th>
+                            <th scope="col" class="border-0">Изменен</th>
                             <th scope="col" class="border-0">Действия</th>
 
                         </tr>
@@ -61,52 +61,15 @@
                                 <td>{{$withdrawal->approved_at}}</td>
                                 <td>
                                     @if($withdrawal->status == 0)
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                            Принять решение
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Принятие решение</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                        <label for="exampleFormControlTextarea1">Комментария</label>
-                                                        <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3" placeholder="Пожалуйста, оставьте комментарий ..."></textarea>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <form class="d-inline" method="post"
-                                                              action="{{route('withdrawal.cancel', ['id' => $withdrawal->id])}}">
-                                                            {{csrf_field()}}
-                                                            <button class="mb-2 btn  btn-outline-danger mr-1" type="submit">
-                                                                <i class="material-icons md-12">close</i>
-                                                                Не принять
-                                                            </button>
-
-                                                        </form>
-                                                        <form class="d-inline" method="post" action="{{route('withdrawal.approve', ['id' => $withdrawal->id])}}">
-
-                                                            {{csrf_field()}}
-
-                                                            <button class="mb-2 btn  btn-outline-success mr-1" type="submit">
-                                                                <i class="material-icons md-12">check</i>
-                                                                Принять
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @elseif($withdrawal->status == 1)
-                                        <i class="material-icons md-12">check</i>
+                                        <a class="btn btn-light btn-group-lg"
+                                           id="editWithdrawal"
+                                           data-withdrawal-id="{{$withdrawal->id}}" data-toggle="modal" data-target="#withdrawalModal">
+                                            <i class="material-icons md-18">edit</i>
+                                        </a>
+                                    @elseif($withdrawal->status == \App\Models\Histories\WithdrawalRequest::APPROVED)
+                                        <span style="color: #4cd213;"><i class="material-icons md-24">check</i></span>
                                     @else
-                                        <i class="material-icons md-12">close</i>
+                                        <span style="color: red;"><i class="material-icons md-24">close</i></span>
                                     @endif
                                 </td>
                             </tr>
@@ -121,4 +84,60 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="withdrawalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Запрос на вывод денег</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="d-inline" method="post" id="withdrawalForm">
+                        {{csrf_field()}}
+                        <label id="withdrawalId"></label>
+                        <label for="exampleFormControlTextarea1">Оставить комментарии</label>
+                    <textarea class="form-control" name="comment" id="exampleFormControlTextarea1"
+                              rows="3" placeholder="Пожалуйста, оставьте комментарии ..."></textarea>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="mb-2 btn  btn-outline-danger mr-1" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="material-icons md-12">close</i>Закрыть</span>
+                    </button>
+                        <button class="mb-2 btn  btn-outline-danger mr-1" id="cancelButton">
+                            <i class="material-icons md-12">pan_tool</i>
+                            Отклонить
+                        </button>
+                        <button class="mb-2 btn  btn-outline-success mr-1" id="confirmButton">
+                            <i class="material-icons md-12">check</i>
+                            Принять
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+<script>
+    var withdrawalId = 0;
+    $(document).on("click", "#editWithdrawal", function () {
+        withdrawalId = $(this).data('withdrawal-id');
+    });
+
+    $(document).on("click", "#cancelButton", function() {
+        var url = '{{ route("withdrawal.cancel", ":id") }}';
+        url = url.replace(':id',withdrawalId);
+        document.getElementById("withdrawalForm").action = url;
+        document.getElementById("withdrawalForm").submit();
+    });
+
+    $(document).on("click", "#confirmButton", function() {
+        var url = '{{ route("withdrawal.approve", ":id") }}';
+        url = url.replace(':id',withdrawalId);
+        document.getElementById("withdrawalForm").action = url;
+        document.getElementById("withdrawalForm").submit();
+    });
+</script>
 @endsection
