@@ -17,6 +17,7 @@ class CategoryStoreAndUpdateRequest extends WebBaseRequest
             'name' => ['required', 'string'],
             'category_type_id' => ['required', 'numeric'],
             'parent_category_id' => ['nullable'],
+            'logo' => ['image']
         ];
     }
 

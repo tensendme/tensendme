@@ -1,6 +1,6 @@
 {{csrf_field()}}
 <div class="form-row">
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
         <input type="text" class="form-control"
                name="name"
                value="{{$category ? $category->name : old('name')}}"
@@ -8,6 +8,25 @@
                id="name"
                required>
         <label class="form-control-plaintext" for="name">Пожалуйста введите название категории</label>
+    </div>
+    <div class="form-group col-md-5">
+        <input type="file"
+               id="file"
+               class="form-control"
+               name="logo"
+               accept="image/*"
+               placeholder="Фото"
+               required>
+        <label class="form-control-plaintext" for="name">Пожалуйста выберите фото</label>
+    </div>
+    <div class="form-group col-md-1">
+        <input type="checkbox"
+               data-on="Вкл"
+               data-off="Откл"
+               onchange="toggleImage(this)"
+               checked
+               data-toggle="toggle"
+               data-size="md">
     </div>
 </div>
 <div class="form-row">
@@ -45,5 +64,11 @@
     </button>
 </div>
 
-
+@section('scripts')
+    <script>
+        function toggleImage(el) {
+            document.getElementById('file').disabled = !el.checked;
+        }
+    </script>
+@endsection
 @include('admin.layouts.parts.error')

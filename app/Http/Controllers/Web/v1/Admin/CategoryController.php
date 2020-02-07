@@ -7,7 +7,10 @@ use App\Exceptions\WebServiceErroredException;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\CategoryControllerRequests\CategoryStoreAndUpdateRequest;
 use App\Models\Categories\CategoryType;
+use App\Models\Courses\Course;
 use App\Services\v1\CategoryService;
+use App\Services\v1\FileService;
+use App\Utils\StaticConstants;
 use Illuminate\Support\Facades\DB;
 use Session;
 
@@ -16,10 +19,11 @@ class CategoryController extends WebBaseController
 {
 
     protected $categoryService;
-
-    public function __construct(CategoryService $categoryService)
+    protected $fileService;
+    public function __construct(CategoryService $categoryService, FileService $fileService)
     {
         $this->categoryService = $categoryService;
+        $this->fileService = $fileService;
     }
 
 
@@ -43,7 +47,16 @@ class CategoryController extends WebBaseController
     {
         DB::beginTransaction();
         try {
-            Category::create($request->all());
+            $path = StaticConstants::DEFAULT_IMAGE;
+            if ($request->file('logo')) {
+                $path = $this->fileService->store($request->file('logo'), Category::DEFAULT_RESOURCE_DIRECTORY);
+            }
+            Category::create([
+                'parent_category_id' => $request->parent_category_id,
+                'name' => $request->name,
+                'category_type_id' => $request->category_type_id,
+                'img_path' => $path
+            ]);
             DB::commit();
             $this->added();
             return redirect()->route('category.index');
@@ -70,8 +83,18 @@ class CategoryController extends WebBaseController
 
     public function update(CategoryStoreAndUpdateRequest $request, $id)
     {
-        Category::findOrFail($id)
-            ->update($request->all());
+        $category = Category::findOrFail($id);
+        $path = $category->img_path;
+        if ($request->file('logo')) {
+            $path = $this->fileService->updateWithRemoveOrStore($request->file('logo'),
+                Category::DEFAULT_RESOURCE_DIRECTORY, $path);
+        }
+            $category->update([
+                'parent_category_id' => $request->parent_category_id,
+                'name' => $request->name,
+                'category_type_id' => $request->category_type_id,
+                'img_path' => $path
+            ]);
         $this->edited();
         return redirect()->route('category.index');
 

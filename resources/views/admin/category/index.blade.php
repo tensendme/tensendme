@@ -21,6 +21,7 @@
                     <table class="table mb-0">
                         <thead class="bg-light">
                         <tr>
+                            <th scope="col" class="border-0">Лого</th>
                             <th scope="col" class="border-0">#</th>
                             <th scope="col" class="border-0">Название</th>
                             <th scope="col" class="border-0">Относится к</th>
@@ -31,6 +32,7 @@
                         <tbody>
                         @foreach($categories as $category)
                             <tr>
+                                <td><img src="{{asset($category->img_path)}}" alt="Логотип" width="70" height="35"></td>
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->categoryType->name}}</td>

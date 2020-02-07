@@ -16,7 +16,7 @@
                     <h6 class="m-0">Обновление категории</h6>
                 </div>
                 <div class="card-body p-2 pb-2 text-center">
-                    <form method="post" action="{{route('category.update', ['id' => $category->id])}}">
+                    <form method="post" action="{{route('category.update', ['id' => $category->id])}}" enctype="multipart/form-data">
                         @include('admin.category.form')
                     </form>
                 </div>

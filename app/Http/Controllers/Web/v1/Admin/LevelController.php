@@ -9,6 +9,7 @@ use App\Services\v1\LevelService;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\LevelControllerRequests\LevelStoreAndUpdateRequest;
 use App\Models\Profiles\Level;
+use App\Utils\StaticConstants;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\WebServiceErroredException;
 use Session;
@@ -42,6 +43,7 @@ class LevelController extends WebBaseController
     {
 
         DB::beginTransaction();
+        $path = StaticConstants::DEFAULT_IMAGE;
         if ($request->file('logo')) {
             $path = $this->fileService->store($request->file('logo'), Level::DEFAULT_RESOURCE_DIRECTORY);
         }
