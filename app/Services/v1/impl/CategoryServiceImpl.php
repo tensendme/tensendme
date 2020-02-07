@@ -42,12 +42,14 @@ class CategoryServiceImpl implements CategoryService
         $user = Auth::user();
         foreach ($ids as $id) {
             $category = Category::find($id);
-            $recommendedCategory = RecommendedCategory::where('user_id', $user->id)->where('category_id', $category->id)->first();
-            if($category && !$recommendedCategory) {
-                RecommendedCategory::create([
-                    'category_id' => $id,
-                    'user_id' => $user->id
-                ]);
+            if($category) {
+                $recommendedCategory = RecommendedCategory::where('user_id', $user->id)->where('category_id', $category->id)->first();
+                if ($category && !$recommendedCategory) {
+                    RecommendedCategory::create([
+                        'category_id' => $id,
+                        'user_id' => $user->id
+                    ]);
+                }
             }
         }
         return true;

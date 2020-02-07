@@ -147,10 +147,10 @@ class AuthServiceImpl implements AuthService
     {
         DB::beginTransaction();
         try {
-            User::find('device_token', $deviceToken)->update([
-                'device_token' => null,
-                'platform' => null
-            ]);
+//            User::find('device_token', $deviceToken)->update([
+//                'device_token' => null,
+//                'platform' => null
+//            ]);
             $user->update([
                 'device_token' => $deviceToken,
                 'platform' => $platform
