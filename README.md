@@ -916,3 +916,23 @@ password: tensendme2020n
 }
 
 ```
+
+### Запрос оценка курса (рейтинг звезды)
+#### URL: https://tensend.me/api/v1/evaluate/course
+
+```
+     POST Request:
+        {
+        	"course_id" : 1, id number 
+        	"scale" : 3.5, number from 0 to 5
+        }
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+        {
+            "message": "Спасибо за вашу оценку!",
+            "success": true
+        }
+}
+
+```
