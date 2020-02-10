@@ -41,7 +41,7 @@
                                 <td>{{$material->course->title}}</td>
                                 @if($material->video_path)
                                     <td>
-                                        <video src="{{asset('videos'.$material->video_path)}}" controls
+                                        <video src="{{asset($material->video_path)}}" controls
                                                style="height: 130px; width: 150px"></video>
                                     </td>
                                 @else

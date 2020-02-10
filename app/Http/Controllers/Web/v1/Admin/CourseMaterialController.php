@@ -7,10 +7,23 @@ use App\Http\Requests\Web\V1\CourseMaterialControllerRequest\CourseMaterialStore
 use App\Models\Courses\Course;
 use App\Models\Courses\CourseMaterial;
 use App\Models\Docs\Doc;
+use App\Services\v1\FileService;
+use App\Utils\StaticConstants;
 use File;
 
 class CourseMaterialController extends WebBaseController
 {
+    protected $fileService;
+
+    /**
+     * CourseController constructor.
+     * @param $fileService
+     */
+    public function __construct(FileService $fileService)
+    {
+        $this->fileService = $fileService;
+    }
+
     public function index($course_id){
         $materials = CourseMaterial::where('course_id', $course_id)->get();
         return view('admin.course.materials.index', compact('materials', 'course_id'));
@@ -22,11 +35,9 @@ class CourseMaterialController extends WebBaseController
     }
 
     public function store(CourseMaterialStoreAndUpdateRequest $request, $course_id) {
-        $path = '';
-        if($request->file('video')) {
-            $filename = $request->title.time().'.'.$request->file('video')->getClientOriginalExtension();
-            $request->video->move(public_path('videos/courses'), $filename);
-            $path = '/courses/'.$filename;
+        $path = StaticConstants::DEFAULT_VIDEO;
+        if ($request->file('video')) {
+            $path = $this->fileService->store($request->file('video'), CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY);
         }
         $material = CourseMaterial::create([
             'title' => $request->title,
@@ -38,9 +49,7 @@ class CourseMaterialController extends WebBaseController
         if($request->has('docs')) {
             if($request->docs) {
                 foreach ($request->docs as $document) {
-                    $filename = $request->title . time() . '.' . $document->getClientOriginalExtension();
-                    $path = '/documents/'  .$filename;
-                    $document->move(public_path('documents'), $filename);
+                    $path = $this->fileService->store($document, CourseMaterial::DEFAULT_DOCUMENT_RESOURCE_DIRECTORY);
                     Doc::create([
                         'course_material_id' => $material->id,
                         'type' => $document->getClientOriginalExtension(),
@@ -63,10 +72,8 @@ class CourseMaterialController extends WebBaseController
         $material = CourseMaterial::findOrFail($id);
         $path = $material->video_path;
         if($request->file('video')) {
-            $filename = $request->title.time().'.'.$request->file('video')->getClientOriginalExtension();
-            $request->video->move(public_path('videos/courses'), $filename);
-            $path = '/courses/'.$filename;
-            if($material->video_path) File::delete('videos/'.$material->video_path);
+            $path = $this->fileService->updateWithRemoveOrStore($request->file('video'),
+                CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY, $path);
         }
         $material->update([
             'title' => $request->title,

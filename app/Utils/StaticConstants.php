@@ -12,4 +12,5 @@ namespace App\Utils;
 class StaticConstants
 {
     public const DEFAULT_IMAGE = 'images/default.png';
+    public const DEFAULT_VIDEO = 'videos/default.mp4';
 }
