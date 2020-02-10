@@ -868,7 +868,9 @@ password: tensendme2020n
                             "view_count": 0,
                             "created_at": "2020-01-19 20:11:06",
                             "updated_at": "2020-02-02 19:12:52",
-                            "deleted_at": null
+                            "deleted_at": null,
+                            "author_id": null,
+                            "author": null
                         },
                         {
                             "id": 2,
@@ -881,7 +883,13 @@ password: tensendme2020n
                             "view_count": 0,
                             "created_at": "2020-01-21 23:44:24",
                             "updated_at": "2020-01-25 02:07:08",
-                            "deleted_at": null
+                            "deleted_at": null,
+                            "author": {
+                                         "id": 1,
+                                         "name": "Admin",
+                                         "email": "admin@mail.ru",
+                                         "image_path": "test"
+                                      }
                         }
                     ],
                     "first_page_url": "https://tensend.me/api/v1/courses/for/me?page=1",

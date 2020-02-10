@@ -45,7 +45,7 @@ class FollowerServiceImpl implements FollowerService
             'host_user_id' => $hostUser->id,
             'level_id' => $level->id
         ]);
-        $this->historyService->follower($follower);
+//        $this->historyService->follower($follower);
 
         $date = new DateTime();
         $date->modify('-' . $level->period_date . 'days');
