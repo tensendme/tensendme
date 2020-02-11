@@ -9,6 +9,7 @@
 namespace App\Services\v1\impl;
 
 use App\Exceptions\ApiServiceException;
+use Illuminate\Support\Facades\DB;
 use App\Http\Errors\ErrorCode;
 use App\Models\Subscriptions\Subscription;
 use App\Models\Subscriptions\SubscriptionType;
@@ -17,6 +18,7 @@ use App\Services\v1\PaymentService;
 use App\Services\v1\SubscriptionService;
 use Auth;
 use DateTime;
+use Mockery\Exception;
 
 class SubscriptionServiceImpl implements SubscriptionService
 {
@@ -52,14 +54,44 @@ class SubscriptionServiceImpl implements SubscriptionService
             $date = new DateTime($userSubscription->expired_at);
             $date->modify('+' . $subscriptionType->expired_at . 'days');
         }
-        $this->cloudPaymentService->getPay($user->id);
-        $subscription = Subscription::create([
-            'user_id' => $user->id,
-            'subscription_type_id' => $subscriptionTypeId,
+//        $this->cloudPaymentService->getPay($user->id);
+        DB::beginTransaction();
+        $oldSubscription = Subscription::where('user_id', $user->id)->where('actual_price', '!=', 0)->get();
+        $price = $subscriptionType->price;
+        if($oldSubscription->isEmpty()) {
+            $price = $price * 80/100;
+        }
+        try {
+            $subscription = Subscription::create([
+                'user_id' => $user->id,
+                'subscription_type_id' => $subscriptionTypeId,
+                'expired_at' => $date,
+                'actual_price' => $price
+            ]);
+            $this->historyService->subscription($subscription);
+            DB::commit();
+            return "Успешно!";
+        }
+        catch (\Exception $exception) {
+            DB::rollBack();
+            throw new ApiServiceException(500, false, ['errors' => [$exception->getMessage()],
+                'errorCode' => ErrorCode::SYSTEM_ERROR
+            ]);
+    }
+    }
+
+    public function freeSubscribe($userId)
+    {
+        $subscriptionType = SubscriptionType::where('price', 0)->first();
+        $date = new DateTime();
+        $date->modify('+' . $subscriptionType->expired_at . 'days');
+        Subscription::create([
+            'user_id' => $userId,
+            'subscription_type_id' => $subscriptionType->id,
             'expired_at' => $date,
             'actual_price' => $subscriptionType->price
         ]);
-        $this->historyService->subscription($subscription);
-        return "Успешно!";
     }
+
+
 }

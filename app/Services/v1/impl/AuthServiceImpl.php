@@ -20,12 +20,20 @@ use App\Models\Profiles\Level;
 use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Services\v1\AuthService;
+use App\Services\v1\SubscriptionService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 
 class AuthServiceImpl implements AuthService
 {
+    protected $subscriptionService;
+
+    public function __construct(SubscriptionService $subscriptionService)
+    {
+        $this->subscriptionService = $subscriptionService;
+    }
+
     public function login(LoginApiRequest $request)
     {
         $user = null;
@@ -109,6 +117,8 @@ class AuthServiceImpl implements AuthService
                 'errorCode' => ErrorCode::UNAUTHORIZED
             ]);
         }
+        $this->subscriptionService->freeSubscribe($user->id);
+        // create free subscription
         return $token;
     }
 

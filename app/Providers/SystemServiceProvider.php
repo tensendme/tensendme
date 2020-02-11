@@ -98,11 +98,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\CourseService', function ($app) {
             return (new CourseServiceImpl());
-
         });
 
         $this->app->bind('App\Services\v1\AuthService', function ($app) {
-            return (new AuthServiceImpl());
+            return (new AuthServiceImpl(new SubscriptionServiceImpl(new CloudPaymentServiceImpl(), new HistoryServiceImpl())));
         });
 
         $this->app->bind('App\Services\v1\RatingService', function ($app) {
@@ -112,9 +111,6 @@ class SystemServiceProvider extends ServiceProvider
         $this->app->bind('App\Services\v1\FollowerService', function ($app) {
             return (new FollowerServiceImpl(new HistoryServiceImpl()));
         });
-
-
-
     }
 
     /**

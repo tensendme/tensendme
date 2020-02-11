@@ -33,9 +33,9 @@ class FollowerServiceImpl implements FollowerService
         if(!$hostUser) throw new ApiServiceException(404, false, [
             'errors' => ['Не найден промо-код'],
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND]);
-        $follower = Follower::where('follower_user_id', $followerUser->id)->where('host_user_id', $hostUser->id)->first();
+        $follower = Follower::where('follower_user_id', $followerUser->id)->first();
         if($follower) throw new ApiServiceException(400, false, [
-            'errors' => ['Существующая подписка'],
+            'errors' => ['У вас уже существует подписка'],
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND]);
 
         $level = $hostUser->level;
