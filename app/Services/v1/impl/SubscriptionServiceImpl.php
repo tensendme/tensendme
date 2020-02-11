@@ -33,7 +33,8 @@ class SubscriptionServiceImpl implements SubscriptionService
 
     public function getSubscriptions()
     {
-        return SubscriptionType::all();
+        $subscriptionType = SubscriptionType::where('price', 0)->first();
+        return SubscriptionType::where('subscription_type_id', '!=', $subscriptionType->id)->get();
     }
 
     public function subscribe($subscriptionTypeId)

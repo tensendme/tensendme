@@ -7,6 +7,7 @@ use App\Models\Histories\History;
 use App\Models\Profiles\User;
 use App\Models\Rating;
 use App\Models\Subscriptions\Subscription;
+use App\Models\Subscriptions\SubscriptionType;
 
 class HomeController extends WebBaseController
 {
@@ -16,7 +17,8 @@ class HomeController extends WebBaseController
     {
         $usersCount = User::all()->count();
         $historiesCount = History::all()->count();
-        $subscriptionsCount = Subscription::all()->count();
+        $subscriptionType = SubscriptionType::where('price', 0)->first();
+        $subscriptionsCount = Subscription::where('subscription_type_id', '!=', $subscriptionType->id)->count();
         $ratingsCount = Rating::all()->count();
         return view('admin.home', compact('usersCount', 'historiesCount', 'subscriptionsCount', 'ratingsCount'));
     }
