@@ -10,6 +10,7 @@ use App\Models\Categories\RecommendedCategory;
 use App\Models\Courses\Course;
 
 use App\Models\Courses\CourseMaterial;
+use App\Models\Education\Passing;
 use App\Services\v1\CourseService;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -38,7 +39,19 @@ class CourseServiceImpl implements CourseService
 //        $passings = Passing::where('user_id', $users->id)->get();
 //        if(!$passings) return [];
 
-
+        $courses= Course::hydrate($courses->items());
+        foreach ($courses as $course) {
+             $course->lesson_count = $course->materials->count();
+             $count = 0;
+             foreach ($course->materials as $material) {
+                 $passing = Passing::where('course_material_id', $material->id)->where('user_id', $user->id)->first();
+                 if($passing) {
+                     $count++;
+                 }
+             }
+             $course->lesson_passing_count = $count;
+             $course->makeHidden('materials');
+        }
         return $courses;
     }
 
