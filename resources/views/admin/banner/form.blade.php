@@ -47,7 +47,7 @@
                placeholder="Фото"
                accept="image/*"
                required>
-        <label class="form-control-plaintext" for="name">Пожалуйста выберите фото</label>
+        <label class="form-control-plaintext" for="file">Пожалуйста выберите фото</label>
     </div>
     <div class="form-group col-md-1">
         <input type="checkbox"

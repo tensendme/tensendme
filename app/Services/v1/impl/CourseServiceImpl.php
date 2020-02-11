@@ -41,9 +41,10 @@ class CourseServiceImpl implements CourseService
 
         $courses= Course::hydrate($courses->items());
         foreach ($courses as $course) {
-             $course->lessons_count = $course->materials->count();
+            $courseMaterials = $course->materials;
+             $course->lessons_count = $courseMaterials->count();
              $count = 0;
-             foreach ($course->materials as $material) {
+             foreach ($courseMaterials as $material) {
                  $passing = Passing::where('course_material_id', $material->id)->where('user_id', $user->id)->first();
                  if($passing) {
                      $count++;

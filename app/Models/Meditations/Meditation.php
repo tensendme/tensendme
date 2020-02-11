@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Meditation extends Model
 {
+    public const DEFAULT_RESOURCE_DIRECTORY = 'images/meditations';
+
     use SoftDeletes;
 
     protected $fillable = [
         'category_id',
         'title',
         'description',
+        'img_path',
+        'duration_time'
     ];
 
     public function category()

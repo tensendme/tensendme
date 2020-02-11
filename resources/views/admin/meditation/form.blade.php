@@ -21,7 +21,7 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             <select class="form-control" name="category_id" id="category_id">
                 @foreach($categories as $category)
@@ -34,12 +34,35 @@
             <label class="form-control-plaintext" for="category_id">Пожалуйста выберите категорию</label>
         </div>
     </div>
-{{--    <div class="col-md-6">--}}
-{{--        <div class="form-group">--}}
-{{--            <input class="form-control" type="file" name="image" id="image" accept="image/*">--}}
-{{--            <label class="form-control-plaintext" for="image">Пожалуйста выберите фото</label>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <div class="form-group col-md-4">
+        <input type="file"
+               id="file"
+               class="form-control"
+               name="image"
+               accept="image/*"
+               placeholder="Фото"
+               required>
+        <label class="form-control-plaintext" for="file">Пожалуйста выберите фото</label>
+    </div>
+    <div class="form-group col-md-1">
+        <input type="checkbox"
+               data-on="Вкл"
+               data-off="Откл"
+               onchange="toggleImage(this)"
+               checked
+               data-toggle="toggle"
+               data-size="md">
+    </div>
+    <div class="form-group col-md-3">
+        <input type="number" class="form-control"
+               name="duration"
+               value="{{$meditation ? $meditation->duration_time : old('duration')}}"
+               placeholder="Длительность в минутах"
+               id="duration"
+               required>
+        <label class="form-control-plaintext" for="duration">Пожалуйста введите длительность</label>
+    </div>
+
 </div>
 <div class="form-group col-md-12 text-right">
     <button class="mb-2 btn btn-primary mr-1" type="submit">Сохранить
@@ -47,5 +70,11 @@
     </button>
 </div>
 
-
+@section('scripts')
+    <script>
+        function toggleImage(el) {
+            document.getElementById('file').disabled = !el.checked;
+        }
+    </script>
+@endsection
 @include('admin.layouts.parts.error')

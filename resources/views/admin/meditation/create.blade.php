@@ -16,7 +16,7 @@
                     <h6 class="m-0">Добавление медитации</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
-                    <form method="post" action="{{route('meditation.store')}}">
+                    <form method="post" action="{{route('meditation.store')}}" enctype="multipart/form-data">
                         @include('admin.meditation.form')
                     </form>
                 </div>

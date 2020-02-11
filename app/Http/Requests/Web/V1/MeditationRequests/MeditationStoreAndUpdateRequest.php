@@ -13,6 +13,8 @@ class MeditationStoreAndUpdateRequest extends WebBaseRequest
             'title' => ['required', 'string'],
             'category_id' => ['required', 'numeric'],
             'description' => ['required', 'string'],
+            'image' => ['image'],
+            'duration' => ['numeric'],
         ];
     }
 }
