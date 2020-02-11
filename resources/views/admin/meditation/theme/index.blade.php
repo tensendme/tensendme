@@ -37,12 +37,13 @@
                                 <td>{{$theme->id}}</td>
                                 <td>{{$theme->title}}</td>
                                 <td>
-                                    @foreach($theme->audios as $audio)
-                                <audio src="{{asset('audios'.$audio->audio_path)}}" controls>
-                                    Не поддерживается
-                                </audio>
-                                        <br>
-                                        @endforeach
+{{--                                    @foreach($theme->audios as $audio)--}}
+{{--                                <audio src="{{asset($audio->audio_path)}}" controls>--}}
+{{--                                    Не поддерживается--}}
+{{--                                </audio>--}}
+{{--                                        <br>--}}
+{{--                                        @endforeach--}}
+                                    {{$theme->audios->count()}}
                                 </td>
                                 <td>{{$theme->created_at}}</td>
                                 <td>

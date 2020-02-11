@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\MeditationRequests\ThemeStoreAndUpdateRequest;
 use App\Models\Meditations\AudioLanguage;
+use App\Models\Meditations\Meditation;
 use App\Models\Meditations\Theme;
 use App\Models\Meditations\ThemeAudio;
+use App\Services\v1\FileService;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\WebServiceErroredException;
 use File;
@@ -15,6 +17,17 @@ use File;
 
 class MeditationThemeController extends WebBaseController
 {
+    protected $fileService;
+
+    /**
+     * CourseController constructor.
+     * @param $fileService
+     */
+    public function __construct(FileService $fileService)
+    {
+        $this->fileService = $fileService;
+    }
+
     public function index($meditationId) {
         $themes = Theme::with('audios')->where('meditation_id', $meditationId)->get();
         return view('admin.meditation.theme.index', compact('themes', 'meditationId'));
@@ -34,13 +47,8 @@ class MeditationThemeController extends WebBaseController
                 'title' => $request->title
             ]);
             if($request->audio) {
-                $i = 0;
                 foreach ($request->audio as $audioLanguageId => $audio) {
-                    $i++;
-                    $filename = $i. $request->title . time() . '.' . $audio->getClientOriginalExtension();
-                    $audio->move(public_path('audios/meditations'), $filename);
-                    $path = '/meditations/' . $filename;
-
+                    $path = $this->fileService->store($audio, ThemeAudio::DEFAULT_RESOURCE_DIRECTORY);
                     ThemeAudio::create([
                         'theme_id' => $theme->id,
                         'audio_path' => $path,
@@ -72,31 +80,19 @@ class MeditationThemeController extends WebBaseController
                 'title' => $request->title
             ]);
             if($request->audio) {
-                $i = 0;
                 foreach ($request->audio as $audioLanguageId => $audio) {
-                    $i++;
-                    $filename = $i. $request->title . time() . '.' . $audio->getClientOriginalExtension();
-                    $audio->move(public_path('audios/meditations'), $filename);
-                    $path = '/meditations/' . $filename;
-                    if(!empty($theme->audios)) {
-                        $haveAudio = false;
-                        foreach ($theme->audios as $audio) {
-                            if ($audio->audio_language_id == $audioLanguageId) $haveAudio = true;
-                        }
-                        if ($haveAudio) {
-                            $themeAudio = ThemeAudio::where('theme_id', $theme->id)->where('audio_language_id', $audioLanguageId)
-                                ->first();
-                            if($themeAudio) File::delete('audios/'.$themeAudio->audio_path);
-                            $themeAudio->update(['audio_path' => $path]);
-                        } else {
-                            ThemeAudio::create([
-                                'theme_id' => $id,
-                                'audio_path' => $path,
-                                'audio_language_id' => $audioLanguageId
-                            ]);
-                        }
+                    $themeAudio = ThemeAudio::where('theme_id', $theme->id)
+                        ->where('audio_language_id', $audioLanguageId)->first();
+                    if($themeAudio) {
+                        $path = $themeAudio->audio_path;
+                        $path = $this->fileService->updateWithRemoveOrStore(
+                            $audio, ThemeAudio::DEFAULT_RESOURCE_DIRECTORY, $path);
+                        $themeAudio->audio_path = $path;
+                        $themeAudio->save();
                     }
                     else {
+                        $path = $this->fileService->store(
+                            $audio, ThemeAudio::DEFAULT_RESOURCE_DIRECTORY);
                         ThemeAudio::create([
                             'theme_id' => $id,
                             'audio_path' => $path,

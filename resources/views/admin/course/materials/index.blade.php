@@ -39,14 +39,15 @@
                                 <td>{{$material->id}}</td>
                                 <td>{{$material->title}}</td>
                                 <td>{{$material->course->title}}</td>
+                                <td>
                                 @if($material->video_path)
-                                    <td>
-                                        <video src="{{asset($material->video_path)}}" controls
-                                               style="height: 130px; width: 150px"></video>
-                                    </td>
+{{--                                        <video src="{{asset($material->video_path)}}" controls--}}
+{{--                                               style="height: 130px; width: 150px"></video>--}}
+                                    <span class="text-success">Добавлено!</span>
                                 @else
-                                    <td>Нет видео!</td>
+                                        <span class="text-danger">Нет видео!</span>
                                 @endif
+                                </td>
                                 <td>#{{$material->ordering}}</td>
                                 <td>{{$material->created_at}}</td>
                                 <td>

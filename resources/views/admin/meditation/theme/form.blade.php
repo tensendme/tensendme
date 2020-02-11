@@ -17,7 +17,7 @@
         <div class="form-group">
             @if(!empty($theme->audios[$i]))
             @if($theme->audios[$i]->audio_language_id == $audioType->id)
-                <audio src="{{asset('audios'.$theme->audios[$i]->audio_path)}}" controls>
+                <audio src="{{asset($theme->audios[$i]->audio_path)}}" controls>
                     Не поддерживается
                 </audio>
             @endif
