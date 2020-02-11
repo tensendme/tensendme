@@ -43,7 +43,10 @@ class FileServiceImpl implements FileService
         $videoFullPath = $video->move($path, $videoPath);
         $material->path = $videoFullPath;
 
-        $ffprobe = FFProbe::create();;
+        $ffprobe = FFProbe::create([
+            'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe'
+        ]);;
         $duration = $ffprobe
             ->streams($videoFullPath)
             ->videos()
@@ -54,8 +57,8 @@ class FileServiceImpl implements FileService
         $thumbnail = 'images/materials/' . time() . ((string)Str::uuid()) . 'preview.png';
 
         $ffmpeg = FFMpeg::create([
-            'ffmpeg.binaries'  => '/usr/local/bin/ffmpeg',
-            'ffprobe.binaries' => '/usr/local/bin/ffprobe']);
+            'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe']);
         $video = $ffmpeg->open($videoFullPath);
         $frame = $video->frame(TimeCode::fromSeconds($sec));
         $frame->save($thumbnail);
