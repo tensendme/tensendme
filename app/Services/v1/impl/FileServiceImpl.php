@@ -53,7 +53,10 @@ class FileServiceImpl implements FileService
         $sec = $duration * 35/100;
         $thumbnail = 'images/materials/' . time() . ((string)Str::uuid()) . 'preview.png';
 
-        $ffmpeg = FFMpeg::create();
+        $ffmpeg = FFMpeg::create([
+            'ffmpeg.binaries' => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe'
+        ]);
         $video = $ffmpeg->open($videoFullPath);
         $frame = $video->frame(TimeCode::fromSeconds($sec));
         $frame->save($thumbnail);
