@@ -375,7 +375,9 @@ password: tensendme2020n
                     "description" : "Test",
                     "created_at": null,
                     "updated_at": null,
-                    "deleted_at": null
+                    "deleted_at": null,
+                    "img_path": "images/meditations/1581402953a2cf3257-fbee-427d-9a32-0e54bfae0b87natures-temples.jpg",
+                    "duration_time": 3
                 },
                 {
                     "id" : 1,
@@ -384,7 +386,9 @@ password: tensendme2020n
                     "description" : "Test",
                     "created_at": null,
                     "updated_at": null,
-                    "deleted_at": null
+                    "deleted_at": null,
+                    "img_path": "images/meditations/1581402953a2cf3257-fbee-427d-9a32-0e54bfae0b87natures-temples.jpg",
+                    "duration_time": 3
                 }
             ],
             "first_page_url": "https://tensend.me/api/v1/meditations?page=1",
