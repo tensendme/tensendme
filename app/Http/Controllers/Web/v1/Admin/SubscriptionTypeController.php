@@ -10,7 +10,7 @@ class SubscriptionTypeController extends WebBaseController
 {
     public function index()
     {
-        $subscription_types = SubscriptionType::where('price', '!=', 0);
+        $subscription_types = SubscriptionType::where('price', '!=', 0)->get();
 
         return view('admin.subscriptionTypes.index', compact('subscription_types'));
     }
