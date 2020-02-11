@@ -470,15 +470,54 @@ password: tensendme2020n
         "course": {
             "id": 1,
             "category_id": 1,
-            "title": "dsffdss",
-            "description": "dvcxv",
-            "image_path": "/courses/dsffdss1579443066.jpg",
+            "title": "bekza",
+            "description": "fds",
+            "image_path": "images/courses/default.png",
             "is_visible": 1,
-            "scale": 0,
+            "scale": 3.75,
             "view_count": 0,
-            "created_at": "2020-01-19 20:11:06",
-            "updated_at": "2020-01-19 20:11:10",
-            "deleted_at": null
+            "created_at": "2020-01-25 03:46:36",
+            "updated_at": "2020-02-03 15:05:30",
+            "deleted_at": null,
+            "author_id": 1,
+            "access": false,
+            "lessons": [
+                {
+                    "id": 2,
+                    "title": "bekza",
+                    "img_path": null,
+                    "duration_time": null,
+                    "access": true
+                },
+                {
+                    "id": 3,
+                    "title": "bekza",
+                    "img_path": null,
+                    "duration_time": null,
+                    "access": true
+                },
+                {
+                    "id": 1,
+                    "title": "ffdsfsd",
+                    "img_path": null,
+                    "duration_time": null,
+                    "access": false
+                },
+                {
+                    "id": 4,
+                    "title": "bekza",
+                    "img_path": null,
+                    "duration_time": null,
+                    "access": false
+                },
+                {
+                    "id": 5,
+                    "title": "bekza",
+                    "img_path": null,
+                    "duration_time": null,
+                    "access": false
+                }
+            ]
         },
         "success": true
     }

@@ -26,7 +26,9 @@ class Course extends Model
         return $this->belongsTo(User::class, 'author_id', 'id')->select(array('id', 'name', 'email', 'image_path'));
     }
 
-    public function materials() {
-        return $this->hasMany(CourseMaterial::class, 'course_id', 'id');
+    public function lessons() {
+        return $this->hasMany(CourseMaterial::class, 'course_id', 'id')
+            ->orderBy('ordering', 'asc')
+            ->select(array('id', 'title', 'img_path', 'duration_time'));
     }
 }

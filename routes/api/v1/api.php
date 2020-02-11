@@ -40,7 +40,6 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
         Route::get('/courses/category/{categoryId}', ['uses' => 'CourseController@getCoursesByCategory']);
-        Route::get('courses/{id}', ['uses' => 'CourseController@getById']);
 
         Route::group(['middleware' => 'auth:api'], function () {
             Route::get('courses/for/me', ['uses' => 'CourseController@coursesForMe']);
@@ -109,7 +108,7 @@ Route::group(['middleware' => 'api'], function () {
         });
         Route::group(['namespace' => 'Course'], function () {
             Route::get('/users/courses', ['uses' => 'CourseController@getUserCourses']);
-
+            Route::get('courses/{id}', ['uses' => 'CourseController@getById']);
         });
 
     });

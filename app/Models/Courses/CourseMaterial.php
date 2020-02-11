@@ -10,7 +10,7 @@ class CourseMaterial extends Model
     public const DEFAULT_DOCUMENT_RESOURCE_DIRECTORY = 'documents/lessons';
 
     protected $fillable = [
-        'title', 'ordering', 'course_id', 'video_path'
+        'title', 'ordering', 'course_id', 'video_path', 'duration_time', 'img_path'
     ];
 
     public function course(){

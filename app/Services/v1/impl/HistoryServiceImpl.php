@@ -40,7 +40,7 @@ class HistoryServiceImpl implements HistoryService
             $hostBalance = $following->hostUser->getBalance();
             History::create([
                 'balance_id' => $hostBalance->id,
-                'history_type_id' => HistoryType::SUBSCRIPTION,
+                'history_type_id' => HistoryType::FOLLOWER,
                 'amount' => $amount,
                 'subscription_id' => $subscription->id,
                 //'transaction_id' => '1' от банка что то должно быть

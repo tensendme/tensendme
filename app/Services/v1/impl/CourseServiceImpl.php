@@ -14,7 +14,6 @@ use App\Models\Education\Passing;
 use App\Services\v1\CourseService;
 use Illuminate\Support\Facades\DB;
 use Auth;
-use PHPUnit\Framework\Constraint\IsTrue;
 
 class CourseServiceImpl implements CourseService
 {
@@ -41,7 +40,7 @@ class CourseServiceImpl implements CourseService
 
         $coursesItems = Course::hydrate($courses->items());
         foreach ($coursesItems as $course) {
-            $courseMaterials = $course->materials;
+            $courseMaterials = $course->lessons;
              $course->lessons_count = $courseMaterials->count();
              $count = 0;
              foreach ($courseMaterials as $material) {
@@ -51,7 +50,7 @@ class CourseServiceImpl implements CourseService
                  }
              }
              $course->lessons_passing_count = $count;
-             $course->makeHidden('materials');
+             $course->makeHidden('lessons');
         }
         $courses->setCollection($coursesItems);
         return $courses;
@@ -72,15 +71,16 @@ class CourseServiceImpl implements CourseService
             ],
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
         ]);
-        $courseMaterials = array();
-        $materials = CourseMaterial::where('course_id', $course->id)->orderBy('ordering')->get();
-        if($materials) {
-            foreach ($materials as $material) {
-                $courseMaterials[] = array('id' => $material->id, 'title' => $material->title);
-            }
+        $user = Auth::user();
+        $subscriptions = $user->activeSubscriptions();
+        $course->access = false;
+        if($subscriptions->exists()) $course->access = true;
+        $i = 0;
+        foreach ($course->lessons as $lesson) {
+            $lesson->access = true;
+            if(!$subscriptions->exists() && $i > 1) $lesson->access = false;
+            $i++;
         }
-        $course->materials = $courseMaterials;
-
         return $course;
     }
 
