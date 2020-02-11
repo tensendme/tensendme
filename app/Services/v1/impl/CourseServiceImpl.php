@@ -41,7 +41,7 @@ class CourseServiceImpl implements CourseService
 
         $courses= Course::hydrate($courses->items());
         foreach ($courses as $course) {
-             $course->lesson_count = $course->materials->count();
+             $course->lessons_count = $course->materials->count();
              $count = 0;
              foreach ($course->materials as $material) {
                  $passing = Passing::where('course_material_id', $material->id)->where('user_id', $user->id)->first();
@@ -49,7 +49,7 @@ class CourseServiceImpl implements CourseService
                      $count++;
                  }
              }
-             $course->lesson_passing_count = $count;
+             $course->lessons_passing_count = $count;
              $course->makeHidden('materials');
         }
         return $courses;
