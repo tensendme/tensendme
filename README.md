@@ -610,47 +610,40 @@ password: tensendme2020n
 
     RESPONSE
     {
-        "courses": {
-            "current_page": 1,
-            "data": [
-                {
-                    "id": 1,
-                    "category_id": 1,
-                    "title": "Матем",
-                    "description": "ewf",
-                    "image_path": "/courses/Матем1579438457.jpg",
-                    "is_visible": 1,
-                    "scale": 0,
-                    "view_count": 0,
-                    "created_at": "2020-01-19 18:54:17",
-                    "updated_at": "2020-01-19 18:54:17",
-                    "deleted_at": null
-                },
-                {
-                    "id": 3,
-                    "category_id": 1,
-                    "title": "уцк",
-                    "description": "цук",
-                    "image_path": "/courses/уцк1579603570.png",
-                    "is_visible": 1,
-                    "scale": 0,
-                    "view_count": 0,
-                    "created_at": "2020-01-21 16:46:10",
-                    "updated_at": "2020-01-21 16:46:10",
-                    "deleted_at": null
-                }
-            ],
-            "first_page_url": "http://localhost:8000/api/v1/user/courses?page=1",
-            "from": 1,
-            "last_page": 1,
-            "last_page_url": "http://localhost:8000/api/v1/user/courses?page=1",
-            "next_page_url": null,
-            "path": "http://localhost:8000/api/v1/user/courses",
-            "per_page": "2",
-            "prev_page_url": null,
-            "to": 2,
-            "total": 2
-        },
+        "courses": [
+            {
+                "id": 2,
+                "category_id": 1,
+                "title": "Как заработать миллион за час",
+                "description": "Как заработать миллион за час",
+                "image_path": "images/courses/1579896428402653d0-731d-47f6-8263-a4ad6b214c05mazda.jpg",
+                "is_visible": 1,
+                "scale": 3,
+                "view_count": 0,
+                "created_at": "2020-01-21 23:44:24",
+                "updated_at": "2020-02-07 12:49:37",
+                "deleted_at": null,
+                "author_id": null,
+                "lessons_count": 4,
+                "lessons_passing_count": 1
+            },
+            {
+                "id": 1,
+                "category_id": 1,
+                "title": "dsffdss",
+                "description": "dvcxv",
+                "image_path": "images/courses/1579933828738c3e35-8fe4-4473-a89a-7878fd810048CRAZY.jpg",
+                "is_visible": 1,
+                "scale": 3,
+                "view_count": 0,
+                "created_at": "2020-01-19 20:11:06",
+                "updated_at": "2020-02-07 12:49:30",
+                "deleted_at": null,
+                "author_id": null,
+                "lessons_count": 1,
+                "lessons_passing_count": 1
+            }
+        ],
         "success": true
     }
 ```
