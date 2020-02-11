@@ -13,6 +13,9 @@ use App\Services\v1\FileService;
 use App\Utils\StaticConstants;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
+use FFMpeg\FFMpeg;
+use FFMpeg\FFProbe;
+use FFMpeg\Coordinate\TimeCode;
 
 class FileServiceImpl implements FileService
 {
@@ -32,6 +35,33 @@ class FileServiceImpl implements FileService
         }
 
         return false;
+    }
+
+    public function courseMaterialStore(UploadedFile $video, string $path) {
+        $material = (object) array();
+        $videoPath = time() . ((string)Str::uuid()) . $video->getClientOriginalName();
+        $videoFullPath = $video->move($path, $videoPath);
+        $material->path = $videoFullPath;
+
+        $ffprobe = FFProbe::create();;
+        $duration = $ffprobe
+            ->streams($videoFullPath)
+            ->videos()
+            ->first()
+            ->get('duration');
+
+        $sec = $duration * 35/100;
+        $thumbnail = 'images/materials/' . time() . ((string)Str::uuid()) . 'preview.png';
+
+        $ffmpeg = FFMpeg::create();
+        $video = $ffmpeg->open($videoFullPath);
+        $frame = $video->frame(TimeCode::fromSeconds($sec));
+        $frame->save($thumbnail);
+
+
+        $material->img = $thumbnail;
+        $material->duration = $duration;
+        return $material;
     }
 
     public function updateWithRemoveOrStore(UploadedFile $image, string $path, string $oldFilePath = null): string

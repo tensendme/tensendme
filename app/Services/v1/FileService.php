@@ -20,4 +20,6 @@ interface FileService
 
     public function updateWithRemoveOrStore(UploadedFile $image, string $path, string $oldFilePath = null): string;
 
+    public function courseMaterialStore(UploadedFile $video, string $path);
+
 }

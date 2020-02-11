@@ -35,13 +35,19 @@ class CourseMaterialController extends WebBaseController
     }
 
     public function store(CourseMaterialStoreAndUpdateRequest $request, $course_id) {
-        $path = StaticConstants::DEFAULT_VIDEO;
+        $path = (object) array();
+        $path->path = StaticConstants::DEFAULT_VIDEO;
+        $path->img = StaticConstants::DEFAULT_IMAGE;
+        $path->duration = 0;
         if ($request->file('video')) {
-            $path = $this->fileService->store($request->file('video'), CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY);
+            $path = $this->fileService->courseMaterialStore($request->file('video'),
+                CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY);
         }
         $material = CourseMaterial::create([
             'title' => $request->title,
-            'video_path' => $path,
+            'video_path' => $path->path,
+            'duration_time' => $path->duration,
+            'img_path' => $path->img,
             'course_id' => $course_id,
             'ordering' => $request->ordering
 
