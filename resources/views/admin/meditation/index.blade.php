@@ -51,7 +51,9 @@
 
                     </table>
                 </div>
-
+                <div class="card-footer">
+                    {{ $meditations->links() }}
+                </div>
             </div>
         </div>
     </div>
