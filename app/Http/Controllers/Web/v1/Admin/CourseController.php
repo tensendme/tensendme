@@ -32,7 +32,9 @@ class CourseController extends WebBaseController
 
     public function create()
     {
-        $categories = Category::where('category_type_id', 1)->get();
+        $categories = Category::where('category_type_id', 1)
+            ->doesntHave('childrens')
+            ->get();
         $course = new Course();
         return view('admin.course.create', compact('categories', 'course'));
     }
@@ -58,7 +60,9 @@ class CourseController extends WebBaseController
 
     public function edit($id)
     {
-        $categories = Category::where('category_type_id', 1)->get();
+        $categories = Category::where('category_type_id', 1)
+            ->doesntHave('childrens')
+            ->get();
         $course = Course::findOrFail($id);
         return view('admin.course.edit', compact('categories', 'course'));
 

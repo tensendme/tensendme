@@ -60,7 +60,6 @@
                                         Автора нет!
                                     @endif
                                 </td>
-                                <td>{{$course->view_count}}</td>
                                 <td>{{$course->created_at}}</td>
                                 <td>
                                     <a class="btn btn-outline-primary mb-2 "

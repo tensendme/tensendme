@@ -28,7 +28,9 @@ class MeditationController extends WebBaseController
     }
 
     public function create(){
-        $categories = Category::where('category_type_id', 2)->get();
+        $categories = Category::where('category_type_id', 2)
+            ->doesntHave('childrens')
+            ->get();
         $meditation = new Meditation();
         return view('admin.meditation.create', compact('categories', 'meditation'));
     }
@@ -50,7 +52,9 @@ class MeditationController extends WebBaseController
     }
 
     public function edit($id) {
-        $categories = Category::where('category_type_id', 2)->get();
+        $categories = Category::where('category_type_id', 2)
+            ->doesntHave('childrens')
+            ->get();
         $meditation = Meditation::findOrFail($id);
         return view('admin.meditation.edit', compact('categories', 'meditation'));
 
