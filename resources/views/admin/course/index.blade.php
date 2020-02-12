@@ -27,6 +27,8 @@
                             <th scope="col" class="border-0">Виден</th>
                             <th scope="col" class="border-0">Рейтинг</th>
                             <th scope="col" class="border-0">Просмотрено</th>
+                            <th scope="col" class="border-0">Уроков</th>
+                            <th scope="col" class="border-0">Автор</th>
                             <th scope="col" class="border-0">Создан</th>
                             <th scope="col" class="border-0">Действия</th>
                         </tr>
@@ -49,6 +51,15 @@
                                     @endif
                                 </td>
                                 <td>{{$course->scale}}</td>
+                                <td>{{$course->view_count}}</td>
+                                <td>{{$course->lessons->count()}}</td>
+                                <td>
+                                    @if($course->author)
+                                        {{$course->author->name}}
+                                    @else
+                                        Автора нет!
+                                    @endif
+                                </td>
                                 <td>{{$course->view_count}}</td>
                                 <td>{{$course->created_at}}</td>
                                 <td>

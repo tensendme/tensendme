@@ -16,6 +16,7 @@
                     <h6 class="m-0">Редактирование урока</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
+                    <img class="default_image_size" src="{{asset($material->img_path)}}" alt="Превью урока">
                     <form method="post" action="{{route('course.material.update', ['id' => $material->id])}}" enctype="multipart/form-data">
                         @include('admin.course.materials.form')
                     </form>

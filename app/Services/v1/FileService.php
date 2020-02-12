@@ -22,4 +22,6 @@ interface FileService
 
     public function courseMaterialStore(UploadedFile $video, string $path);
 
+    public function courseMaterialUpdate(UploadedFile $video, string $path, string $oldFilePath = null, string $oldImagePath);
+
 }

@@ -76,14 +76,19 @@ class CourseMaterialController extends WebBaseController
 
     public function update($id, CourseMaterialStoreAndUpdateRequest $request) {
         $material = CourseMaterial::findOrFail($id);
-        $path = $material->video_path;
+        $path = (object) array();
+        $path->path = $material->video_path;
+        $path->img = $material->img_path;
+        $path->duration = $material->duration;
         if($request->file('video')) {
-            $path = $this->fileService->updateWithRemoveOrStore($request->file('video'),
-                CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY, $path);
+            $path = $this->fileService->courseMaterialUpdate($request->file('video'),
+                CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY, $path->path, $path->img);
         }
         $material->update([
             'title' => $request->title,
-            'video_path' => $path,
+            'video_path' => $path->path,
+            'duration_time' => $path->duration,
+            'img_path' => $path->img,
             'ordering' => $request->ordering
         ]);
         $course_id = $material->course->id;

@@ -36,7 +36,7 @@ class CategoryController extends WebBaseController
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('parent_category_id', null)->get();
         $category = new Category();
         $categoryTypes = CategoryType::all();
         return view('admin.category.create', compact('categories', 'category', 'categoryTypes'));
@@ -50,6 +50,10 @@ class CategoryController extends WebBaseController
             $path = StaticConstants::DEFAULT_IMAGE;
             if ($request->file('logo')) {
                 $path = $this->fileService->store($request->file('logo'), Category::DEFAULT_RESOURCE_DIRECTORY);
+            }
+            $checkForType = Category::find($request->parent_category_id);
+            if($checkForType->category_type_id != $request->category_type_id) {
+                throw new WebServiceErroredException(trans('admin.error') . 'Категория не та!');
             }
             Category::create([
                 'parent_category_id' => $request->parent_category_id,
@@ -74,9 +78,10 @@ class CategoryController extends WebBaseController
 
     public function edit($id)
     {
-        $categories = Category::where('id', '<>', $id)->get();
         $category = Category::findOrFail($id);
-        $categoryTypes = CategoryType::all();
+        $categories = Category::where('id', '<>', $id)->where('parent_category_id', null)
+            ->where('category_type_id', $category->category_type_id)->get();
+        $categoryTypes = CategoryType::where('id', $category->category_type_id)->get();
         return view('admin.category.edit', compact('categories', 'category', 'categoryTypes'));
 
     }
@@ -89,10 +94,14 @@ class CategoryController extends WebBaseController
             $path = $this->fileService->updateWithRemoveOrStore($request->file('logo'),
                 Category::DEFAULT_RESOURCE_DIRECTORY, $path);
         }
+
+        $checkForType = Category::find($request->parent_category_id);
+        if($checkForType->category_type_id != $category->category_type_id) {
+            throw new WebServiceErroredException(trans('admin.error') . 'Категория не та!');
+        }
             $category->update([
                 'parent_category_id' => $request->parent_category_id,
                 'name' => $request->name,
-                'category_type_id' => $request->category_type_id,
                 'img_path' => $path
             ]);
         $this->edited();

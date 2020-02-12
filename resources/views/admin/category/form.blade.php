@@ -50,7 +50,7 @@
                 @foreach($categories as $category)
                     <option {{$category->parent_category_id == $category->id ? ' selected ': ''}}
                             value="{{$category->id}}">
-                        {{$category->namde}}
+                        {{$category->name}}
                     </option>
                 @endforeach
             </select>

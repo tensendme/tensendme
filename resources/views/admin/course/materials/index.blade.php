@@ -27,9 +27,9 @@
                         <tr>
                             <th scope="col" class="border-0">#</th>
                             <th scope="col" class="border-0">Название</th>
-                            <th scope="col" class="border-0">Курс</th>
-                            <th scope="col" class="border-0">Видео</th>
+                            <th scope="col" class="border-0">Длительность видео</th>
                             <th scope="col" class="border-0">#Урок</th>
+                            <th scope="col" class="border-0">Добавлено</th>
                             <th scope="col" class="border-0">Действия</th>
                         </tr>
                         </thead>
@@ -38,12 +38,11 @@
                             <tr>
                                 <td>{{$material->id}}</td>
                                 <td>{{$material->title}}</td>
-                                <td>{{$material->course->title}}</td>
                                 <td>
                                 @if($material->video_path)
 {{--                                        <video src="{{asset($material->video_path)}}" controls--}}
 {{--                                               style="height: 130px; width: 150px"></video>--}}
-                                    <span class="text-success">Добавлено!</span>
+                                    <span class="text-accent">@if($material->duration_time) {{$material->duration_time}} секунд@endif</span>
                                 @else
                                         <span class="text-danger">Нет видео!</span>
                                 @endif

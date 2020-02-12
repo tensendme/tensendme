@@ -63,11 +63,24 @@ class FileServiceImpl implements FileService
         $frame = $video->frame(TimeCode::fromSeconds($sec));
         $frame->save($thumbnail);
 
-
         $material->img = $thumbnail;
         $material->duration = $duration;
         return $material;
     }
+
+    public function courseMaterialUpdate(UploadedFile $video, string $path, string $oldFilePath = null,
+                                         string $oldImagePath = null)
+    {
+        if ($oldFilePath && $oldFilePath != StaticConstants::DEFAULT_VIDEO) {
+            $this->remove($oldFilePath);
+        }
+        if ($oldImagePath && $oldImagePath != StaticConstants::DEFAULT_IMAGE) {
+            $this->remove($oldImagePath);
+        }
+
+        return $this->courseMaterialStore($video, $path);
+    }
+
 
     public function updateWithRemoveOrStore(UploadedFile $image, string $path, string $oldFilePath = null): string
     {

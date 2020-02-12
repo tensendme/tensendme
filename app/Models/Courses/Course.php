@@ -29,6 +29,6 @@ class Course extends Model
     public function lessons() {
         return $this->hasMany(CourseMaterial::class, 'course_id', 'id')
             ->orderBy('ordering', 'asc')
-            ->select(array('id', 'title', 'img_path', 'duration_time'));
+            ->select(array('id', 'title', 'img_path', 'duration_time', 'course_id'));
     }
 }

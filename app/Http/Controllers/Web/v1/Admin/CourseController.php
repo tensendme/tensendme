@@ -26,7 +26,7 @@ class CourseController extends WebBaseController
 
     public function index()
     {
-        $courses = Course::paginate(10);
+        $courses = Course::with(['author', 'lessons'])->paginate(10);
         return view('admin.course.index', compact('courses'));
     }
 
