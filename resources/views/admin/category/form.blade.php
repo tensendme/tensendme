@@ -47,10 +47,10 @@
         <div class="form-group">
             <select class="form-control" name="parent_category_id" id="parent_category_id">
                 <option value="">Выберите родителькую категории</option>
-                @foreach($categories as $category)
-                    <option {{$category->parent_category_id == $category->id ? ' selected ': ''}}
-                            value="{{$category->id}}">
-                        {{$category->name}}
+                @foreach($categories as $parentCategoryId)
+                    <option {{$category->parent_category_id == $parentCategoryId->id ? ' selected ': ''}}
+                            value="{{$parentCategoryId->id}}">
+                        {{$parentCategoryId->name}}
                     </option>
                 @endforeach
             </select>
