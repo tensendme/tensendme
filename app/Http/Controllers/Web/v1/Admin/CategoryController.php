@@ -51,9 +51,12 @@ class CategoryController extends WebBaseController
             if ($request->file('logo')) {
                 $path = $this->fileService->store($request->file('logo'), Category::DEFAULT_RESOURCE_DIRECTORY);
             }
-            $checkForType = Category::find($request->parent_category_id);
-            if($checkForType->category_type_id != $request->category_type_id) {
-                throw new WebServiceErroredException(trans('admin.error') . 'Категория не та!');
+
+            if($request->parent_category_id) {
+                $checkForType = Category::find($request->parent_category_id);
+                if ($checkForType->category_type_id != $request->category_type_id) {
+                    throw new WebServiceErroredException(trans('admin.error') . 'Категория не та!');
+                }
             }
             Category::create([
                 'parent_category_id' => $request->parent_category_id,
@@ -95,9 +98,11 @@ class CategoryController extends WebBaseController
                 Category::DEFAULT_RESOURCE_DIRECTORY, $path);
         }
 
-        $checkForType = Category::find($request->parent_category_id);
-        if($checkForType->category_type_id != $category->category_type_id) {
-            throw new WebServiceErroredException(trans('admin.error') . 'Категория не та!');
+        if($request->parent_category_id) {
+            $checkForType = Category::find($request->parent_category_id);
+            if ($checkForType->category_type_id != $category->category_type_id) {
+                throw new WebServiceErroredException(trans('admin.error') . 'Категория не та!');
+            }
         }
             $category->update([
                 'parent_category_id' => $request->parent_category_id,
