@@ -36,7 +36,7 @@ class FollowerServiceImpl implements FollowerService
         $follower = Follower::where('follower_user_id', $followerUser->id)->first();
         if($follower) throw new ApiServiceException(400, false, [
             'errors' => ['У вас уже существует подписка'],
-            'errorCode' => ErrorCode::RESOURCE_NOT_FOUND]);
+            'errorCode' => ErrorCode::ALREADY_EXISTS]);
 
         $level = $hostUser->level;
 

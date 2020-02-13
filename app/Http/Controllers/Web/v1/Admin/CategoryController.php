@@ -55,7 +55,7 @@ class CategoryController extends WebBaseController
             if($request->parent_category_id) {
                 $checkForType = Category::find($request->parent_category_id);
                 if ($checkForType->category_type_id != $request->category_type_id) {
-                    throw new WebServiceErroredException(trans('admin.error') . 'Категория не та!');
+                    throw new WebServiceErroredException(trans('admin.error') . ': ' . 'Категория не та!');
                 }
             }
             Category::create([

@@ -815,9 +815,9 @@ password: tensendme2020n
     }
 {
     "errors": [
-        "Такой подписки не существует!"
+        "Не хватает баланса"
     ],
-    "errorCode": 7,
+    "errorCode": 25,
     "success": false
 }
 
@@ -980,3 +980,30 @@ password: tensendme2020n
 }
 
 ```
+
+### Запрос на перевод денег
+#### URL: https://tensend.me/api/v1/follow
+
+```
+     POST Request:
+        {
+        	"promoСode" : "YN3KHL" promoCode user,
+        }
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "message": "Промокод принят успешно!",
+        "success": true
+    }
+{
+    "errors": [
+        "Не найден промо-код"
+    ],
+    "errorCode": 7,
+    "success": false
+    
+    ["У вас уже существует подписка"],
+    "errorCode": 20,
+    "success": false
+}

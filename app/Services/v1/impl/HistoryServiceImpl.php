@@ -22,14 +22,14 @@ use App\Services\v1\HistoryService;
 
 class HistoryServiceImpl implements HistoryService
 {
-    public function subscription($subscription)
+    public function subscription($subscription, $firstSubscription)
     {
         $user = User::find($subscription->user_id);
         $balance = $user->getBalance();
         $actualPrice = $subscription->actual_price;
 
         $following = Follower::where('follower_user_id', $user->id)->with('hostUser')->first();
-        if($following) {
+        if($following && $firstSubscription) {
             $hostRole = $following->hostUser->role_id;
             if($hostRole == Role::AUTHOR_ID) {
                 $amount = $subscription->actual_price * 80/100;

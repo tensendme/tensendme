@@ -58,9 +58,11 @@ class SubscriptionServiceImpl implements SubscriptionService
 //        $this->cloudPaymentService->getPay($user->id);
         DB::beginTransaction();
         $oldSubscription = Subscription::where('user_id', $user->id)->where('actual_price', '!=', 0)->get();
+        $firstSubscription = false;
         $price = $subscriptionType->price;
         if($oldSubscription->isEmpty()) {
             $price = $price * 80/100;
+            $firstSubscription = true;
         }
         try {
             $subscription = Subscription::create([
@@ -69,7 +71,7 @@ class SubscriptionServiceImpl implements SubscriptionService
                 'expired_at' => $date,
                 'actual_price' => $price
             ]);
-            $this->historyService->subscription($subscription);
+            $this->historyService->subscription($subscription, $firstSubscription);
             DB::commit();
             return "Успешно!";
         }

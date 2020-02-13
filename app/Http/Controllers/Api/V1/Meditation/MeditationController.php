@@ -27,4 +27,8 @@ class MeditationController extends ApiBaseController
         return $this->successResponse(['meditations' => $meditations]);
 
     }
+
+    public function getMeditation($id) {
+
+    }
 }

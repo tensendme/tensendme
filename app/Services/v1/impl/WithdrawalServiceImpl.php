@@ -35,7 +35,7 @@ class WithdrawalServiceImpl implements WithdrawalRequestService
         $balance = $user->getBalance();
         if($balance->balance<$amount) throw new ApiServiceException(400, false, [
             'errors' => [
-                'Не хватает суммы!'
+                'Не хватает баланса!'
             ],
             'errorCode' => ErrorCode::NOT_ENOUGH_BALANCE
         ]);
