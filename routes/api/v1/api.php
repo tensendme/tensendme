@@ -5,7 +5,6 @@ Route::group(['middleware' => 'api'], function () {
 
     //UNAUTHENTICATED
     Route::group(['namespace' => 'Auth'], function () {
-
         Route::post('/login', ['uses' => 'AuthController@login']);
         Route::post('/register', ['uses' => 'AuthController@register']);
         Route::post('/code/send', ['uses' => 'CodeController@sendCode']);
@@ -69,6 +68,24 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::group(['middleware' => 'auth:api'], function () {
             Route::post('/follow', ['uses' => 'FollowerController@follow']);
+        });
+    });
+
+    Route::group(['namespace' => 'CloudPayments'], function () {
+
+//        Route::group(['middleware' => 'auth:api'], function () {
+
+
+        Route::post('/3d/secure', ['uses' => 'PaymentController@send3dSecure']);
+        Route::group(['middleware' => 'auth:api'], function () {
+
+            Route::get('/pay', ['uses' => 'PaymentController@subscribe']);
+            Route::get('/saveCard', ['uses' => 'PaymentController@saveCard']);
+            Route::get('/user/cards/{id}', ['uses' => 'PaymentController@getCardsByUserId']);
+            Route::post('/save/transaction', ['uses' => 'PaymentController@saveTransaction']);
+            Route::post('/send/crypto', ['uses' => 'PaymentController@sendCrypto']);
+            Route::post('/card/pay', ['uses' => 'PaymentController@cardPay']);
+            Route::post('/delete/card/{id}', ['uses' => 'PaymentController@deleteCard']);
         });
     });
 

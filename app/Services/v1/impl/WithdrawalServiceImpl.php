@@ -20,12 +20,12 @@ use Auth;
 
 class WithdrawalServiceImpl implements WithdrawalRequestService
 {
-    protected $cloudPaymentService;
+
     protected $historyService;
 
-    public function __construct(PaymentService $cloudPaymentService, HistoryService $historyService)
+    public function __construct(HistoryService $historyService)
     {
-        $this->cloudPaymentService = $cloudPaymentService;
+
         $this->historyService = $historyService;
     }
 

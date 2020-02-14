@@ -19,6 +19,7 @@ class SubscriptionController extends ApiBaseController
     }
 
     public function subscribe($subscriptionTypeId) {
+
         return $this->successResponse(['message' => $this->subscriptionService->subscribe($subscriptionTypeId)]);
     }
 }

@@ -13,5 +13,6 @@ interface SubscriptionService
 {
     public function getSubscriptions();
     public function subscribe($subscriptionTypeId);
+    public function makeSubscription($subscriptionTypeId,$user);
     public function freeSubscribe($userId);
 }

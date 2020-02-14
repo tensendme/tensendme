@@ -75,16 +75,16 @@ class SystemServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('App\Services\v1\SubscriptionService', function ($app) {
-            return (new SubscriptionServiceImpl(new CloudPaymentServiceImpl(), new HistoryServiceImpl()));
+            return (new SubscriptionServiceImpl( new HistoryServiceImpl()));
         });
         $this->app->bind('App\Services\v1\PaymentService', function ($app) {
-            return (new CloudPaymentServiceImpl());
+            return (new CloudPaymentServiceImpl(new SubscriptionServiceImpl(new HistoryServiceImpl())));
         });
         $this->app->bind('App\Services\v1\HistoryService', function ($app) {
             return (new HistoryServiceImpl());
         });
         $this->app->bind('App\Services\v1\WithdrawalRequestService', function ($app) {
-            return (new WithdrawalServiceImpl(new CloudPaymentServiceImpl(), new HistoryServiceImpl()));
+            return (new WithdrawalServiceImpl( new HistoryServiceImpl()));
         });
 
 
@@ -101,7 +101,7 @@ class SystemServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('App\Services\v1\AuthService', function ($app) {
-            return (new AuthServiceImpl(new SubscriptionServiceImpl(new CloudPaymentServiceImpl(), new HistoryServiceImpl())));
+            return (new AuthServiceImpl(new SubscriptionServiceImpl( new HistoryServiceImpl())));
         });
 
         $this->app->bind('App\Services\v1\RatingService', function ($app) {

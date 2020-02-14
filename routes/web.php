@@ -46,6 +46,14 @@ Route::group(['namespace' => 'Web\v1'], function () {
     Route::get('/secure/config/optimize', ['uses' => 'ConfigController@optimize']);
     Route::get('/config/locale/{locale}', ['as' => 'locale', 'uses' => 'LocalizationController@index']);
 
+
+
+    Route::get('/pay', ['uses' => 'PaymentController@pay', 'as' => 'cryptogram']);
+    Route::get('/saveCard', ['uses' => 'PaymentController@saveCard', 'as' => 'saveCard']);
+    Route::get('/status', ['uses' => 'PaymentController@status', 'as' => 'transactionStatus']);
+    Route::get('/cardStatus', ['uses' => 'PaymentController@cardStatus', 'as' => 'cardStatus']);
+    Route::get('/testMobilka', ['uses' => 'PaymentController@test', 'as' => 'testMobilka']);
+
     Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
