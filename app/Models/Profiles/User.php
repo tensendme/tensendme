@@ -170,7 +170,9 @@ class User extends Authenticatable implements JWTSubject
             $random_string .= $random_character;
         }
 
-        return $random_string;
+        if($this->nickname)
+            return 'TS-'. $this->nickname . '-' .$random_string;
+        else return 'TS-'.$random_string;
     }
 
     public function level() {
