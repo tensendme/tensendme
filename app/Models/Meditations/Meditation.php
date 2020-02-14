@@ -24,4 +24,8 @@ class Meditation extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    public function themes() {
+        return $this->hasMany(Theme::class, 'meditation_id', 'id');
+    }
 }

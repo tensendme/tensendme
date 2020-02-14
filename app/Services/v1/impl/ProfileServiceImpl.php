@@ -58,6 +58,7 @@ class ProfileServiceImpl implements ProfileService
     {
         $user = Auth::user();
         $profile = (object) array();
+        $profile->id = $user->id;
         $profile->avatar = $user->image_path;
         $profile->name = $user->name;
         $profile->promoCode = $user->promo_code;
