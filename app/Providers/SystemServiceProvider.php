@@ -14,16 +14,16 @@ use App\Services\v1\impl\HistoryServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\MailServiceImpl;
 use App\Services\v1\impl\MaterialServiceImpl;
+use App\Services\v1\impl\MeditationServiceImpl;
+use App\Services\v1\impl\NewsServiceImpl;
+use App\Services\v1\impl\PromoCodeAnalyticServiceImpl;
 use App\Services\v1\impl\RatingServiceImpl;
 use App\Services\v1\impl\SmsServiceImpl;
-use App\Services\v1\impl\NewsServiceImpl;
-use App\Services\v1\impl\MeditationServiceImpl;
-
-
 use App\Services\v1\impl\StaticServiceImpl;
 use App\Services\v1\impl\SubscriptionServiceImpl;
 use App\Services\v1\impl\WithdrawalServiceImpl;
 use Illuminate\Support\ServiceProvider;
+
 
 class SystemServiceProvider extends ServiceProvider
 {
@@ -110,6 +110,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\FollowerService', function ($app) {
             return (new FollowerServiceImpl(new HistoryServiceImpl()));
+        });
+
+        $this->app->bind('App\Services\v1\PromoCodeAnalyticService', function ($app) {
+            return (new PromoCodeAnalyticServiceImpl());
         });
     }
 
