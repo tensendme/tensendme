@@ -6,10 +6,8 @@ namespace App\Services\v1\impl;
 
 use App\Exceptions\ApiServiceException;
 use App\Http\Errors\ErrorCode;
-use App\Models\Categories\RecommendedCategory;
 use App\Models\Courses\Course;
 
-use App\Models\Courses\CourseMaterial;
 use App\Models\Education\Passing;
 use App\Services\v1\CourseService;
 use Illuminate\Support\Facades\DB;
