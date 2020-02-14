@@ -31,7 +31,7 @@
             .catch(error => console.log('error', error));
 
     }
-    
+
     function submitForm1() {
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
