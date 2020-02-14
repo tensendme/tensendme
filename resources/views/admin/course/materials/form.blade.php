@@ -39,6 +39,4 @@
         <i class="material-icons md-12">check_circle</i>
     </button>
 </div>
-
-
 @include('admin.layouts.parts.error')
