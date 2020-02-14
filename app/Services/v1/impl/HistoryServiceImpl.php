@@ -18,11 +18,20 @@ use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Models\Subscriptions\Subscription;
 use App\Services\v1\HistoryService;
+use App\Services\v1\PromoCodeAnalyticService;
 
 
 class HistoryServiceImpl implements HistoryService
 {
-    public function subscription($subscription, $firstSubscription)
+
+    protected $promoCodeAnalyticService;
+
+    public function __construct(PromoCodeAnalyticService $promoCodeAnalyticService)
+    {
+        $this->promoCodeAnalyticService = $promoCodeAnalyticService;
+    }
+
+    public function subscription($subscription, $firstSubscription, $transactionId = null)
     {
         $user = User::find($subscription->user_id);
         $balance = $user->getBalance();
@@ -43,7 +52,7 @@ class HistoryServiceImpl implements HistoryService
                 'history_type_id' => HistoryType::FOLLOWER,
                 'amount' => $amount,
                 'subscription_id' => $subscription->id,
-                //'transaction_id' => '1' от банка что то должно быть
+                'transaction_id' => $transactionId
             ]);
             $hostBalance->balance = $hostBalance->balance + $amount;
             $hostBalance->save();
@@ -56,7 +65,10 @@ class HistoryServiceImpl implements HistoryService
             'subscription_id' => $subscription->id,
             //'transaction_id' => '1' от банка что то должно быть
         ]);
-
+        if($following) {
+            $this->promoCodeAnalyticService->makePurchased($following->hostUser->id,
+                $following->hostUser->promo_code, $following->follower_user_id);
+        }
     }
 
     public function withdrawalMake($withdrawal)

@@ -9,6 +9,7 @@
 namespace App\Services\v1\impl;
 
 use App\Exceptions\ApiServiceException;
+use App\Services\v1\PromoCodeAnalyticService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Errors\ErrorCode;
 use App\Models\Subscriptions\Subscription;
@@ -24,9 +25,8 @@ class SubscriptionServiceImpl implements SubscriptionService
 
     protected $historyService;
 
-    public function __construct( HistoryService $historyService)
+    public function __construct(HistoryService $historyService)
     {
-
         $this->historyService = $historyService;
     }
 
@@ -97,7 +97,7 @@ class SubscriptionServiceImpl implements SubscriptionService
     }
 
 
-    public function makeSubscription($subscriptionTypeId,$user)
+    public function makeSubscription($subscriptionTypeId, $user, $transactionId)
     {
         $subscriptionType = SubscriptionType::find($subscriptionTypeId);
         if (!$subscriptionType) throw new ApiServiceException(404, false, [
@@ -130,7 +130,7 @@ class SubscriptionServiceImpl implements SubscriptionService
                 'expired_at' => $date,
                 'actual_price' => $price
             ]);
-            $this->historyService->subscription($subscription, $firstSubscription);
+            $this->historyService->subscription($subscription, $firstSubscription, $transactionId);
             DB::commit();
             return "Успешно!";
         } catch (\Exception $exception) {
