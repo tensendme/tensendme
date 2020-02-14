@@ -31,12 +31,7 @@
             .catch(error => console.log('error', error));
 
     }
-</script>
-
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-
+    
     function submitForm1() {
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${token}`);
