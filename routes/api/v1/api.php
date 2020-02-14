@@ -106,6 +106,16 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('/set-device-token', ['uses' => 'AuthController@setDeviceToken']);
 
         });
+
+        Route::group(['namespace' => 'Profile'], function () {
+
+            Route::post('/profile/update', ['uses' => 'ProfileController@updateProfile']);
+            Route::post('/profile/avatar', ['uses' => 'ProfileController@changeAvatar']);
+            Route::get('/profile', ['uses' => 'ProfileController@myProfile']);
+
+        });
+
+
         Route::group(['namespace' => 'Course'], function () {
             Route::get('/users/courses', ['uses' => 'CourseController@getUserCourses']);
             Route::get('courses/{id}', ['uses' => 'CourseController@getById']);

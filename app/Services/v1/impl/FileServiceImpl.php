@@ -90,5 +90,13 @@ class FileServiceImpl implements FileService
         return $this->store($image, $path);
     }
 
+    public function avatarUpdateAndStore(UploadedFile $image, string $path, string $oldFilePath = null): string
+    {
+        if ($oldFilePath && $oldFilePath != StaticConstants::DEFAULT_AVATAR) {
+            $this->remove($oldFilePath);
+        }
+        return $this->store($image, $path);
+    }
+
 
 }

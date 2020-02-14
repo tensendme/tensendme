@@ -14,6 +14,7 @@ use App\Services\v1\impl\HistoryServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\MailServiceImpl;
 use App\Services\v1\impl\MaterialServiceImpl;
+use App\Services\v1\impl\ProfileServiceImpl;
 use App\Services\v1\impl\RatingServiceImpl;
 use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
@@ -110,6 +111,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\FollowerService', function ($app) {
             return (new FollowerServiceImpl(new HistoryServiceImpl()));
+        });
+
+        $this->app->bind('App\Services\v1\ProfileService', function ($app) {
+            return (new ProfileServiceImpl(new FileServiceImpl()));
         });
     }
 

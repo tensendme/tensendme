@@ -16,6 +16,7 @@ class User extends Authenticatable implements JWTSubject
 
     public const PLATFORM_IOS = "IOS";
     public const PLATFORM_ANDROID = "ANDROID";
+    public const DEFAULT_RESOURCE_DIRECTORY = 'images/avatars';
 
     /**
      * The attributes that are mass assignable.

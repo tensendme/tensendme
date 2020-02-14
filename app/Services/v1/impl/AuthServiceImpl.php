@@ -21,6 +21,7 @@ use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Services\v1\AuthService;
 use App\Services\v1\SubscriptionService;
+use App\Utils\StaticConstants;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
@@ -88,6 +89,7 @@ class AuthServiceImpl implements AuthService
         $user->role_id = Role::USER_ID;
         $user->name = $request->name;
         $user->nickname = $request->nickname;
+        $user->image_path = StaticConstants::DEFAULT_AVATAR;
         $user->promo_code = $user->promoCode();
         $user->city_id = $request->city_id ? $request->city_id : 1;
         if ($request->has('phone')) {

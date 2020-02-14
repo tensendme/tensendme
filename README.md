@@ -981,7 +981,7 @@ password: tensendme2020n
 
 ```
 
-### Запрос на перевод денег
+### Запрос на подписку через промокод
 #### URL: https://tensend.me/api/v1/follow
 
 ```
@@ -1007,3 +1007,80 @@ password: tensendme2020n
     "errorCode": 20,
     "success": false
 }
+```
+
+### Запрос на профиль
+#### URL: https://tensend.me/api/v1/profile
+
+```
+     GET Request
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "profile": {
+            "avatar": "images/avatars/1581675506a3d1bf1e-fc94-4c1e-b4f7-65caf2789d08Снимок экрана 2020-02-05 в 20.50.56.png",
+            "name": "Test",
+            "promoCode": "TS-Test1-KUAN7U",
+            "created": "2020-02-03T13:41:49.000000Z",
+            "level": "Start Level",
+            "levelImage": "images/levels/15808911149d978361-fd53-44fa-a55d-f5f56b5ebf26тест.jpg",
+            "discountPercentage": 10,
+            "balance": 500,
+            "city": "Алматы",
+            "role": "Пользователь",
+            "followers_count": 0,
+            "nickname": "Test1",
+            "permission": true,
+            "subscriptions": [
+                {
+                    "subscriptionType": "Bekzat",
+                    "price": 34594.4,
+                    "expiredAt": "2020-03-14 18:57:01"
+                },
+                {
+                    "subscriptionType": "Bekzat",
+                    "price": 43243,
+                    "expiredAt": "2020-04-13 18:57:01"
+                }
+            ]
+        },
+        "success": true
+    }
+```
+
+### Запрос редактирование профиля
+#### URL: https://tensend.me/api/v1/profile/update
+
+```
+     POST Request:
+        {
+        	"name" : "Test" name and surname with one column,
+        	"nickname" : "Test" String,
+        	"cityId" : 1 numeric,
+        }
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "message": "Профиль изменен успешно!",
+        "success": true
+    }
+```
+### Запрос поменять аватар
+#### URL: https://tensend.me/api/v1/profile/avatar
+
+```
+     POST Request:
+        {
+        	"avatar" : image
+        	
+        }
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "message": "Аватар изменен успешно!",
+        "success": true
+    }
+```

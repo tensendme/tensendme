@@ -13,4 +13,5 @@ class StaticConstants
 {
     public const DEFAULT_IMAGE = 'images/default.png';
     public const DEFAULT_VIDEO = 'videos/default.mp4';
+    public const DEFAULT_AVATAR = 'images/user-default.png';
 }
