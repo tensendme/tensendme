@@ -63,7 +63,7 @@ class HistoryServiceImpl implements HistoryService
             'history_type_id' => HistoryType::SUBSCRIPTION,
             'amount' => $actualPrice,
             'subscription_id' => $subscription->id,
-            //'transaction_id' => '1' от банка что то должно быть
+            'transaction_id' => $transactionId
         ]);
         if($following) {
             $this->promoCodeAnalyticService->makePurchased($following->hostUser->id,
