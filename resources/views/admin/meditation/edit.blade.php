@@ -16,7 +16,7 @@
                     <h6 class="m-0">Редактирование медитации</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
-                    <img src="{{asset($meditation->img_path)}}" style="width: 300px; height: 280px">
+                    <img class="default_image_size" src="{{asset($meditation->img_path)}}">
                     <form method="post" action="{{route('meditation.update', ['id' => $meditation->id])}}" enctype="multipart/form-data">
                         @include('admin.meditation.form')
                     </form>

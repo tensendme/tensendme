@@ -76,7 +76,7 @@ class CourseServiceImpl implements CourseService
         $i = 0;
         foreach ($course->lessons as $lesson) {
             $lesson->access = true;
-            if(!$subscriptions->exists() && $i > 1) $lesson->access = false;
+            if(!$subscriptions->exists() && $i > 2) $lesson->access = false;
             $i++;
         }
         return $course;

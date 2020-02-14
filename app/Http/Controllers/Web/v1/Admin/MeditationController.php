@@ -23,7 +23,7 @@ class MeditationController extends WebBaseController
     }
 
     public function index() {
-        $meditations = Meditation::paginate(10);
+        $meditations = Meditation::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.meditation.index', compact('meditations'));
     }
 
