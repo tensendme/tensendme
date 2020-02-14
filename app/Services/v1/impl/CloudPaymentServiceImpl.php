@@ -199,7 +199,8 @@ class CloudPaymentServiceImpl implements PaymentService
                 'external_status' => $external_status,
                 'currency' => $currency]);
             $transaction_id = $transaction->id;
-            $this->subscriptionService->subscribe($subscription_type_id);
+            $user = Auth::user();
+            $this->subscriptionService->makeSubscription($subscription_type_id,$user,$transaction_id);
             $user_id = $transaction->user_id;
 
             if (Card::where('token', $response->Model->Token)->first() == null) {
