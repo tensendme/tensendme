@@ -20,6 +20,9 @@
                     <form method="post" action="{{route('course.material.update', ['id' => $material->id])}}" enctype="multipart/form-data">
                         @include('admin.course.materials.form')
                     </form>
+                    @if($material->video_path)
+                        <video src="{{asset($material->video_path)}}" controls style="height: 350px; width: 700px"></video>
+                    @endif
                 </div>
             </div>
         </div>
