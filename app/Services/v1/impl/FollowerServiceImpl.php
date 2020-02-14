@@ -26,15 +26,16 @@ class FollowerServiceImpl implements FollowerService
     {
         $this->historyService = $historyService;
     }
+
     public function follow($promoCode)
     {
         $followerUser = Auth::user();
         $hostUser = User::where('promo_code', $promoCode)->first();
-        if(!$hostUser) throw new ApiServiceException(404, false, [
+        if (!$hostUser) throw new ApiServiceException(404, false, [
             'errors' => ['Не найден промо-код'],
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND]);
         $follower = Follower::where('follower_user_id', $followerUser->id)->first();
-        if($follower) throw new ApiServiceException(400, false, [
+        if ($follower) throw new ApiServiceException(400, false, [
             'errors' => ['У вас уже существует подписка'],
             'errorCode' => ErrorCode::ALREADY_EXISTS]);
 
@@ -52,9 +53,9 @@ class FollowerServiceImpl implements FollowerService
         //$level->time должно быть вместо статичной времени
         $followers = $hostUser->followers;
         $followersCount = $followers->where('level_id', $level->id)->where('created_at', '>', $date)->count();
-        if($followersCount == $level->end_count) {
+        if ($followersCount == $level->end_count) {
             $level = Level::where('start_count', $level->end_count)->first();
-            if($level) {
+            if ($level) {
                 $hostUser->level_id = $level->id;
                 $hostUser->save();
                 // Congratulations Push

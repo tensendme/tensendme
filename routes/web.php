@@ -25,8 +25,6 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
     Route::post('login', ['as' => 'login.post', 'uses' => 'LoginController@login']);
     Route::post('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
-
-
     Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'ForgotPasswordController@showLinkRequestForm']);
     Route::post('password/email', ['as' => 'password.email', 'uses' => 'ForgotPasswordController@sendResetLinkEmail']);
     Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'ResetPasswordController@showResetForm']);
@@ -36,6 +34,8 @@ Route::group(['namespace' => 'Auth'], function () {
 
 Route::group(['namespace' => 'Web\v1'], function () {
     Route::get('/', ['as' => 'welcome', 'uses' => 'HomeController@welcome']);
+
+    Route::get('/promo-codes/{promoCode}', ['as' => 'promo-code.index', 'uses' => 'HomeController@promoCode']);
 
     Route::get('/secure/config/migrate-refresh', ['uses' => 'ConfigController@migrateRefresh']);
     Route::get('/secure/config/migrate', ['uses' => 'ConfigController@migrate']);

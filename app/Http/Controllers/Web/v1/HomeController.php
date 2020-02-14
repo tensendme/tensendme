@@ -8,9 +8,21 @@ use App\Models\Profiles\User;
 use App\Models\Rating;
 use App\Models\Subscriptions\Subscription;
 use App\Models\Subscriptions\SubscriptionType;
+use App\Services\v1\PromoCodeAnalyticService;
 
 class HomeController extends WebBaseController
 {
+
+    protected $promoCodeService;
+
+    /**
+     * HomeController constructor.
+     * @param $promoCodeService
+     */
+    public function __construct(PromoCodeAnalyticService $promoCodeService)
+    {
+        $this->promoCodeService = $promoCodeService;
+    }
 
 
     public function index()
@@ -28,4 +40,14 @@ class HomeController extends WebBaseController
         return view('welcome');
     }
 
+    public function promoCode($promoCode)
+    {
+
+        dd($this->promoCodeService->analyze(1));
+        $user = User::where('promo_code', $promoCode)->first();
+        if ($user) {
+            $this->promoCodeService->makePassed($user->id, $promoCode);
+        }
+        return view('promo-code', compact('promoCode', 'user'));
+    }
 }

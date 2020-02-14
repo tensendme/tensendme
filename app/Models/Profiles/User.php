@@ -8,6 +8,7 @@ use App\Models\Histories\Follower;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -102,23 +103,27 @@ class User extends Authenticatable implements JWTSubject
         return $this->role_id == Role::USER_ID;
     }
 
-    public function lastSubscription() {
+    public function lastSubscription()
+    {
         return Subscription::where('user_id', $this->id)->where('expired_at', '>', now())
             ->orderBy('id', 'desc')->first();
     }
 
-    public function activeSubscriptions() {
+    public function activeSubscriptions()
+    {
         return $this->hasMany(Subscription::class, 'user_id', 'id')
             ->where('expired_at', '>', now());
     }
 
-    public function subscriptions() {
+    public function subscriptions()
+    {
         return $this->hasMany(Subscription::class, 'user_id', 'id');
     }
 
-    public function getBalance() {
+    public function getBalance()
+    {
         $balance = $this->hasOne(Balance::class, 'user_id', 'id')->first();
-        if(!$balance) {
+        if (!$balance) {
             $balance = Balance::create([
                 'user_id' => $this->id,
                 'balance' => 0
@@ -127,13 +132,15 @@ class User extends Authenticatable implements JWTSubject
         return $balance;
     }
 
-    public function balance() {
+    public function balance()
+    {
         return $this->hasOne(Balance::class, 'user_id', 'id');
     }
 
-    public function forMe($size) {
+    public function forMe($size)
+    {
         $recommendedCategories = RecommendedCategory::where('user_id', $this->id)->get();
-        if($recommendedCategories) {
+        if ($recommendedCategories) {
             $categoryIds = $recommendedCategories->pluck('category_id')->toArray();
             $courses = Course::whereIn('category_id', $categoryIds)->where('is_visible', 1)
                 ->orderBy('scale', 'desc')
@@ -141,8 +148,7 @@ class User extends Authenticatable implements JWTSubject
                 ->paginate($size ? $size : 10);
 //            $courses = Course::where('is_visible', 1)->paginate($size ? $size : 10);
 
-        }
-        else {
+        } else {
             $courses = Course::where('is_visible', 1)
                 ->orderBy('scale', 'desc')
                 ->with('author')
@@ -151,10 +157,11 @@ class User extends Authenticatable implements JWTSubject
         return $courses;
     }
 
-    public function promoCode() {
+    public function promoCode()
+    {
         $promoCode = null;
         $user = true;
-        while($user) {
+        while ($user) {
             $promoCode = $this->generatePromoCode();
             $user = User::where('promo_code', $promoCode)->first();
         }
@@ -162,11 +169,12 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
-    public function generatePromoCode() {
+    public function generatePromoCode()
+    {
         $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $input_length = strlen($permitted_chars);
         $random_string = '';
-        for($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $random_character = $permitted_chars[mt_rand(0, $input_length - 1)];
             $random_string .= $random_character;
         }
@@ -176,19 +184,46 @@ class User extends Authenticatable implements JWTSubject
         else return 'TS-'.$random_string;
     }
 
-    public function level() {
+    public function level()
+    {
         return $this->hasOne(Level::class, 'id', 'level_id');
     }
 
-    public function city() {
+    public function city()
+    {
         return $this->hasOne(City::class, 'id', 'city_id');
     }
 
-    public function role() {
+    public function role()
+    {
         return $this->hasOne(Role::class, 'id', 'role_id');
     }
 
-    public function followers() {
+    public function followers()
+    {
         return $this->hasMany(Follower::class, 'host_user_id', 'id');
+    }
+
+
+    public function analyze($dateStart = null, $dateFinish = null)
+    {
+        if ($this->id) {
+            return [];
+        }
+        $query = DB::table('promo_code_analytics')
+            ->select('type', DB::raw('count(id) as count'))
+            ->groupBy('type')
+            ->where('host_user_id', $this->id);
+
+        if ($dateStart) {
+            $query->where('created_at', '>=', $dateStart);
+        }
+
+        if ($dateFinish) {
+            $query->where('created_at', '<=', $dateFinish);
+        }
+
+        $result = $query->get();
+        return $result;
     }
 }
