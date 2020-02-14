@@ -109,7 +109,7 @@ class SystemServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('App\Services\v1\FollowerService', function ($app) {
-            return (new FollowerServiceImpl(new HistoryServiceImpl()));
+            return (new FollowerServiceImpl(new HistoryServiceImpl(), new PromoCodeAnalyticServiceImpl()));
         });
 
         $this->app->bind('App\Services\v1\ProfileService', function ($app) {

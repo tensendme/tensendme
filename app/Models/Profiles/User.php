@@ -207,7 +207,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function analyze($dateStart = null, $dateFinish = null)
     {
-        if ($this->id) {
+        if (!$this->id) {
             return [];
         }
         $query = DB::table('promo_code_analytics')

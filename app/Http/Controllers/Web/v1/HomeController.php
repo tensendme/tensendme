@@ -43,7 +43,6 @@ class HomeController extends WebBaseController
     public function promoCode($promoCode)
     {
 
-        dd($this->promoCodeService->analyze(1));
         $user = User::where('promo_code', $promoCode)->first();
         if ($user) {
             $this->promoCodeService->makePassed($user->id, $promoCode);

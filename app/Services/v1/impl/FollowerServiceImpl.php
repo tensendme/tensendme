@@ -15,16 +15,19 @@ use App\Models\Profiles\Level;
 use App\Models\Profiles\User;
 use App\Services\v1\FollowerService;
 use App\Services\v1\HistoryService;
+use App\Services\v1\PromoCodeAnalyticService;
 use Auth;
 use DateTime;
 
 class FollowerServiceImpl implements FollowerService
 {
     protected $historyService;
-
-    public function __construct(HistoryService $historyService)
+    protected $promoCodeAnalyticService;
+    public function __construct(HistoryService $historyService,
+                                PromoCodeAnalyticService $promoCodeAnalyticService)
     {
         $this->historyService = $historyService;
+        $this->promoCodeAnalyticService = $promoCodeAnalyticService;
     }
 
     public function follow($promoCode)
@@ -34,6 +37,11 @@ class FollowerServiceImpl implements FollowerService
         if (!$hostUser) throw new ApiServiceException(404, false, [
             'errors' => ['Не найден промо-код'],
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND]);
+        if($followerUser->id == $hostUser->id) {
+            throw new ApiServiceException(401, false, [
+                'errors' => ['Собственный промо-код невозможно подписать'],
+                'errorCode' => ErrorCode::INVALID_ARGUMENT]);
+        }
         $follower = Follower::where('follower_user_id', $followerUser->id)->first();
         if ($follower) throw new ApiServiceException(400, false, [
             'errors' => ['У вас уже существует подписка'],
@@ -61,6 +69,8 @@ class FollowerServiceImpl implements FollowerService
                 // Congratulations Push
             }
         }
+
+        $this->promoCodeAnalyticService->makeInstalled($hostUser->id, $hostUser->promo_code, $followerUser->id);
         return "Промо код принят успешно!";
     }
 

@@ -10,7 +10,7 @@ class FollowerRequest extends ApiBaseRequest
     public function injectedRules()
     {
         return [
-            'promoCode' => ['required', 'string', 'max:6', 'min:6'],
+            'promoCode' => ['required', 'string', 'max:30', 'min:8'],
         ];
     }
 }
