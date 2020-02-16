@@ -1084,3 +1084,35 @@ password: tensendme2020n
         "success": true
     }
 ```
+
+### Запрос на медитацию
+#### URL: https://tensend.me/api/v1/meditation/{id}
+
+```
+     GET Request
+        Query Parameter
+        ?languageId = 1 || 2 по дефолту можно не передавать
+        1 - Русский
+        2 - Казахский 
+        Default = 2
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+    "meditation": {
+        "name": "Сенімділік",
+        "description": "апапапа",
+        "duration_time": 8,
+        "img_path": "images/meditations/15816269210b8125b4-33c6-4be9-9570-f2f3087e5d0dСнимок экрана 2020-01-18 в 21.44.37.png",
+        "access": true,
+        "audios": [
+            {
+                "audio_path": "audios/meditations/1581626968fa6d346b-4539-4532-bd81-f7e1a4910a38Сенімділік медитациясы.mp3",
+                "title": "Сенімділік",
+                "access": true
+            }
+        ]
+    },
+    "success": true
+}
+```
