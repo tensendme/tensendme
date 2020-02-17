@@ -260,7 +260,7 @@ class CloudPaymentServiceImpl implements PaymentService
                 'currency' => $currency]);
             $transaction_id = $transaction->id;
             $user_id = $transaction->user_id;
-            $external_transaction_id = $transaction_id->order_id;
+            $external_transaction_id = $transaction->order_id;
 
             if (Card::where('token', $response->Model->Token)->first() == null) {
                 Card::create([
