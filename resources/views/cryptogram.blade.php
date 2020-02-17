@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <head>
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
     <script src="https://widget.cloudpayments.ru/bundles/checkout"></script>
     <script
         src="https://code.jquery.com/jquery-3.4.1.js"

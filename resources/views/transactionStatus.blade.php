@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title>Status</title>
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
 </head>
 <body>
 <div class="card-body p-0 pb-3 text-center">

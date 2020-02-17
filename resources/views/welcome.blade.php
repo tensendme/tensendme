@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('front/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('front/css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('front/css/bootstrap-datepicker.css')}}">
-
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
 
     <link rel="stylesheet" href="{{asset('front/fonts/flaticon/font/flaticon.css')}}">
 

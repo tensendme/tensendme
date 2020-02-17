@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="yandex-verification" content="a8e58e23cec0472e"/>
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet"
           href="{{asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/styles/fonts.css')}}">
