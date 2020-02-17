@@ -66,12 +66,10 @@ class CloudPaymentServiceImpl implements PaymentService
         return "Карта успешно удалена";
     }
 
-    public function findAllCardsByUserId($user_id)
+    public function findAllCardsByUserId()
     {
-
-        return Card::where('user_id', $user_id)->get();
-
-
+        $user = Auth::user();
+        return Card::where('user_id', $user->id)->get();
     }
 
 
