@@ -7,15 +7,16 @@
     <link rel="stylesheet"
           href="{{asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/styles/fonts.css')}}">
-    <title>Laravel</title>
+    <title>Промо код</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <style>
         html, body {
-            background-color: #eeeeee;
+            background-color: #ffffff;
             color: #636b6f;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
             margin: 0;
+            width: 100vw;
         }
 
         .flex-center {
@@ -52,16 +53,10 @@
         .row > a {
             text-decoration: none;
             margin: 40px;
-            background-color: white;
+            background-color: #f4f4f4;
             padding: 20px;
             white-space: nowrap;
             color: black;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
         }
 
         .tensend-icon {
@@ -112,7 +107,7 @@
             padding: 5px 0;
             position: absolute;
             opacity: 0.6;
-            right: -20px;
+            right: -22px;
             bottom: -40px;
             z-index: 1;
         }
@@ -122,18 +117,28 @@
         }
 
         input[type=text] {
-            width: 100%;
+            width: 80%;
             padding: 12px 20px;
             margin: 8px 0;
             text-align: center;
             border-radius: 10px;
-            border: 1px solid #f1f1f1;
+            border: 0;
             box-sizing: border-box;
+            background-color: #0048cd;
+            color: white;
         }
+
+        .wave {
+            background-image: url({{asset('wave.svg')}});
+            background-size: 250px;
+            background-repeat: repeat-x;
+            background-position: center top;
+        }
+
     </style>
 </head>
-<body class="flex-center position-ref full-height">
-<img class="tensend-icon" src="{{asset('tensend.png')}}" alt="">
+<body class="flex-center position-ref full-height wave">
+<img class="tensend-icon" src="{{asset('tensend_me.png')}}" alt="">
 @if($user)
     <div class="step">
         <h1>1</h1>
@@ -179,6 +184,9 @@
 @else
     <h1 class="content">Просроченный промо-код!</h1>
 @endif
+
+<div class="wave">
+</div>
 
 <script>
     function copyFunction() {
