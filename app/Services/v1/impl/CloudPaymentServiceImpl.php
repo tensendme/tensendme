@@ -260,6 +260,7 @@ class CloudPaymentServiceImpl implements PaymentService
                 'currency' => $currency]);
             $transaction_id = $transaction->id;
             $user_id = $transaction->user_id;
+            $external_transaction_id = $transaction_id->order_id;
 
             if (Card::where('token', $response->Model->Token)->first() == null) {
                 Card::create([
@@ -273,7 +274,7 @@ class CloudPaymentServiceImpl implements PaymentService
 
             $url = PaymentUtil::_REFUND_URL;
             $json = [
-                'TransactionId' => $transaction_id,
+                'TransactionId' => $external_transaction_id,
                 'Amount' => 0.01
             ];
             $json = json_encode($json);
@@ -370,7 +371,7 @@ class CloudPaymentServiceImpl implements PaymentService
 
 
                 $json = [
-                    'TransactionId' => $transaction->id,
+                    'TransactionId' => $transaction->order_id,
                     'Amount' => 0.01
                 ];
                 $json = json_encode($json);
