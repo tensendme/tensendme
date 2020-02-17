@@ -422,40 +422,36 @@ password: tensendme2020n
                 {
                     "id": 1,
                     "category_id": 1,
-                    "title": "dsffdss",
-                    "description": "dvcxv",
-                    "image_path": "/courses/dsffdss1579443066.jpg",
+                    "title": "bekza",
+                    "description": "fds",
+                    "image_path": "images/courses/default.png",
                     "is_visible": 1,
-                    "scale": 0,
+                    "scale": 3.75,
                     "view_count": 0,
-                    "created_at": "2020-01-19 20:11:06",
-                    "updated_at": "2020-01-19 20:11:10",
-                    "deleted_at": null
-                },
-                {
-                    "id": 2,
-                    "category_id": 1,
-                    "title": "Как заработать миллион за час",
-                    "description": "Как заработать миллион за час",
-                    "image_path": "/courses/Как заработать миллион за час1579628664.png",
-                    "is_visible": 1,
-                    "scale": 0,
-                    "view_count": 0,
-                    "created_at": "2020-01-21 23:44:24",
-                    "updated_at": "2020-01-21 23:44:27",
-                    "deleted_at": null
+                    "created_at": "2020-01-25 03:46:36",
+                    "updated_at": "2020-02-03 15:05:30",
+                    "deleted_at": null,
+                    "author_id": 1,
+                    "lessons_count": 15,
+                    "lessons_passing_count": 0,
+                    "author": {
+                        "id": 1,
+                        "name": "Admin",
+                        "email": "admin@mail.ru",
+                        "image_path": "test"
+                    }
                 }
             ],
-            "first_page_url": "https://tensend.me/api/v1/courses/category/1?page=1",
+            "first_page_url": "http://localhost:8000/api/v1/courses/category/1?page=1",
             "from": 1,
             "last_page": 1,
-            "last_page_url": "https://tensend.me/api/v1/courses/category/1?page=1",
+            "last_page_url": "http://localhost:8000/api/v1/courses/category/1?page=1",
             "next_page_url": null,
-            "path": "https://tensend.me/api/v1/courses/category/1",
+            "path": "http://localhost:8000/api/v1/courses/category/1",
             "per_page": 10,
             "prev_page_url": null,
-            "to": 2,
-            "total": 2
+            "to": 1,
+            "total": 1
         },
         "success": true
     }
@@ -539,23 +535,32 @@ password: tensendme2020n
                 {
                     "id": 1,
                     "category_id": 1,
-                    "title": "dsffdss",
-                    "description": "dvcxv",
-                    "image_path": "/courses/dsffdss1579443066.jpg",
+                    "title": "bekza",
+                    "description": "fds",
+                    "image_path": "images/courses/default.png",
                     "is_visible": 1,
-                    "scale": 0,
+                    "scale": 3.75,
                     "view_count": 0,
-                    "created_at": "2020-01-19 20:11:06",
-                    "updated_at": "2020-01-19 20:11:10",
-                    "deleted_at": null
+                    "created_at": "2020-01-25 03:46:36",
+                    "updated_at": "2020-02-03 15:05:30",
+                    "deleted_at": null,
+                    "author_id": 1,
+                    "lessons_count": 15,
+                    "lessons_passing_count": 0,
+                    "author": {
+                        "id": 1,
+                        "name": "Admin",
+                        "email": "admin@mail.ru",
+                        "image_path": "test"
+                    }
                 }
             ],
-            "first_page_url": "https://tensend.me/api/v1/courses?page=1",
+            "first_page_url": "http://localhost:8000/api/v1/courses?page=1",
             "from": 1,
             "last_page": 1,
-            "last_page_url": "https://tensend.me/api/v1/courses?page=1",
+            "last_page_url": "http://localhost:8000/api/v1/courses?page=1",
             "next_page_url": null,
-            "path": "https://tensend.me/api/v1/courses",
+            "path": "http://localhost:8000/api/v1/courses",
             "per_page": 10,
             "prev_page_url": null,
             "to": 1,
@@ -573,50 +578,46 @@ password: tensendme2020n
     ?size=10 // по дефолту можно не передавать, количество выводимых элементов
     
     RESPONSE
-    {
-        "courses": {
-            "current_page": 1,
-            "data": [
-                {
+{
+    "courses": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "category_id": 1,
+                "title": "bekza",
+                "description": "fds",
+                "image_path": "images/courses/default.png",
+                "is_visible": 1,
+                "scale": 3.75,
+                "view_count": 0,
+                "created_at": "2020-01-25 03:46:36",
+                "updated_at": "2020-02-03 15:05:30",
+                "deleted_at": null,
+                "author_id": 1,
+                "lessons_count": 15,
+                "lessons_passing_count": 0,
+                "author": {
                     "id": 1,
-                    "category_id": 1,
-                    "title": "dsffdss",
-                    "description": "dvcxv",
-                    "image_path": "/courses/dsffdss1579443066.jpg",
-                    "is_visible": 1,
-                    "scale": 0,
-                    "view_count": 0,
-                    "created_at": "2020-01-19 20:11:06",
-                    "updated_at": "2020-01-19 20:11:10",
-                    "deleted_at": null
-                },
-                {
-                    "id": 2,
-                    "category_id": 1,
-                    "title": "Как заработать миллион за час",
-                    "description": "Как заработать миллион за час",
-                    "image_path": "/courses/Как заработать миллион за час1579628664.png",
-                    "is_visible": 1,
-                    "scale": 0,
-                    "view_count": 0,
-                    "created_at": "2020-01-21 23:44:24",
-                    "updated_at": "2020-01-21 23:44:27",
-                    "deleted_at": null
+                    "name": "Admin",
+                    "email": "admin@mail.ru",
+                    "image_path": "test"
                 }
-            ],
-            "first_page_url": "https://tensend.me/api/v1/courses?page=1",
-            "from": 1,
-            "last_page": 1,
-            "last_page_url": "https://tensend.me/api/v1/courses?page=1",
-            "next_page_url": null,
-            "path": "https://tensend.me/api/v1/courses",
-            "per_page": 10,
-            "prev_page_url": null,
-            "to": 2,
-            "total": 2
-        },
-        "success": true
-    }
+            }
+        ],
+        "first_page_url": "http://localhost:8000/api/v1/courses?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://localhost:8000/api/v1/courses?page=1",
+        "next_page_url": null,
+        "path": "http://localhost:8000/api/v1/courses",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 1
+    },
+    "success": true
+}
 ```
 ### Получение всех баннеров
 #### URL: https://tensend.me/api/v1/banners
