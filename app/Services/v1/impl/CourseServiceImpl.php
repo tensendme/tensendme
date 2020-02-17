@@ -17,10 +17,41 @@ class CourseServiceImpl implements CourseService
 {
     public function findAll($perPage,$title)
     {
-        if(!$title) return Course::where('is_visible',True)->paginate($perPage);
-        return Course::where('title', 'like', '%' . $title . '%')
-            ->where('is_visible',True)
+
+        $user = Auth::user();
+
+        if(!$title) $courses =  Course::where('is_visible',true)
+            ->with('author')
+            ->with('lessons')
+            ->orderBy('scale', 'desc')
             ->paginate($perPage);
+         else $courses =  Course::where('title', 'like', '%' . $title . '%')
+            ->where('is_visible',true)
+            ->with('author')
+            ->with('lessons')
+            ->orderBy('scale', 'desc')
+            ->paginate($perPage);
+
+        $coursesItems = $courses->getCollection();
+
+        foreach ($coursesItems as $course) {
+            $courseMaterials = $course->lessons;
+            $course->lessons_count = $courseMaterials->count();
+            $count = 0;
+            foreach ($courseMaterials as $material) {
+                if($user) {
+                    $passing = Passing::where('course_material_id', $material->id)->where('user_id', $user->id)->first();
+                    if ($passing) {
+                        $count++;
+                    }
+                }
+            }
+            $course->lessons_passing_count = $count;
+            $course->makeHidden('lessons');
+        }
+
+        $courses->setCollection($coursesItems);
+        return $courses;
     }
 
     public function findUserCourses($perPage, $userId)
@@ -32,9 +63,9 @@ class CourseServiceImpl implements CourseService
             ->join('course_materials as cm', 'cm.course_id', '=', 'c.id')
             ->join('passings as p', 'p.course_material_id', '=', 'cm.id')
             ->where('p.user_id', $user->id)
+            ->orderBy('c.scale', 'desc')
             ->paginate($perPage);
-//        $passings = Passing::where('user_id', $users->id)->get();
-//        if(!$passings) return [];
+
 
         $coursesItems = Course::hydrate($courses->items());
         foreach ($coursesItems as $course) {
@@ -56,13 +87,41 @@ class CourseServiceImpl implements CourseService
 
     public function findByCategory($categoryId, $size)
     {
-        return Course::where('category_id', $categoryId)->where('is_visible', true)
+        $user = Auth::user();
+        $courses =  Course::where('category_id', $categoryId)
+            ->where('is_visible', true)
+            ->with('author')
+            ->with('lessons')
+            ->orderBy('scale', 'desc')
             ->paginate($size);
+
+        $coursesItems = $courses->getCollection();
+        foreach ($coursesItems as $course) {
+            $courseMaterials = $course->lessons;
+            $course->lessons_count = $courseMaterials->count();
+            $count = 0;
+            foreach ($courseMaterials as $material) {
+                if($user) {
+                    $passing = Passing::where('course_material_id', $material->id)->where('user_id', $user->id)->first();
+                    if ($passing) {
+                        $count++;
+                    }
+                }
+            }
+            $course->lessons_passing_count = $count;
+            $course->makeHidden('lessons');
+        }
+
+        $courses->setCollection($coursesItems);
+        return $courses;
     }
 
     public function findById($id)
     {
-        $course = Course::find($id);
+        $course = Course::where('id', $id)->where('is_visible', true)
+            ->with('author')
+            ->with('lessons')
+            ->first();
         if(!$course) throw new ApiServiceException(404, false, [
             'errors' => [
                 'Такого курса не существует'
@@ -72,6 +131,7 @@ class CourseServiceImpl implements CourseService
         $user = Auth::user();
         $subscriptions = $user->activeSubscriptions();
         $course->access = $subscriptions->exists() ? true : false;
+        $course->lessons_count = $course->lessons->count();
         $i = 0;
         foreach ($course->lessons as $lesson) {
             $lesson->access = !$subscriptions->exists() && $i > 2 ? false : true;

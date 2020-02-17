@@ -4,6 +4,7 @@ namespace App\Models\Profiles;
 
 use App\Models\Categories\RecommendedCategory;
 use App\Models\Courses\Course;
+use App\Models\Education\Passing;
 use App\Models\Histories\Follower;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -145,6 +146,7 @@ class User extends Authenticatable implements JWTSubject
             $courses = Course::whereIn('category_id', $categoryIds)->where('is_visible', 1)
                 ->orderBy('scale', 'desc')
                 ->with('author')
+                ->with('lessons')
                 ->paginate($size ? $size : 10);
 //            $courses = Course::where('is_visible', 1)->paginate($size ? $size : 10);
 
@@ -152,8 +154,26 @@ class User extends Authenticatable implements JWTSubject
             $courses = Course::where('is_visible', 1)
                 ->orderBy('scale', 'desc')
                 ->with('author')
+                ->with('lessons')
                 ->paginate($size ? $size : 10);
         }
+        $coursesItems = $courses->getCollection();
+
+        foreach ($coursesItems as $course) {
+            $courseMaterials = $course->lessons;
+            $course->lessons_count = $courseMaterials->count();
+            $count = 0;
+            foreach ($courseMaterials as $material) {
+                    $passing = Passing::where('course_material_id', $material->id)->where('user_id', $this->id)->first();
+                    if ($passing) {
+                        $count++;
+                }
+            }
+            $course->lessons_passing_count = $count;
+            $course->makeHidden('lessons');
+        }
+
+        $courses->setCollection($coursesItems);
         return $courses;
     }
 

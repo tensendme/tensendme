@@ -83,7 +83,7 @@ Route::group(['middleware' => 'api'], function () {
 
             Route::get('/pay', ['uses' => 'PaymentController@subscribe']);
             Route::get('/saveCard', ['uses' => 'PaymentController@saveCard']);
-            Route::get('/user/cards/{id}', ['uses' => 'PaymentController@getCardsByUserId']);
+            Route::get('/user/cards', ['uses' => 'PaymentController@getCardsByUserId']);
             Route::post('/save/transaction', ['uses' => 'PaymentController@saveTransaction']);
             Route::post('/send/crypto', ['uses' => 'PaymentController@sendCrypto']);
             Route::post('/card/pay', ['uses' => 'PaymentController@cardPay']);

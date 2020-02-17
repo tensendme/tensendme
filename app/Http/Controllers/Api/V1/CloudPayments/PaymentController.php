@@ -62,9 +62,9 @@ class PaymentController extends ApiBaseController
         return $this->paymentService->send3dSecure($request);
     }
 
-    public function getCardsByUserId($user_id)
+    public function getCardsByUserId()
     {
-        $cards = $this->paymentService->findAllCardsByUserId($user_id);
+        $cards = $this->paymentService->findAllCardsByUserId();
 
         return $this->successResponse(['cards' => $cards]);
 
@@ -73,7 +73,8 @@ class PaymentController extends ApiBaseController
 
     public function cardPay(Request $request)
     {
-        return $this->paymentService->cardPay($request);
+
+        return $this->successResponse(['result' => $this->paymentService->cardPay($request)]);
 
     }
 

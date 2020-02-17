@@ -12,7 +12,7 @@ interface PaymentService
     public function sendCrypto($request);
     public function send3dSecure($request);
     public function saveCard($request);
-    public function findAllCardsByUserId($user_id);
+    public function findAllCardsByUserId();
     public function cardPay($request);
     public function deleteCard($card_id);
 

@@ -422,40 +422,36 @@ password: tensendme2020n
                 {
                     "id": 1,
                     "category_id": 1,
-                    "title": "dsffdss",
-                    "description": "dvcxv",
-                    "image_path": "/courses/dsffdss1579443066.jpg",
+                    "title": "bekza",
+                    "description": "fds",
+                    "image_path": "images/courses/default.png",
                     "is_visible": 1,
-                    "scale": 0,
+                    "scale": 3.75,
                     "view_count": 0,
-                    "created_at": "2020-01-19 20:11:06",
-                    "updated_at": "2020-01-19 20:11:10",
-                    "deleted_at": null
-                },
-                {
-                    "id": 2,
-                    "category_id": 1,
-                    "title": "Как заработать миллион за час",
-                    "description": "Как заработать миллион за час",
-                    "image_path": "/courses/Как заработать миллион за час1579628664.png",
-                    "is_visible": 1,
-                    "scale": 0,
-                    "view_count": 0,
-                    "created_at": "2020-01-21 23:44:24",
-                    "updated_at": "2020-01-21 23:44:27",
-                    "deleted_at": null
+                    "created_at": "2020-01-25 03:46:36",
+                    "updated_at": "2020-02-03 15:05:30",
+                    "deleted_at": null,
+                    "author_id": 1,
+                    "lessons_count": 15,
+                    "lessons_passing_count": 0,
+                    "author": {
+                        "id": 1,
+                        "name": "Admin",
+                        "email": "admin@mail.ru",
+                        "image_path": "test"
+                    }
                 }
             ],
-            "first_page_url": "https://tensend.me/api/v1/courses/category/1?page=1",
+            "first_page_url": "http://localhost:8000/api/v1/courses/category/1?page=1",
             "from": 1,
             "last_page": 1,
-            "last_page_url": "https://tensend.me/api/v1/courses/category/1?page=1",
+            "last_page_url": "http://localhost:8000/api/v1/courses/category/1?page=1",
             "next_page_url": null,
-            "path": "https://tensend.me/api/v1/courses/category/1",
+            "path": "http://localhost:8000/api/v1/courses/category/1",
             "per_page": 10,
             "prev_page_url": null,
-            "to": 2,
-            "total": 2
+            "to": 1,
+            "total": 1
         },
         "success": true
     }
@@ -539,23 +535,32 @@ password: tensendme2020n
                 {
                     "id": 1,
                     "category_id": 1,
-                    "title": "dsffdss",
-                    "description": "dvcxv",
-                    "image_path": "/courses/dsffdss1579443066.jpg",
+                    "title": "bekza",
+                    "description": "fds",
+                    "image_path": "images/courses/default.png",
                     "is_visible": 1,
-                    "scale": 0,
+                    "scale": 3.75,
                     "view_count": 0,
-                    "created_at": "2020-01-19 20:11:06",
-                    "updated_at": "2020-01-19 20:11:10",
-                    "deleted_at": null
+                    "created_at": "2020-01-25 03:46:36",
+                    "updated_at": "2020-02-03 15:05:30",
+                    "deleted_at": null,
+                    "author_id": 1,
+                    "lessons_count": 15,
+                    "lessons_passing_count": 0,
+                    "author": {
+                        "id": 1,
+                        "name": "Admin",
+                        "email": "admin@mail.ru",
+                        "image_path": "test"
+                    }
                 }
             ],
-            "first_page_url": "https://tensend.me/api/v1/courses?page=1",
+            "first_page_url": "http://localhost:8000/api/v1/courses?page=1",
             "from": 1,
             "last_page": 1,
-            "last_page_url": "https://tensend.me/api/v1/courses?page=1",
+            "last_page_url": "http://localhost:8000/api/v1/courses?page=1",
             "next_page_url": null,
-            "path": "https://tensend.me/api/v1/courses",
+            "path": "http://localhost:8000/api/v1/courses",
             "per_page": 10,
             "prev_page_url": null,
             "to": 1,
@@ -573,50 +578,46 @@ password: tensendme2020n
     ?size=10 // по дефолту можно не передавать, количество выводимых элементов
     
     RESPONSE
-    {
-        "courses": {
-            "current_page": 1,
-            "data": [
-                {
+{
+    "courses": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "category_id": 1,
+                "title": "bekza",
+                "description": "fds",
+                "image_path": "images/courses/default.png",
+                "is_visible": 1,
+                "scale": 3.75,
+                "view_count": 0,
+                "created_at": "2020-01-25 03:46:36",
+                "updated_at": "2020-02-03 15:05:30",
+                "deleted_at": null,
+                "author_id": 1,
+                "lessons_count": 15,
+                "lessons_passing_count": 0,
+                "author": {
                     "id": 1,
-                    "category_id": 1,
-                    "title": "dsffdss",
-                    "description": "dvcxv",
-                    "image_path": "/courses/dsffdss1579443066.jpg",
-                    "is_visible": 1,
-                    "scale": 0,
-                    "view_count": 0,
-                    "created_at": "2020-01-19 20:11:06",
-                    "updated_at": "2020-01-19 20:11:10",
-                    "deleted_at": null
-                },
-                {
-                    "id": 2,
-                    "category_id": 1,
-                    "title": "Как заработать миллион за час",
-                    "description": "Как заработать миллион за час",
-                    "image_path": "/courses/Как заработать миллион за час1579628664.png",
-                    "is_visible": 1,
-                    "scale": 0,
-                    "view_count": 0,
-                    "created_at": "2020-01-21 23:44:24",
-                    "updated_at": "2020-01-21 23:44:27",
-                    "deleted_at": null
+                    "name": "Admin",
+                    "email": "admin@mail.ru",
+                    "image_path": "test"
                 }
-            ],
-            "first_page_url": "https://tensend.me/api/v1/courses?page=1",
-            "from": 1,
-            "last_page": 1,
-            "last_page_url": "https://tensend.me/api/v1/courses?page=1",
-            "next_page_url": null,
-            "path": "https://tensend.me/api/v1/courses",
-            "per_page": 10,
-            "prev_page_url": null,
-            "to": 2,
-            "total": 2
-        },
-        "success": true
-    }
+            }
+        ],
+        "first_page_url": "http://localhost:8000/api/v1/courses?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://localhost:8000/api/v1/courses?page=1",
+        "next_page_url": null,
+        "path": "http://localhost:8000/api/v1/courses",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 1
+    },
+    "success": true
+}
 ```
 ### Получение всех баннеров
 #### URL: https://tensend.me/api/v1/banners
@@ -1115,4 +1116,109 @@ password: tensendme2020n
     },
     "success": true
 }
+```
+
+### Запрос на покупку подписки
+#### URL: https://tensend.me/api/v1/pay?subscription_type_id={id}
+
+```
+    POST Request
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    Ответ приходит в виде вьюшки пример ниже:
+    https://tensend.me/payView.png
+```
+
+### Запрос на сохранение карты
+#### URL: https://tensend.me/api/v1/saveCard
+
+```
+    POST Request
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    Ответ приходит в виде вьюшки пример ниже:
+    https://tensend.me/payView.png
+```
+
+
+### Запрос на вывод всех карт пользователя
+#### URL: https://tensend.me/api/v1/user/cards
+
+```
+    GET Request
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "cards": [
+            {
+                "id": 1,
+                "token": "DD62EA7E74420378F334A7CE86E319FCF2D645C934C1DBF3925DC751DDEA6056",
+                "type": "MasterCard",
+                "last_four": "7758",
+                "user_id": 1,
+                "created_at": "2020-02-14 18:29:30",
+                "updated_at": "2020-02-14 18:29:30",
+                "deleted_at": null
+            },
+            {
+                "id": 2,
+                "token": "9BBEF19476623CA56C17DA75FD57734DBF82530686043A6E491C6D71BEFE8F6E",
+                "type": "Visa",
+                "last_four": "1111",
+                "user_id": 1,
+                "created_at": "2020-02-14 18:51:51",
+                "updated_at": "2020-02-14 18:51:51",
+                "deleted_at": null
+            },
+            {
+                "id": 3,
+                "token": "477BBA133C182267FE5F086924ABDC5DB71F77BFC27F01F2843F2CDC69D89F05",
+                "type": "Visa",
+                "last_four": "4242",
+                "user_id": 1,
+                "created_at": "2020-02-14 19:17:47",
+                "updated_at": "2020-02-14 19:17:47",
+                "deleted_at": null
+            }
+        ],
+        "success": true
+    }
+```
+
+### Запрос на покупку подписки через кредитную карту (токен карты)
+#### URL: https://tensend.me/api/v1/card/pay
+
+```
+    POST Request:
+        {
+                	"subscription_type_id" : 2 , [id number]
+                	"token": "477BBA133C182267FE5F086924ABDC5DB71F77BFC27F01F2843F2CDC69D89F05" [card token]
+                	
+                }
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "Оплата успешно произведена" - string
+    }
+```
+
+### Запрос на удаление карты
+#### URL: https://tensend.me/api/v1/delete/card/{card_id}
+
+```
+    POST Request:
+        
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+     {
+        "result": {
+            "Карта успешно удалена"
+        },
+        "success": true
+    }
 ```
