@@ -69,6 +69,7 @@ class CloudPaymentServiceImpl implements PaymentService
     public function findAllCardsByUserId()
     {
         $user = Auth::user();
+
         return Card::where('user_id', $user->id)->get();
     }
 
@@ -260,6 +261,7 @@ class CloudPaymentServiceImpl implements PaymentService
                 'currency' => $currency]);
             $transaction_id = $transaction->id;
             $user_id = $transaction->user_id;
+            $external_transaction_id = $transaction->order_id;
 
             if (Card::where('token', $response->Model->Token)->first() == null) {
                 Card::create([
@@ -269,11 +271,11 @@ class CloudPaymentServiceImpl implements PaymentService
                     'last_four' => $response->Model->CardLastFour
                 ]);
             }
-
+            sleep(5);
 
             $url = PaymentUtil::_REFUND_URL;
             $json = [
-                'TransactionId' => $transaction_id,
+                'TransactionId' => $external_transaction_id,
                 'Amount' => 0.01
             ];
             $json = json_encode($json);
@@ -370,11 +372,11 @@ class CloudPaymentServiceImpl implements PaymentService
 
 
                 $json = [
-                    'TransactionId' => $transaction->id,
+                    'TransactionId' => $transaction->order_id,
                     'Amount' => 0.01
                 ];
                 $json = json_encode($json);
-
+                sleep(5);
                 $url = PaymentUtil::_REFUND_URL;
                 $this->makeCurlRequest($url, $json);
                 $result = view('cardStatus', compact('transaction'));
