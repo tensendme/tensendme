@@ -71,12 +71,10 @@ class CourseServiceImpl implements CourseService
         ]);
         $user = Auth::user();
         $subscriptions = $user->activeSubscriptions();
-        $course->access = false;
-        if($subscriptions->exists()) $course->access = true;
+        $course->access = $subscriptions->exists() ? true : false;
         $i = 0;
         foreach ($course->lessons as $lesson) {
-            $lesson->access = true;
-            if(!$subscriptions->exists() && $i > 2) $lesson->access = false;
+            $lesson->access = !$subscriptions->exists() && $i > 2 ? false : true;
             $i++;
         }
         return $course;

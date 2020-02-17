@@ -28,7 +28,8 @@ class MeditationController extends ApiBaseController
 
     }
 
-    public function getMeditation($id) {
-
+    public function getMeditation($id, Request $request) {
+        return $this->successResponse(['meditation' => $this->meditationService
+            ->findById($id, $request->languageId)]);
     }
 }

@@ -32,7 +32,9 @@ Route::group(['middleware' => 'api'], function () {
     Route::group(['namespace' => 'Meditation'], function () {
 
         Route::get('/meditations', ['uses' => 'MeditationController@getAllMeditations']);
-
+        Route::group(['middleware' => 'auth:api'], function () {
+            Route::get('meditation/{id}', ['uses' => 'MeditationController@getMeditation']);
+        });
     });
 
     Route::group(['namespace' => 'Course'], function () {

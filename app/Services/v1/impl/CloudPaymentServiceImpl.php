@@ -171,7 +171,7 @@ class CloudPaymentServiceImpl implements PaymentService
                 'external_status' => $external_status,
                 'currency' => $currency]);
 
-            $this->subscriptionService->makeSubscription($request->subscription_type_id,$user);
+            $this->subscriptionService->makeSubscription($request->subscription_type_id,$user, $transaction->id);
 
 
         } else {
@@ -199,7 +199,8 @@ class CloudPaymentServiceImpl implements PaymentService
                 'external_status' => $external_status,
                 'currency' => $currency]);
             $transaction_id = $transaction->id;
-            $this->subscriptionService->subscribe($subscription_type_id);
+            $user = Auth::user();
+            $this->subscriptionService->makeSubscription($subscription_type_id,$user,$transaction_id);
             $user_id = $transaction->user_id;
 
             if (Card::where('token', $response->Model->Token)->first() == null) {
@@ -388,7 +389,7 @@ class CloudPaymentServiceImpl implements PaymentService
                     'card_holder_message' => $card_holder_message,
                     'external_status' => $external_status,
                     'currency' => $currency]);
-                $this->subscriptionService->makeSubscription($subscription_type->id,$user);
+                $this->subscriptionService->makeSubscription($subscription_type->id, $user, $transaction->id);
                 $result = view('transactionStatus', compact('transaction', 'user'));
             }
             if (Card::where('token', $response->Model->Token)->first() == null) {

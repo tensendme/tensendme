@@ -75,16 +75,16 @@ class SystemServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('App\Services\v1\SubscriptionService', function ($app) {
-            return (new SubscriptionServiceImpl( new HistoryServiceImpl()));
+            return (new SubscriptionServiceImpl( new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl())));
         });
         $this->app->bind('App\Services\v1\PaymentService', function ($app) {
-            return (new CloudPaymentServiceImpl(new SubscriptionServiceImpl(new HistoryServiceImpl())));
+            return (new CloudPaymentServiceImpl(new SubscriptionServiceImpl(new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl()))));
         });
         $this->app->bind('App\Services\v1\HistoryService', function ($app) {
-            return (new HistoryServiceImpl());
+            return (new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl()));
         });
         $this->app->bind('App\Services\v1\WithdrawalRequestService', function ($app) {
-            return (new WithdrawalServiceImpl( new HistoryServiceImpl()));
+            return (new WithdrawalServiceImpl( new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl())));
         });
 
 
@@ -101,7 +101,8 @@ class SystemServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('App\Services\v1\AuthService', function ($app) {
-            return (new AuthServiceImpl(new SubscriptionServiceImpl( new HistoryServiceImpl())));
+            return (new AuthServiceImpl(new SubscriptionServiceImpl( new HistoryServiceImpl(
+                new PromoCodeAnalyticServiceImpl()))));
         });
 
         $this->app->bind('App\Services\v1\RatingService', function ($app) {
@@ -109,7 +110,8 @@ class SystemServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('App\Services\v1\FollowerService', function ($app) {
-            return (new FollowerServiceImpl(new HistoryServiceImpl(), new PromoCodeAnalyticServiceImpl()));
+            return (new FollowerServiceImpl(new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl()),
+                new PromoCodeAnalyticServiceImpl()));
         });
 
         $this->app->bind('App\Services\v1\ProfileService', function ($app) {
