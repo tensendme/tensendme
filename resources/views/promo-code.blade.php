@@ -16,7 +16,6 @@
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
             margin: 0;
-            width: 100vw;
         }
 
         .flex-center {
@@ -95,9 +94,11 @@
 
         .cursorShow {
             cursor: pointer;
+            right: 40px;
         }
 
         .tooltiptext {
+            position: absolute;
             visibility: hidden;
             width: 120px;
             background-color: black;
@@ -105,7 +106,6 @@
             text-align: center;
             border-radius: 6px;
             padding: 5px 0;
-            position: absolute;
             opacity: 0.6;
             right: -22px;
             bottom: -40px;
