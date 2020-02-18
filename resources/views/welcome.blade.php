@@ -507,7 +507,7 @@
 {{--    </div>--}}
 
     <footer class="site-footer">
-        <div class="container">
+        <div class="container" id="contact-section">
             <div class="row">
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <div class="row mb-5">
@@ -531,10 +531,10 @@
                         </div>
                         <div class="col-md-6 col-lg-6">
                             <ul class="list-unstyled">
-                                <li><a href="#">Негізгі бет</a></li>
-                                <li><a href="#">Tensend жайлы</a></li>
-                                <li><a href="#">Құпиялық саясат</a></li>
-                                <li><a href="#">Байланыс</a></li>
+                                <li><a href="#home-section">Негізгі бет</a></li>
+                                <li><a href="#features-section">Tensend жайлы</a></li>
+                                <li><a href="#testimonial-section">Құпиялық саясат</a></li>
+                                <li><a href="#contact-section">Байланыс</a></li>
                             </ul>
                         </div>
 
