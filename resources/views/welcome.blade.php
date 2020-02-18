@@ -127,7 +127,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-bank"></span>
+                <span class="icon-bar-chart"></span>
               </span>
                         <h3>Статистика</h3>
                         <p>Сілтемемеңізбен өткен, орнатқан, сатып
@@ -139,7 +139,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-settings_backup_restore"></span>
+                <span class="icon-attach_money"></span>
               </span>
                         <h3>Ақша шығару</h3>
                         <p>Мобильды қосымша арқылы табысыңызды
@@ -152,7 +152,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-font"></span>
+                <span class="icon-first-order"></span>
               </span>
                         <h3>Ұтыс ойындар</h3>
                         <p>Tensend тарапынан барлық қолданушыларға
@@ -165,7 +165,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-photo"></span>
+                <span class="icon-star"></span>
               </span>
                         <h3>Маркетинг</h3>
                         <p>Tensend тарапынан Сізге курсыңызды
@@ -177,7 +177,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-text-height"></span>
+                <span class="icon-monetization_on"></span>
               </span>
                         <h3>Қосымша табыс</h3>
                         <p>Сіздің курсыңызды сәтті аяқтап берілген
@@ -200,7 +200,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-book"></span>
+                <span class="icon-attach_money"></span>
               </span>
                         <h3>Ақша табыңыз</h3>
                         <p>Оқушыларыңыздың әр жазылымынан түскен
@@ -212,7 +212,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-bank"></span>
+                <span class="icon-people_outline"></span>
               </span>
                         <h3>Оқушыларды шабыттандырыңыз</h3>
                         <p>Адамдарға жаңа дағдыларды үйренуге,
@@ -225,7 +225,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-settings_backup_restore"></span>
+                <span class="icon-plus"></span>
               </span>
                         <h3>Біздің қоғамдастыққа қосылыңыз</h3>
                         <p>Курсты құруға көмектесу үшін біздің
@@ -247,7 +247,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-book"></span>
+                <span class="icon-event_note"></span>
               </span>
                         <h3>Курсты жоспарлаңыз</h3>
                         <p>Іс-шаралар жоспарын дайындаңыз Ең бастысы,
@@ -267,7 +267,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-bank"></span>
+                <span class="icon-camera"></span>
               </span>
                         <h3>Бейне жазыңыз</h3>
                         <p>Бейнелеріңіздің режиссері болыңыз
@@ -288,7 +288,7 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service h-100">
               <span class="wrap-icon">
-                <span class="icon-settings_backup_restore"></span>
+                <span class="icon-camera_front"></span>
               </span>
                         <h3>Курсыңызды жарнамалаңыз</h3>
                         <p>Жеке кабинетіңізде маркетинг
