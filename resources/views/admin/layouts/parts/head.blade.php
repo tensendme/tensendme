@@ -3,6 +3,7 @@
 <title>TenSendMe</title>
 <meta name="description" content="TenSend.me">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
 <link rel="stylesheet" href="{{asset('admin/styles/fontawesome.css')}}">
 <link rel="stylesheet" href="{{asset('admin/styles/fonts.css')}}">
 <link rel="stylesheet" href="{{asset('admin/styles/bootstrap.min.css')}}">
