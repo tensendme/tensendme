@@ -47,7 +47,7 @@ class CourseController extends WebBaseController
         if ($request->file('image')) {
             $path = $this->fileService->store($request->file('image'), Course::DEFAULT_RESOURCE_DIRECTORY);
         }
-        $information = implode($request->information, ',');
+        $information = implode(array_filter($request->information), ',');
         Course::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -82,7 +82,7 @@ class CourseController extends WebBaseController
             $path = $this->fileService
                 ->updateWithRemoveOrStore($request->file('image'), Course::DEFAULT_RESOURCE_DIRECTORY, $path);
         }
-        $information = implode($request->information, ',');
+        $information = implode(array_filter($request->information), ',');
         $course->update([
             'title' => $request->title,
             'description' => $request->description,

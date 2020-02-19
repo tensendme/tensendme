@@ -546,6 +546,9 @@ password: tensendme2020n
                     "deleted_at": null,
                     "author_id": 1,
                     "lessons_count": 15,
+                    "information_list": [
+                        "Nothing"
+                    ],
                     "lessons_passing_count": 0,
                     "author": {
                         "id": 1,
@@ -595,6 +598,9 @@ password: tensendme2020n
                 "updated_at": "2020-02-03 15:05:30",
                 "deleted_at": null,
                 "author_id": 1,
+                "information_list": [
+                        "Nothing"
+                ],
                 "lessons_count": 15,
                 "lessons_passing_count": 0,
                 "author": {
@@ -668,6 +674,9 @@ password: tensendme2020n
                 "updated_at": "2020-02-07 12:49:37",
                 "deleted_at": null,
                 "author_id": null,
+                "information_list": [
+                        "Nothing"
+                ],
                 "lessons_count": 4,
                 "lessons_passing_count": 1
             },
@@ -907,6 +916,9 @@ password: tensendme2020n
                             "updated_at": "2020-02-02 19:12:52",
                             "deleted_at": null,
                             "author_id": null,
+                            "information_list": [
+                                "Nothing"
+                            ],
                             "author": null
                         },
                         {
