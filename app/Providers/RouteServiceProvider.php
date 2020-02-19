@@ -19,9 +19,9 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespaceAPI_V1 = 'App\Http\Controllers\Api\V1';
     protected $namespaceAPI_V2 = 'App\Http\Controllers\Api\V2';
 
-    protected const WEB_ADMIN_PREFIX = '\Web\v1\Admin';
-    protected const WEB_CONTENT_MANAGER_PREFIX = '\Web\v1\Admin';
-    protected const WEB_ACCOUNTANT_PREFIX = '\Web\v1\Admin';
+//    protected const WEB_ADMIN_PREFIX = '\Web\v1\Admin';
+//    protected const WEB_CONTENT_MANAGER_PREFIX = '\Web\v1\Admin';
+//    protected const WEB_ACCOUNTANT_PREFIX = '\Web\v1\Admin';
 
 
 
@@ -57,11 +57,14 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        $this->mapWebAdminRoutes();
 
-        $this->mapWebContentManagerRoutes();
+//        $this->mapWebAdminRoutes();
+//
+//        $this->mapWebContentManagerRoutes();
+//
+//        $this->mapWebAccountantRoutes();
 
-        $this->mapWebAccountantRoutes();
+
 
         //
     }
@@ -80,26 +83,28 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/web.php'));
     }
 
-    protected function mapWebAdminRoutes()
-    {
-        Route::middleware(['web', 'auth', 'ROLE_ADMIN'])
-            ->namespace($this->namespace . RouteServiceProvider::WEB_ADMIN_PREFIX)
-            ->group(base_path('routes/web/web_admin.php'));
-    }
 
-    protected function mapWebContentManagerRoutes()
-    {
-        Route::middleware(['web', 'auth', 'ROLE_CONTENT_MANAGER'])
-            ->namespace($this->namespace . RouteServiceProvider::WEB_CONTENT_MANAGER_PREFIX)
-            ->group(base_path('routes/web/web_content_manager.php'));
-    }
 
-    protected function mapWebAccountantRoutes()
-    {
-        Route::middleware(['web', 'auth', 'ROLE_ACCOUNTANT'])
-            ->namespace($this->namespace . RouteServiceProvider::WEB_ACCOUNTANT_PREFIX)
-            ->group(base_path('routes/web/web_accountant.php'));
-    }
+//    protected function mapWebContentManagerRoutes()
+//    {
+//        Route::middleware(['web', 'auth', 'ROLE_CONTENT_MANAGER'])
+//            ->namespace($this->namespace . RouteServiceProvider::WEB_CONTENT_MANAGER_PREFIX)
+//            ->group(base_path('routes/web/web_content_manager.php'));
+//    }
+//
+//    protected function mapWebAccountantRoutes()
+//    {
+//        Route::middleware(['web', 'auth', 'ROLE_ACCOUNTANT'])
+//            ->namespace($this->namespace . RouteServiceProvider::WEB_ACCOUNTANT_PREFIX)
+//            ->group(base_path('routes/web/web_accountant.php'));
+//    }
+//
+//    protected function mapWebAdminRoutes()
+//    {
+//        Route::middleware(['web', 'auth', 'ROLE_ADMIN'])
+//            ->namespace($this->namespace . RouteServiceProvider::WEB_ADMIN_PREFIX)
+//            ->group(base_path('routes/web/web_admin.php'));
+//    }
     /**
      * Define the "api" routes for the application.
      *

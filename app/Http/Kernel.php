@@ -68,9 +68,10 @@ class Kernel extends HttpKernel
 
         //Roles
 
-        'ROLE_ADMIN' => \App\Http\Middleware\roles\AdminMiddleware::class,
-        'ROLE_CONTENT_MANAGER' => \App\Http\Middleware\roles\ContentManagerMiddleware::class,
-        'ROLE_ACCOUNTANT' => \App\Http\Middleware\roles\AccountantMiddleware::class,
+//        'ROLE_ADMIN' => \App\Http\Middleware\roles\AdminMiddleware::class,
+//        'ROLE_CONTENT_MANAGER' => \App\Http\Middleware\roles\ContentManagerMiddleware::class,
+//        'ROLE_ACCOUNTANT' => \App\Http\Middleware\roles\AccountantMiddleware::class,
+        'ROLE_OR' => \App\Http\Middleware\roles\RoleOrMiddleware::class,
 
     ];
 

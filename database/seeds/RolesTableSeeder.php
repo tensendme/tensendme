@@ -31,5 +31,8 @@ class RolesTableSeeder extends Seeder
         Role::insert([
             'name' => 'User',
         ]);
+        Role::insert([
+            'name' => 'Accountant',
+        ]);
     }
 }
