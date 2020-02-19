@@ -47,6 +47,7 @@ class CourseController extends WebBaseController
         if ($request->file('image')) {
             $path = $this->fileService->store($request->file('image'), Course::DEFAULT_RESOURCE_DIRECTORY);
         }
+        $information = implode($request->information, ',');
         Course::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -54,7 +55,9 @@ class CourseController extends WebBaseController
             'category_id' => $request->category_id,
             'is_visible' => false,
             'view_count' => 0,
-            'scale' => 0
+            'scale' => 0,
+            'author_id' => $request->author_id,
+            'information_list' => $information
         ]);
         $this->added();
         return redirect()->route('course.index');
@@ -66,6 +69,7 @@ class CourseController extends WebBaseController
             ->doesntHave('childrens')
             ->get();
         $course = Course::findOrFail($id);
+        $course->information_list = explode( ',', $course->information_list);
         return view('admin.course.edit', compact('categories', 'course'));
 
     }
@@ -78,11 +82,14 @@ class CourseController extends WebBaseController
             $path = $this->fileService
                 ->updateWithRemoveOrStore($request->file('image'), Course::DEFAULT_RESOURCE_DIRECTORY, $path);
         }
+        $information = implode($request->information, ',');
         $course->update([
             'title' => $request->title,
             'description' => $request->description,
             'image_path' => $path,
             'category_id' => $request->category_id,
+            'author_id' => $request->author_id,
+            'information_list' => $information
         ]);
         $this->edited();
         return redirect()->route('course.index');

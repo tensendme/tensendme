@@ -62,7 +62,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
         Route::group(['namespace' => 'Admin'], function () {
             //users
             Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
-
+            Route::get('/authors', ['uses' => 'UserController@authors', 'as' => 'authors']);
             Route::get('/categories', ['uses' => 'CategoryController@index', 'as' => 'category.index']);
             Route::get('/category/create', ['uses' => 'CategoryController@create', 'as' => 'category.create']);
             Route::post('/category/store', ['uses' => 'CategoryController@store', 'as' => 'category.store']);

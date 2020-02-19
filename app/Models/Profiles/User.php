@@ -169,6 +169,7 @@ class User extends Authenticatable implements JWTSubject
                         $count++;
                 }
             }
+            $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
             $course->makeHidden('lessons');
         }

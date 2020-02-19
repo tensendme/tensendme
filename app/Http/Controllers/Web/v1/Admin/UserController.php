@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Web\V1\Admin;
 use App\Http\Controllers\ApiBaseController;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\CourseControllerRequests\CourseStoreAndUpdateRequest;
+use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Services\v1\FileService;
 use App\Utils\StaticConstants;
+use Illuminate\Http\Request;
 
 class UserController extends ApiBaseController
 {
@@ -30,5 +32,13 @@ class UserController extends ApiBaseController
         return view('admin.users.index', compact('users'));
     }
 
+    public function authors(Request $request) {
+        $phone = $request->term;
+        if(!$phone)
+        $authors = User::where('role_id', Role::AUTHOR_ID)->paginate(10);
+        else $authors = User::where('role_id', Role::AUTHOR_ID)->where('phone', 'like', '%' .$phone. '%')->paginate(10);
+
+        return $authors;
+    }
 
 }

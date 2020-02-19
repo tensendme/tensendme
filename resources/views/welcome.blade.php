@@ -20,7 +20,18 @@
 
 
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
+    <style>
+        .tensend-logo {
+            width: 100px;
+            height: 100px;
+            margin-top: -60px;
+        }
 
+        .smart_phone {
+            /*height: 250px;*/
+            /*width: 100%;*/
+        }
+    </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
@@ -56,7 +67,7 @@
                                 <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
                                     <li><a href="#home-section" class="nav-link">Негізгі бет</a></li>
                                     <li><a href="#features-section" class="nav-link">Tensend жайлы</a></li>
-{{--                                    <li><a href="#about-section" class="nav-link">О нас</a></li>--}}
+                                    {{--                                    <li><a href="#about-section" class="nav-link">О нас</a></li>--}}
                                     <li><a href="#testimonial-section" class="nav-link">Құпиялық саясат</a></li>
                                     <li><a href="#contact-section" class="nav-link">Байланыс</a></li>
                                     <li>
@@ -80,7 +91,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-5">
-                    <h1 class="text-white serif text-uppercase mb-4">Tensend Logo</h1>
+                    <img class="mb-4 tensend-logo" src="{{asset('tenSendLogo.png')}}" alt="Tensend">
                     <p class="text-white mb-5">Тренерлерге, мұғалімдерге, инфо-бизнесмендерге
                         мастер класс, семинар, онлайн курстарды өткізуге және
                         сатуға арналған мобильды қосымша
@@ -204,7 +215,7 @@
               </span>
                         <h3>Ақша табыңыз</h3>
                         <p>Оқушыларыңыздың әр жазылымынан түскен
-                            ақшаны бір мезетте  карточкаңызға
+                            ақшаны бір мезетте карточкаңызға
                             аудара аласыз.</p>
                     </div>
 
@@ -306,29 +317,29 @@
         </div>
     </div>
 
-{{--    <div class="site-section">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row mb-5">--}}
-{{--                <div class="col-md-7">--}}
-{{--                    <h2 class="heading">Скриншоты</h2>--}}
-{{--                    <p>Эти виды вы можете увидеть используя Tensend</p>--}}
-{{--                    <p class="mb-3">--}}
-{{--                        <a href="#" class="customNextBtn">Предыдущий</a>--}}
-{{--                        <span class="mx-2">/</span>--}}
-{{--                        <a href="#" class="customPrevBtn">Следующий</a>--}}
-{{--                    </p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+    {{--    <div class="site-section">--}}
+    {{--        <div class="container">--}}
+    {{--            <div class="row mb-5">--}}
+    {{--                <div class="col-md-7">--}}
+    {{--                    <h2 class="heading">Скриншоты</h2>--}}
+    {{--                    <p>Эти виды вы можете увидеть используя Tensend</p>--}}
+    {{--                    <p class="mb-3">--}}
+    {{--                        <a href="#" class="customNextBtn">Предыдущий</a>--}}
+    {{--                        <span class="mx-2">/</span>--}}
+    {{--                        <a href="#" class="customPrevBtn">Следующий</a>--}}
+    {{--                    </p>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
 
-{{--            <div class="owl-carousel slide-one-item">--}}
-{{--                <img src="{{asset('front/images/img_1.jpg')}}" alt="Image" class="img-fluid">--}}
-{{--                <img src="{{asset('front/images/img_2.jpg')}}" alt="Image" class="img-fluid">--}}
-{{--                <img src="{{asset('front/images/img_3.jpg')}}" alt="Image" class="img-fluid">--}}
-{{--                <img src="{{asset('front/images/img_4.jpg')}}" alt="Image" class="img-fluid">--}}
-{{--                <img src="{{asset('front/images/img_5.jpg')}}" alt="Image" class="img-fluid">--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--            <div class="owl-carousel slide-one-item">--}}
+    {{--                <img src="{{asset('front/images/img_1.jpg')}}" alt="Image" class="img-fluid">--}}
+    {{--                <img src="{{asset('front/images/img_2.jpg')}}" alt="Image" class="img-fluid">--}}
+    {{--                <img src="{{asset('front/images/img_3.jpg')}}" alt="Image" class="img-fluid">--}}
+    {{--                <img src="{{asset('front/images/img_4.jpg')}}" alt="Image" class="img-fluid">--}}
+    {{--                <img src="{{asset('front/images/img_5.jpg')}}" alt="Image" class="img-fluid">--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <div class="site-section bg-light" id="features-section">
         <div class="container">
             <div class="row mb-5">
@@ -375,48 +386,55 @@
                 <div class="col-md-7">
                     <h2 class="heading">
                         Жүйелендірілген сатылым және CRM</h2>
-                <p>Біз өзіміз әртүрлі салада онлайн курстарымызды
-                    Tensend мобильды қосымшасы арқылы ай сайын 50 миллион теңгеден астам табыс
-                    табамыз. Tensend мобильды қосымшасы ақша табуға мүмкіндік беретінін және
-                    көмектесетінін біз жақсы білеміз.
-                </p>
-            </div>
-    <div class="author  d-lg-flex" id="about-section">
-        <div class="text">
-            <h3>Төлемдерді онлайн қабылдау</h3>
-            <p>Кез келген банктін картасымен Tensend-тің
-                ішінде клиентіңіз төлем жасай алады. Төлем жасағаннан соң
-                барлық курстарға автоматты түрде “доступ” ашылады.
-            </p>
-        </div>
-        <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
-    </div>
-    <div class="author d-lg-flex mt-4" id="about-section">
-        <div class="text">
-            <h3>Аналитика</h3>
-            <p>Сіз кез келген уақытта сіздің сілтемемеңізбен қанша қолданушы өткенін,
-                қаншасы қосымшаны орнатқаны, қаншасы сатып алғаны  жайлы және
-                сіздің табысыңыз жайлы толық ақпарат аласыз.
-            </p>
-        </div>
-        <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
-    </div>
-    <div class="author d-lg-flex mt-4" id="about-section">
-        <div class="text">
-            <h3>SMS, PUSH хабарландырулар</h3>
-            <p>Енді Сізге сату бөлімін құру, қосымша адамдарды жұмысқа алып,
-                SMS, CRM интеграциясын жасап шығындалудың қажеті жоқ. Tensend-те
-                Барлығы Сіз үшін ойластырылған және Сіз үшін тегін. Сіздің сілтемеңізбен
-                өтіп қосымшаны орнатқан бырақ әлі жазылмаған барлық қолданушыға
-                Tensend sms және push хабарламаларды жіберіп Сіздің табысыңызды көтереді.
-            </p>
-        </div>
-        <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
-    </div>
-        </div>
-    </div>
-    </div>
+                    <p>Біз өзіміз әртүрлі салада онлайн курстарымызды
+                        Tensend мобильды қосымшасы арқылы ай сайын 50 миллион теңгеден астам табыс
+                        табамыз. Tensend мобильды қосымшасы ақша табуға мүмкіндік беретінін және
+                        көмектесетінін біз жақсы білеміз.
+                    </p>
+                </div>
+                <div class="author  d-lg-flex" id="about-section">
+                    <div class="text">
+                        <h3>Төлемдерді онлайн қабылдау</h3>
+                        <p>Кез келген банктін картасымен Tensend-тің
+                            ішінде клиентіңіз төлем жасай алады. Төлем жасағаннан соң
+                            барлық курстарға автоматты түрде “доступ” ашылады.
+                        </p>
+                    </div>
 
+                    <div class="card">
+                        <img class="img img-fluid smart_phone" src="{{asset('tensendMobile.png')}}">
+                    </div>
+                </div>
+                <div class="author d-lg-flex mt-4" id="about-section">
+                    <div class="text">
+                        <h3>Аналитика</h3>
+                        <p>Сіз кез келген уақытта сіздің сілтемемеңізбен қанша қолданушы өткенін,
+                            қаншасы қосымшаны орнатқаны, қаншасы сатып алғаны жайлы және
+                            сіздің табысыңыз жайлы толық ақпарат аласыз.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <img class="img img-fluid smart_phone" src="{{asset('tensendMobile.png')}}">
+                    </div>
+                </div>
+                <div class="author d-lg-flex mt-4" id="about-section">
+                    <div class="text">
+                        <h3>SMS, PUSH хабарландырулар</h3>
+                        <p>Енді Сізге сату бөлімін құру, қосымша адамдарды жұмысқа алып,
+                            SMS, CRM интеграциясын жасап шығындалудың қажеті жоқ. Tensend-те
+                            Барлығы Сіз үшін ойластырылған және Сіз үшін тегін. Сіздің сілтемеңізбен
+                            өтіп қосымшаны орнатқан бырақ әлі жазылмаған барлық қолданушыға
+                            Tensend sms және push хабарламаларды жіберіп Сіздің табысыңызды көтереді.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <img class="img img-fluid smart_phone" src="{{asset('tensendMobile.png')}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="site-section bg-light" id="testimonial-section">
@@ -431,80 +449,80 @@
                     <a target="_blank" href="{{asset('docs/Confidentiality.pdf')}}">Политика конфиденциальности</a>
                 </div>
             </div>
-{{--            <div class="row">--}}
-{{--                <div class="col-md-4">--}}
-{{--                    <div class="testimonial bg-white h-100">--}}
-{{--                        <blockquote class="mb-3">--}}
-{{--                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and--}}
-{{--                                Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at--}}
-{{--                                the coast of the Semantics, a large language ocean.&rdquo;</p>--}}
-{{--                        </blockquote>--}}
-{{--                        <div class="d-flex align-items-center vcard">--}}
-{{--                            <figure class="mb-0 mr-3">--}}
-{{--                                <img src="{{asset('front/images/person_3.jpg')}}"--}}
-{{--                                     alt="Free website template by Free-Template.co"--}}
-{{--                                     class="img-fluid rounded-circle">--}}
-{{--                            </figure>--}}
-{{--                            <div class="vcard-text">--}}
-{{--                                <span class="d-block">Jacob Spencer</span>--}}
-{{--                                <span class="position">Web Designer</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-4">--}}
-{{--                    <div class="testimonial bg-white h-100">--}}
-{{--                        <blockquote class="mb-3">--}}
-{{--                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and--}}
-{{--                                Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at--}}
-{{--                                the coast of the Semantics, a large language ocean.&rdquo;</p>--}}
-{{--                        </blockquote>--}}
-{{--                        <div class="d-flex align-items-center vcard">--}}
-{{--                            <figure class="mb-0 mr-3">--}}
-{{--                                <img src="{{asset('front/images/person_1.jpg')}}"--}}
-{{--                                     alt="Free website template by Free-Template.co"--}}
-{{--                                     class="img-fluid ounded-circle">--}}
-{{--                            </figure>--}}
-{{--                            <div class="vcard-text">--}}
-{{--                                <span class="d-block">David Shaun</span>--}}
-{{--                                <span class="position">Web Designer</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-4">--}}
-{{--                    <div class="testimonial bg-white h-100">--}}
-{{--                        <blockquote class="mb-3">--}}
-{{--                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and--}}
-{{--                                Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at--}}
-{{--                                the coast of the Semantics, a large language ocean.&rdquo;</p>--}}
-{{--                        </blockquote>--}}
-{{--                        <div class="d-flex align-items-center vcard">--}}
-{{--                            <figure class="mb-0 mr-3">--}}
-{{--                                <img src="{{asset('front/images/person_2.jpg')}}"--}}
-{{--                                     alt="Free website template by Free-Template.co"--}}
-{{--                                     class="img-fluid ounded-circle">--}}
-{{--                            </figure>--}}
-{{--                            <div class="vcard-text">--}}
-{{--                                <span class="d-block">Craig Smith</span>--}}
-{{--                                <span class="position">Web Designer</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            {{--            <div class="row">--}}
+            {{--                <div class="col-md-4">--}}
+            {{--                    <div class="testimonial bg-white h-100">--}}
+            {{--                        <blockquote class="mb-3">--}}
+            {{--                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and--}}
+            {{--                                Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at--}}
+            {{--                                the coast of the Semantics, a large language ocean.&rdquo;</p>--}}
+            {{--                        </blockquote>--}}
+            {{--                        <div class="d-flex align-items-center vcard">--}}
+            {{--                            <figure class="mb-0 mr-3">--}}
+            {{--                                <img src="{{asset('front/images/person_3.jpg')}}"--}}
+            {{--                                     alt="Free website template by Free-Template.co"--}}
+            {{--                                     class="img-fluid rounded-circle">--}}
+            {{--                            </figure>--}}
+            {{--                            <div class="vcard-text">--}}
+            {{--                                <span class="d-block">Jacob Spencer</span>--}}
+            {{--                                <span class="position">Web Designer</span>--}}
+            {{--                            </div>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--                <div class="col-md-4">--}}
+            {{--                    <div class="testimonial bg-white h-100">--}}
+            {{--                        <blockquote class="mb-3">--}}
+            {{--                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and--}}
+            {{--                                Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at--}}
+            {{--                                the coast of the Semantics, a large language ocean.&rdquo;</p>--}}
+            {{--                        </blockquote>--}}
+            {{--                        <div class="d-flex align-items-center vcard">--}}
+            {{--                            <figure class="mb-0 mr-3">--}}
+            {{--                                <img src="{{asset('front/images/person_1.jpg')}}"--}}
+            {{--                                     alt="Free website template by Free-Template.co"--}}
+            {{--                                     class="img-fluid ounded-circle">--}}
+            {{--                            </figure>--}}
+            {{--                            <div class="vcard-text">--}}
+            {{--                                <span class="d-block">David Shaun</span>--}}
+            {{--                                <span class="position">Web Designer</span>--}}
+            {{--                            </div>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--                <div class="col-md-4">--}}
+            {{--                    <div class="testimonial bg-white h-100">--}}
+            {{--                        <blockquote class="mb-3">--}}
+            {{--                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and--}}
+            {{--                                Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at--}}
+            {{--                                the coast of the Semantics, a large language ocean.&rdquo;</p>--}}
+            {{--                        </blockquote>--}}
+            {{--                        <div class="d-flex align-items-center vcard">--}}
+            {{--                            <figure class="mb-0 mr-3">--}}
+            {{--                                <img src="{{asset('front/images/person_2.jpg')}}"--}}
+            {{--                                     alt="Free website template by Free-Template.co"--}}
+            {{--                                     class="img-fluid ounded-circle">--}}
+            {{--                            </figure>--}}
+            {{--                            <div class="vcard-text">--}}
+            {{--                                <span class="d-block">Craig Smith</span>--}}
+            {{--                                <span class="position">Web Designer</span>--}}
+            {{--                            </div>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
         </div>
     </div>
 
-{{--    <div class="site-section py-5 bg-primary">--}}
-{{--        <div class="container">--}}
-{{--            <h3 class="text-white h4 mb-3 ml-3">Subscribe For The New Updates</h3>--}}
-{{--            <div class="d-flex">--}}
-{{--                <input type="text" class="form-control mr-4 px-4" placeholder="Enter your email address...">--}}
-{{--                <input type="submit" class="btn btn-white px-4" value="Send Email">--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="site-section py-5 bg-primary">--}}
+    {{--        <div class="container">--}}
+    {{--            <h3 class="text-white h4 mb-3 ml-3">Subscribe For The New Updates</h3>--}}
+    {{--            <div class="d-flex">--}}
+    {{--                <input type="text" class="form-control mr-4 px-4" placeholder="Enter your email address...">--}}
+    {{--                <input type="submit" class="btn btn-white px-4" value="Send Email">--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 
     <footer class="site-footer">
         <div class="container" id="contact-section">
@@ -517,7 +535,8 @@
                                 Tensend мобильды қосымшасы
                                 арқылы ай сайын 50 миллион теңгеден астам табыс табамыз.
                                 Tensend мобильды қосымшасы ақша табуға мүмкіндік беретінін
-                                және көмектесетінін біз жақсы білеміз.</p>
+                                және көмектесетінін біз жақсы білеміз. <a href="">info@tensend.me</a>
+                            </p>
                         </div>
                     </div>
 
@@ -543,32 +562,32 @@
                 </div>
 
 
-{{--                <div class="col-lg-4 mb-5 mb-lg-0" id="contact-section">--}}
+                {{--                <div class="col-lg-4 mb-5 mb-lg-0" id="contact-section">--}}
 
-{{--                    <div class="mb-5">--}}
-{{--                        <h3 class="footer-heading mb-4">Напишите нам</h3>--}}
-{{--                        <form method="post" class="form-subscribe">--}}
-{{--                            <div class="form-group mb-3">--}}
-{{--                                <input type="text" class="form-control border-white text-white bg-transparent"--}}
-{{--                                       placeholder="Имя" aria-label="Enter Email" aria-describedby="button-addon2">--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group mb-3">--}}
-{{--                                <input type="text" class="form-control border-white text-white bg-transparent"--}}
-{{--                                       placeholder="Введите email" aria-label="Enter Email"--}}
-{{--                                       aria-describedby="button-addon2">--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group mb-3">--}}
-{{--                                <textarea name="" class="form-control" id="" cols="30" rows="4"--}}
-{{--                                          placeholder="Сообщение"></textarea>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <button class="btn btn-primary px-5" type="submit">Отправить сообщение</button>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
+                {{--                    <div class="mb-5">--}}
+                {{--                        <h3 class="footer-heading mb-4">Напишите нам</h3>--}}
+                {{--                        <form method="post" class="form-subscribe">--}}
+                {{--                            <div class="form-group mb-3">--}}
+                {{--                                <input type="text" class="form-control border-white text-white bg-transparent"--}}
+                {{--                                       placeholder="Имя" aria-label="Enter Email" aria-describedby="button-addon2">--}}
+                {{--                            </div>--}}
+                {{--                            <div class="form-group mb-3">--}}
+                {{--                                <input type="text" class="form-control border-white text-white bg-transparent"--}}
+                {{--                                       placeholder="Введите email" aria-label="Enter Email"--}}
+                {{--                                       aria-describedby="button-addon2">--}}
+                {{--                            </div>--}}
+                {{--                            <div class="form-group mb-3">--}}
+                {{--                                <textarea name="" class="form-control" id="" cols="30" rows="4"--}}
+                {{--                                          placeholder="Сообщение"></textarea>--}}
+                {{--                            </div>--}}
+                {{--                            <div class="form-group">--}}
+                {{--                                <button class="btn btn-primary px-5" type="submit">Отправить сообщение</button>--}}
+                {{--                            </div>--}}
+                {{--                        </form>--}}
 
-{{--                    </div>--}}
-{{--                    --}}
-{{--                </div>--}}
+                {{--                    </div>--}}
+                {{--                    --}}
+                {{--                </div>--}}
 
             </div>
             <div class="row pt-5 mt-5 text-center">
@@ -584,7 +603,7 @@
                         Copyright &copy;<script>document.write(new Date().getFullYear());</script>
                         Все права защищены<i class="icon-heart text-danger"
                                              aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>

@@ -46,6 +46,7 @@ class CourseServiceImpl implements CourseService
                     }
                 }
             }
+            $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
             $course->makeHidden('lessons');
         }
@@ -78,7 +79,8 @@ class CourseServiceImpl implements CourseService
                      $count++;
                  }
              }
-             $course->lessons_passing_count = $count;
+            $course->information_list = array_filter(explode(',', $course->information_list));
+            $course->lessons_passing_count = $count;
              $course->makeHidden('lessons');
         }
         $courses->setCollection($coursesItems);
@@ -108,6 +110,7 @@ class CourseServiceImpl implements CourseService
                     }
                 }
             }
+            $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
             $course->makeHidden('lessons');
         }
@@ -132,6 +135,7 @@ class CourseServiceImpl implements CourseService
         $subscriptions = $user->activeSubscriptions();
         $course->access = $subscriptions->exists() ? true : false;
         $course->lessons_count = $course->lessons->count();
+        $course->information_list = array_filter(explode(',', $course->information_list));
         $i = 0;
         foreach ($course->lessons as $lesson) {
             $lesson->access = !$subscriptions->exists() && $i > 2 ? false : true;
