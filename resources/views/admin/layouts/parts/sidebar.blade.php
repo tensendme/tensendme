@@ -22,8 +22,10 @@
     {{--            </div>--}}
     {{--            <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search"> </div>--}}
     {{--    </form>--}}
+    <?php $user = Auth::user() ?>
     <div class="nav-wrapper">
         <ul class="nav flex-column">
+            @if(in_array($user->role_id ,[1,2,3,6]) )
             <li class="nav-item">
                 <a class="nav-link {{Helper::urlActiveHelper('home')}}"
                    href="{{route('home')}}">
@@ -31,7 +33,8 @@
                     <span>Главное</span>
                 </a>
             </li>
-
+            @endif
+            @if(in_array($user->role_id ,[1,2,3,6]) )
             <li class="nav-item">
                 <a class="nav-link {{Helper::urlActiveHelper('users')}}"
                    href="{{route('users.index')}}">
@@ -39,7 +42,8 @@
                     <span>Пользователи</span>
                 </a>
             </li>
-
+                @endif
+                @if(in_array($user->role_id ,[1,2,3]) )
             <li class="nav-item">
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
@@ -61,6 +65,8 @@
                     </div>
                 </div>
             </li>
+                @endif
+                @if(in_array($user->role_id ,[1,2,3]) )
             <li class="nav-item">
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
@@ -87,6 +93,8 @@
                     </div>
                 </div>
             </li>
+                @endif
+                @if(in_array($user->role_id ,[1,2,3,6]) )
             <li class="nav-item">
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
@@ -118,6 +126,8 @@
                     </div>
                 </div>
             </li>
+                @endif
+                @if(in_array($user->role_id ,[1,2,3]) )
             <li class="nav-item">
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
@@ -160,6 +170,7 @@
                     </div>
                 </div>
             </li>
+                @endif
         </ul>
     </div>
 </aside>

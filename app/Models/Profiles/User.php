@@ -94,6 +94,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->role_id == Role::CONTENT_MANAGER_ID;
     }
 
+    public function isAccountant()
+    {
+        return $this->role_id == Role::ACCOUNTANT_ID;
+    }
+
     public function isAuthor()
     {
         return $this->role_id == Role::AUTHOR_ID;

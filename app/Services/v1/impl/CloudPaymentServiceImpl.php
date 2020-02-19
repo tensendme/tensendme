@@ -45,9 +45,10 @@ class CloudPaymentServiceImpl implements PaymentService
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
         ]);
         $url = route('cryptogram');
-        $result = ['url' => $url, 'subscription_type_id' => $subscription_type_id , 'token' => $token];
-        return $result;
-//        return view('cryptogram',compact('subscription_type'));
+//        $result = ['url' => $url, 'subscription_type_id' => $subscription_type_id , 'token' => $token];
+
+        $result = view('cryptogram',compact('subscription_type','token'));
+        return  $result;
 
     }
 
@@ -55,7 +56,8 @@ class CloudPaymentServiceImpl implements PaymentService
     {   $token = $request->header('Authorization');
 
         $url = route('saveCard');
-        $result = ['url' => $url, 'token' =>$token];
+//        $result = ['url' => $url, 'token' =>$token];
+        $result = view('saveCard',compact('token'));
         return $result;
     }
 
