@@ -20,7 +20,9 @@ class PaymentController extends ApiBaseController
     public function subscribe(Request $request) {
 
 
-        return $this->successResponse(['result' => $this->paymentService->subscribe($request)]);
+//        return $this->successResponse(['result' => $this->paymentService->subscribe($request)]);
+        return $this->paymentService->subscribe($request);
+
 
     }
 
@@ -28,7 +30,8 @@ class PaymentController extends ApiBaseController
     public function saveCard(Request $request) {
 
 
-        return $this->successResponse(['result' => $this->paymentService->saveCard($request)]);
+//        return $this->successResponse(['result' => $this->paymentService->saveCard($request)]);
+        return $this->paymentService->saveCard($request);
 
     }
 

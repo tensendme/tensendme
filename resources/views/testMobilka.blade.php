@@ -46,6 +46,7 @@
 
             .then(result => result.json()).then(result => {
             window.location.href = result.result.url + "?" + 'token=' + result.result.token;
+
         })
 
             .catch(error => console.log('error', error));
