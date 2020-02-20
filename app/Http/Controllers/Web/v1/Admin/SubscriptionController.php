@@ -14,7 +14,9 @@ class SubscriptionController extends WebBaseController
     public function index()
     {
         $subscriptionType = SubscriptionType::where('price', 0)->first();
-        $subscriptions = Subscription::where('subscription_type_id', '!=', $subscriptionType->id)->paginate(10);
+        $subscriptions = Subscription::where('subscription_type_id', '!=', $subscriptionType->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         return view('admin.userActions.subscriptions.index',compact('subscriptions'));
     }
 }

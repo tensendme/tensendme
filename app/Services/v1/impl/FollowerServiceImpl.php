@@ -58,7 +58,6 @@ class FollowerServiceImpl implements FollowerService
 
         $date = new DateTime();
         $date->modify('-' . $level->period_date . 'days');
-        //$level->time должно быть вместо статичной времени
         $followers = $hostUser->followers;
         $followersCount = $followers->where('level_id', $level->id)->where('created_at', '>', $date)->count();
         if ($followersCount == $level->end_count) {

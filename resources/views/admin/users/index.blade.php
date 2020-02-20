@@ -27,6 +27,7 @@
                             <th scope="col" class="border-0">Уровень</th>
                             <th scope="col" class="border-0">Платформа</th>
                             <th scope="col" class="border-0">Баланс</th>
+                            <th scope="col" class="border-0">Действия</th>
 
                         </tr>
                         </thead>
@@ -46,6 +47,10 @@
                                 <td>{{$user->level->name}}</td>
                                 <td>{{$user->platform}}</td>
                                 <td>{{$user->getBalance()->balance}}</td>
+                                <td><a class="btn btn-outline-primary mb-2 "
+                                       href="{{route('users.edit', ['id' => $user->id])}}">
+                                        Поменять роль<i class="material-icons md-12">edit</i>
+                                    </a></td>
                             </tr>
                         @endforeach
                         </tbody>
