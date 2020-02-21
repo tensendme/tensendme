@@ -37,7 +37,7 @@ class CloudPaymentServiceImpl implements PaymentService
     public function subscribe($request)
     {   $token = $request->header('Authorization');
         $subscription_type_id = $request->subscription_type_id;
-        $subscription_type = SubscriptionType::find($subscription_type_id);
+        $subscription_type = SubscriptionType::where('id',$subscription_type_id)->where('price','!=',0);
         if (!$subscription_type) throw new ApiServiceException(404, false, [
             'errors' => [
                 'Такой подписки не существует!'
