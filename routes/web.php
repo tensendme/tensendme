@@ -186,8 +186,8 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/country/store', ['uses' => 'CountryController@store', 'as' => 'country.store']);
                 Route::get('/country/edit/{id}', ['uses' => 'CountryController@edit', 'as' => 'country.edit']);
                 Route::post('/country/update/{id}', ['uses' => 'CountryController@update', 'as' => 'country.update']);
-
-
+                Route::get('/users/{id}', ['uses' => 'UserController@changeRole', 'as' => 'users.edit']);
+                Route::post('/users/{id}', ['uses' => 'UserController@updateRole', 'as' => 'users.update']);
             });
 
         });

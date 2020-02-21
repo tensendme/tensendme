@@ -13,13 +13,6 @@
         <label class="form-control-plaintext" for="title">Пожалуйста введите название курса</label>
     </div>
     <div class="form-group col-md-6">
-        {{--        <select class="form-control" name="author_id" id="author_id" onscroll="onScroll()"--}}
-        {{--                onfocus="this.size=2;" onchange="this.size=1;">--}}
-        {{--            @if($course->author_id)--}}
-        {{--                <option value="{{$course->author_id}}" selected>{{$course->author->name}}</option>--}}
-        {{--            @endif--}}
-        {{--        </select>--}}
-
         <select id="author_id" class="form-control js-example-basic-single" name="author_id">
             @if($course->author_id)
                 <option value="{{$course->author_id}}" selected>

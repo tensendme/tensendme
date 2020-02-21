@@ -71,6 +71,7 @@ class SubscriptionServiceImpl implements SubscriptionService
                 'actual_price' => $price
             ]);
             $this->historyService->subscription($subscription, $firstSubscription);
+            // Level must be here calculate
             DB::commit();
             return "Успешно!";
         }
