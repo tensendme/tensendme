@@ -381,6 +381,16 @@ class CloudPaymentServiceImpl implements PaymentService
                 sleep(7);
                 $url = PaymentUtil::_REFUND_URL;
                 $this->makeCurlRequest($url, $json);
+
+
+                if (Card::where('token', $response->Model->Token)->first() == null) {
+                    Card::create([
+                        'user_id' => $user->id,
+                        'token' => $response->Model->Token,
+                        'type' => $response->Model->CardType,
+                        'last_four' => $response->Model->CardLastFour
+                    ]);
+                }
                 $result = view('cardStatus', compact('transaction'));
             } else {
                 $subscription_type = SubscriptionType::where('price', $sum)->first();
