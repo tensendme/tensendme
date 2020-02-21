@@ -273,7 +273,7 @@ class CloudPaymentServiceImpl implements PaymentService
                     'last_four' => $response->Model->CardLastFour
                 ]);
             }
-            sleep(5);
+            sleep(7);
 
             $url = PaymentUtil::_REFUND_URL;
             $json = [
@@ -378,7 +378,7 @@ class CloudPaymentServiceImpl implements PaymentService
                     'Amount' => 0.01
                 ];
                 $json = json_encode($json);
-                sleep(5);
+                sleep(7);
                 $url = PaymentUtil::_REFUND_URL;
                 $this->makeCurlRequest($url, $json);
                 $result = view('cardStatus', compact('transaction'));
