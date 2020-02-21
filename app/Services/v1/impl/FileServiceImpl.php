@@ -98,5 +98,34 @@ class FileServiceImpl implements FileService
         return $this->store($image, $path);
     }
 
+    public function meditationAudioStore(UploadedFile $audio, string $path)
+    {
+        $material = (object) array();
+        $audioPath = time() . ((string)Str::uuid()) . $audio->getClientOriginalName();
+        $audioFullPath = $audio->move($path, $audioPath);
+        $material->path = $audioFullPath;
+
+        $ffprobe = FFProbe::create([
+            'ffmpeg.binaries'  => env('FF_MPEG_BINARY'),
+            'ffprobe.binaries' => env('FF_PROBE_BINARY')
+        ]);;
+        $duration = $ffprobe
+            ->streams($audioFullPath)
+            ->audios()
+            ->first()
+            ->get('duration');
+
+        $material->duration = $duration;
+        return $material;
+    }
+
+    public function meditationAudioUpdate(UploadedFile $audio, string $path, string $oldFilePath = null)
+    {
+        if ($oldFilePath) {
+            $this->remove($oldFilePath);
+        }
+        return $this->meditationAudioStore($audio, $path);
+    }
+
 
 }

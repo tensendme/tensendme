@@ -7,7 +7,6 @@ use App\Exceptions\WebServiceErroredException;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\CategoryControllerRequests\CategoryStoreAndUpdateRequest;
 use App\Models\Categories\CategoryType;
-use App\Models\Courses\Course;
 use App\Services\v1\CategoryService;
 use App\Services\v1\FileService;
 use App\Utils\StaticConstants;
@@ -55,7 +54,7 @@ class CategoryController extends WebBaseController
             if($request->parent_category_id) {
                 $checkForType = Category::find($request->parent_category_id);
                 if ($checkForType->category_type_id != $request->category_type_id) {
-                    throw new WebServiceErroredException(trans('admin.error') . ': ' . 'Категория не та!');
+                    throw new WebServiceErroredException( 'Родительская категория не совпадает с типом!');
                 }
             }
             Category::create([
