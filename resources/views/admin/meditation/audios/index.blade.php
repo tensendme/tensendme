@@ -38,8 +38,16 @@
                                 <td>{{$audio->id}}</td>
                                 <td>{{$audio->language->name}}</td>
                                 <td>{{$audio->author->name}}</td>
-                                <td>{{$audio->duration}}</td>
-                                <td>{{$audio->free}}</td>
+                                <td>{{$audio->duration}} мин</td>
+                                <td>@if($audio->free)
+                                        <span class="text-success">
+                                            Бесплатно
+                                        </span>
+                                    @else<span class="text-danger">
+                                            С подпиской
+                                        </span>
+                                @endif
+                                </td>
                                 <td>
                                     <a class="btn btn-outline-primary mb-2 "
                                        href="{{route('meditation.audio.edit', ['id' => $audio->id])}}">
