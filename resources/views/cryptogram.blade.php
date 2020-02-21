@@ -610,7 +610,17 @@
         }
 
         else {
-            alert(result.messages);
+            var msgs = result.messages;
+            if (msgs.hasOwnProperty('cardNumber'))
+            alert(msgs.cardNumber);
+            if (msgs.hasOwnProperty('name'))
+                alert(msgs.name);
+            if (msgs.hasOwnProperty('cvv'))
+                alert(msgs.cvv);
+            if (msgs.hasOwnProperty('expDateMonth'))
+                alert(msgs.expDateMonth);
+            if (msgs.hasOwnProperty('expDateYear'))
+                alert(msgs.expDateYear)
         }
     };
 
