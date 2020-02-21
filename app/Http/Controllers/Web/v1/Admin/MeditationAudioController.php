@@ -41,7 +41,7 @@ class MeditationAudioController extends WebBaseController
         if(!$request->audio) throw new WebServiceErroredException(trans('admin.error') . ': Аудио не должно быть пустым!');
         $path = $this->fileService->meditationAudioStore($request->audio, MeditationAudio::DEFAULT_RESOURCE_DIRECTORY);
         MeditationAudio::create([
-            'duration' => ceil($path->duration),
+            'duration' => ceil($path->duration/60),
             'audio_path' => $path->path,
             'audio_language_id' => $request->language_id,
             'author_id' => $request->author_id,
