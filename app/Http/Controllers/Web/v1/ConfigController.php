@@ -2,12 +2,26 @@
 
 namespace App\Http\Controllers\Web\v1;
 
+use App\CloudMessaging\Pushes\GeneralPush;
 use App\Http\Controllers\WebBaseController;
+use App\Jobs\SendPush;
+use App\JobTemplates\PushJobTemplate;
+use App\Models\Profiles\User;
+use App\Queues\QueueConstants;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
 class ConfigController extends WebBaseController
 {
+
+    public function sendPush(Request $request)
+    {
+        $user = User::find($request->id);
+        $generalPush = new GeneralPush('Test', "test");
+        $pushJobTemplate = new PushJobTemplate($user, $generalPush);
+        SendPush::dispatch($pushJobTemplate)->onQueue(QueueConstants::NOTIFICATIONS_QUEUE);
+    }
+
     public function migrateRefresh(Request $request)
     {
         if ($request->token == 'kasya') {

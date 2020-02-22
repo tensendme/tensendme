@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  #PORTAINER
+#  portainer:
+#    image: portainer/portainer
+#    restart: always
+#    ports:
+#    - 9000:9000
+#    - 8000:8000
+#    volumes:
+#    - /var/run/docker.sock:/var/run/docker.sock
+#    - portainer_data:/data
+
+  #REDIS
+  redis:
+    image: bitnami/redis:latest
+    ports:
+    - 6380:6379
+    environment:
+      REDIS_PASSWORD: ${CONF_REDIS_PASSWORD}

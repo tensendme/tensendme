@@ -9,7 +9,11 @@
 namespace App\Services\v1;
 
 
+use App\JobTemplates\MailJobTemplate;
+
 interface MailService
 {
     public function sendEmail($to, string $message, $title = null);
+
+    public function sendEmailByMailJob(MailJobTemplate $mailJobTemplate);
 }

@@ -9,6 +9,7 @@
 namespace App\Services\v1\impl;
 
 
+use App\JobTemplates\SmsJobTemplate;
 use App\Services\v1\SmsService;
 
 class SmsServiceImpl implements SmsService
@@ -20,5 +21,11 @@ class SmsServiceImpl implements SmsService
         $password = 'sabyrzhanayrin0013392004';
         return file_get_contents("https://smsc.kz/sys/send.php?login=$login&psw=$password&phones=$phone&mes=$message");
     }
+
+    public function sendSmsBySmsJob(SmsJobTemplate $smsJobTemplate)
+    {
+        $this->sendSms($smsJobTemplate->getPhone(), $smsJobTemplate->getMessage());
+    }
+
 
 }

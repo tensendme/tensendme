@@ -9,6 +9,7 @@
 namespace App\Services\v1\impl;
 
 
+use App\JobTemplates\MailJobTemplate;
 use App\Services\v1\MailService;
 use Illuminate\Support\Facades\Mail;
 
@@ -21,5 +22,14 @@ class MailServiceImpl implements MailService
                 ->subject('Authorization code');
         });
     }
+
+    public function sendEmailByMailJob(MailJobTemplate $mailJobTemplate)
+    {
+        $this->sendEmail(
+            $mailJobTemplate->getTo(),
+            $mailJobTemplate->getMessage(),
+            $mailJobTemplate->getTitle());
+    }
+
 
 }

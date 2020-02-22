@@ -13,8 +13,13 @@ use App\Core\ErrorTrait;
 use App\Exceptions\ApiServiceException;
 use App\Http\Errors\ErrorCode;
 use App\Http\Utils\ApiUtil;
+use App\Jobs\SendMail;
+use App\Jobs\SendSms;
+use App\JobTemplates\MailJobTemplate;
+use App\JobTemplates\SmsJobTemplate;
 use App\Models\Auth\Code;
 use App\Models\Profiles\User;
+use App\Queues\QueueConstants;
 use App\Services\v1\CodeService;
 use App\Services\v1\MailService;
 use App\Services\v1\SmsService;
@@ -57,9 +62,13 @@ class CodeServiceImpl implements CodeService
 
         $message = 'Authorization code: ' . $code;
         if ($isEmail) {
-            $this->mailService->sendEmail($login, $message);
+            $emailJobTemplate = new MailJobTemplate($login, $message);
+            SendMail::dispatch($emailJobTemplate)->onQueue(QueueConstants::NOTIFICATIONS_QUEUE);
+//            $this->mailService->sendEmail($login, $message);
         } else {
-            $this->smsService->sendSms($login, $message);
+            $smsJobTemplate = new SmsJobTemplate($login, $message);
+            SendSms::dispatch($smsJobTemplate)->onQueue(QueueConstants::NOTIFICATIONS_QUEUE);
+//            $this->smsService->sendSms($login, $message);
         }
     }
 

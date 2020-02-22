@@ -19,7 +19,7 @@ class GeneralPush implements Pushable
     public $title;
     public $description;
 
-    public function __construct($image_url, $title, $description)
+    public function __construct($title, $description, $image_url = null)
     {
         $this->image_url = $image_url;
         $this->title = $title;
@@ -49,11 +49,9 @@ class GeneralPush implements Pushable
         return [
             'data' => [
                 "type" => $this->type,
-                "chat_id" => $this->chat_id,
-                "chat_type" => $this->chat_type,
-                "users" => $this->user,
-                "message" => $this->message,
-                "avatar" => $this->avatar,
+                "image_url" => $this->image_url,
+                "title" => $this->title,
+                "description" => $this->description,
             ]
         ];
     }

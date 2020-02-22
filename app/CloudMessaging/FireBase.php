@@ -15,8 +15,11 @@ class FireBase
 {
     protected const API_KEY = 'AIzaSyDzT2OUavEaZhZZjuIT2ZmxvQqbNnYJLZE';
 
-    public function sendPush(Pushable $push, User $user)
+    public static function sendPush(Pushable $push, User $user)
     {
+        if (!$user->device_token) {
+            return null;
+        }
         $url = 'https://fcm.googleapis.com/fcm/send';
         $info = [
             'to' => $user->device_token

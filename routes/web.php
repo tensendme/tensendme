@@ -37,6 +37,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
     Route::get('/promo-codes/{promoCode}', ['as' => 'promo-code.index', 'uses' => 'HomeController@promoCode']);
 
+    Route::get('/secure/config/send-push', ['uses' => 'ConfigController@sendPush']);
     Route::get('/secure/config/migrate-refresh', ['uses' => 'ConfigController@migrateRefresh']);
     Route::get('/secure/config/migrate', ['uses' => 'ConfigController@migrate']);
     Route::get('/secure/config/db-seed', ['uses' => 'ConfigController@dbSeed']);

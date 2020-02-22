@@ -9,7 +9,11 @@
 namespace App\Services\v1;
 
 
+use App\JobTemplates\SmsJobTemplate;
+
 interface SmsService
 {
     public function sendSms($phone, $message);
+
+    public function sendSmsBySmsJob(SmsJobTemplate $smsJobTemplate);
 }
