@@ -25,6 +25,10 @@ interface FileService
     public function courseMaterialUpdate(UploadedFile $video, string $path,
                                          string $oldFilePath = null, string $oldImagePath);
 
+    public function meditationAudioStore(UploadedFile $audio, string $path);
+
+    public function meditationAudioUpdate(UploadedFile $audio, string $path, string $oldFilePath = null);
+
     public function avatarUpdateAndStore(UploadedFile $image, string $path, string $oldImagePath = null);
 
 }

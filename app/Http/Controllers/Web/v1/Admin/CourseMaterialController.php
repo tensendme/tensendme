@@ -46,7 +46,7 @@ class CourseMaterialController extends WebBaseController
         $material = CourseMaterial::create([
             'title' => $request->title,
             'video_path' => $path->path,
-            'duration_time' => $path->duration,
+            'duration_time' => ceil($path->duration/60),
             'img_path' => $path->img,
             'course_id' => $course_id,
             'ordering' => $request->ordering
@@ -79,7 +79,7 @@ class CourseMaterialController extends WebBaseController
         $path = (object) array();
         $path->path = $material->video_path;
         $path->img = $material->img_path;
-        $path->duration = $material->duration;
+        $path->duration = ceil($material->duration/60);
         if($request->file('video')) {
             $path = $this->fileService->courseMaterialUpdate($request->file('video'),
                 CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY, $path->path, $path->img);

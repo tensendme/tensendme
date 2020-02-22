@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Localization::class,
         ],
 
         'api' => [
@@ -65,6 +66,13 @@ class Kernel extends HttpKernel
         'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
         'cors' => \App\Http\Middleware\Cors::class, // <-- add this line
+
+        //Roles
+
+//        'ROLE_ADMIN' => \App\Http\Middleware\roles\AdminMiddleware::class,
+//        'ROLE_CONTENT_MANAGER' => \App\Http\Middleware\roles\ContentManagerMiddleware::class,
+//        'ROLE_ACCOUNTANT' => \App\Http\Middleware\roles\AccountantMiddleware::class,
+        'ROLE_OR' => \App\Http\Middleware\roles\RoleOrMiddleware::class,
 
     ];
 

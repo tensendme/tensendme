@@ -41,8 +41,8 @@
                                         <i class="material-icons md-12">edit</i>
                                     </a>
                                     <a class="btn btn-outline-primary mb-2 "
-                                       href="{{route('meditation.theme.index', ['meditationId' => $meditation->id])}}">
-                                        Добавить тему<i class="material-icons md-12">add</i>
+                                       href="{{route('meditation.audio.index', ['meditationId' => $meditation->id])}}">
+                                        Добавить аудио<i class="material-icons md-12">add</i>
                                     </a>
                                 </td>
                             </tr>

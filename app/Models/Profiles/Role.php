@@ -11,6 +11,7 @@ class Role extends Model
     public const CONTENT_MANAGER_ID = 3;
     public const AUTHOR_ID = 4;
     public const USER_ID = 5;
+    public const ACCOUNTANT_ID = 6;
 
     protected $fillable = [
         'name'

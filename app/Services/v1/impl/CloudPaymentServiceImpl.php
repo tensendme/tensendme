@@ -37,7 +37,7 @@ class CloudPaymentServiceImpl implements PaymentService
     public function subscribe($request)
     {   $token = $request->header('Authorization');
         $subscription_type_id = $request->subscription_type_id;
-        $subscription_type = SubscriptionType::find($subscription_type_id);
+        $subscription_type = SubscriptionType::where('id',$subscription_type_id)->where('price','!=',0)->first();
         if (!$subscription_type) throw new ApiServiceException(404, false, [
             'errors' => [
                 'Такой подписки не существует!'
@@ -45,9 +45,10 @@ class CloudPaymentServiceImpl implements PaymentService
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
         ]);
         $url = route('cryptogram');
-        $result = ['url' => $url, 'subscription_type_id' => $subscription_type_id , 'token' => $token];
-        return $result;
-//        return view('cryptogram',compact('subscription_type'));
+//        $result = ['url' => $url, 'subscription_type_id' => $subscription_type_id , 'token' => $token];
+
+        $result = view('cryptogram',compact('subscription_type','token'));
+        return  $result;
 
     }
 
@@ -55,7 +56,8 @@ class CloudPaymentServiceImpl implements PaymentService
     {   $token = $request->header('Authorization');
 
         $url = route('saveCard');
-        $result = ['url' => $url, 'token' =>$token];
+//        $result = ['url' => $url, 'token' =>$token];
+        $result = view('saveCard',compact('token'));
         return $result;
     }
 
@@ -271,7 +273,7 @@ class CloudPaymentServiceImpl implements PaymentService
                     'last_four' => $response->Model->CardLastFour
                 ]);
             }
-            sleep(5);
+            sleep(7);
 
             $url = PaymentUtil::_REFUND_URL;
             $json = [
@@ -376,9 +378,19 @@ class CloudPaymentServiceImpl implements PaymentService
                     'Amount' => 0.01
                 ];
                 $json = json_encode($json);
-                sleep(5);
+                sleep(7);
                 $url = PaymentUtil::_REFUND_URL;
                 $this->makeCurlRequest($url, $json);
+
+
+                if (Card::where('token', $response->Model->Token)->first() == null) {
+                    Card::create([
+                        'user_id' => $user->id,
+                        'token' => $response->Model->Token,
+                        'type' => $response->Model->CardType,
+                        'last_four' => $response->Model->CardLastFour
+                    ]);
+                }
                 $result = view('cardStatus', compact('transaction'));
             } else {
                 $subscription_type = SubscriptionType::where('price', $sum)->first();

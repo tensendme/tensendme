@@ -21,11 +21,16 @@
             redirect: 'follow'
         };
 
-        // fetch("http://192.168.0.101:8000/api/v1/pay?subscription_type_id=2", requestOptions)
-        fetch("https://tensend.me/api/v1/pay?subscription_type_id=2", requestOptions)
+        // fetch("http://192.168.0.101:8000/api/v1/pay?subscription_type_id=1", requestOptions)
+        fetch("https://tensend.me/api/v1/pay?subscription_type_id=1", requestOptions)
 
-            .then(result => result.json()).then(result => {
-            window.location.href = result.result.url + "?" + 'subscription_type_id=' + result.result.subscription_type_id + "&" + 'token=' + result.result.token;
+            .then(result => result.text()).then(result => {
+
+            document.open();
+            document.write(result);
+            document.close();
+
+
         })
 
             .catch(error => console.log('error', error));
@@ -44,8 +49,13 @@
         // fetch("http://192.168.0.101:8000/api/v1/saveCard", requestOptions)
         fetch("https://tensend.me/api/v1/saveCard", requestOptions)
 
-            .then(result => result.json()).then(result => {
-            window.location.href = result.result.url + "?" + 'token=' + result.result.token;
+            .then(result => result.text()).then(result => {
+
+            document.open();
+            document.write(result);
+            document.close();
+
+
         })
 
             .catch(error => console.log('error', error));

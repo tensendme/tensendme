@@ -94,6 +94,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->role_id == Role::CONTENT_MANAGER_ID;
     }
 
+    public function isAccountant()
+    {
+        return $this->role_id == Role::ACCOUNTANT_ID;
+    }
+
     public function isAuthor()
     {
         return $this->role_id == Role::AUTHOR_ID;
@@ -169,6 +174,7 @@ class User extends Authenticatable implements JWTSubject
                         $count++;
                 }
             }
+            $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
             $course->makeHidden('lessons');
         }

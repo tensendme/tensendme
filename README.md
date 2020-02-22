@@ -546,6 +546,9 @@ password: tensendme2020n
                     "deleted_at": null,
                     "author_id": 1,
                     "lessons_count": 15,
+                    "information_list": [
+                        "Nothing"
+                    ],
                     "lessons_passing_count": 0,
                     "author": {
                         "id": 1,
@@ -595,6 +598,9 @@ password: tensendme2020n
                 "updated_at": "2020-02-03 15:05:30",
                 "deleted_at": null,
                 "author_id": 1,
+                "information_list": [
+                        "Nothing"
+                ],
                 "lessons_count": 15,
                 "lessons_passing_count": 0,
                 "author": {
@@ -668,6 +674,9 @@ password: tensendme2020n
                 "updated_at": "2020-02-07 12:49:37",
                 "deleted_at": null,
                 "author_id": null,
+                "information_list": [
+                        "Nothing"
+                ],
                 "lessons_count": 4,
                 "lessons_passing_count": 1
             },
@@ -742,18 +751,42 @@ password: tensendme2020n
     
     RESPONSE
     {
-       {
-           "material": {
-               "id": 1,
-               "title": "ffdsfsd",
-               "video_path": "",
-               "ordering": 2,
-               "course_id": 1,
-               "created_at": "2020-01-25 03:46:47",
-               "updated_at": "2020-01-25 03:46:47"
-           },
-           "success": true
-       }
+        "material": {
+            "id": 3,
+            "title": "bekza",
+            "video_path": "videos/lessons/15813154548de4f2a2-1df7-4346-a092-7f7e6cf5c1f9SampleVideo_1280x720_1mb.mp4",
+            "ordering": 1,
+            "course_id": 1,
+            "created_at": "2020-02-10 12:17:34",
+            "updated_at": "2020-02-10 12:17:34",
+            "img_path": null,
+            "duration_time": null,
+            "description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+            "documents": [
+                {
+                    "id": 1,
+                    "course_material_id": 3,
+                    "type": "docx",
+                    "doc_path": "documents/lessons/1581315454ad48f6f7-7b52-40ab-bda4-36936c085bd050terms_Aldanazar_ASSYLKHAN.docx"
+                }
+            ],
+            "course": {
+                "id": 1,
+                "category_id": 1,
+                "title": "bekza",
+                "description": "fds",
+                "image_path": "images/courses/default.png",
+                "is_visible": 1,
+                "scale": 3.75,
+                "view_count": 0,
+                "created_at": "2020-01-25 03:46:36",
+                "updated_at": "2020-02-03 15:05:30",
+                "deleted_at": null,
+                "author_id": 1,
+                "information_list": null
+            }
+        },
+        "success": true
     }
 ```
 ### Получение типов подписок для(покупка разрешения на просмотров курсов)
@@ -907,6 +940,9 @@ password: tensendme2020n
                             "updated_at": "2020-02-02 19:12:52",
                             "deleted_at": null,
                             "author_id": null,
+                            "information_list": [
+                                "Nothing"
+                            ],
                             "author": null
                         },
                         {

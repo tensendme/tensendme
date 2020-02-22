@@ -119,8 +119,10 @@ class AuthServiceImpl implements AuthService
                 'errorCode' => ErrorCode::UNAUTHORIZED
             ]);
         }
-        $this->subscriptionService->freeSubscribe($user->id);
         // create free subscription
+        $this->subscriptionService->freeSubscribe($user->id);
+        //create balance
+        $user->getBalance();
         return $token;
     }
 
