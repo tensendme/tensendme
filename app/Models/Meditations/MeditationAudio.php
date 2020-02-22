@@ -22,7 +22,8 @@ class MeditationAudio extends Model
     ];
 
     public function author() {
-        return $this->belongsTo(User::class, 'author_id', 'id');
+        return $this->belongsTo(User::class, 'author_id', 'id')
+            ->select(array('id', 'name', 'email', 'phone', 'image_path'));
     }
 
     public function meditation() {
@@ -30,6 +31,7 @@ class MeditationAudio extends Model
     }
 
     public function language() {
-        return $this->belongsTo(AudioLanguage::class, 'audio_language_id', 'id');
+        return $this->belongsTo(AudioLanguage::class, 'audio_language_id', 'id')
+            ->select(array('id', 'name'));
     }
 }

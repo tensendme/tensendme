@@ -2,6 +2,7 @@
 
 namespace App\Models\Courses;
 
+use App\Models\Docs\Doc;
 use Illuminate\Database\Eloquent\Model;
 
 class CourseMaterial extends Model
@@ -15,5 +16,10 @@ class CourseMaterial extends Model
 
     public function course(){
         return $this->belongsTo(Course::class, 'course_id', 'id');
+    }
+
+    public function documents() {
+        return $this->hasMany(Doc::class, 'course_material_id', 'id')
+            ->select(array('id', 'course_material_id', 'type', 'doc_path'));
     }
 }
