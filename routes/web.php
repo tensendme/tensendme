@@ -34,6 +34,10 @@ Route::group(['namespace' => 'Auth'], function () {
 
 
 Route::group(['namespace' => 'Web\v1'], function () {
+
+
+    Route::get('lang/{locale}', ['as' => 'locale.change', 'uses' => 'HomeController@lang']);
+
     Route::get('/', ['as' => 'welcome', 'uses' => 'HomeController@welcome']);
 
     Route::get('/promo-codes/{promoCode}', ['as' => 'promo-code.index', 'uses' => 'HomeController@promoCode']);
@@ -46,7 +50,6 @@ Route::group(['namespace' => 'Web\v1'], function () {
     Route::get('/secure/config/key-generate', ['uses' => 'ConfigController@keyGenerate']);
     Route::get('/secure/config/optimize', ['uses' => 'ConfigController@optimize']);
     Route::get('/config/locale/{locale}', ['as' => 'locale', 'uses' => 'LocalizationController@index']);
-
 
 
     Route::get('/pay', ['uses' => 'PaymentController@pay', 'as' => 'cryptogram']);
@@ -63,7 +66,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
         Route::group(['namespace' => 'Admin'], function () {
             //users
 
-            Route::group(['middleware' => ['ROLE_OR:'.Role::ACCOUNTANT_ID.','.Role::SUPER_ADMIN_ID.','.Role::CONTENT_MANAGER_ID]], function () {
+            Route::group(['middleware' => ['ROLE_OR:' . Role::ACCOUNTANT_ID . ',' . Role::SUPER_ADMIN_ID . ',' . Role::CONTENT_MANAGER_ID]], function () {
                 Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
                 Route::get('/levels', ['uses' => 'LevelController@index', 'as' => 'level.index']);
                 Route::get('/countries', ['uses' => 'CountryController@index', 'as' => 'country.index']);
@@ -75,14 +78,14 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
             });
 
-            Route::group(['middleware' => ['ROLE_OR:'.Role::ACCOUNTANT_ID.','.Role::SUPER_ADMIN_ID]], function () {
+            Route::group(['middleware' => ['ROLE_OR:' . Role::ACCOUNTANT_ID . ',' . Role::SUPER_ADMIN_ID]], function () {
                 Route::get('/withdrawals', ['uses' => 'WithdrawalController@index', 'as' => 'withdrawal.index']);
                 Route::post('/withdrawals/approve/{id}', ['uses' => 'WithdrawalController@approve', 'as' => 'withdrawal.approve']);
                 Route::post('/withdrawals/cancel/{id}', ['uses' => 'WithdrawalController@cancel', 'as' => 'withdrawal.cancel']);
                 Route::get('/histories', ['uses' => 'HistoryController@index', 'as' => 'history.index']);
             });
 
-            Route::group(['middleware' => ['ROLE_OR:'.Role::CONTENT_MANAGER_ID.','.Role::SUPER_ADMIN_ID]], function () {
+            Route::group(['middleware' => ['ROLE_OR:' . Role::CONTENT_MANAGER_ID . ',' . Role::SUPER_ADMIN_ID]], function () {
 
                 Route::get('/categories', ['uses' => 'CategoryController@index', 'as' => 'category.index']);
                 Route::get('/category/create', ['uses' => 'CategoryController@create', 'as' => 'category.create']);
@@ -91,21 +94,21 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/category/update/{id}', ['uses' => 'CategoryController@update', 'as' => 'category.update']);
                 Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.delete']);
                 Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.destroy']);
-            Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
-            Route::get('/authors', ['uses' => 'UserController@authors', 'as' => 'authors']);
-            Route::get('/categories', ['uses' => 'CategoryController@index', 'as' => 'category.index']);
-            Route::get('/category/create', ['uses' => 'CategoryController@create', 'as' => 'category.create']);
-            Route::post('/category/store', ['uses' => 'CategoryController@store', 'as' => 'category.store']);
-            Route::get('/category/edit/{id}', ['uses' => 'CategoryController@edit', 'as' => 'category.edit']);
-            Route::post('/category/update/{id}', ['uses' => 'CategoryController@update', 'as' => 'category.update']);
-            Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.delete']);
+                Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
+                Route::get('/authors', ['uses' => 'UserController@authors', 'as' => 'authors']);
+                Route::get('/categories', ['uses' => 'CategoryController@index', 'as' => 'category.index']);
+                Route::get('/category/create', ['uses' => 'CategoryController@create', 'as' => 'category.create']);
+                Route::post('/category/store', ['uses' => 'CategoryController@store', 'as' => 'category.store']);
+                Route::get('/category/edit/{id}', ['uses' => 'CategoryController@edit', 'as' => 'category.edit']);
+                Route::post('/category/update/{id}', ['uses' => 'CategoryController@update', 'as' => 'category.update']);
+                Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.delete']);
 
-            Route::get('/levels', ['uses' => 'LevelController@index', 'as' => 'level.index']);
-            Route::get('/level/create', ['uses' => 'LevelController@create', 'as' => 'level.create']);
-            Route::post('/level/store', ['uses' => 'LevelController@store', 'as' => 'level.store']);
-            Route::get('/level/edit/{id}', ['uses' => 'LevelController@edit', 'as' => 'level.edit']);
-            Route::post('/level/update/{id}', ['uses' => 'LevelController@update', 'as' => 'level.update']);
-            Route::delete('/level/delete/{id}', ['uses' => 'LevelController@destroy', 'as' => 'level.delete']);
+                Route::get('/levels', ['uses' => 'LevelController@index', 'as' => 'level.index']);
+                Route::get('/level/create', ['uses' => 'LevelController@create', 'as' => 'level.create']);
+                Route::post('/level/store', ['uses' => 'LevelController@store', 'as' => 'level.store']);
+                Route::get('/level/edit/{id}', ['uses' => 'LevelController@edit', 'as' => 'level.edit']);
+                Route::post('/level/update/{id}', ['uses' => 'LevelController@update', 'as' => 'level.update']);
+                Route::delete('/level/delete/{id}', ['uses' => 'LevelController@destroy', 'as' => 'level.delete']);
 
 
                 Route::get('/city/create', ['uses' => 'CityController@create', 'as' => 'city.create']);
@@ -182,7 +185,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::delete('/faq/delete/{id}', ['uses' => 'FAQController@destroy', 'as' => 'faq.delete']);
             });
 
-            Route::group(['middleware' => ['ROLE_OR:'.Role::SUPER_ADMIN_ID]], function () {
+            Route::group(['middleware' => ['ROLE_OR:' . Role::SUPER_ADMIN_ID]], function () {
                 Route::get('/level/create', ['uses' => 'LevelController@create', 'as' => 'level.create']);
                 Route::post('/level/store', ['uses' => 'LevelController@store', 'as' => 'level.store']);
                 Route::get('/level/edit/{id}', ['uses' => 'LevelController@edit', 'as' => 'level.edit']);
