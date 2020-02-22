@@ -3,7 +3,7 @@
 // messages.php
 
 return [
-    'language' => 'Тил',
+    'language' => 'Тiл',
     'mainPage'=> 'Негізгі бет',
     'aboutPage'=> 'Tensend жайлы',
     'politicPage'=> 'Құпиялық саясат',
