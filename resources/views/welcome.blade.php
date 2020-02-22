@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Tensend</title>
     <meta charset="utf-8">
@@ -21,14 +22,39 @@
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
     <style>
         .tensend-logo {
-            width: 100px;
-            height: 100px;
+            width: 320px;
+            height: 120px;
             margin-top: -60px;
         }
 
         .smart_phone {
             /*height: 250px;*/
             /*width: 100%;*/
+        }
+
+        .downloadUrl {
+            width:40px;
+            height:40px;
+        }
+        .downloadUrlApple {
+            width:45px;
+            height:40px;
+        }
+        #downloadUrlBlock {
+           background-color: #0a0c0d;
+        }
+        #downloadUrlSpanIos {
+            color: white;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            font-style: normal;
+
+        }
+        #downloadUrlSpanAndroid {
+            color: white;
+            font-size: 20px;
+            font-style: normal;
+            letter-spacing: -1px;
         }
     </style>
 </head>
@@ -51,10 +77,10 @@
         <div class="site-navbar site-navbar-target js-sticky-header">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-6 col-lg-3">
+                    <div class="col-6 col-lg-2">
                         <h1 class="my-0 site-logo"><a href="/">Tensend</a></h1>
                     </div>
-                    <div class="col-6 col-lg-9">
+                    <div class="col-6 col-lg-10">
                         <nav class="site-navigation text-right" role="navigation">
                             <div class="container">
 
@@ -100,13 +126,20 @@
     <div class="site-section" id="home-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 mb-5">
-                    <img class="mb-4 tensend-logo" src="{{asset('tenSendLogo.png')}}" alt="Tensend">
+                <div class="col-md-7 mb-5">
+                    <img class="mb-4 tensend-logo" src="{{asset('10Send.png')}}" alt="Tensend">
                     <p class="text-white mb-5">@lang('messages.text1')
                     </p>
-                    <p><a href="#" class="btn btn-white px-4 py-3">AppStore</a> <a href="#"
-                                                                                   class="btn btn-white px-4 py-3">PlayMarket</a>
-                    </p>
+                    <div id="downloadUrlDiv">
+                    <a href="#" class="btn btn-white px-2 py-1" id="downloadUrlBlock">
+                            <img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">
+                        <span id="downloadUrlSpanAndroid">Google Play</span>
+                    </a>
+                        <a href="#" class="btn btn-white px-2 py-1" id="downloadUrlBlock">
+                            <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
+                            <span id="downloadUrlSpanIos">App Store</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
