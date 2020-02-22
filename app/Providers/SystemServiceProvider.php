@@ -18,6 +18,7 @@ use App\Services\v1\impl\ProfileServiceImpl;
 use App\Services\v1\impl\MeditationServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
 use App\Services\v1\impl\PromoCodeAnalyticServiceImpl;
+use App\Services\v1\impl\PushServiceImpl;
 use App\Services\v1\impl\RatingServiceImpl;
 use App\Services\v1\impl\SmsServiceImpl;
 use App\Services\v1\impl\StaticServiceImpl;
@@ -120,6 +121,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\PromoCodeAnalyticService', function ($app) {
             return (new PromoCodeAnalyticServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\PushService', function ($app) {
+            return (new PushServiceImpl());
         });
     }
 

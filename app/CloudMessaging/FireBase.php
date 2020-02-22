@@ -29,11 +29,9 @@ class FireBase
         } else if ($user->platform == User::PLATFORM_ANDROID) {
             $message = $push->toAndroid();
         }
-
         $info = array_merge($info, $message);
 
         $fields = json_encode($info);
-
         $request_headers = [
             'Content-Type: application/json',
             'Authorization: key=' . self::API_KEY,
