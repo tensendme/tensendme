@@ -49,4 +49,11 @@ class HomeController extends WebBaseController
         }
         return view('promo-code', compact('promoCode', 'user'));
     }
+
+    public function lang($locale)
+    {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
+    }
 }
