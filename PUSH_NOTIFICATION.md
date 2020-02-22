@@ -1,3 +1,13 @@
+## PUSH TESTER
+
+```
+URL https://tensend.me/secure/config/send-push?phone=7777777777
+
+должно прилететь test test
+делаете обычный ГЕТ запрос через браузер на этот урл
+тупо вставьте в урл и сделайте ENTER 
+``` 
+
 ### PUSHES
 ```
     

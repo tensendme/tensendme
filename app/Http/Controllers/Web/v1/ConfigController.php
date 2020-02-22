@@ -16,7 +16,8 @@ class ConfigController extends WebBaseController
 
     public function sendPush(Request $request)
     {
-        $user = User::find($request->id);
+        $user = User::where('phone', $request->phone)
+            ->first();
         $generalPush = new GeneralPush('Test', "test");
         $pushJobTemplate = new PushJobTemplate($user, $generalPush);
         SendPush::dispatch($pushJobTemplate)->onQueue(QueueConstants::NOTIFICATIONS_QUEUE);
