@@ -28,4 +28,10 @@ class Meditation extends Model
     public function themes() {
         return $this->hasMany(Theme::class, 'meditation_id', 'id');
     }
+
+    public function audios() {
+        return $this->hasMany(MeditationAudio::class, 'meditation_id', 'id')
+            ->with(['author', 'language'])->select(array('id', 'audio_path', 'img_path', 'free',
+                'author_id', 'duration', 'audio_language_id', 'meditation_id'));
+    }
 }

@@ -13,13 +13,14 @@ class MaterialServiceImpl implements MaterialService
 {
     public function getMaterialById($id)
     {
-        $material = CourseMaterial::find($id);
+        $material = CourseMaterial::where('id', $id)->with(['documents', 'course'])->first();
         if(!$material) throw new ApiServiceException(404, false, [
             'errors' => [
                 'Такого материала не существует'
             ],
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
         ]);
+        $material->description = '';
         return $material;
     }
 

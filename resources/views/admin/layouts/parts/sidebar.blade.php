@@ -4,7 +4,7 @@
             <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
                 <div class="d-table m-auto">
                     <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;"
-                         src="{{asset('admin/images/shards-dashboards-logo.svg')}}" alt="Shards Dashboard">
+                         src="{{asset('tensend.png')}}" alt="Shards Dashboard">
                     <span class="d-none d-md-inline ml-1">TenSendMe</span>
                 </div>
             </a>

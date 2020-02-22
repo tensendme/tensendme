@@ -149,6 +149,13 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/meditations/theme/edit/{id}', ['uses' => 'MeditationThemeController@edit', 'as' => 'meditation.theme.edit']);
                 Route::post('/meditations/theme/update/{id}', ['uses' => 'MeditationThemeController@update', 'as' => 'meditation.theme.update']);
 
+                Route::get('/meditations/audios/{meditationId}', ['uses' => 'MeditationAudioController@index', 'as' => 'meditation.audio.index']);
+                Route::get('/meditations/audios/create/{meditationId}', ['uses' => 'MeditationAudioController@create', 'as' => 'meditation.audio.create']);
+                Route::post('/meditations/audios/store/{meditationId}', ['uses' => 'MeditationAudioController@store', 'as' => 'meditation.audio.store']);
+                Route::get('/meditations/audios/edit/{id}', ['uses' => 'MeditationAudioController@edit', 'as' => 'meditation.audio.edit']);
+                Route::post('/meditations/audios/update/{id}', ['uses' => 'MeditationAudioController@update', 'as' => 'meditation.audio.update']);
+
+
                 Route::get('/locations', ['uses' => 'LocationController@index', 'as' => 'location.index']);
                 Route::get('/location/create', ['uses' => 'LocationController@create', 'as' => 'location.create']);
                 Route::post('/location/store', ['uses' => 'LocationController@store', 'as' => 'location.store']);

@@ -14,3 +14,4 @@
 <script async defer src="{{asset('admin/scripts/buttons.js')}}"></script>
 <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
 <link rel="stylesheet" href="{{asset('admin/styles/bootstrap-toggle.css')}}">
+<link rel="stylesheet" href="{{asset('admin/styles/select2.min.css')}}">

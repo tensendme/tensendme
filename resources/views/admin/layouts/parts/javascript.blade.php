@@ -12,6 +12,7 @@
 {{--<script src="{{asset('admin/scripts/app/app-blog-overview.1.1.0.js')}}"></script>--}}
 <script src="{{asset('js/toastr.js')}}"></script>
 <script src="{{asset('admin/scripts/bootstrap-toggle.js')}}"></script>
+<script src="{{asset('admin/scripts/select2.min.js')}}"></script>
 
 <script>
     $.ajaxSetup({
