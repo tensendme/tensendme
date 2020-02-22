@@ -127,7 +127,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7 mb-5">
-                    <img class="mb-4 tensend-logo" src="{{asset('10Send.png')}}" alt="Tensend">
+                    <img class="mb-4 tensend-logo" src="{{asset('10send.png')}}" alt="Tensend">
                     <p class="text-white mb-5">@lang('messages.text1')
                     </p>
                     <div id="downloadUrlDiv">
