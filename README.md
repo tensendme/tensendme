@@ -1128,30 +1128,116 @@ password: tensendme2020n
 ```
      GET Request
         Query Parameter
-        ?languageId = 1 || 2 по дефолту можно не передавать
-        1 - Русский
-        2 - Казахский 
-        Default = 2
     Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
 
     RESPONSE:
     {
-    "meditation": {
-        "name": "Сенімділік",
-        "description": "апапапа",
-        "duration_time": 8,
-        "img_path": "images/meditations/15816269210b8125b4-33c6-4be9-9570-f2f3087e5d0dСнимок экрана 2020-01-18 в 21.44.37.png",
-        "access": true,
-        "audios": [
-            {
-                "audio_path": "audios/meditations/1581626968fa6d346b-4539-4532-bd81-f7e1a4910a38Сенімділік медитациясы.mp3",
-                "title": "Сенімділік",
-                "access": true
-            }
-        ]
-    },
-    "success": true
-}
+        "meditation": {
+            "name": "tbekza",
+            "description": "tfsdfsf",
+            "img_path": "images/meditations/1581402673d8f6c2c9-baae-4301-987f-20057169d914QR_157978119097714835372136008369617.gif",
+            "access": false,
+            "duration": 2,
+            "audios": [
+                {
+                    "id": 1,
+                    "audio_path": "",
+                    "img_path": null,
+                    "free": 0,
+                    "duration": 27,
+                    "access": false,
+                    "author": {
+                        "id": 11,
+                        "name": "Bekzat",
+                        "email": "bekzattttt@mail.ru",
+                        "phone": "707257752",
+                        "image_path": null
+                    },
+                    "language": {
+                        "id": 1,
+                        "name": "Русский"
+                    }
+                },
+                {
+                    "id": 2,
+                    "audio_path": "audios/meditations/1582289917b50f2b52-0711-41fd-b2da-bf0b7a55ffb4file_example_MP3_5MG.mp3",
+                    "img_path": null,
+                    "free": 1,
+                    "duration": 3,
+                    "access": true,
+                    "author": {
+                        "id": 12,
+                        "name": "Bekzat1",
+                        "email": "bekzatttdt@mail.ru",
+                        "phone": "7077376258",
+                        "image_path": null
+                    },
+                    "language": {
+                        "id": 2,
+                        "name": "Казахский"
+                    }
+                },
+                {
+                    "id": 3,
+                    "audio_path": "audios/meditations/1582289942dd00f703-7a23-4640-83a4-ceeacf461a61file_example_MP3_700KB.mp3",
+                    "img_path": null,
+                    "free": 1,
+                    "duration": 1,
+                    "access": true,
+                    "author": {
+                        "id": 10,
+                        "name": "Bekzat",
+                        "email": "bekzatttt@mail.ru",
+                        "phone": null,
+                        "image_path": null
+                    },
+                    "language": {
+                        "id": 1,
+                        "name": "Русский"
+                    }
+                },
+                {
+                    "id": 4,
+                    "audio_path": "audios/meditations/15822899722ce71c0e-44fc-4580-b86e-b9b5d7b406c8file_example_MP3_5MG.mp3",
+                    "img_path": null,
+                    "free": 1,
+                    "duration": 3,
+                    "access": true,
+                    "author": {
+                        "id": 9,
+                        "name": "Bekzat",
+                        "email": "bekzattt@mail.ru",
+                        "phone": null,
+                        "image_path": null
+                    },
+                    "language": {
+                        "id": 1,
+                        "name": "Русский"
+                    }
+                },
+                {
+                    "id": 5,
+                    "audio_path": "audios/meditations/1582289772e154d8ae-74bd-416f-aed0-e973b9d8a543file_example_MP3_5MG.mp3",
+                    "img_path": null,
+                    "free": 1,
+                    "duration": 2,
+                    "access": true,
+                    "author": {
+                        "id": 12,
+                        "name": "Bekzat1",
+                        "email": "bekzatttdt@mail.ru",
+                        "phone": "7077376258",
+                        "image_path": null
+                    },
+                    "language": {
+                        "id": 1,
+                        "name": "Русский"
+                    }
+                }
+            ]
+        },
+        "success": true
+    }
 ```
 
 ### Запрос на покупку подписки
