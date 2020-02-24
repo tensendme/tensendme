@@ -71,8 +71,18 @@ class CloudPaymentServiceImpl implements PaymentService
     public function findAllCardsByUserId()
     {
         $user = Auth::user();
+        $cards = Card::where('user_id', $user->id)->get(['id','token','type','last_four']);
+        foreach ($cards as $card)
+        {
+            if ($card->type == "MasterCard"){
 
-        return Card::where('user_id', $user->id)->get();
+                $card->type = '/images/masterCardLogo.png';
+            }
+            else {
+                $card->type = '/images/visaLogo.png';
+            }
+        }
+        return $cards;
     }
 
 
