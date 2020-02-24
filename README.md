@@ -1273,41 +1273,35 @@ password: tensendme2020n
     Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
 
     RESPONSE:
-    {
-        "cards": [
-            {
-                "id": 1,
-                "token": "DD62EA7E74420378F334A7CE86E319FCF2D645C934C1DBF3925DC751DDEA6056",
-                "type": "MasterCard",
-                "last_four": "7758",
-                "user_id": 1,
-                "created_at": "2020-02-14 18:29:30",
-                "updated_at": "2020-02-14 18:29:30",
-                "deleted_at": null
-            },
-            {
-                "id": 2,
-                "token": "9BBEF19476623CA56C17DA75FD57734DBF82530686043A6E491C6D71BEFE8F6E",
-                "type": "Visa",
-                "last_four": "1111",
-                "user_id": 1,
-                "created_at": "2020-02-14 18:51:51",
-                "updated_at": "2020-02-14 18:51:51",
-                "deleted_at": null
-            },
-            {
-                "id": 3,
-                "token": "477BBA133C182267FE5F086924ABDC5DB71F77BFC27F01F2843F2CDC69D89F05",
-                "type": "Visa",
-                "last_four": "4242",
-                "user_id": 1,
-                "created_at": "2020-02-14 19:17:47",
-                "updated_at": "2020-02-14 19:17:47",
-                "deleted_at": null
-            }
-        ],
-        "success": true
-    }
+ {
+     "cards": [
+         {
+             "id": 10,
+             "token": "2F725BBD1F405A1ED0336ABAF85DDFEB6902A9984A76FD877C3B5CC3B5085A82",
+             "type": "/images/masterCardLogo.png",
+             "last_four": "4444"
+         },
+         {
+             "id": 11,
+             "token": "DAB9CC59244BADFAA02AAA94FE759DE1B6FF990A7F88ABC46D99EB796856BC18",
+             "type": "/images/masterCardLogo.png",
+             "last_four": "5323"
+         },
+         {
+             "id": 12,
+             "token": "9BBEF19476623CA56C17DA75FD57734DBF82530686043A6E491C6D71BEFE8F6E",
+             "type": "/images/visaLogo.png",
+             "last_four": "1111"
+         },
+         {
+             "id": 13,
+             "token": "477BBA133C182267FE5F086924ABDC5DB71F77BFC27F01F2843F2CDC69D89F05",
+             "type": "/images/visaLogo.png",
+             "last_four": "4242"
+         }
+     ],
+     "success": true
+ }
 ```
 
 ### Запрос на покупку подписки через кредитную карту (токен карты)
