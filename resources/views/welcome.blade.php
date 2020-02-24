@@ -352,16 +352,14 @@
                     <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
                     <div class="text">
                         <h3>@lang('messages.courseAccessHead')</h3>
-                        <p>@lang('messages.courseAccessText')
-                        </p>
+                        <p>@lang('messages.courseAccessText')</p>
                     </div>
                 </div>
                 <div class="author d-lg-flex mt-4" id="about-section">
                     <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
                     <div class="text">
                         <h3>@lang('messages.certifiHead')</h3>
-                        <p>@lang('messages.certifiText')
-                        </p>
+                        <p>@lang('messages.certifiText')</p>
                     </div>
                 </div>
             </div>
@@ -371,7 +369,7 @@
     <div class="site-section bg-light" id="features-section">
         <div class="container">
             <div class="row mb-5">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <h2 class="heading">
                         @lang('messages.CRMHead')</h2>
                     <p>@lang('messages.CRMText')
