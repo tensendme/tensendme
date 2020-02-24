@@ -23,7 +23,7 @@
     <style>
         .tensend-logo {
             width: 350px;
-            height: 100px;
+            height: 110px;
             margin-top: -65px;
         }
 
@@ -35,10 +35,14 @@
         .downloadUrl {
             width:40px;
             height:40px;
+            margin-left:0.8px
         }
         .downloadUrlApple {
-            width:45px;
+            width:42.5px;
             height:40px;
+        }
+        #downloadUrlDiv {
+            margin-left:25px;
         }
         #downloadUrlBlock {
            background-color: #0a0c0d;
@@ -46,7 +50,7 @@
         #downloadUrlSpanIos {
             color: white;
             font-size: 20px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
             font-style: normal;
 
         }
