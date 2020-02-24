@@ -22,9 +22,9 @@
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
     <style>
         .tensend-logo {
-            width: 320px;
-            height: 120px;
-            margin-top: -60px;
+            width: 350px;
+            height: 100px;
+            margin-top: -65px;
         }
 
         .smart_phone {
