@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
     <style>
         .tensend-logo {
-            width: 350px;
-            height: 110px;
+            width: 400px;
+            height: 125px;
             margin-top: -65px;
         }
 
@@ -42,7 +42,7 @@
             height:40px;
         }
         #downloadUrlDiv {
-            margin-left:25px;
+            margin-left:10px;
         }
         #downloadUrlBlock {
            background-color: #0a0c0d;
