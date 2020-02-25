@@ -22,9 +22,9 @@
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
     <style>
         .tensend-logo {
-            width: 320px;
-            height: 120px;
-            margin-top: -60px;
+            width: 370px;
+            height: 133px;
+            margin-top: -65px;
         }
 
         .smart_phone {
@@ -35,10 +35,14 @@
         .downloadUrl {
             width:40px;
             height:40px;
+            margin-left:0.8px
         }
         .downloadUrlApple {
-            width:45px;
+            width:42.5px;
             height:40px;
+        }
+        #downloadUrlDiv {
+            margin-left:12px;
         }
         #downloadUrlBlock {
            background-color: #0a0c0d;
@@ -46,7 +50,7 @@
         #downloadUrlSpanIos {
             color: white;
             font-size: 20px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
             font-style: normal;
 
         }
@@ -348,16 +352,14 @@
                     <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
                     <div class="text">
                         <h3>@lang('messages.courseAccessHead')</h3>
-                        <p>@lang('messages.courseAccessText')
-                        </p>
+                        <p>@lang('messages.courseAccessText')</p>
                     </div>
                 </div>
                 <div class="author d-lg-flex mt-4" id="about-section">
                     <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
                     <div class="text">
                         <h3>@lang('messages.certifiHead')</h3>
-                        <p>@lang('messages.certifiText')
-                        </p>
+                        <p>@lang('messages.certifiText')</p>
                     </div>
                 </div>
             </div>
@@ -367,7 +369,7 @@
     <div class="site-section bg-light" id="features-section">
         <div class="container">
             <div class="row mb-5">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <h2 class="heading">
                         @lang('messages.CRMHead')</h2>
                     <p>@lang('messages.CRMText')
