@@ -594,6 +594,7 @@ password: tensendme2020n
                 "is_visible": 1,
                 "scale": 3.75,
                 "view_count": 0,
+                "trailer": "test",
                 "created_at": "2020-01-25 03:46:36",
                 "updated_at": "2020-02-03 15:05:30",
                 "deleted_at": null,
@@ -670,6 +671,7 @@ password: tensendme2020n
                 "is_visible": 1,
                 "scale": 3,
                 "view_count": 0,
+                "trailer": "test",
                 "created_at": "2020-01-21 23:44:24",
                 "updated_at": "2020-02-07 12:49:37",
                 "deleted_at": null,
@@ -687,6 +689,7 @@ password: tensendme2020n
                 "description": "dvcxv",
                 "image_path": "images/courses/1579933828738c3e35-8fe4-4473-a89a-7878fd810048CRAZY.jpg",
                 "is_visible": 1,
+                "trailer": "test",
                 "scale": 3,
                 "view_count": 0,
                 "created_at": "2020-01-19 20:11:06",
@@ -760,7 +763,9 @@ password: tensendme2020n
             "created_at": "2020-02-10 12:17:34",
             "updated_at": "2020-02-10 12:17:34",
             "img_path": null,
-            "duration_time": null,
+            "duration_time": 1, минут
+            "free": 0, 0 С Подпиской 1 Бесплатно
+            "view_count": 0,
             "description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
             "documents": [
                 {
@@ -940,6 +945,7 @@ password: tensendme2020n
                             "updated_at": "2020-02-02 19:12:52",
                             "deleted_at": null,
                             "author_id": null,
+                            "trailer": "test",
                             "information_list": [
                                 "Nothing"
                             ],
@@ -954,6 +960,7 @@ password: tensendme2020n
                             "is_visible": 1,
                             "scale": 0,
                             "view_count": 0,
+                            "trailer": "test",
                             "created_at": "2020-01-21 23:44:24",
                             "updated_at": "2020-01-25 02:07:08",
                             "deleted_at": null,
@@ -976,20 +983,6 @@ password: tensendme2020n
                     "to": 2,
                     "total": 2
                 },
-                {
-                    "current_page": 1,
-                    "data": [],
-                    "first_page_url": "https://tensend.me/api/v1/courses/for/me?page=1",
-                    "from": null,
-                    "last_page": 1,
-                    "last_page_url": "https://tensend.me/api/v1/courses/for/me?page=1",
-                    "next_page_url": null,
-                    "path": "https://tensend.me/api/v1/courses/for/me",
-                    "per_page": 10,
-                    "prev_page_url": null,
-                    "to": null,
-                    "total": 0
-                }
             ],
             "success": true
         }
@@ -1014,6 +1007,63 @@ password: tensendme2020n
             "message": "Спасибо за вашу оценку!",
             "success": true
         }
+        "errors": [
+                "Курс не найден"
+            ],
+            "errorCode": 7,
+            "success": false
+}
+
+```
+### Запрос оценка курса (рейтинг звезды)
+#### URL: https://tensend.me/api/v1/evaluate/meditation
+
+```
+     POST Request:
+        {
+        	"meditation_id" : 1, id number 
+        	"scale" : 3.5, number from 0 to 5
+        }
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+        {
+            "message": "Спасибо за вашу оценку!",
+            "success": true
+        }
+        "errors": [
+                "Медитация не найдена"
+            ],
+            "errorCode": 7,
+            "success": false
+}
+
+```
+
+### Запрос оценка курса (рейтинг звезды)
+#### URL: https://tensend.me/api/v1/courses/material/pass
+
+```
+     POST Request:
+        {
+        	"lessonId" : 1, id number 
+        }
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+        {
+            "message": "Просмотренный курс!",
+            "success": true
+        }
+{
+            "message": "Урок успешно просмотрен!",
+            "success": true
+        }
+        "errors": [
+                "Урок не найден"
+            ],
+            "errorCode": 7,
+            "success": false
 }
 
 ```
@@ -1337,3 +1387,19 @@ password: tensendme2020n
         "success": true
     }
 ```
+
+### Запрос на удаление карты
+#### URL: https://tensend.me/api/v1/delete/card/{card_id}
+
+```
+    POST Request:
+        
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "result": "Карта успешно удалена",
+        "success": true
+    }
+```
+

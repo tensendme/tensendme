@@ -24,6 +24,7 @@
                             <th scope="col" class="border-0">#</th>
                             <th scope="col" class="border-0">Название</th>
                             <th scope="col" class="border-0">Категория</th>
+                            <th scope="col" class="border-0">Рейтинг</th>
                             <th scope="col" class="border-0">Создан</th>
                             <th scope="col" class="border-0">Действия</th>
                         </tr>
@@ -34,6 +35,7 @@
                                 <td>{{$meditation->id}}</td>
                                 <td>{{$meditation->title}}</td>
                                 <td>{{$meditation->category->name}}</td>
+                                <td>{{$meditation->scale}}</td>
                                 <td>{{$meditation->created_at}}</td>
                                 <td>
                                     <a class="btn btn-outline-primary mb-2 "

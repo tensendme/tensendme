@@ -29,6 +29,7 @@
                             <th scope="col" class="border-0">Название</th>
                             <th scope="col" class="border-0">Длительность видео</th>
                             <th scope="col" class="border-0">#Урок</th>
+                            <th scope="col" class="border-0">Доступ</th>
                             <th scope="col" class="border-0">Добавлено</th>
                             <th scope="col" class="border-0">Действия</th>
                         </tr>
@@ -42,12 +43,21 @@
                                 @if($material->video_path)
 {{--                                        <video src="{{asset($material->video_path)}}" controls--}}
 {{--                                               style="height: 130px; width: 150px"></video>--}}
-                                    <span class="text-accent">@if($material->duration_time) {{$material->duration_time}} секунд@endif</span>
+                                    <span class="text-accent">@if($material->duration_time) {{$material->duration_time}} минут@endif</span>
                                 @else
                                         <span class="text-danger">Нет видео!</span>
                                 @endif
                                 </td>
                                 <td>#{{$material->ordering}}</td>
+                                <td>@if($material->free)
+                                        <span class="text-success">
+                                            Бесплатно
+                                        </span>
+                                    @else<span class="text-danger">
+                                            С подпиской
+                                        </span>
+                                    @endif
+                                </td>
                                 <td>{{$material->created_at}}</td>
                                 <td>
                                     <a class="btn btn-outline-primary mb-2"

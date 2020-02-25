@@ -10,6 +10,8 @@ namespace App\Services\v1\impl;
 use App\Exceptions\ApiServiceException;
 use App\Http\Errors\ErrorCode;
 use App\Models\Courses\Course;
+use App\Models\Meditations\Meditation;
+use App\Models\Meditations\MeditationRating;
 use App\Models\Rating;
 use App\Services\v1\RatingService;
 use Auth;
@@ -39,6 +41,33 @@ class RatingServiceImpl implements RatingService
         $courseScale = $courseRatings->get()->sum('scale')/$courseRatings->count();
         $course->scale = $courseScale;
         $course->save();
+        return "Спасибо за вашу оценку!";
+
+    }
+
+    public function evaluateMeditation($meditationId, $scale)
+    {
+        $meditation = Meditation::find($meditationId);
+        if(!$meditation) throw new ApiServiceException(404, false, [
+            'errors' => [
+                'Медитация не найденa!'
+            ],
+            'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
+        ]);
+        $user = Auth::user();
+        $rating = MeditationRating::where('user_id', $user->id)->where('meditation_id', $meditation->id)->first();
+        if(!$rating)
+            $rating = MeditationRating::updateOrCreate([
+                'user_id' => $user->id,
+                'meditation_id' => $meditation->id,
+                'scale' => $scale
+            ]);
+        else $rating->scale = $scale;
+        $rating->save();
+        $meditationRatings = MeditationRating::where('meditation_id', $meditation->id);
+        $meditationScale = $meditationRatings->get()->sum('scale')/$meditationRatings->count();
+        $meditation->scale = $meditationScale;
+        $meditation->save();
         return "Спасибо за вашу оценку!";
 
     }

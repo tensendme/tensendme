@@ -14,6 +14,7 @@ use App\Services\v1\impl\HistoryServiceImpl;
 use App\Services\v1\impl\LevelServiceImpl;
 use App\Services\v1\impl\MailServiceImpl;
 use App\Services\v1\impl\MaterialServiceImpl;
+use App\Services\v1\impl\PassingServiceImpl;
 use App\Services\v1\impl\ProfileServiceImpl;
 use App\Services\v1\impl\MeditationServiceImpl;
 use App\Services\v1\impl\NewsServiceImpl;
@@ -125,6 +126,10 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\PushService', function ($app) {
             return (new PushServiceImpl());
+        });
+
+        $this->app->bind('App\Services\v1\PassingService', function ($app) {
+            return (new PassingServiceImpl());
         });
     }
 

@@ -12,7 +12,9 @@ class CourseMaterialStoreAndUpdateRequest extends WebBaseRequest
             'title' => ['required', 'string'],
             'ordering' => ['required', 'numeric'],
             'video' => ['mimetypes:video/*'],
-            'docs' => ['array']
+            'docs' => ['array'],
+            'access' => ['numeric'],
+            'description' => ['required', 'string']
         ];
     }
 }

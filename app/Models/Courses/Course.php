@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Course extends Model
 {
     public const DEFAULT_RESOURCE_DIRECTORY = 'images/courses';
+    public const DEFAULT_VIDEO_RESOURCE_DIRECTORY = 'videos/trailers';
 
     use SoftDeletes;
 
     protected $fillable = [
         'title', 'description', 'category_id', 'image_path', 'is_visible', 'view_count', 'scale',
-        'author_id', 'information_list'
+        'author_id', 'information_list', 'trailer'
     ];
 
     public function category()

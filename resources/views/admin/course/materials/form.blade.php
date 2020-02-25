@@ -27,11 +27,31 @@
             <label class="form-control-plaintext" for="video">Пожалуйста выберите видео материал</label>
         </div>
     </div>
-    <div class="col-md-6">
+</div>
+<div class="form-row">
+    <div class="col-md-3">
         <div class="form-group">
             <input class="form-control" type="file" name="docs[]" id="docs" accept="application/*" multiple>
             <label class="form-control-plaintext" for="docs">Пожалуйста выберите документы </label>
         </div>
+    </div>
+    <div class="form-group col-md-6">
+        <textarea type="text" class="form-control"
+                  name="description"
+                  placeholder="Краткое описание курса"
+                  id="description"
+                  rows="8"
+                  required>{{$material ? $material->description : old('description')}}</textarea>
+        <label class="form-control-plaintext" for="description">Пожалуйста введите описание курса</label>
+    </div>
+    <div class="form-group col-md-3">
+        <input type="checkbox" class="form-control" name="access"
+               data-on="Вкл"
+               data-off="Откл"
+               data-toggle="toggle"
+               data-size="md" id="access"
+               value="1" {{$material ? ($material->free ? 'checked' : '') : ''}}>
+        <label class="form-control-plaintext" for="access">Пожалуйста выберите тип доступа (Бесплатно или за подписку)</label>
     </div>
 </div>
 <div class="form-group col-md-12 text-right">

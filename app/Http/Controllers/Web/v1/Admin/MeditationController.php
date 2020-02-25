@@ -45,7 +45,6 @@ class MeditationController extends WebBaseController
             'category_id' => $request->category_id,
             'description' => $request->description,
             'img_path' => $path,
-            'duration_time' => $request->duration
         ]);
         $this->added();
         return redirect()->route('meditation.index');
@@ -73,7 +72,6 @@ class MeditationController extends WebBaseController
             'category_id' => $request->category_id,
             'description' => $request->description,
             'img_path' => $path,
-            'duration_time' => $request->duration
         ]);
         $this->edited();
         return redirect()->route('meditation.index');

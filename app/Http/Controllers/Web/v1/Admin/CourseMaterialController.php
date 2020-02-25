@@ -25,7 +25,7 @@ class CourseMaterialController extends WebBaseController
     }
 
     public function index($course_id){
-        $materials = CourseMaterial::where('course_id', $course_id)->get();
+        $materials = CourseMaterial::where('course_id', $course_id)->orderBy('ordering', 'desc')->get();
         return view('admin.course.materials.index', compact('materials', 'course_id'));
     }
 
@@ -49,7 +49,10 @@ class CourseMaterialController extends WebBaseController
             'duration_time' => ceil($path->duration/60),
             'img_path' => $path->img,
             'course_id' => $course_id,
-            'ordering' => $request->ordering
+            'ordering' => $request->ordering,
+            'description' => $request->description,
+            'free' => $request->access ? true : false,
+            'view_count' => 0
 
         ]);
         if($request->has('docs')) {
@@ -79,17 +82,22 @@ class CourseMaterialController extends WebBaseController
         $path = (object) array();
         $path->path = $material->video_path;
         $path->img = $material->img_path;
-        $path->duration = ceil($material->duration/60);
+        $path->duration = $material->duration_time;
         if($request->file('video')) {
             $path = $this->fileService->courseMaterialUpdate($request->file('video'),
                 CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY, $path->path, $path->img);
+            $path->duration = ceil($path->duration/60);
         }
         $material->update([
             'title' => $request->title,
             'video_path' => $path->path,
             'duration_time' => $path->duration,
             'img_path' => $path->img,
-            'ordering' => $request->ordering
+            'ordering' => $request->ordering,
+            'description' => $request->description,
+            'free' => $request->access ? true : false
+
+
         ]);
         $course_id = $material->course->id;
         $this->edited();

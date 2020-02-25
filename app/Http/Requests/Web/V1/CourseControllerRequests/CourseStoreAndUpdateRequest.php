@@ -13,6 +13,7 @@ class CourseStoreAndUpdateRequest extends WebBaseRequest
             'category_id' => ['required', 'numeric'],
             'description' => ['required', 'string'],
             'image' => ['image'],
+            'video' => ['mimetypes:video/*'],
             'author_id' => ['numeric'],
             'information' => ['array'],
             'information.*' => ['string', 'nullable']

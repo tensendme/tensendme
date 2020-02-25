@@ -16,6 +16,7 @@
                   name="description"
                   placeholder="Краткое описание курса"
                   id="description"
+                  rows="8"
                   required>{{$meditation ? $meditation->description : old('description')}}</textarea>
         <label class="form-control-plaintext" for="description">Пожалуйста введите описание медитации</label>
     </div>
@@ -53,16 +54,6 @@
                data-toggle="toggle"
                data-size="md">
     </div>
-    <div class="form-group col-md-3">
-        <input type="number" class="form-control"
-               name="duration"
-               value="{{$meditation ? $meditation->duration_time : old('duration')}}"
-               placeholder="Длительность в минутах"
-               id="duration"
-               required>
-        <label class="form-control-plaintext" for="duration">Пожалуйста введите длительность</label>
-    </div>
-
 </div>
 <div class="form-group col-md-12 text-right">
     <button class="mb-2 btn btn-primary mr-1" type="submit">Сохранить

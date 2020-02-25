@@ -33,7 +33,12 @@
         <label class="form-control-plaintext" for="audio">Пожалуйста выберите аудио</label>
     </div>
     <div class="form-group col-md-3">
-        <input type="checkbox" class="form-control" name="access" id="access" value="1" {{$audio ? ($audio->free ? 'checked' : '') : ''}}>
+        <input type="checkbox" class="form-control" name="access"
+               data-on="Вкл"
+               data-off="Откл"
+               data-toggle="toggle"
+               data-size="md" id="access"
+               value="1" {{$audio ? ($audio->free ? 'checked' : '') : ''}}>
         <label class="form-control-plaintext" for="access">Пожалуйста выберите тип доступа (Бесплатно или за подписку)</label>
     </div>
 </div>

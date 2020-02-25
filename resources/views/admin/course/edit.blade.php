@@ -17,12 +17,15 @@
                     <h6 class="m-0">Редактирование курса</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
-                    <img class="default_image_size" src="{{asset($course->image_path)}}">
+                        <img class="default_image_size col-md-4" src="{{asset($course->image_path)}}">
                     <form method="post"
                           action="{{route('course.update', ['id' => $course->id])}}"
                           enctype="multipart/form-data">
                         @include('admin.course.form')
                     </form>
+                    @if($course->trailer)
+                        <video class="col-md-6" src="{{asset($course->trailer)}}" controls style="height: 350px; width: 700px"></video>
+                    @endif
                 </div>
             </div>
         </div>

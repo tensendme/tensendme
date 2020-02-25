@@ -14,7 +14,6 @@ class MeditationStoreAndUpdateRequest extends WebBaseRequest
             'category_id' => ['required', 'numeric'],
             'description' => ['required', 'string'],
             'image' => ['image'],
-            'duration' => ['numeric'],
         ];
     }
 }

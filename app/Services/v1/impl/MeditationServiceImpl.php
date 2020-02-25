@@ -13,7 +13,13 @@ class MeditationServiceImpl implements MeditationService
 {
     public function findAll($perPage)
     {
-        return Meditation::paginate($perPage);
+        $meditations = Meditation::with('audios')->paginate($perPage);
+        foreach ($meditations as $meditation) {
+            $duration = $meditation->audios->first() ? $meditation->audios->first()->duration : 0;
+            $meditation->duration_time = $duration;
+            $meditation->makeHidden('audios');
+        }
+        return $meditations;
     }
 
     public function findById($id, $languageId = null)
@@ -35,7 +41,6 @@ class MeditationServiceImpl implements MeditationService
         $result->access = $subscription->exists() ? true : false;
         $audios = array();
             foreach ($meditation->audios as $audio) {
-
                         $duration = $audio->duration;
                         $audio->access = $audio->free || $subscription->exists() ? true : false;
                         if(!$audio->free && !$subscription->exists())  {
@@ -43,7 +48,7 @@ class MeditationServiceImpl implements MeditationService
                         }
                         $audio->makeHidden(['meditation_id', 'audio_language_id', 'author_id']);
         }
-            $result->duration = $duration;
+            $result->duration_time = $duration;
             $result->audios = $meditation->audios;
         return $result;
     }

@@ -167,13 +167,8 @@ class User extends Authenticatable implements JWTSubject
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
-            $count = 0;
-            foreach ($courseMaterials as $material) {
-                    $passing = Passing::where('course_material_id', $material->id)->where('user_id', $this->id)->first();
-                    if ($passing) {
-                        $count++;
-                }
-            }
+            $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))
+                ->where('user_id', $this->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
             $course->makeHidden('lessons');

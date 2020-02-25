@@ -16,6 +16,7 @@
                   name="answer"
                   placeholder="Ответ"
                   id="answer"
+                  rows="8"
                   required>{{$faq ? $faq->answer : old('answer')}}</textarea>
         <label class="form-control-plaintext" for="description">Пожалуйста введите  ответ FAQ</label>
     </div>

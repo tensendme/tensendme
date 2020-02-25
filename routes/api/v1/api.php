@@ -32,30 +32,33 @@ Route::group(['middleware' => 'api'], function () {
     Route::group(['namespace' => 'Meditation'], function () {
 
         Route::get('/meditations', ['uses' => 'MeditationController@getAllMeditations']);
+
         Route::group(['middleware' => 'auth:api'], function () {
-            Route::get('meditation/{id}', ['uses' => 'MeditationController@getMeditation']);
+            Route::get('meditation/{id}', ['uses' => 'MeditationController@getMeditation'])->where('id', '[0-9]+');
         });
     });
 
     Route::group(['namespace' => 'Course'], function () {
-
-        Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
-        Route::get('/courses/category/{categoryId}', ['uses' => 'CourseController@getCoursesByCategory']);
-
         Route::group(['middleware' => 'auth:api'], function () {
-            Route::get('courses/for/me', ['uses' => 'CourseController@coursesForMe']);
-        });
-
+        Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
+        Route::get('/courses/category/{categoryId}', ['uses' => 'CourseController@getCoursesByCategory'])
+            ->where('categoryId', '[0-9]+');
+        Route::get('courses/for/me', ['uses' => 'CourseController@coursesForMe']);
+        Route::get('/users/courses', ['uses' => 'CourseController@getUserCourses']);
+        Route::get('courses/{id}', ['uses' => 'CourseController@getById'])->where('id', '[0-9]+');
+        Route::post('courses/material/pass', ['uses' => 'PassingController@passCourseLesson']);
         //Material
-        Route::get('courses/material/{id}', ['uses' => 'MaterialController@getMaterialById']);
-
+            Route::get('courses/material/{id}', ['uses' => 'MaterialController@getMaterialById'])->where('id', '[0-9]+');
+        });
     });
 
     Route::group(['namespace' => 'Subscription'], function () {
 
         Route::get('/subscription/types', ['uses' => 'SubscriptionController@getSubscriptionTypes']);
         Route::group(['middleware' => 'auth:api'], function () {
-            Route::post('/subscribe/{subscribeTypeId}', ['uses' => 'SubscriptionController@subscribe']);
+            Route::post('/subscribe/{subscribeTypeId}', ['uses' => 'SubscriptionController@subscribe'])
+                ->where('subscribeTypeId', '[0-9]+');
+            ;
         });
     });
 
@@ -95,12 +98,12 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::get('/news', ['uses' => 'NewsController@getAllNews']);
         Route::get('/newsPaginated', ['uses' => 'NewsController@getAllNewsPaginated']);
-        Route::get('/news/{id}', ['uses' => 'NewsController@getNewsById']);
+        Route::get('/news/{id}', ['uses' => 'NewsController@getNewsById'])->where('id', '[0-9]+');
 
         Route::get('/banners', ['uses' => 'BannerController@getAllBanners']);
         Route::get('/bannersPaginated', ['uses' => 'BannerController@getAllBannersPaginated']);
-        Route::get('/banner/{id}', ['uses' => 'BannerController@getBannerById']);
-        Route::get('/banner/by/location/{id}', ['uses' => 'BannerController@getBannerByLocation']);
+        Route::get('/banner/{id}', ['uses' => 'BannerController@getBannerById'])->where('id', '[0-9]+');
+        Route::get('/banner/by/location/{id}', ['uses' => 'BannerController@getBannerByLocation'])->where('id', '[0-9]+');
 
     });
 
@@ -111,6 +114,7 @@ Route::group(['middleware' => 'api'], function () {
        Route::group(['namespace' => 'Rating'], function (){
            Route::group(['middleware' => 'auth:api'], function () {
                Route::post('/evaluate/course', ['uses' => 'RatingController@evaluate']);
+               Route::post('/evaluate/meditation', ['uses' => 'RatingController@evaluateMeditation']);
            });
     });
 
@@ -133,13 +137,6 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/profile', ['uses' => 'ProfileController@myProfile']);
 
         });
-
-
-        Route::group(['namespace' => 'Course'], function () {
-            Route::get('/users/courses', ['uses' => 'CourseController@getUserCourses']);
-            Route::get('courses/{id}', ['uses' => 'CourseController@getById']);
-        });
-
     });
 
 });

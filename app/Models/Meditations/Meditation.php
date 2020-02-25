@@ -17,7 +17,7 @@ class Meditation extends Model
         'title',
         'description',
         'img_path',
-        'duration_time'
+        'scale'
     ];
 
     public function category()

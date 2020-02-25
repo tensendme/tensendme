@@ -37,15 +37,7 @@ class CourseServiceImpl implements CourseService
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
-            $count = 0;
-            foreach ($courseMaterials as $material) {
-                if($user) {
-                    $passing = Passing::where('course_material_id', $material->id)->where('user_id', $user->id)->first();
-                    if ($passing) {
-                        $count++;
-                    }
-                }
-            }
+            if($user) $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
             $course->makeHidden('lessons');
@@ -71,17 +63,11 @@ class CourseServiceImpl implements CourseService
         $coursesItems = Course::hydrate($courses->items());
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
-             $course->lessons_count = $courseMaterials->count();
-             $count = 0;
-             foreach ($courseMaterials as $material) {
-                 $passing = Passing::where('course_material_id', $material->id)->where('user_id', $user->id)->first();
-                 if($passing) {
-                     $count++;
-                 }
-             }
+            $course->lessons_count = $courseMaterials->count();
+            $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
-             $course->makeHidden('lessons');
+            $course->makeHidden('lessons');
         }
         $courses->setCollection($coursesItems);
         return $courses;
@@ -101,15 +87,7 @@ class CourseServiceImpl implements CourseService
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
-            $count = 0;
-            foreach ($courseMaterials as $material) {
-                if($user) {
-                    $passing = Passing::where('course_material_id', $material->id)->where('user_id', $user->id)->first();
-                    if ($passing) {
-                        $count++;
-                    }
-                }
-            }
+            $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
             $course->makeHidden('lessons');
@@ -136,10 +114,8 @@ class CourseServiceImpl implements CourseService
         $course->access = $subscriptions->exists() ? true : false;
         $course->lessons_count = $course->lessons->count();
         $course->information_list = array_filter(explode(',', $course->information_list));
-        $i = 0;
         foreach ($course->lessons as $lesson) {
-            $lesson->access = !$subscriptions->exists() && $i > 2 ? false : true;
-            $i++;
+            $lesson->access = $subscriptions->exists() || $lesson->free ? true : false;
         }
         return $course;
     }

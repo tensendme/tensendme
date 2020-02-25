@@ -1,7 +1,4 @@
 {{csrf_field()}}
-@section("styles")
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet"/>
-@endsection
 <div class="form-row">
     <div class="form-group col-md-6">
         <input type="text" class="form-control"
@@ -14,9 +11,9 @@
     </div>
     <div class="form-group col-md-6">
         <select id="author_id" class="form-control js-example-basic-single" name="author_id">
-            @if($course->author_id)
+            @if($course)
                 <option value="{{$course->author_id}}" selected>
-                    {{$course->author->name . '(' . $course->author->phone . ')'}}</option>
+                    {{$course->author ? $course->author->name . '(' . $course->author->phone . ')' : ''}}</option>
             @endif
         </select>
         <label class="form-control-plaintext" for="author_id">Пожалуйста выберите автора</label>
@@ -28,6 +25,7 @@
                   name="description"
                   placeholder="Краткое описание курса"
                   id="description"
+                  rows="8"
                   required>{{$course ? $course->description : old('description')}}</textarea>
         <label class="form-control-plaintext" for="description">Пожалуйста введите описание курса</label>
     </div>
@@ -35,7 +33,7 @@
         <div class="form-group">
             <select class="form-control" name="category_id" id="category_id">
                 @foreach($categories as $category)
-                    <option {{$course->category_id == $category->id ? ' selected ': ''}}
+                    <option {{$course ? ($course->category_id == $category->id ? ' selected ': '') : ''}}
                             value="{{$category->id}}">
                         {{$category->name}}
                     </option>
@@ -46,7 +44,7 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-11">
+    <div class="form-group col-md-5">
         <input type="file"
                id="file"
                class="form-control"
@@ -65,13 +63,26 @@
                data-toggle="toggle"
                data-size="md">
     </div>
-</div>
+    <div class="form-group col-md-5">
+            <input class="form-control" type="file" name="video" id="video" accept="video/*">
+            <label class="form-control-plaintext" for="video">Пожалуйста выберите видео материал для трейлера</label>
+        </div>
+        <div class="form-group col-md-1">
+            <input type="checkbox"
+                   data-on="Вкл"
+                   data-off="Откл"
+                   onchange="toggleVideo(this)"
+                   checked
+                   data-toggle="toggle"
+                   data-size="md">
+        </div>
+    </div>
 <div class="form-row">
     <div class="form-group col-md-6">
         @for($i = 0; $i < 4; $i++)
             <input type="text" class="form-control"
                    name="information[{{$i}}]"
-                   value="{{is_null($course) ? (array_key_exists($i, $course->information_list) ? $course->information_list[$i] : '') : old('information['.$i .']')}}"
+                   value="{{$course ? (array_key_exists($i, $course->information_list) ? $course->information_list[$i] : '') : old('information['.$i .']')}}"
                    placeholder="Что возьмете с курса?"
                    id="get{{$i}}">
             <label class="form-control-plaintext" for="get{{$i}}">Пожалуйста введите название курса</label>
@@ -85,8 +96,6 @@
 </div>
 
 @section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-
     <script>
         var authorSelect = document.getElementById('author_id');
         var nextLink = '/authors';
@@ -124,6 +133,9 @@
 
         function toggleImage(el) {
             document.getElementById('file').disabled = !el.checked;
+        }
+        function toggleVideo(el) {
+            document.getElementById('video').disabled = !el.checked;
         }
     </script>
 @endsection
