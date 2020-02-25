@@ -483,35 +483,40 @@ password: tensendme2020n
                     "title": "bekza",
                     "img_path": null,
                     "duration_time": null,
-                    "access": true
+                    "access": true,
+                    "passed": false
                 },
                 {
                     "id": 3,
                     "title": "bekza",
                     "img_path": null,
                     "duration_time": null,
-                    "access": true
+                    "access": true,
+                    "passed": false
                 },
                 {
                     "id": 1,
                     "title": "ffdsfsd",
                     "img_path": null,
                     "duration_time": null,
-                    "access": false
+                    "access": false,
+                    "passed": false
                 },
                 {
                     "id": 4,
                     "title": "bekza",
                     "img_path": null,
                     "duration_time": null,
-                    "access": false
+                    "access": false,
+                    "passed": false
                 },
                 {
                     "id": 5,
                     "title": "bekza",
                     "img_path": null,
                     "duration_time": null,
-                    "access": false
+                    "access": false,
+                    "passed": false
                 }
             ]
         },
