@@ -53,7 +53,6 @@ class CourseController extends WebBaseController
             $trailerPath = $this->fileService->store($request->file('video'), Course::DEFAULT_VIDEO_RESOURCE_DIRECTORY);
         }
         $information = implode(array_filter($request->information), ',');
-        try {
             Course::create([
                 'title' => $request->title,
                 'description' => $request->description,
@@ -67,9 +66,6 @@ class CourseController extends WebBaseController
                 'trailer' => $trailerPath
             ]);
             $this->added();
-        } catch (Exception $e) {
-
-        }
         return redirect()->route('course.index');
     }
 
