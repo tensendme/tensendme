@@ -337,7 +337,7 @@
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background: url('https://tensend.me/images/loader.gif')
+            background: url('https://tensend.me/images/loader2.gif')
             50% 50% no-repeat rgb(249,249,249);
         }
 

@@ -9,6 +9,7 @@
     <button class="btn" onclick="submitForm()">submit</button>
     <button class="btn" onclick="submitForm1()">submitCard</button>
 </div>
+<div class="loader"></div>
 
 </body>
 <script>
