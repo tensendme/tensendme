@@ -330,6 +330,17 @@
             color: #fff;
         }
 
+        #loader{
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('https://tensend.me/images/loader.gif')
+            50% 50% no-repeat rgb(249,249,249);
+        }
+
     </style>
 </head>
 <body>
@@ -466,6 +477,7 @@
     </form>
     {{--    <button class="btn" onclick="test()">submit 3</button>--}}
 
+    <div id="loader" style="display: none">
 
 </div>
 {{--<div class="card-body p-0 pb-3 text-center">--}}
@@ -499,6 +511,14 @@
 
 
 <script>
+    function loader() {
+        var x = document.getElementById("loader");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
 
 
     function putIntoCardNumber() {
@@ -548,6 +568,7 @@
             // сформирована криптограмма
             // alert(result.packet);
             console.log(result.packet);
+            loader();
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             myHeaders.append("Authorization", "{{$token}}");
@@ -567,6 +588,7 @@
                 .then(response => response.json())
                 .then(result => {
                     console.log(result);
+
                     if (result.hasOwnProperty('PaReq'))
                     {
                         // submitForm();
@@ -600,6 +622,7 @@
                         document.body.appendChild(form).submit();
                     }
                     else{
+
                         window.location.href = result.url + "?" + 'transaction_id=' + result.transaction_id;
                     }
                 })
