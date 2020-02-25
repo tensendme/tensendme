@@ -33,7 +33,6 @@ class CloudPaymentServiceImpl implements PaymentService
     }
 
 
-
     public function subscribe($request)
     {   $token = $request->header('Authorization');
         $subscription_type_id = $request->subscription_type_id;
@@ -63,9 +62,18 @@ class CloudPaymentServiceImpl implements PaymentService
 
     public function deleteCard($card_id)
     {
+        $user = Auth::user();
+        $card = Card::findOrFail($card_id);
 
+        if ($user->id!=$card->user_id) throw new ApiServiceException(404, false, [
+            'errors' => [
+                'Такой карты не существует!'
+            ],
+            'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
+        ]);
         Card::destroy($card_id);
-        return "Карта успешно удалена";
+        $result =  "Карта успешно удалена";
+        return $result;
     }
 
     public function findAllCardsByUserId()
@@ -194,8 +202,6 @@ class CloudPaymentServiceImpl implements PaymentService
         }
 
         $result = $card_holder_message;
-
-
         return $result;
     }
 

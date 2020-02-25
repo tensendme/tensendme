@@ -17,8 +17,8 @@ class SmsServiceImpl implements SmsService
 
     public function sendSms($phone, $message)
     {
-        $login = 'ayrinonline';
-        $password = 'sabyrzhanayrin0013392004';
+        $login = 'Tensend';
+        $password = 'tensendkz';
         return file_get_contents("https://smsc.kz/sys/send.php?login=$login&psw=$password&phones=$phone&mes=$message");
     }
 
