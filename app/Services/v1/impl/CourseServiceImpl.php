@@ -115,9 +115,7 @@ class CourseServiceImpl implements CourseService
         $course->lessons_count = $course->lessons->count();
         $course->information_list = array_filter(explode(',', $course->information_list));
         foreach ($course->lessons as $lesson) {
-            $access = false;
-            if($subscriptions->exists() || $lesson->free == 1) $access = true;
-            $lesson->access = $access;
+            $lesson->access = $subscriptions->exists() || $lesson->free ? true : false;
         }
         return $course;
     }
