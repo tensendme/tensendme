@@ -114,9 +114,14 @@ class CourseServiceImpl implements CourseService
         $course->access = $subscriptions->exists() ? true : false;
         $course->lessons_count = $course->lessons->count();
         $course->information_list = array_filter(explode(',', $course->information_list));
+        $passed = Passing::whereIn('course_material_id', $course->lessons->pluck('id'))->where('user_id', $user->id);
+        $course->lessons_passing_count = $passed->count();
         foreach ($course->lessons as $lesson) {
             $lesson->access = $subscriptions->exists() || $lesson->free ? true : false;
+            $lesson->passed = $passed->get()->where('course_material_id', $lesson->id)->first() ? true : false;
+
         }
+
         return $course;
     }
 
