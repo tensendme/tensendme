@@ -7,6 +7,7 @@
  */
 
 namespace App\Services\v1\impl;
+
 use App\Models\Profiles\City;
 use App\Models\Profiles\User;
 use App\Services\v1\FileService;
@@ -30,12 +31,12 @@ class ProfileServiceImpl implements ProfileService
     public function updateProfile($profile)
     {
         $user = Auth::user();
-        if($profile->nickname != $user->nickname) {
+        if ($profile->nickname != $user->nickname) {
             $user->nickname = $profile->nickname;
             $user->promo_code = $user->promoCode();
         }
         $city = City::find($profile->cityId);
-        if($city) {
+        if ($city) {
             $user->city_id = $profile->cityId;
         }
         $user->name = $profile->name;
@@ -57,7 +58,7 @@ class ProfileServiceImpl implements ProfileService
     public function myProfile()
     {
         $user = Auth::user();
-        $profile = (object) array();
+        $profile = (object)array();
         $profile->id = $user->id;
         $profile->avatar = $user->image_path;
         $profile->name = $user->name;
@@ -79,11 +80,22 @@ class ProfileServiceImpl implements ProfileService
                 'subscriptionType' => $subscription->subscriptionType->name,
                 'price' => $subscription->actual_price,
                 'expiredAt' => $subscription->expired_at
-                );
+            );
         }
-        if(!empty($user->subscriptions)) {
+        if (!empty($user->subscriptions)) {
             $profile->permission = true;
         }
         return $profile;
     }
+
+    public function myReferralLink($currentUser)
+    {
+        if (!$currentUser->promo_code) {
+            $currentUser->promo_code = $currentUser->promoCode();
+            $currentUser->save();
+        }
+        return route('promo-code.index', ['promoCode' => $currentUser->promo_code]);
+    }
+
+
 }

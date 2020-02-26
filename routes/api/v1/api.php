@@ -40,14 +40,14 @@ Route::group(['middleware' => 'api'], function () {
 
     Route::group(['namespace' => 'Course'], function () {
         Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
-        Route::get('/courses/category/{categoryId}', ['uses' => 'CourseController@getCoursesByCategory'])
-            ->where('categoryId', '[0-9]+');
-        Route::get('courses/for/me', ['uses' => 'CourseController@coursesForMe']);
-        Route::get('/users/courses', ['uses' => 'CourseController@getUserCourses']);
-        Route::get('courses/{id}', ['uses' => 'CourseController@getById'])->where('id', '[0-9]+');
-        Route::post('courses/material/pass', ['uses' => 'PassingController@passCourseLesson']);
-        //Material
+            Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
+            Route::get('/courses/category/{categoryId}', ['uses' => 'CourseController@getCoursesByCategory'])
+                ->where('categoryId', '[0-9]+');
+            Route::get('courses/for/me', ['uses' => 'CourseController@coursesForMe']);
+            Route::get('/users/courses', ['uses' => 'CourseController@getUserCourses']);
+            Route::get('courses/{id}', ['uses' => 'CourseController@getById'])->where('id', '[0-9]+');
+            Route::post('courses/material/pass', ['uses' => 'PassingController@passCourseLesson']);
+            //Material
             Route::get('courses/material/{id}', ['uses' => 'MaterialController@getMaterialById'])->where('id', '[0-9]+');
         });
     });
@@ -57,8 +57,7 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/subscription/types', ['uses' => 'SubscriptionController@getSubscriptionTypes']);
         Route::group(['middleware' => 'auth:api'], function () {
             Route::post('/subscribe/{subscribeTypeId}', ['uses' => 'SubscriptionController@subscribe'])
-                ->where('subscribeTypeId', '[0-9]+');
-            ;
+                ->where('subscribeTypeId', '[0-9]+');;
         });
     });
 
@@ -111,11 +110,11 @@ Route::group(['middleware' => 'api'], function () {
 //        Route::get('cabinet', ['uses'=>'CabinetController']);
 //    });
 //
-       Route::group(['namespace' => 'Rating'], function (){
-           Route::group(['middleware' => 'auth:api'], function () {
-               Route::post('/evaluate/course', ['uses' => 'RatingController@evaluate']);
-               Route::post('/evaluate/meditation', ['uses' => 'RatingController@evaluateMeditation']);
-           });
+    Route::group(['namespace' => 'Rating'], function () {
+        Route::group(['middleware' => 'auth:api'], function () {
+            Route::post('/evaluate/course', ['uses' => 'RatingController@evaluate']);
+            Route::post('/evaluate/meditation', ['uses' => 'RatingController@evaluateMeditation']);
+        });
     });
 
     //AUTHENTICATED
@@ -135,7 +134,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('/profile/update', ['uses' => 'ProfileController@updateProfile']);
             Route::post('/profile/avatar', ['uses' => 'ProfileController@changeAvatar']);
             Route::get('/profile', ['uses' => 'ProfileController@myProfile']);
-
+            Route::get('/profile/promo-code', ['uses' => 'ProfileController@getMyReferralLink']);
         });
     });
 
