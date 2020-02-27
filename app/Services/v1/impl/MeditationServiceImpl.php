@@ -34,7 +34,7 @@ class MeditationServiceImpl implements MeditationService
         }
         $result = (object) array();
         $duration = 0;
-        $result->name = $meditation->title;
+        $result->title = $meditation->title;
         $result->description = $meditation->description;
         $result->scale = $meditation->scale;
         $result->img_path = $meditation->img_path;
