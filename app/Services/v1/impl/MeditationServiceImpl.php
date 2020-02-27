@@ -36,10 +36,9 @@ class MeditationServiceImpl implements MeditationService
         $duration = 0;
         $result->name = $meditation->title;
         $result->description = $meditation->description;
-        $result->description = $meditation->description;
+        $result->scale = $meditation->scale;
         $result->img_path = $meditation->img_path;
         $result->access = $subscription->exists() ? true : false;
-        $audios = array();
             foreach ($meditation->audios as $audio) {
                         $duration = $audio->duration;
                         $audio->access = $audio->free || $subscription->exists() ? true : false;
