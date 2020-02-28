@@ -373,6 +373,7 @@ password: tensendme2020n
                     "category_id" : 1,
                     "title" : "Test",
                     "description" : "Test",
+                    "scale": 3.75,
                     "created_at": null,
                     "updated_at": null,
                     "deleted_at": null,
@@ -1188,10 +1189,11 @@ password: tensendme2020n
     RESPONSE:
     {
         "meditation": {
-            "name": "tbekza",
+            "title": "tbekza",
             "description": "tfsdfsf",
             "img_path": "images/meditations/1581402673d8f6c2c9-baae-4301-987f-20057169d914QR_157978119097714835372136008369617.gif",
             "access": false,
+            "scale": 3.75,
             "duration": 2,
             "audios": [
                 {
