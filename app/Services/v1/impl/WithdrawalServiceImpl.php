@@ -63,7 +63,6 @@ class WithdrawalServiceImpl implements WithdrawalRequestService
         $balance->save();
 
 
-        $this->cloudPaymentService->withdrawPay();
         $withdrawal->status = WithdrawalRequest::APPROVED;
         $withdrawal->approved_by = Auth::user()->id;
         $withdrawal->comment = $comment;

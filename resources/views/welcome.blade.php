@@ -25,6 +25,7 @@
             width: 370px;
             height: 133px;
             margin-top: -65px;
+            object-fit: contain;
         }
 
         .smart_phone {
