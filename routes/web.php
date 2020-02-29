@@ -53,7 +53,6 @@ Route::group(['namespace' => 'Web\v1'], function () {
     Route::get('/secure/config/optimize', ['uses' => 'ConfigController@optimize']);
     Route::get('/config/locale/{locale}', ['as' => 'locale', 'uses' => 'LocalizationController@index']);
 
-
     Route::get('/pay', ['uses' => 'PaymentController@pay', 'as' => 'cryptogram']);
     Route::get('/saveCard', ['uses' => 'PaymentController@saveCard', 'as' => 'saveCard']);
     Route::get('/status', ['uses' => 'PaymentController@status', 'as' => 'transactionStatus']);
