@@ -105,7 +105,6 @@
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
 
-
         @page :first {
             margin: 0;
         }
@@ -121,7 +120,7 @@
         @media print {
 
             html, body {
-                height:100%;
+                height: 100%;
                 margin: 0 !important;
                 padding: 0 !important;
                 overflow: hidden;
@@ -133,15 +132,18 @@
             body * {
                 visibility: hidden;
             }
+
             #section-to-print, #section-to-print * {
                 visibility: visible;
             }
+
             #section-to-print {
                 position: absolute;
                 left: 0;
                 top: 0;
             }
         }
+
         * {
             font-family: 'Montserrat';
             color: #344356;
@@ -221,7 +223,9 @@
 
 </body>
 <script type="text/javascript">
-    window.print();
+    setTimeout(() => {
+        window.print();
+    }, 1500)
 </script>
 </html>
 
