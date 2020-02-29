@@ -21,6 +21,5 @@ class SubscriptionController extends WebBaseController
     }
 
     public function freeSubscribe() {
-
     }
 }
