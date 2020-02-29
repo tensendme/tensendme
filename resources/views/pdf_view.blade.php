@@ -3,6 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Certificate</title>
+    <script src="{{asset('front/js/jquery-3.3.1.min.js')}}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
     <style>
         /* cyrillic-ext */
