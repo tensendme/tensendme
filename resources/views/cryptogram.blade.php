@@ -103,6 +103,7 @@
             margin: 15px auto 50px;
             font-size: 20px;
             border: 0;
+            -webkit-appearance: none;
             -webkit-box-shadow: 0px 1px 23px 19px rgba(0, 77, 201, 0.21);
             box-shadow: 0px 1px 23px 19px rgba(0, 77, 201, 0.17);
             border-radius: 15px;
@@ -117,6 +118,7 @@
             background-color: white;
             border: 0;
             outline: none;
+            -webkit-appearance: none;
             -webkit-box-shadow: 0px 1px 23px 19px rgba(0, 77, 201, 0.04);
             box-shadow: 0px 1px 23px 19px rgba(0, 77, 201, 0.04);
         }
@@ -147,7 +149,7 @@
         .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
-            padding-top: 300px; /* Location of the box */
+            padding-top: 10%; /* Location of the box */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
