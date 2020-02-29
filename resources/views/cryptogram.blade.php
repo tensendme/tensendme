@@ -6,112 +6,13 @@
     <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,600i&display=swap" rel="stylesheet">
     <script src="https://widget.cloudpayments.ru/bundles/checkout"></script>
     <script src="{{asset('front/js/jquery-3.3.1.min.js')}}"
             crossorigin="anonymous"></script>
     <script src="{{asset('js/jquery.inputmask.min.js')}}"></script>
     <title>Payment</title>
-    <style>
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: local('Montserrat Regular'), local('Montserrat-Regular'), url({{ storage_path('fonts/Montserrat-Regular.ttf') }}) format("truetype");
-            unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-        }
-
-        /* cyrillic */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: local('Montserrat Regular'), local('Montserrat-Regular'), url({{ storage_path('fonts/Montserrat-Regular.ttf') }}) format("truetype");;
-            unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-        }
-
-        /* vietnamese */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: local('Montserrat Regular'), local('Montserrat-Regular'), url({{ storage_path('fonts/Montserrat-Regular.ttf') }}) format("truetype");
-            unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
-        }
-
-        /* latin-ext */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: local('Montserrat Regular'), local('Montserrat-Regular'), url({{ storage_path('fonts/Montserrat-Regular.ttf') }}) format("truetype");
-            unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-        }
-
-        /* latin */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: local('Montserrat Regular'), local('Montserrat-Regular'), url({{ storage_path('fonts/Montserrat-Regular.ttf') }}) format("truetype");
-            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-        }
-
-        /* cyrillic-ext */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url({{ storage_path('fonts/Montserrat-SemiBold.ttf') }}) format("truetype");
-            unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-        }
-
-        /* cyrillic */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url({{ storage_path('fonts/Montserrat-SemiBold.ttf') }}) format("truetype");
-            unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-        }
-
-        /* vietnamese */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url({{ storage_path('fonts/Montserrat-SemiBold.ttf') }}) format("truetype");
-            unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
-        }
-
-        /* latin-ext */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url({{ storage_path('fonts/Montserrat-SemiBold.ttf') }}) format("truetype");
-            unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-        }
-
-        /* latin */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url({{ storage_path('fonts/Montserrat-SemiBold.ttf') }}) format("truetype");
-            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-        }
-
+    <style type="text/css">
         * {
             font-family: 'Montserrat';
             color: #344356;
@@ -202,6 +103,7 @@
             margin: 15px auto 50px;
             font-size: 20px;
             border: 0;
+            -webkit-appearance: none;
             -webkit-box-shadow: 0px 1px 23px 19px rgba(0, 77, 201, 0.21);
             box-shadow: 0px 1px 23px 19px rgba(0, 77, 201, 0.17);
             border-radius: 15px;
@@ -216,6 +118,7 @@
             background-color: white;
             border: 0;
             outline: none;
+            -webkit-appearance: none;
             -webkit-box-shadow: 0px 1px 23px 19px rgba(0, 77, 201, 0.04);
             box-shadow: 0px 1px 23px 19px rgba(0, 77, 201, 0.04);
         }
@@ -241,6 +144,47 @@
         .text-center {
             text-align: center;
         }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            padding-top: 10%; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            z-index: 1000;
+        }
+
+        .fa {
+            cursor: pointer;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #888;
+            width: 80%;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        /* The Close Button */
+        .close {
+            cursor: pointer;
+            display: block;
+            margin-top: 20px;
+            color: #0060fa;
+            font-size: 20px;
+            font-weight: bold;
+        }
     </style>
 <body>
 <h3 class="title">Төлем</h3>
@@ -248,7 +192,7 @@
 <div class="container">
     <div class="first-row">
         <h4>
-            ТОО «Tensend»
+            ЖШС «Tensend»
         </h4>
         <p class="too-info">
             БИН: 190440000695
@@ -274,11 +218,19 @@
         </h2>
     </div>
 </div>
-
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p id="modal-text"></p>
+        <img id="modal-img">
+        <br>
+        <a class="close">Түсінікті</a>
+    </div>
+</div>
 <form id="paymentFormSample" class="container-col">
     <div class="form-group">
         <label class="label-text">Аты жөніңіз
-            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i onclick="openModal(1)" class="fa fa-question-circle-o" aria-hidden="true"></i>
         </label>
         <div class="input-container">
             <input data-cp="name" id="card-holder" placeholder="АТЫ ЖӨНІ" type="text" class="form-control w-90">
@@ -287,7 +239,7 @@
 
     <div class="form-group">
         <label class="label-text">Карта нөмірі
-            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i onclick="openModal(2)" class="fa fa-question-circle-o" aria-hidden="true"></i>
         </label>
         <div class="input-container">
             <input id="cc" type="text"
@@ -298,7 +250,7 @@
 
     <div class="container-row">
         <div class="form-group">
-            <label class="label-text same-row">
+            <label onclick="openModal(3)" class="label-text same-row">
                 CVS-код
                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </label>
@@ -308,7 +260,7 @@
         </div>
 
         <div class="form-group">
-            <label class="label-text same-row">
+            <label onclick="openModal(4)" class="label-text same-row">
                 Жарамдылық
                 мерзімі
                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
@@ -333,6 +285,29 @@
 
 
 <script>
+
+    var cardInfo = [
+        {
+            id: 1,
+            src: '{{asset('payment/card1.svg')}}',
+            text: 'Картаңыздың алдыңғы бетінде көрсетілген аты жөніңізді еңгізіңіз'
+        },
+        {
+            id: 2,
+            src: '{{asset('payment/card2.svg')}}',
+            text: 'Картаңыздың алдыңғы бетінде көрсетілген 16-санды нөмірді еңгізіңіз'
+        },
+        {
+            id: 3,
+            src: '{{asset('payment/card3.svg')}}',
+            text: 'Картаңыздың артқы бетінде көрсетілген 3-санды нөмірді еңгізіңіз'
+        },
+        {
+            id: 4,
+            src: '{{asset('payment/card4.svg')}}',
+            text: 'Картаңыздың алдыңғы бетінде көрсетілген ай мен жылды еңгізіңіз'
+        },
+    ];
 
     var checkout = new cp.Checkout(
         "pk_5ca541f82448e11afb98b5c1a3ffa",
@@ -437,5 +412,38 @@
                 alert(msgs.expDateYear)
         }
     }
+
+
+    var modal = $("#myModal");
+
+    var span = document.getElementsByClassName("close")[0];
+
+    var modalText = $('#modal-text');
+    var modalImg = $('#modal-img');
+
+    // When the user clicks the button, open the modal
+    function openModal(id) {
+        el = cardInfo.find((el) => el.id == id)
+
+        if (el) {
+            modalText.html(el.text);
+            modalImg.attr('src', el.src);
+            modal.show();
+        }
+
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.hide();
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.hide();
+        }
+    }
+
 </script>
 </html>
