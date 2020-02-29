@@ -226,9 +226,9 @@
 
 </body>
 <script type="text/javascript">
-    window.onload = function() {
+    $(document).ready(() => {
         window.print();
-    }
+    });
 </script>
 </html>
 
