@@ -176,6 +176,7 @@
 
         /* The Close Button */
         .close {
+            cursor: pointer;
             display: block;
             margin-top: 20px;
             color: #0060fa;
