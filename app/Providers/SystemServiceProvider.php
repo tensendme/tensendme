@@ -87,7 +87,8 @@ class SystemServiceProvider extends ServiceProvider
             return (new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl()));
         });
         $this->app->bind('App\Services\v1\WithdrawalRequestService', function ($app) {
-            return (new WithdrawalServiceImpl( new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl())));
+            return (new WithdrawalServiceImpl(new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl()),
+                new PushServiceImpl()));
         });
 
 

@@ -50,7 +50,12 @@
                                 <td><a class="btn btn-outline-primary mb-2 "
                                        href="{{route('users.edit', ['id' => $user->id])}}">
                                         Поменять роль<i class="material-icons md-12">edit</i>
-                                    </a></td>
+                                    </a>
+                                    <a class="btn btn-outline-primary mb-2 "
+                                       href="{{route('users.subscribe', ['id' => $user->id])}}">
+                                        Сделать подписку<i class="material-icons md-12">add</i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
