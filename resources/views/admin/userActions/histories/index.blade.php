@@ -23,6 +23,7 @@
                         <tr>
                             <th scope="col" class="border-0">#</th>
                             <th scope="col" class="border-0">Пользователь</th>
+                            <th scope="col" class="border-0">Номер телефона</th>
                             <th scope="col" class="border-0">Тип</th>
                             <th scope="col" class="border-0">Сумма</th>
                             <th scope="col" class="border-0">ID подписки приложениия</th>
@@ -38,6 +39,7 @@
                             <tr>
                                 <td>{{$history->id}}</td>
                                 <td>{{$history->balance->user->name}}</td>
+                                <td>{{$history->balance->user->phone}}</td>
                                 <td>{{$history->historyType->name}}</td>
                                 <td>{{$history->amount}}</td>
                                 <td>{{$history->subscription_id}}</td>
