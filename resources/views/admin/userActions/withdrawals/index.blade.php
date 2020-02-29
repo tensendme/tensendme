@@ -23,6 +23,7 @@
                         <tr>
                             <th scope="col" class="border-0">#</th>
                             <th scope="col" class="border-0">Пользователь</th>
+                            <th scope="col" class="border-0">Номер телефона</th>
                             <th scope="col" class="border-0">Комментарий пользователя</th>
                             <th scope="col" class="border-0">Сумма</th>
                             <th scope="col" class="border-0">Изменен сотрудником</th>
@@ -38,6 +39,7 @@
                             <tr>
                                 <td>{{$withdrawal->id}}</td>
                                 <td>{{$withdrawal->user->name}}</td>
+                                <td>{{$withdrawal->user->phone}}</td>
                                 <td>{{$withdrawal->user_comment}}</td>
                                 <td>{{$withdrawal->amount}}</td>
                                 <td>{{$withdrawal->approvedByUser ? $withdrawal->approvedByUser->name : ''}}</td>

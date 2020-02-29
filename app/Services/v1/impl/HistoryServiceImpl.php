@@ -18,6 +18,7 @@ use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Models\Subscriptions\Subscription;
 use App\Services\v1\HistoryService;
+use App\Services\v1\LevelService;
 use App\Services\v1\PromoCodeAnalyticService;
 
 
@@ -25,10 +26,12 @@ class HistoryServiceImpl implements HistoryService
 {
 
     protected $promoCodeAnalyticService;
+    protected $levelService;
 
-    public function __construct(PromoCodeAnalyticService $promoCodeAnalyticService)
+    public function __construct(PromoCodeAnalyticService $promoCodeAnalyticService, LevelService $levelService)
     {
         $this->promoCodeAnalyticService = $promoCodeAnalyticService;
+        $this->levelService = $levelService;
     }
 
     public function subscription($subscription, $firstSubscription, $transactionId = null)
@@ -67,6 +70,8 @@ class HistoryServiceImpl implements HistoryService
         if($following) {
             $this->promoCodeAnalyticService->makePurchased($following->hostUser->id,
                 $following->hostUser->promo_code, $following->follower_user_id);
+            $this->levelService->checkLevel($following->follower_user_id, $following->hostUser->id,
+                $subscription->id, $following->hostUser->level_id);
         }
     }
 
