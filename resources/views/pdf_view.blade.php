@@ -223,9 +223,9 @@
 
 </body>
 <script type="text/javascript">
-    setTimeout(2000, () => {
+    setTimeout(() => {
         window.print();
-    })
+    }, 1500)
 </script>
 </html>
 
