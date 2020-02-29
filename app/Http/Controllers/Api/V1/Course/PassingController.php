@@ -22,4 +22,8 @@ class PassingController extends ApiBaseController
         return $this->successResponse(['message' => $this->passingService->pass($request->lessonId)]);
     }
 
+    public function startCourse() {
+//        return $this->successResponse(['message' => $this->passingService->pass($request->courseId)]);
+    }
+
 }

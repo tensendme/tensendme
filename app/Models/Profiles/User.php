@@ -171,6 +171,8 @@ class User extends Authenticatable implements JWTSubject
                 ->where('user_id', $this->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
+            $started = (bool)random_int(0, 1);
+            $course->started = $started ? true : false;
             $course->makeHidden('lessons');
         }
 

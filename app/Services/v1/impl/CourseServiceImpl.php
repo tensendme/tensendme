@@ -40,7 +40,8 @@ class CourseServiceImpl implements CourseService
             if($user) $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
-            $course->started = false;
+            $started = (bool)random_int(0, 1);
+            $course->started = $started ? true : false;
             $course->makeHidden('lessons');
         }
 
@@ -68,7 +69,8 @@ class CourseServiceImpl implements CourseService
             $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
-            $course->started = false;
+            $started = (bool)random_int(0, 1);
+            $course->started = $started ? true : false;
             $course->makeHidden('lessons');
         }
         $courses->setCollection($coursesItems);
@@ -92,7 +94,8 @@ class CourseServiceImpl implements CourseService
             $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
-            $course->started = false;
+            $started = (bool)random_int(0, 1);
+            $course->started = $started ? true : false;
             $course->makeHidden('lessons');
         }
 
@@ -119,7 +122,8 @@ class CourseServiceImpl implements CourseService
         $course->information_list = array_filter(explode(',', $course->information_list));
         $passed = Passing::whereIn('course_material_id', $course->lessons->pluck('id'))->where('user_id', $user->id);
         $course->lessons_passing_count = $passed->count();
-        $course->started = false;
+        $started = (bool)random_int(0, 1);
+        $course->started = $started ? true : false;
         foreach ($course->lessons as $lesson) {
             $lesson->access = $subscriptions->exists() || $lesson->free ? true : false;
             $lesson->passed = $passed->get()->where('course_material_id', $lesson->id)->first() ? true : false;
