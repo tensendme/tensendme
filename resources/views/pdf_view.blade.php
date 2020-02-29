@@ -223,9 +223,9 @@
 
 </body>
 <script type="text/javascript">
-    setTimeout(() => {
+    window.onload = function() {
         window.print();
-    }, 1500)
+    }
 </script>
 </html>
 
