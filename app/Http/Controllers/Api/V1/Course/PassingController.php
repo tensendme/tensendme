@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiBaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Api\V1\PassingRequest;
+use App\Http\Requests\Api\V1\StartCourseRequest;
 use App\Services\v1\PassingService;
 use Illuminate\Http\Request;
 
@@ -22,8 +23,8 @@ class PassingController extends ApiBaseController
         return $this->successResponse(['message' => $this->passingService->pass($request->lessonId)]);
     }
 
-    public function startCourse() {
-//        return $this->successResponse(['message' => $this->passingService->pass($request->courseId)]);
+    public function startCourse($id) {
+        return $this->successResponse(['message' => $this->passingService->startCourse($id)]);
     }
 
 }

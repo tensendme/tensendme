@@ -5,6 +5,7 @@ namespace App\Models\Profiles;
 use App\Models\Categories\RecommendedCategory;
 use App\Models\Courses\Course;
 use App\Models\Education\Passing;
+use App\Models\Education\UserCourse;
 use App\Models\Histories\Follower;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -163,7 +164,7 @@ class User extends Authenticatable implements JWTSubject
                 ->paginate($size ? $size : 10);
         }
         $coursesItems = $courses->getCollection();
-
+        $startedCourse = UserCourse::whereIn('course_id', $coursesItems->pluck('id'))->where('user_id', $user->id)->get();
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
@@ -171,7 +172,7 @@ class User extends Authenticatable implements JWTSubject
                 ->where('user_id', $this->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
-            $started = (bool)random_int(0, 1);
+            $started = $startedCourse->where('course_id', $course->id)->first();
             $course->started = $started ? true : false;
             $course->makeHidden('lessons');
         }

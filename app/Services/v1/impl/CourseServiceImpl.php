@@ -9,6 +9,7 @@ use App\Http\Errors\ErrorCode;
 use App\Models\Courses\Course;
 
 use App\Models\Education\Passing;
+use App\Models\Education\UserCourse;
 use App\Services\v1\CourseService;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -33,14 +34,14 @@ class CourseServiceImpl implements CourseService
             ->paginate($perPage);
 
         $coursesItems = $courses->getCollection();
-
+        $startedCourse = UserCourse::whereIn('course_id', $coursesItems->pluck('id'))->where('user_id', $user->id)->get();
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
             if($user) $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
-            $started = (bool)random_int(0, 1);
+            $started = $startedCourse->where('course_id', $course->id)->first();
             $course->started = $started ? true : false;
             $course->makeHidden('lessons');
         }
@@ -63,11 +64,13 @@ class CourseServiceImpl implements CourseService
 
 
         $coursesItems = Course::hydrate($courses->items());
+        $startedCourse = UserCourse::whereIn('course_id', $coursesItems->pluck('id'))->where('user_id', $user->id)->get();
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
-            $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
+            $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))
+                ->where('user_id', $user->id)->count();
             $course->lessons_passing_count = $count;
             $started = (bool)random_int(0, 1);
             $course->started = $started ? true : false;
@@ -88,13 +91,14 @@ class CourseServiceImpl implements CourseService
             ->paginate($size);
 
         $coursesItems = $courses->getCollection();
+        $startedCourse = UserCourse::whereIn('course_id', $coursesItems->pluck('id'))->where('user_id', $user->id)->get();
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
             $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
-            $started = (bool)random_int(0, 1);
+            $started = $startedCourse->where('course_id', $course->id)->first();
             $course->started = $started ? true : false;
             $course->makeHidden('lessons');
         }
@@ -116,14 +120,14 @@ class CourseServiceImpl implements CourseService
             'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
         ]);
         $user = Auth::user();
+        $startedCourse = UserCourse::where('course_id', $course->id)->where('user_id', $user->id)->first();
         $subscriptions = $user->activeSubscriptions();
         $course->access = $subscriptions->exists() ? true : false;
         $course->lessons_count = $course->lessons->count();
         $course->information_list = array_filter(explode(',', $course->information_list));
         $passed = Passing::whereIn('course_material_id', $course->lessons->pluck('id'))->where('user_id', $user->id);
         $course->lessons_passing_count = $passed->count();
-        $started = (bool)random_int(0, 1);
-        $course->started = $started ? true : false;
+        $course->started = $startedCourse ? true : false;
         foreach ($course->lessons as $lesson) {
             $lesson->access = $subscriptions->exists() || $lesson->free ? true : false;
             $lesson->passed = $passed->get()->where('course_material_id', $lesson->id)->first() ? true : false;

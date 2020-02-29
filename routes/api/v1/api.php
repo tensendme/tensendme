@@ -47,6 +47,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/users/courses', ['uses' => 'CourseController@getUserCourses']);
             Route::get('courses/{id}', ['uses' => 'CourseController@getById'])->where('id', '[0-9]+');
             Route::post('courses/material/pass', ['uses' => 'PassingController@passCourseLesson']);
+            Route::post('courses/start/{id}', ['uses' => 'PassingController@startCourse'])->where('id', '[0-9]+');
             //Material
             Route::get('courses/material/{id}', ['uses' => 'MaterialController@getMaterialById'])->where('id', '[0-9]+');
         });
