@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="269.001" height="157.001" viewBox="0 0 269.001 157.001">
+  <g id="Group_282" data-name="Group 282" transform="translate(16.001 -350.999)">
+    <g id="Kaspi_Bank" data-name="Kaspi Bank" transform="translate(-16 352)">
+      <rect id="Rectangle_130" data-name="Rectangle 130" width="269" height="156" rx="13" fill="#ecc274"/>
+      <text id="DEBIT" transform="translate(221.024 23.152)" fill="#f2f2f2" font-size="12" font-family="Helvetica"><tspan x="-17.669" y="0">DEBIT</tspan></text>
+      <text id="CARD" transform="translate(229.507 42.816)" fill="#f2f2f2" font-size="18" font-family="Helvetica"><tspan x="-25.501" y="0">CARD</tspan></text>
+      <circle id="Ellipse_135" data-name="Ellipse 135" cx="13.43" cy="13.43" r="13.43" transform="translate(214.422 120.46)" fill="#e73939"/>
+      <circle id="Ellipse_184" data-name="Ellipse 184" cx="49" cy="49" r="49" transform="translate(80 29)" fill="#ffd780"/>
+      <circle id="Ellipse_136" data-name="Ellipse 136" cx="13.43" cy="13.43" r="13.43" transform="translate(232.826 120.46)" fill="#ffd029" opacity="0.86"/>
+      <g id="wifi" transform="translate(34.599 17.951) rotate(90)" opacity="0.282">
+        <path id="Path_236" data-name="Path 236" d="M22.226,4.571a15.649,15.649,0,0,0-22.107,0,.407.407,0,0,0,.575.575,14.835,14.835,0,0,1,20.956,0,.407.407,0,1,0,.575-.575Z" transform="translate(0 0)"/>
+        <path id="Path_237" data-name="Path 237" d="M.119,3.582a.407.407,0,1,0,.575.575,11.447,11.447,0,0,1,16.171,0,.407.407,0,1,0,.575-.575A12.263,12.263,0,0,0,.119,3.582Z" transform="translate(2.392 3.381)"/>
+        <path id="Path_238" data-name="Path 238" d="M6.388,0A8.807,8.807,0,0,0,.119,2.593a.407.407,0,0,0,.575.575,8.061,8.061,0,0,1,11.387,0,.407.407,0,0,0,.575-.575A8.806,8.806,0,0,0,6.388,0Z" transform="translate(4.785 6.763)"/>
+      </g>
+      <text id="_0000_0000_0000_0000_" data-name="0000  0000  0000  0000 " transform="translate(133 111)" fill="#272729" font-size="15" font-family="Helvetica" letter-spacing="0.17em"><tspan x="-109.374" y="0" xml:space="preserve">0000  0000  0000  0000 </tspan></text>
+      <text id="AIDOS_AIDOSOV" data-name="AIDOS AIDOSOV" transform="translate(65 137)" fill="#272729" font-size="10" font-family="Helvetica" letter-spacing="0.17em"><tspan x="-49.658" y="0">AIDOS AIDOSOV</tspan></text>
+      <g id="Rectangle_131" data-name="Rectangle 131" transform="translate(16 60)" fill="#ffd686" stroke="#272729" stroke-width="1">
+        <rect width="37" height="25" rx="10" stroke="none"/>
+        <rect x="0.5" y="0.5" width="36" height="24" rx="9.5" fill="none"/>
+      </g>
+      <line id="Line_48" data-name="Line 48" y2="24.249" transform="translate(22.993 60.026)" fill="none" stroke="#272729" stroke-width="1"/>
+      <line id="Line_49" data-name="Line 49" y2="24.249" transform="translate(33.167 60.026)" fill="none" stroke="#272729" stroke-width="1"/>
+      <line id="Line_50" data-name="Line 50" y2="24.249" transform="translate(43.341 60.026)" fill="none" stroke="#272729" stroke-width="1"/>
+      <line id="Line_51" data-name="Line 51" x1="36.423" transform="translate(16.482 68.166)" fill="none" stroke="#272729" stroke-width="1"/>
+      <line id="Line_52" data-name="Line 52" x1="36.423" transform="translate(16.482 77.119)" fill="none" stroke="#272729" stroke-width="1"/>
+      <path id="Exclusion_3" data-name="Exclusion 3" d="M-3419-10942h-247a10.93,10.93,0,0,1-7.78-3.221A10.927,10.927,0,0,1-3677-10953v-134a10.93,10.93,0,0,1,3.222-7.78A10.933,10.933,0,0,1-3666-11098h247a10.929,10.929,0,0,1,7.777,3.222A10.935,10.935,0,0,1-3408-11087v134a10.929,10.929,0,0,1-3.221,7.778A10.926,10.926,0,0,1-3419-10942Zm-247-62v24h239v-24Z" transform="translate(3677 11097)" fill="#2c2c2c" opacity="0.716"/>
+    </g>
+    <text id="_02_21" data-name="02/21" transform="translate(130 489)" fill="#272729" font-size="10" font-family="Helvetica" letter-spacing="0.17em"><tspan x="-15.912" y="0">02/21</tspan></text>
+  </g>
+</svg>

@@ -142,6 +142,46 @@
         .text-center {
             text-align: center;
         }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            padding-top: 300px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            z-index: 1000;
+        }
+
+        .fa {
+            cursor: pointer;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #888;
+            width: 80%;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        /* The Close Button */
+        .close {
+            display: block;
+            margin-top: 20px;
+            color: #0060fa;
+            font-size: 20px;
+            font-weight: bold;
+        }
     </style>
 <body>
 <h3 class="title">Төлем</h3>
@@ -175,11 +215,19 @@
         </h2>
     </div>
 </div>
-
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p id="modal-text"></p>
+        <img id="modal-img">
+        <br>
+        <a class="close">Түсінікті</a>
+    </div>
+</div>
 <form id="paymentFormSample" class="container-col">
     <div class="form-group">
         <label class="label-text">Аты жөніңіз
-            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i onclick="openModal(1)" class="fa fa-question-circle-o" aria-hidden="true"></i>
         </label>
         <div class="input-container">
             <input data-cp="name" id="card-holder" placeholder="АТЫ ЖӨНІ" type="text" class="form-control w-90">
@@ -188,7 +236,7 @@
 
     <div class="form-group">
         <label class="label-text">Карта нөмірі
-            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i onclick="openModal(2)" class="fa fa-question-circle-o" aria-hidden="true"></i>
         </label>
         <div class="input-container">
             <input id="cc" type="text"
@@ -199,7 +247,7 @@
 
     <div class="container-row">
         <div class="form-group">
-            <label class="label-text same-row">
+            <label onclick="openModal(3)" class="label-text same-row">
                 CVS-код
                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </label>
@@ -209,7 +257,7 @@
         </div>
 
         <div class="form-group">
-            <label class="label-text same-row">
+            <label onclick="openModal(4)" class="label-text same-row">
                 Жарамдылық
                 мерзімі
                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
@@ -234,6 +282,29 @@
 
 
 <script>
+
+    var cardInfo = [
+        {
+            id: 1,
+            src: '{{asset('payment/card1.svg')}}',
+            text: 'Картаңыздың алдыңғы бетінде көрсетілген аты жөніңізді еңгізіңіз'
+        },
+        {
+            id: 2,
+            src: '{{asset('payment/card2.svg')}}',
+            text: 'Картаңыздың алдыңғы бетінде көрсетілген 16-санды нөмірді еңгізіңіз'
+        },
+        {
+            id: 3,
+            src: '{{asset('payment/card3.svg')}}',
+            text: 'Картаңыздың артқы бетінде көрсетілген 3-санды нөмірді еңгізіңіз'
+        },
+        {
+            id: 4,
+            src: '{{asset('payment/card4.svg')}}',
+            text: 'Картаңыздың алдыңғы бетінде көрсетілген ай мен жылды еңгізіңіз'
+        },
+    ];
 
     var checkout = new cp.Checkout(
         "pk_5ca541f82448e11afb98b5c1a3ffa",
@@ -338,5 +409,38 @@
                 alert(msgs.expDateYear)
         }
     }
+
+
+    var modal = $("#myModal");
+
+    var span = document.getElementsByClassName("close")[0];
+
+    var modalText = $('#modal-text');
+    var modalImg = $('#modal-img');
+
+    // When the user clicks the button, open the modal
+    function openModal(id) {
+        el = cardInfo.find((el) => el.id == id)
+
+        if (el) {
+            modalText.html(el.text);
+            modalImg.attr('src', el.src);
+            modal.show();
+        }
+
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.hide();
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.hide();
+        }
+    }
+
 </script>
 </html>
