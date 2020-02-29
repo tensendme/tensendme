@@ -12,7 +12,7 @@
             crossorigin="anonymous"></script>
     <script src="{{asset('js/jquery.inputmask.min.js')}}"></script>
     <title>Payment</title>
-    <style>
+    <style type="text/css">
         @font-face {
             font-family: 'Montserrat';
             font-style: normal;
