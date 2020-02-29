@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\v1\Admin;
 
 use App\Http\Controllers\WebBaseController;
-use App\Http\Requests\Web\V1\SubscriptionTypeControllerRequests\WithdrawalStoreAndUpdateRequest;
+use App\Http\Requests\Web\V1\SubscriptionTypeControllerRequests\SubscriptionTypeRequest;
 use App\Models\Subscriptions\SubscriptionType;
 
 class SubscriptionTypeController extends WebBaseController
@@ -23,9 +23,8 @@ class SubscriptionTypeController extends WebBaseController
         return view('admin.subscriptionTypes.create', compact('subscription_type'));
     }
 
-    public function store(WithdrawalStoreAndUpdateRequest $request)
+    public function store(SubscriptionTypeRequest $request)
     {
-
 
         SubscriptionType::create($request->all());
         $this->added();
@@ -43,7 +42,7 @@ class SubscriptionTypeController extends WebBaseController
 
     }
 
-    public function update(WithdrawalStoreAndUpdateRequest $request, $id)
+    public function update(SubscriptionTypeRequest $request, $id)
     {
         SubscriptionType::findOrFail($id)
             ->update($request->all());
