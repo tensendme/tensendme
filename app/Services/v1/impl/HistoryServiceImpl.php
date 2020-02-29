@@ -56,7 +56,6 @@ class HistoryServiceImpl implements HistoryService
             ]);
             $hostBalance->balance = $hostBalance->balance + $amount;
             $hostBalance->save();
-
         }
         History::create([
             'balance_id' => $balance->id,
