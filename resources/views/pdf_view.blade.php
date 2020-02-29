@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>CardStatus</title>
+    <title>Certificate</title>
     <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
     <style>
         /* cyrillic-ext */
