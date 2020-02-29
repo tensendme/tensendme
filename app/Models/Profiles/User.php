@@ -164,7 +164,7 @@ class User extends Authenticatable implements JWTSubject
                 ->paginate($size ? $size : 10);
         }
         $coursesItems = $courses->getCollection();
-        $startedCourse = UserCourse::whereIn('course_id', $coursesItems->pluck('id'))->where('user_id', $user->id)->get();
+        $startedCourse = UserCourse::whereIn('course_id', $coursesItems->pluck('id'))->where('user_id', $this->id)->get();
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
