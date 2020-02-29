@@ -19,4 +19,8 @@ class SubscriptionController extends WebBaseController
             ->paginate(10);
         return view('admin.userActions.subscriptions.index',compact('subscriptions'));
     }
+
+    public function freeSubscribe() {
+
+    }
 }
