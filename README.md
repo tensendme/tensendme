@@ -435,6 +435,7 @@ password: tensendme2020n
                     "author_id": 1,
                     "lessons_count": 15,
                     "lessons_passing_count": 0,
+                    "started": true,
                     "author": {
                         "id": 1,
                         "name": "Admin",
@@ -478,6 +479,9 @@ password: tensendme2020n
             "deleted_at": null,
             "author_id": 1,
             "access": false,
+            "lessons_count": 15,
+            "lessons_passing_count": 4,
+            "started": true,
             "lessons": [
                 {
                     "id": 2,
@@ -551,10 +555,11 @@ password: tensendme2020n
                     "updated_at": "2020-02-03 15:05:30",
                     "deleted_at": null,
                     "author_id": 1,
-                    "lessons_count": 15,
                     "information_list": [
                         "Nothing"
                     ],
+                    "lessons_count": 15,
+                    "started": true,
                     "lessons_passing_count": 0,
                     "author": {
                         "id": 1,
@@ -610,6 +615,7 @@ password: tensendme2020n
                 ],
                 "lessons_count": 15,
                 "lessons_passing_count": 0,
+                "started": true,
                 "author": {
                     "id": 1,
                     "name": "Admin",
@@ -686,7 +692,8 @@ password: tensendme2020n
                         "Nothing"
                 ],
                 "lessons_count": 4,
-                "lessons_passing_count": 1
+                "lessons_passing_count": 1,
+                "started": true
             },
             {
                 "id": 1,
@@ -703,7 +710,8 @@ password: tensendme2020n
                 "deleted_at": null,
                 "author_id": null,
                 "lessons_count": 1,
-                "lessons_passing_count": 1
+                "lessons_passing_count": 1,
+                "started": true
             }
         ],
         "success": true
@@ -952,6 +960,9 @@ password: tensendme2020n
                             "deleted_at": null,
                             "author_id": null,
                             "trailer": "test",
+                            "lessons_count": 15,
+                            "lessons_passing_count": 4,
+                            "started": true,
                             "information_list": [
                                 "Nothing"
                             ],
@@ -967,6 +978,9 @@ password: tensendme2020n
                             "scale": 0,
                             "view_count": 0,
                             "trailer": "test",
+                            "lessons_count": 15,
+                            "lessons_passing_count": 4,
+                            "started": true,
                             "created_at": "2020-01-21 23:44:24",
                             "updated_at": "2020-01-25 02:07:08",
                             "deleted_at": null,
@@ -1421,6 +1435,25 @@ password: tensendme2020n
     RESPONSE:
     {
         "link": "https://tensend.me/promo-codes/TS-Test-PY4L2B",
+        "success": true
+    }
+```
+
+### Начать курс
+#### URL: https://tensend.me/api/v1/courses/start/{id}
+
+```
+    Post Request:
+        
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "message": "Урок уже начат",        
+        "success": true
+    }
+    {
+        "message": "Урок успешно начат",        
         "success": true
     }
 ```
