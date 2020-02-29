@@ -18,4 +18,6 @@ interface PushService
     public function sendPush(User $user, Pushable $pushable);
 
     public function sendPushByPushJob(PushJobTemplate $pushJobTemplate);
+
+    public function passGeneralPushToQueue(User $user, $title, $description);
 }
