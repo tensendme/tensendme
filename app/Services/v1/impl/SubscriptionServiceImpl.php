@@ -9,7 +9,6 @@
 namespace App\Services\v1\impl;
 
 use App\Exceptions\ApiServiceException;
-use App\Services\v1\PromoCodeAnalyticService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Errors\ErrorCode;
 use App\Models\Subscriptions\Subscription;
@@ -18,7 +17,6 @@ use App\Services\v1\HistoryService;
 use App\Services\v1\SubscriptionService;
 use Auth;
 use DateTime;
-use Mockery\Exception;
 
 class SubscriptionServiceImpl implements SubscriptionService
 {
@@ -32,8 +30,8 @@ class SubscriptionServiceImpl implements SubscriptionService
 
     public function getSubscriptions()
     {
-        $subscriptionType = SubscriptionType::where('price', 0)->first();
-        return SubscriptionType::where('subscription_type_id', '!=', $subscriptionType->id)->get();
+        $subscriptionTypes = SubscriptionType::where('price', '!=', 0)->get();
+        return $subscriptionTypes;
     }
 
     public function subscribe($subscriptionTypeId)

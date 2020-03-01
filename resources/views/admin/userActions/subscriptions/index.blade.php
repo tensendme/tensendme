@@ -23,6 +23,7 @@
                         <tr>
                             <th scope="col" class="border-0">#</th>
                             <th scope="col" class="border-0">Пользователь</th>
+                            <th scope="col" class="border-0">Номер телефона</th>
                             <th scope="col" class="border-0">Тип подписки</th>
                             <th scope="col" class="border-0">Цена</th>
                             <th scope="col" class="border-0">Срок истечения</th>
@@ -34,6 +35,7 @@
                             <tr>
                                 <td>{{$subscription->id}}</td>
                                 <td>{{$subscription->user->name}}</td>
+                                <td>{{$subscription->user->phone}}</td>
                                 <td>{{$subscription->subscriptionType->name}}</td>
                                 <td>{{$subscription->actual_price}}</td>
                                 <td>{{$subscription->expired_at}}</td>

@@ -6,6 +6,7 @@ use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\UserControllerRequest\UserRequest;
 use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
+use App\Models\Subscriptions\SubscriptionType;
 use App\Services\v1\FileService;
 use Illuminate\Http\Request;
 
@@ -76,6 +77,12 @@ class UserController extends WebBaseController
         User::find($id)->update(['role_id' => $request->role_id]);
         $this->edited();
         return redirect()->route('users.index');
+    }
+
+    public function subscribe($id) {
+        $user = User::find($id);
+        $subscriptionTypes = SubscriptionType::all();
+        return view('admin.users.subscriptionEdit', compact('user', 'subscriptionTypes'));
     }
 
 }

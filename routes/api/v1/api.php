@@ -47,6 +47,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/users/courses', ['uses' => 'CourseController@getUserCourses']);
             Route::get('courses/{id}', ['uses' => 'CourseController@getById'])->where('id', '[0-9]+');
             Route::post('courses/material/pass', ['uses' => 'PassingController@passCourseLesson']);
+            Route::post('courses/start/{id}', ['uses' => 'PassingController@startCourse'])->where('id', '[0-9]+');
             //Material
             Route::get('courses/material/{id}', ['uses' => 'MaterialController@getMaterialById'])->where('id', '[0-9]+');
         });
@@ -82,8 +83,9 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::post('/3d/secure', ['uses' => 'PaymentController@send3dSecure']);
         Route::group(['middleware' => 'auth:api'], function () {
-
             Route::get('/pay', ['uses' => 'PaymentController@subscribe']);
+
+//            Route::get('/pay', ['uses' => 'PaymentController@subscribe']);
             Route::get('/saveCard', ['uses' => 'PaymentController@saveCard']);
             Route::get('/user/cards', ['uses' => 'PaymentController@getCardsByUserId']);
             Route::post('/save/transaction', ['uses' => 'PaymentController@saveTransaction']);
