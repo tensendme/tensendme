@@ -80,10 +80,10 @@ Route::group(['middleware' => 'api'], function () {
 
 //        Route::group(['middleware' => 'auth:api'], function () {
 
-        Route::get('/pay', ['uses' => 'PaymentController@subscribe']);
 
         Route::post('/3d/secure', ['uses' => 'PaymentController@send3dSecure']);
         Route::group(['middleware' => 'auth:api'], function () {
+            Route::get('/pay', ['uses' => 'PaymentController@subscribe']);
 
 //            Route::get('/pay', ['uses' => 'PaymentController@subscribe']);
             Route::get('/saveCard', ['uses' => 'PaymentController@saveCard']);
