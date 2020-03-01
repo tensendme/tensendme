@@ -53,27 +53,30 @@ class CourseServiceImpl implements CourseService
     public function findUserCourses($perPage, $userId)
     {
         $user = Auth::user();
-        $courses = DB::table('courses as c')
-            ->distinct()
-            ->select('c.*')
-            ->join('course_materials as cm', 'cm.course_id', '=', 'c.id')
-            ->join('passings as p', 'p.course_material_id', '=', 'cm.id')
-            ->where('p.user_id', $user->id)
-            ->orderBy('c.scale', 'desc')
+//        $courses = DB::table('courses as c')
+//            ->distinct()
+//            ->select('c.*')
+//            ->join('course_materials as cm', 'cm.course_id', '=', 'c.id')
+//            ->join('passings as p', 'p.course_material_id', '=', 'cm.id')
+//            ->where('p.user_id', $user->id)
+//            ->orderBy('c.scale', 'desc')
+//            ->paginate($perPage);
+
+        $userCourses = UserCourse::where('user_id', $user->id)->get();
+        $courses = Course::whereIn('id', $userCourses->pluck('course_id'))->where('is_visible', true)
+            ->with('author')
+            ->with('lessons')
+            ->orderBy('scale', 'desc')
             ->paginate($perPage);
 
-
-        $coursesItems = Course::hydrate($courses->items());
-        $startedCourse = UserCourse::whereIn('course_id', $coursesItems->pluck('id'))->where('user_id', $user->id)->get();
-        foreach ($coursesItems as $course) {
+        foreach ($courses as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))
                 ->where('user_id', $user->id)->count();
             $course->lessons_passing_count = $count;
-            $started = $startedCourse->where('course_id', $course->id)->first();
-            $course->started = $started ? true : false;
+            $course->started = true;
             $course->makeHidden('lessons');
         }
         $courses->setCollection($coursesItems);
