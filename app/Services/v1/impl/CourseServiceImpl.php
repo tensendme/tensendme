@@ -69,7 +69,9 @@ class CourseServiceImpl implements CourseService
             ->orderBy('scale', 'desc')
             ->paginate($perPage);
 
-        foreach ($courses as $course) {
+        $coursesItems = $courses->getCollection();
+
+        foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
