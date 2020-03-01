@@ -72,7 +72,7 @@ class CourseServiceImpl implements CourseService
             $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))
                 ->where('user_id', $user->id)->count();
             $course->lessons_passing_count = $count;
-            $started = (bool)random_int(0, 1);
+            $started = $startedCourse->where('course_id', $course->id)->first();
             $course->started = $started ? true : false;
             $course->makeHidden('lessons');
         }
