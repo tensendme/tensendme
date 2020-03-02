@@ -7,6 +7,7 @@ use App\Http\Requests\Web\V1\NewsControllerRequests\NewsStoreAndUpdateRequest;
 use App\Models\News\News;
 use App\Services\v1\FileService;
 use App\Utils\StaticConstants;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class NewsController extends WebBaseController
 {
@@ -24,7 +25,11 @@ class NewsController extends WebBaseController
 
     public function index()
     {
-        $news = News::paginate(10);
+//        $news = News::filter($this->request->all())->paginate(10);
+
+        $news = QueryBuilder::for(News::class)
+            ->allowedFilters('title')
+            ->paginate(10);
         return view('admin.news.index', compact('news'));
     }
 

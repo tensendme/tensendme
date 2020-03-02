@@ -65,7 +65,7 @@
 
     </style>
 <body>
-<img class="img-success" src="{{asset('payment/check.svg')}}">
-<h3 class="title">Оплата проведена</h3>
+<img class="img-success" src=@if($transaction->status==1){{asset('payment/check.svg')}}  @else(){{asset('payment/failure.png')}}@endif>
+<h3 class="title">{{$transaction->card_holder_message}}</h3>
 </body>
 </html>
