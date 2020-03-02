@@ -65,7 +65,7 @@
 
     </style>
 <body>
-<img class="img-success" src=@if($transaction->status==3){{asset('payment/check.svg')}}  @else(){{asset('payment/failure.png')}}@endif>
+<img class="img-success" src=@if($transaction->status==1){{asset('payment/check.svg')}}  @else(){{asset('payment/failure.png')}}@endif>
 
 <h3 class="title">@if($transaction->status==3)Карта успешно сохранена @else()Сохранение карты провалено @endif</h3>
 </body>
