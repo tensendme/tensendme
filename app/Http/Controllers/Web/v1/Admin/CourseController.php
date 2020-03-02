@@ -46,6 +46,7 @@ class CourseController extends WebBaseController
     public function store(CourseStoreAndUpdateRequest $request)
     {
         $path = StaticConstants::DEFAULT_IMAGE;
+        $trailerPath = '';
         if ($request->file('image')) {
             $path = $this->fileService->store($request->file('image'), Course::DEFAULT_RESOURCE_DIRECTORY);
         }
