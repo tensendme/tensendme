@@ -1128,6 +1128,8 @@ password: tensendme2020n
         "profile": {
             "avatar": "images/avatars/1581675506a3d1bf1e-fc94-4c1e-b4f7-65caf2789d08Снимок экрана 2020-02-05 в 20.50.56.png",
             "name": "Test",
+            "surname": "Test",
+            "fatherName": "Test",
             "promoCode": "TS-Test1-KUAN7U",
             "created": "2020-02-03T13:41:49.000000Z",
             "level": "Start Level",
@@ -1139,6 +1141,20 @@ password: tensendme2020n
             "followers_count": 0,
             "nickname": "Test1",
             "permission": true,
+            "analyze": [
+                        {
+                            "type": 1, Просмотрено ссылок
+                            "count": 2
+                        },
+                        {
+                            "type": 2, Зарегестрировались через промо код
+                            "count": 1
+                        },
+                        {
+                            "type": 3, Сделали подписок
+                            "count": 1
+                        }
+                    ],
             "subscriptions": [
                 {
                     "subscriptionType": "Bekzat",
@@ -1162,7 +1178,9 @@ password: tensendme2020n
 ```
      POST Request:
         {
-        	"name" : "Test" name and surname with one column,
+        	"name" : "Test" name,
+        	"surname" : "Test" surname,
+        	"fatherName" : "Test" father name,
         	"nickname" : "Test" String,
         	"cityId" : 1 numeric,
         }

@@ -40,6 +40,8 @@ class ProfileServiceImpl implements ProfileService
             $user->city_id = $profile->cityId;
         }
         $user->name = $profile->name;
+        $user->surname = $profile->surname;
+        $user->father_name = $profile->fatherName;
         $user->save();
         return "Изменения успешно сохранены!";
     }
@@ -62,6 +64,8 @@ class ProfileServiceImpl implements ProfileService
         $profile->id = $user->id;
         $profile->avatar = $user->image_path;
         $profile->name = $user->name;
+        $profile->surname = $user->surname;
+        $profile->fatherName = $user->father_name;
         $profile->promoCode = $user->promo_code;
         $profile->created = $user->created_at;
         $profile->level = $user->level->name;

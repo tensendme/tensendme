@@ -12,6 +12,8 @@ class ProfileRequest extends ApiBaseRequest
     {
         return [
             'name' => ['string'],
+            'surname' => ['string'],
+            'fatherName' => ['string'],
             'nickname' => ['string'],
             'cityId' => ['numeric'],
         ];

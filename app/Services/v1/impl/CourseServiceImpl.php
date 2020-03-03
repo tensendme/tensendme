@@ -10,6 +10,7 @@ use App\Models\Courses\Course;
 
 use App\Models\Education\Passing;
 use App\Models\Education\UserCourse;
+use App\Models\Profiles\Certificate;
 use App\Services\v1\CourseService;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -146,6 +147,26 @@ class CourseServiceImpl implements CourseService
     {
         $user = Auth::user();
         return $user->forMe($size);
+    }
+
+    public function getCertificate($courseId)
+    {
+        $user = Auth::user();
+        $courseSertificate = Certificate::where('user_id', $user->id)->where('course_id', $courseId)->first();
+        if(!$courseSertificate->father_name) $courseSertificate->father_name = $user->father_name;
+        if(!$courseSertificate->surname) $courseSertificate->surname = $user->surname;
+        if(!$courseSertificate->name) $courseSertificate->surname = $user->name;
+        $courseSertificate->save();
+        if(!$courseSertificate) return view('welcome');
+        $certificate = 'Сертификат';
+        $middleText = 'об участии на курсе «'. $courseSertificate->course->title .'»';
+        $given = 'ВЫДАЕТСЯ';
+        $fullName = $courseSertificate->name. ' '. $courseSertificate->surname. ' '. $courseSertificate->father_name;
+        $infoText = 'Сайт рыбатекст поможет дизайнеру,
+                верстальщику, вебмастеру сгенерировать
+                несколько абзацев более менее
+                осмысленного текста рыбы на русском языке';
+        return view('pdf_view', compact('certificate', 'middleText', 'given', 'fullName', 'infoText'));
     }
 
 

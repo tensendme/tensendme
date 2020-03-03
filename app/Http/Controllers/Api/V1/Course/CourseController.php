@@ -53,5 +53,9 @@ class CourseController extends ApiBaseController
         return $this->successResponse(['courses' => $this->courseService->forMe($request->size)]);
     }
 
+    public function certificate($id) {
+        return $this->courseService->getCertificate($id);
+    }
+
 
 }
