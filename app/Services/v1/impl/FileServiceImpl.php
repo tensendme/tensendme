@@ -37,15 +37,18 @@ class FileServiceImpl implements FileService
         return false;
     }
 
-    public function courseMaterialStore(UploadedFile $video, string $path) {
-        $material = (object) array();
+    public function courseMaterialStore(UploadedFile $video, string $path)
+    {
+        $material = (object)array();
         $videoPath = time() . ((string)Str::uuid()) . $video->getClientOriginalName();
         $videoFullPath = $video->move($path, $videoPath);
         $material->path = $videoFullPath;
 
         $ffprobe = FFProbe::create([
-            'ffmpeg.binaries'  => env('FF_MPEG_BINARY'),
-            'ffprobe.binaries' => env('FF_PROBE_BINARY')
+//            'ffmpeg.binaries'  => env('FF_MPEG_BINARY'),
+            'ffmpeg.binaries' => '/usr/local/bin/ffmpeg',
+//            'ffprobe.binaries' => env('FF_PROBE_BINARY')
+            'ffprobe.binaries' => '/usr/local/bin/ffprobe'
         ]);;
         $duration = $ffprobe
             ->streams($videoFullPath)
@@ -53,12 +56,15 @@ class FileServiceImpl implements FileService
             ->first()
             ->get('duration');
 
-        $sec = $duration * 35/100;
+        $sec = $duration * 35 / 100;
         $thumbnail = 'images/materials/' . time() . ((string)Str::uuid()) . 'preview.png';
 
         $ffmpeg = FFMpeg::create([
-            'ffmpeg.binaries'  => env('FF_MPEG_BINARY'),
-            'ffprobe.binaries' => env('FF_PROBE_BINARY')]);
+            //            'ffmpeg.binaries'  => env('FF_MPEG_BINARY'),
+            'ffmpeg.binaries' => '/usr/local/bin/ffmpeg',
+//            'ffprobe.binaries' => env('FF_PROBE_BINARY')
+            'ffprobe.binaries' => '/usr/local/bin/ffprobe'
+        ]);
         $video = $ffmpeg->open($videoFullPath);
         $frame = $video->frame(TimeCode::fromSeconds($sec));
         $frame->save($thumbnail);
@@ -100,14 +106,16 @@ class FileServiceImpl implements FileService
 
     public function meditationAudioStore(UploadedFile $audio, string $path)
     {
-        $material = (object) array();
+        $material = (object)array();
         $audioPath = time() . ((string)Str::uuid()) . $audio->getClientOriginalName();
         $audioFullPath = $audio->move($path, $audioPath);
         $material->path = $audioFullPath;
 
         $ffprobe = FFProbe::create([
-            'ffmpeg.binaries'  => env('FF_MPEG_BINARY'),
-            'ffprobe.binaries' => env('FF_PROBE_BINARY')
+//            'ffmpeg.binaries'  => env('FF_MPEG_BINARY'),
+            'ffmpeg.binaries' => '/usr/local/bin/ffmpeg',
+//            'ffprobe.binaries' => env('FF_PROBE_BINARY')
+            'ffprobe.binaries' => '/usr/local/bin/ffprobe'
         ]);;
         $duration = $ffprobe
             ->streams($audioFullPath)
