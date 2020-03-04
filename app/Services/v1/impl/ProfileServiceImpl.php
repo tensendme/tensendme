@@ -65,6 +65,7 @@ class ProfileServiceImpl implements ProfileService
         $profile->avatar = $user->image_path;
         $profile->name = $user->name;
         $profile->surname = $user->surname;
+        $profile->phone = $user->phone;
         $profile->fatherName = $user->father_name;
         $profile->promoCode = $user->promo_code;
         $profile->created = $user->created_at;
