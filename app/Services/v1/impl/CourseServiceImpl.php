@@ -10,6 +10,7 @@ use App\Models\Courses\Course;
 
 use App\Models\Education\Passing;
 use App\Models\Education\UserCourse;
+use App\Models\Profiles\Certificate;
 use App\Services\v1\CourseService;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -53,18 +54,24 @@ class CourseServiceImpl implements CourseService
     public function findUserCourses($perPage, $userId)
     {
         $user = Auth::user();
-        $courses = DB::table('courses as c')
-            ->distinct()
-            ->select('c.*')
-            ->join('course_materials as cm', 'cm.course_id', '=', 'c.id')
-            ->join('passings as p', 'p.course_material_id', '=', 'cm.id')
-            ->where('p.user_id', $user->id)
-            ->orderBy('c.scale', 'desc')
+//        $courses = DB::table('courses as c')
+//            ->distinct()
+//            ->select('c.*')
+//            ->join('course_materials as cm', 'cm.course_id', '=', 'c.id')
+//            ->join('passings as p', 'p.course_material_id', '=', 'cm.id')
+//            ->where('p.user_id', $user->id)
+//            ->orderBy('c.scale', 'desc')
+//            ->paginate($perPage);
+
+        $userCourses = UserCourse::where('user_id', $user->id)->get();
+        $courses = Course::whereIn('id', $userCourses->pluck('course_id'))->where('is_visible', true)
+            ->with('author')
+            ->with('lessons')
+            ->orderBy('scale', 'desc')
             ->paginate($perPage);
 
+        $coursesItems = $courses->getCollection();
 
-        $coursesItems = Course::hydrate($courses->items());
-        $startedCourse = UserCourse::whereIn('course_id', $coursesItems->pluck('id'))->where('user_id', $user->id)->get();
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
@@ -72,8 +79,7 @@ class CourseServiceImpl implements CourseService
             $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))
                 ->where('user_id', $user->id)->count();
             $course->lessons_passing_count = $count;
-            $started = (bool)random_int(0, 1);
-            $course->started = $started ? true : false;
+            $course->started = true;
             $course->makeHidden('lessons');
         }
         $courses->setCollection($coursesItems);
@@ -141,6 +147,26 @@ class CourseServiceImpl implements CourseService
     {
         $user = Auth::user();
         return $user->forMe($size);
+    }
+
+    public function getCertificate($courseId)
+    {
+        $user = Auth::user();
+        $courseSertificate = Certificate::where('user_id', $user->id)->where('course_id', $courseId)->first();
+        if(!$courseSertificate->father_name) $courseSertificate->father_name = $user->father_name;
+        if(!$courseSertificate->surname) $courseSertificate->surname = $user->surname;
+        if(!$courseSertificate->name) $courseSertificate->surname = $user->name;
+        $courseSertificate->save();
+        if(!$courseSertificate) return view('welcome');
+        $certificate = 'Сертификат';
+        $middleText = 'об участии на курсе «'. $courseSertificate->course->title .'»';
+        $given = 'ВЫДАЕТСЯ';
+        $fullName = $courseSertificate->name. ' '. $courseSertificate->surname. ' '. $courseSertificate->father_name;
+        $infoText = 'Сайт рыбатекст поможет дизайнеру,
+                верстальщику, вебмастеру сгенерировать
+                несколько абзацев более менее
+                осмысленного текста рыбы на русском языке';
+        return view('pdf_view', compact('certificate', 'middleText', 'given', 'fullName', 'infoText'));
     }
 
 

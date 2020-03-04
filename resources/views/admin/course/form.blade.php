@@ -85,7 +85,7 @@
                    value="{{$course ? (array_key_exists($i, $course->information_list) ? $course->information_list[$i] : '') : old('information['.$i .']')}}"
                    placeholder="Что возьмете с курса?"
                    id="get{{$i}}">
-            <label class="form-control-plaintext" for="get{{$i}}">Пожалуйста введите название курса</label>
+            <label class="form-control-plaintext" for="get{{$i}}">Пожалуйста введите описание что возьмете?</label>
         @endfor
     </div>
 </div>

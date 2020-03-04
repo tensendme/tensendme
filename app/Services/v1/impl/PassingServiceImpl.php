@@ -10,6 +10,7 @@ use App\Models\Courses\Course;
 use App\Models\Courses\CourseMaterial;
 use App\Models\Education\Passing;
 use App\Models\Education\UserCourse;
+use App\Models\Profiles\Certificate;
 use App\Services\v1\PassingService;
 use Auth;
 
@@ -39,6 +40,21 @@ class PassingServiceImpl implements PassingService
         $course = $material->course;
         $course->view_count = $course->view_count + 1;
         $course->save();
+        $lesson_ids = $course->lessons->pluck('id');
+        $passed_counts = Passing::whereIn('course_material_id', $lesson_ids)->count();
+        if($lesson_ids->count() == $passed_counts) {
+            $certificate = Certificate::where('user_id', $user->id)->where('course_id', $course->id)->first();
+            if (!$certificate) {
+                Certificate::create([
+                    'course_id' => $course->id,
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'surname' => $user->surname,
+                    'father_name' => $user->father_name,
+                    'course_name' => $course->title
+                ]);
+            }
+        }
         return "Урок успешно просмотрен";
     }
 

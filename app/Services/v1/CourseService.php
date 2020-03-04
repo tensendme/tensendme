@@ -11,7 +11,7 @@ interface CourseService
     public function findByCategory($categoryId, $size);
     public function findById($id);
     public function forMe($size);
-
+    public function getCertificate($courseId);
 
 
 
