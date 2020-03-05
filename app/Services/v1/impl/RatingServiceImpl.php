@@ -7,21 +7,25 @@
  */
 
 namespace App\Services\v1\impl;
+
 use App\Exceptions\ApiServiceException;
 use App\Http\Errors\ErrorCode;
 use App\Models\Courses\Course;
 use App\Models\Meditations\Meditation;
 use App\Models\Meditations\MeditationRating;
+use App\Models\Profiles\Role;
 use App\Models\Rating;
+use App\Models\Subscriptions\PromoCodeAnalytic;
 use App\Services\v1\RatingService;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class RatingServiceImpl implements RatingService
 {
     public function evaluate($course_id, $scale)
     {
         $course = Course::find($course_id);
-        if(!$course) throw new ApiServiceException(404, false, [
+        if (!$course) throw new ApiServiceException(404, false, [
             'errors' => [
                 'Курс не найден!'
             ],
@@ -29,7 +33,7 @@ class RatingServiceImpl implements RatingService
         ]);
         $user = Auth::user();
         $rating = Rating::where('user_id', $user->id)->where('course_id', $course->id)->first();
-        if(!$rating)
+        if (!$rating)
             $rating = Rating::updateOrCreate([
                 'user_id' => $user->id,
                 'course_id' => $course->id,
@@ -38,7 +42,7 @@ class RatingServiceImpl implements RatingService
         else $rating->scale = $scale;
         $rating->save();
         $courseRatings = Rating::where('course_id', $course->id);
-        $courseScale = $courseRatings->get()->sum('scale')/$courseRatings->count();
+        $courseScale = $courseRatings->get()->sum('scale') / $courseRatings->count();
         $course->scale = $courseScale;
         $course->save();
         return "Спасибо за вашу оценку!";
@@ -48,7 +52,7 @@ class RatingServiceImpl implements RatingService
     public function evaluateMeditation($meditationId, $scale)
     {
         $meditation = Meditation::find($meditationId);
-        if(!$meditation) throw new ApiServiceException(404, false, [
+        if (!$meditation) throw new ApiServiceException(404, false, [
             'errors' => [
                 'Медитация не найденa!'
             ],
@@ -56,7 +60,7 @@ class RatingServiceImpl implements RatingService
         ]);
         $user = Auth::user();
         $rating = MeditationRating::where('user_id', $user->id)->where('meditation_id', $meditation->id)->first();
-        if(!$rating)
+        if (!$rating)
             $rating = MeditationRating::updateOrCreate([
                 'user_id' => $user->id,
                 'meditation_id' => $meditation->id,
@@ -65,7 +69,7 @@ class RatingServiceImpl implements RatingService
         else $rating->scale = $scale;
         $rating->save();
         $meditationRatings = MeditationRating::where('meditation_id', $meditation->id);
-        $meditationScale = $meditationRatings->get()->sum('scale')/$meditationRatings->count();
+        $meditationScale = $meditationRatings->get()->sum('scale') / $meditationRatings->count();
         $meditation->scale = $meditationScale;
         $meditation->save();
         return "Спасибо за вашу оценку!";
@@ -73,4 +77,48 @@ class RatingServiceImpl implements RatingService
     }
 
 
+    public function userRating()
+    {
+        $purchasedJoinSub = DB::table('promo_code_analytics')
+            ->select([DB::raw('count(*) as count'), 'host_user_id'])
+            ->where('type', PromoCodeAnalytic::TYPE_PURCHASED)
+            ->groupBy('host_user_id');
+
+        $installedJoinSub = DB::table('promo_code_analytics')
+            ->select([DB::raw('count(*) as count'), 'host_user_id'])
+            ->where('type', PromoCodeAnalytic::TYPE_INSTALLED)
+            ->groupBy('host_user_id');
+
+        $passedJoinSub = DB::table('promo_code_analytics')
+            ->select([DB::raw('count(*) as count'), 'host_user_id'])
+            ->where('type', PromoCodeAnalytic::TYPE_PASSED)
+            ->groupBy('host_user_id');
+
+        return DB::table('users as u')
+            ->select([
+                'u.id',
+                'u.name',
+                'u.surname',
+                'u.father_name',
+                'u.image_path',
+                'u.level_id',
+                'l.logo',
+                DB::raw('case when ISNULL(purchased.count) then 0 else purchased.count end as purchased'),
+//                DB::raw('case when ISNULL(installed.count) then 0 else installed.count end as installed'),
+//                DB::raw('case when ISNULL(passed.count) then 0 else passed.count end as passed'),
+            ])
+            ->leftJoinSub($purchasedJoinSub, 'purchased',
+                'purchased.host_user_id', '=', 'u.id')
+            ->leftJoinSub($installedJoinSub, 'installed',
+                'installed.host_user_id', '=', 'u.id')
+            ->leftJoinSub($passedJoinSub, 'passed',
+                'passed.host_user_id', '=', 'u.id')
+            ->leftJoin('levels as l', 'u.level_id', 'l.id')
+            ->whereIn('u.role_id', [Role::USER_ID, Role::AUTHOR_ID])
+            ->orderBy('purchased.count', 'desc')
+            ->orderBy('installed.count', 'desc')
+            ->orderBy('passed.count', 'desc')
+            ->limit(10)
+            ->get();
+    }
 }

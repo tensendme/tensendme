@@ -158,8 +158,9 @@ class CourseServiceImpl implements CourseService
         if(!$courseSertificate) return view('welcome');
         if(!$courseSertificate->father_name) $courseSertificate->father_name = $user->father_name;
         if(!$courseSertificate->surname) $courseSertificate->surname = $user->surname;
-        if(!$courseSertificate->name) $courseSertificate->surname = $user->name;
+        if(!$courseSertificate->name) $courseSertificate->name = $user->name;
         $courseSertificate->save();
+
         if(!$courseSertificate) return view('welcome');
         $certificate = 'Сертификат #' .$courseSertificate->id;
         $middleText = 'об участии на курсе «'. $courseSertificate->course->title .'»';

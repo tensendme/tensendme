@@ -23,4 +23,8 @@ class RatingController extends ApiBaseController
     public function evaluateMeditation(MeditationRatingRequest $request) {
         return $this->successResponse(['message' => $this->ratingService->evaluateMeditation($request->meditation_id, $request->scale)]);
     }
+
+    public function userRating() {
+        return $this->successResponse(['ratings' => $this->ratingService->userRating()]);
+    }
 }
