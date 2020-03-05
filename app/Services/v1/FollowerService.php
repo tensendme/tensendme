@@ -12,4 +12,5 @@ namespace App\Services\v1;
 interface FollowerService
 {
     public function follow($promoCode);
+    public function promoFollow($phone, $userId);
 }

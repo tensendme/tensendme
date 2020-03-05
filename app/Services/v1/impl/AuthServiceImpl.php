@@ -20,6 +20,7 @@ use App\Models\Profiles\Level;
 use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Services\v1\AuthService;
+use App\Services\v1\FollowerService;
 use App\Services\v1\SubscriptionService;
 use App\Utils\StaticConstants;
 use Illuminate\Support\Facades\DB;
@@ -29,10 +30,12 @@ use JWTAuth;
 class AuthServiceImpl implements AuthService
 {
     protected $subscriptionService;
+    protected $followerService;
 
-    public function __construct(SubscriptionService $subscriptionService)
+    public function __construct(SubscriptionService $subscriptionService, FollowerService $followerService)
     {
         $this->subscriptionService = $subscriptionService;
+        $this->followerService = $followerService;
     }
 
     public function login(LoginApiRequest $request)
@@ -100,6 +103,8 @@ class AuthServiceImpl implements AuthService
             //VerifyEmail
         }
         $user->save();
+        if($user->phone)
+        $this->followerService->promoFollow($user->phone, $user->id);
 
         if (!$user) {
             throw new ApiServiceException(400, false, [

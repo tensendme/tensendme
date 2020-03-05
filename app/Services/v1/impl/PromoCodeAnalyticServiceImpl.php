@@ -56,4 +56,20 @@ class PromoCodeAnalyticServiceImpl implements PromoCodeAnalyticService
             ]);
         }
     }
+
+    public function makePassPhone($hostUserId, $promoCode, $phone)
+    {
+        $promoCodeAnalytic = PromoCodeAnalytic::where('host_user_id', $hostUserId)
+            ->where('type', PromoCodeAnalytic::TYPE_PASSED)
+            ->where('phone', $phone)
+            ->first();
+        if(!$promoCodeAnalytic) {
+            PromoCodeAnalytic::create([
+                'host_user_id' => $hostUserId,
+                'promo_code' => $promoCode,
+                'type' => PromoCodeAnalytic::TYPE_PASSED,
+                'phone' => $phone
+            ]);
+        }
+    }
 }
