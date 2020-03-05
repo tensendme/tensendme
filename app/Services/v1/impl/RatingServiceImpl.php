@@ -103,7 +103,7 @@ class RatingServiceImpl implements RatingService
                 'u.image_path',
                 'u.level_id',
                 'l.logo',
-                DB::raw('case when ISNULL(purchased.count) then 0 else purchased.count end as purchased'),
+                DB::raw('case when ISNULL(purchased.count) then 0 else purchased.count end as rating'),
 //                DB::raw('case when ISNULL(installed.count) then 0 else installed.count end as installed'),
 //                DB::raw('case when ISNULL(passed.count) then 0 else passed.count end as passed'),
             ])

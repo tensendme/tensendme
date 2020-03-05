@@ -1475,4 +1475,78 @@ password: tensendme2020n
         "success": true
     }
 ```
+### Запрос рейтинг пользователей
+#### URL: https://tensend.me/api/v1/evaluate/rating
+
+```
+     GET Request
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+    {
+        "ratings": [
+            {
+                "id": 42,
+                "name": "Ysmaiyl Bokeikhan",
+                "surname": null,
+                "father_name": null,
+                "image_path": "images/avatars/158168087467c2ad10-7f74-4ae9-953f-284a9674e7fbтест.jpg",
+                "level_id": 1,
+                "logo": "images/levels/158089602632cb8339-635c-4207-99d2-5be68579717fтест.jpg",
+                "rating": 1
+            },
+            {
+                "id": 40,
+                "name": "test",
+                "surname": null,
+                "father_name": null,
+                "image_path": "images/avatars/158168087467c2ad10-7f74-4ae9-953f-284a9674e7fbтест.jpg",
+                "level_id": 1,
+                "logo": "images/levels/158089602632cb8339-635c-4207-99d2-5be68579717fтест.jpg",
+                "rating": 1
+            },
+            {
+                "id": 46,
+                "name": "test",
+                "surname": null,
+                "father_name": null,
+                "image_path": "images/avatars/158168087467c2ad10-7f74-4ae9-953f-284a9674e7fbтест.jpg",
+                "level_id": 1,
+                "logo": "images/levels/158089602632cb8339-635c-4207-99d2-5be68579717fтест.jpg",
+                "rating": 0
+            },
+            {
+                "id": 45,
+                "name": "Bekzat",
+                "surname": null,
+                "father_name": null,
+                "image_path": "images/avatars/158168087467c2ad10-7f74-4ae9-953f-284a9674e7fbтест.jpg",
+                "level_id": 1,
+                "logo": "images/levels/158089602632cb8339-635c-4207-99d2-5be68579717fтест.jpg",
+                "rating": 0
+            },
+            {
+                "id": 61,
+                "name": "test",
+                "surname": null,
+                "father_name": null,
+                "image_path": "images/user-default.png",
+                "level_id": 1,
+                "logo": "images/levels/158089602632cb8339-635c-4207-99d2-5be68579717fтест.jpg",
+                "rating": 0
+            },
+            {
+                "id": 12,
+                "name": "test",
+                "surname": null,
+                "father_name": null,
+                "image_path": "images/avatars/158168087467c2ad10-7f74-4ae9-953f-284a9674e7fbтест.jpg",
+                "level_id": 1,
+                "logo": "images/levels/158089602632cb8339-635c-4207-99d2-5be68579717fтест.jpg",
+                "rating": 0, // Рейтинг юзера
+            }
+        ],
+        "success": true
+    }
+```
 
