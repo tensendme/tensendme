@@ -338,6 +338,8 @@
     });
 
     function createCryptogram() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
         var name = $('#realCardNumber').val();
         var result = checkout.createCryptogramPacket();
         console.log(result);
@@ -347,7 +349,7 @@
             console.log(result.packet);
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", "{{$token}}");
+            myHeaders.append("Authorization", `Bearer ${token}`);
 
             var raw = JSON.stringify({
                 "Amount": "{{$subscription_type->price}}",

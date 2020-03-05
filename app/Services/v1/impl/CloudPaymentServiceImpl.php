@@ -34,7 +34,8 @@ class CloudPaymentServiceImpl implements PaymentService
 
 
     public function subscribe($request)
-    {   $token = $request->header('Authorization');
+    {
+        $token = $request->token;
         $subscription_type_id = $request->subscription_type_id;
         $subscription_type = SubscriptionType::where('id',$subscription_type_id)->where('price','!=',0)->first();
         if (!$subscription_type) throw new ApiServiceException(404, false, [
@@ -52,7 +53,8 @@ class CloudPaymentServiceImpl implements PaymentService
     }
 
     public function saveCard($request)
-    {   $token = $request->header('Authorization');
+    {
+        $token = $request->token;
 
         $url = route('saveCard');
 //        $result = ['url' => $url, 'token' =>$token];
