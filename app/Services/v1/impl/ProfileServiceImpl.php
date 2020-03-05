@@ -78,7 +78,24 @@ class ProfileServiceImpl implements ProfileService
         $profile->followers_count = $user->followers->count();
         $profile->nickname = $user->nickname;
         $profile->permission = false;
-        $profile->analyze = $user->analyze();
+        $analyzes = $user->analyze();
+        $userResult = array();
+        for ($i = 1; $i < 4; $i++) {
+            $userResult[] = array('type' => $i, 'count' => 0);
+        }
+        if(!empty($analyzes)) {
+            foreach ($userResult as $key => $val) {
+                $count = 0;
+                foreach ($analyzes as $analyze) {
+                    if ($val['type'] === $analyze->type) {
+                        $count = $analyze->count;
+                    }
+                }
+                $userResult[$key]['count'] = $count;
+            }
+        }
+//        dd($userResult);
+        $profile->analyze = $userResult;
         $profile->subscriptions = array();
         foreach ($user->activeSubscriptions as $subscription) {
             $profile->subscriptions[] = array(

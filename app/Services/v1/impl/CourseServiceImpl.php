@@ -175,6 +175,4 @@ class CourseServiceImpl implements CourseService
         return view('pdf_view', compact('certificate', 'middleText', 'given',
             'fullName', 'infoText', 'author'));
     }
-
-
 }
