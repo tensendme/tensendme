@@ -75,7 +75,7 @@ class HomeController extends WebBaseController
             $country->phone_prefix . $request->phone);
         if($user) $this->promoCodeService->makePassPhone($user->id, $promoCode, $phone);
             if($platform == 'IOS') {
-                return Redirect::to('itms-apps://apple.com');
+                return Redirect::to('itms-apps://apple.com/today');
             }
             else if($platform == 'Android') {
                 return Redirect::to('market://details');
