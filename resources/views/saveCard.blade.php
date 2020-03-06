@@ -351,6 +351,7 @@
     function createCryptogram() {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
+        // const token1 = urlParams.set('token');
         var name = $('#realCardNumber').val();
         var result = checkout.createCryptogramPacket();
         console.log(result);
@@ -374,7 +375,7 @@
                 headers: myHeaders,
                 body: raw,
                 redirect: 'follow'
-            };
+            }; 
             fetch("https://tensend.me/api/v1/send/crypto", requestOptions)
                 .then(response => response.json())
                 .then(result => {
