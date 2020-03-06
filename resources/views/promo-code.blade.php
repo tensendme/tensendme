@@ -245,11 +245,11 @@
         </h3>
         <br>
         <div class="row">
-            <a href="https://www.apple.com/ru/ios/app-store/">
+            <a href="itms-apps://apple.com/today">
                 <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
                 <span id="downloadUrlSpanIos">App Store</span>
             </a>
-            <a href="https://play.google.com/store">
+            <a href="market://">
                 <img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">
                 <span id="downloadUrlSpanAndroid">Google Play</span>
             </a>
