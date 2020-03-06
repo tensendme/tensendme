@@ -11,6 +11,7 @@ use App\Models\Subscriptions\Subscription;
 use App\Models\Subscriptions\SubscriptionType;
 use App\Services\v1\PromoCodeAnalyticService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends WebBaseController
 {
@@ -60,11 +61,25 @@ class HomeController extends WebBaseController
     }
 
     public function registerPromo($promoCode, Request $request) {
+        $userAgent = $request->userAgent();
+        $platform = '';
+        if($userAgent) {
+            if (strpos($userAgent, 'Android') !== false && strpos($userAgent, 'Windows Phone') == false) {
+                $platform = 'Android';
+            }
+            else if(strpos($userAgent, 'iPhone') !== false || strpos($userAgent, 'iPad') !== false) $platform = 'IOS';
+        }
         $country = Country::find($request->country);
         $user = User::where('promo_code', $promoCode)->first();
         $phone = preg_replace("/[^0-9]/","",
             $country->phone_prefix . $request->phone);
         if($user) $this->promoCodeService->makePassPhone($user->id, $promoCode, $phone);
-        return redirect()->route('welcome');
+            if($platform == 'IOS') {
+                return Redirect::to('itms-apps://apple.com');
+            }
+            else if($platform == 'Android') {
+                return Redirect::to('market://details');
+            }
+            else return redirect()->route('welcome');
     }
 }

@@ -59,8 +59,7 @@ class PromoCodeAnalyticServiceImpl implements PromoCodeAnalyticService
 
     public function makePassPhone($hostUserId, $promoCode, $phone)
     {
-        $promoCodeAnalytic = PromoCodeAnalytic::where('host_user_id', $hostUserId)
-            ->where('type', PromoCodeAnalytic::TYPE_PASSED)
+        $promoCodeAnalytic = PromoCodeAnalytic::where('type', PromoCodeAnalytic::TYPE_PASSED)
             ->where('phone', $phone)
             ->first();
         if(!$promoCodeAnalytic) {
