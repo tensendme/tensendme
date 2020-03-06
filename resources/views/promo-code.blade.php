@@ -249,7 +249,7 @@
                 <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
                 <span id="downloadUrlSpanIos">App Store</span>
             </a>
-            <a href="market://">
+            <a href="http://market.android.com">
                 <img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">
                 <span id="downloadUrlSpanAndroid">Google Play</span>
             </a>
