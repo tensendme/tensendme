@@ -16,4 +16,6 @@ interface PromoCodeAnalyticService
 
     public function makePurchased($hostUserId, $promoCodeText, $followerUserId);
 
+    public function makePassPhone($hostUserId, $promoCode, $phone);
+
 }

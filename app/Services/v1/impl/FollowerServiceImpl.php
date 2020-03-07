@@ -13,6 +13,7 @@ use App\Http\Errors\ErrorCode;
 use App\Models\Histories\Follower;
 use App\Models\Profiles\Level;
 use App\Models\Profiles\User;
+use App\Models\Subscriptions\PromoCodeAnalytic;
 use App\Services\v1\FollowerService;
 use App\Services\v1\HistoryService;
 use App\Services\v1\PromoCodeAnalyticService;
@@ -56,21 +57,37 @@ class FollowerServiceImpl implements FollowerService
         ]);
 //        $this->historyService->follower($follower);
 
-        $date = new DateTime();
-        $date->modify('-' . $level->period_date . 'days');
-        $followers = $hostUser->followers;
-        $followersCount = $followers->where('level_id', $level->id)->where('created_at', '>', $date)->count();
-        if ($followersCount == $level->end_count) {
-            $level = Level::where('start_count', $level->end_count)->first();
-            if ($level) {
-                $hostUser->level_id = $level->id;
-                $hostUser->save();
-                // Congratulations Push
-            }
-        }
+//        $date = new DateTime();
+//        $date->modify('-' . $level->period_date . 'days');
+//        $followers = $hostUser->followers;
+//        $followersCount = $followers->where('level_id', $level->id)->where('created_at', '>', $date)->count();
+//        if ($followersCount == $level->end_count) {
+//            $level = Level::where('start_count', $level->end_count)->first();
+//            if ($level) {
+//                $hostUser->level_id = $level->id;
+//                $hostUser->save();
+//                // Congratulations Push
+//            }
+//        }
 
         $this->promoCodeAnalyticService->makeInstalled($hostUser->id, $hostUser->promo_code, $followerUser->id);
         return "Промо код принят успешно!";
     }
+
+    public function promoFollow($phone, $userId)
+    {
+        $promoCode = PromoCodeAnalytic::where('type', PromoCodeAnalytic::TYPE_PASSED)
+            ->where('phone', $phone)->first();
+        if(!$promoCode) return 0;
+        $hostUser = $promoCode->hostUser;
+        Follower::create([
+            'follower_user_id' => $userId,
+            'host_user_id' => $hostUser->id,
+            'level_id' => 1,
+        ]);
+        $this->promoCodeAnalyticService->makeInstalled($hostUser->id, $hostUser->promo_code, $userId);
+        return 1;
+    }
+
 
 }

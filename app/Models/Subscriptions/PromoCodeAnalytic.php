@@ -15,6 +15,8 @@ class PromoCodeAnalytic extends Model
     protected $fillable = [
         'host_user_id',
         'promo_code',
+        'ip_address',
+        'phone',
         'type',
         'follower_user_id'
     ];

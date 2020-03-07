@@ -117,6 +117,7 @@ Route::group(['middleware' => 'api'], function () {
         Route::group(['middleware' => 'auth:api'], function () {
             Route::post('/evaluate/course', ['uses' => 'RatingController@evaluate']);
             Route::post('/evaluate/meditation', ['uses' => 'RatingController@evaluateMeditation']);
+            Route::get('/evaluate/rating', ['uses' => 'RatingController@userRating']);
         });
     });
 

@@ -185,6 +185,16 @@
             font-size: 20px;
             font-weight: bold;
         }
+        #loader{
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url({{asset('payment/loader.gif')}})
+            50% 50% no-repeat rgb(249,249,249);
+        }
     </style>
 <body>
 <h3 class="title">Төлем</h3>
@@ -281,6 +291,7 @@
         <input class="w-97 submit-btn" type="submit" value="Төлем жасау">
     </div>
 </form>
+<div id="loader" style="display: none"> </div>
 </body>
 
 
@@ -338,6 +349,9 @@
     });
 
     function createCryptogram() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        // const token1 = urlParams.set('token');
         var name = $('#realCardNumber').val();
         var result = checkout.createCryptogramPacket();
         console.log(result);
@@ -345,9 +359,10 @@
         if (result.success) {
             // сформирована криптограмма
             console.log(result.packet);
+            loader();
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", "{{$token}}");
+            myHeaders.append("Authorization", `Bearer ${token}`);
 
             var raw = JSON.stringify({
                 "Amount": "0.01",
@@ -360,7 +375,7 @@
                 headers: myHeaders,
                 body: raw,
                 redirect: 'follow'
-            };
+            }; 
             fetch("https://tensend.me/api/v1/send/crypto", requestOptions)
                 .then(response => response.json())
                 .then(result => {
@@ -444,5 +459,13 @@
         }
     }
 
+    function loader() {
+        var x = document.getElementById("loader");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
 </script>
 </html>

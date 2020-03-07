@@ -106,7 +106,9 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Services\v1\AuthService', function ($app) {
             return (new AuthServiceImpl(new SubscriptionServiceImpl( new HistoryServiceImpl(
-                new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl()))));
+                new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl())), new FollowerServiceImpl(
+                    new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl()), new PromoCodeAnalyticServiceImpl()
+            )));
         });
 
         $this->app->bind('App\Services\v1\RatingService', function ($app) {

@@ -105,6 +105,11 @@
             text-align: center;
             font-size: 0.3cm;
         }
+
+        .author {
+            font-size: 0.7cm;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -118,9 +123,11 @@
         <p class="given-to">{{$given}}</p>
 
         <p class="full-name">{{$fullName}}</p>
+
         <p class="info-text">
             {{$infoText}}
         </p>
+        <p class="author">{{$author}}</p>
     </div>
 </div>
 

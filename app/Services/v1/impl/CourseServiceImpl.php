@@ -152,22 +152,28 @@ class CourseServiceImpl implements CourseService
     public function getCertificate($courseId)
     {
         $user = Auth::user();
-        $courseSertificate = Certificate::where('user_id', $user->id)->where('course_id', $courseId)->first();
+        $courseSertificate = Certificate::where('user_id', $user->id)->where('course_id', $courseId)
+            ->with('course.author')
+            ->first();
+        if(!$courseSertificate) return view('welcome');
         if(!$courseSertificate->father_name) $courseSertificate->father_name = $user->father_name;
         if(!$courseSertificate->surname) $courseSertificate->surname = $user->surname;
-        if(!$courseSertificate->name) $courseSertificate->surname = $user->name;
+        if(!$courseSertificate->name) $courseSertificate->name = $user->name;
         $courseSertificate->save();
+
         if(!$courseSertificate) return view('welcome');
-        $certificate = 'Сертификат';
+        $certificate = 'Сертификат #' .$courseSertificate->id;
         $middleText = 'об участии на курсе «'. $courseSertificate->course->title .'»';
+        $author = $courseSertificate->course->author ? 'Автор курса: '.
+            $courseSertificate->course->author->surname . ' '.$courseSertificate->course->author->name . ' '
+            .$courseSertificate->course->author->father_name: 'Автор курса: Tensend';
         $given = 'ВЫДАЕТСЯ';
         $fullName = $courseSertificate->name. ' '. $courseSertificate->surname. ' '. $courseSertificate->father_name;
         $infoText = 'Сайт рыбатекст поможет дизайнеру,
                 верстальщику, вебмастеру сгенерировать
                 несколько абзацев более менее
                 осмысленного текста рыбы на русском языке';
-        return view('pdf_view', compact('certificate', 'middleText', 'given', 'fullName', 'infoText'));
+        return view('pdf_view', compact('certificate', 'middleText', 'given',
+            'fullName', 'infoText', 'author'));
     }
-
-
 }
