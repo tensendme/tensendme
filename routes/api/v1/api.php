@@ -129,6 +129,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('/refresh', ['uses' => 'AuthController@refresh']);
             Route::post('/me', ['uses' => 'AuthController@me']);
             Route::post('/set-device-token', ['uses' => 'AuthController@setDeviceToken']);
+            Route::post('/reset/password', ['uses' => 'AuthController@resetPassword']);
 
         });
 

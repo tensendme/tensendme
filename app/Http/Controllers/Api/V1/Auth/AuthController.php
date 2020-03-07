@@ -6,6 +6,7 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\ApiBaseController;
+use App\Http\Requests\Api\V1\Auth\AuthorizedResetPasswordApiRequest;
 use App\Http\Requests\Api\V1\Auth\CheckLoginExistenceApiRequest;
 use App\Http\Requests\Api\V1\Auth\LoginApiRequest;
 use App\Http\Requests\Api\V1\Auth\RegisterApiRequest;
@@ -63,4 +64,9 @@ class AuthController extends ApiBaseController
         return $this->successResponse(['message' => 'Device token set']);
     }
 
+    public function resetPassword(AuthorizedResetPasswordApiRequest $request)
+    {
+        $this->authService->authorizedResetPassword(Auth::user(), $request->password, $request->new_password);
+        return $this->successResponse(['message' => 'Password updated']);
+    }
 }

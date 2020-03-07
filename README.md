@@ -1476,3 +1476,26 @@ password: tensendme2020n
     }
 ```
 
+
+### Сброс пароля авторизованным человеком
+#### URL: https://tensend.me/api/v1/reset/password
+
+```
+    Post Request:
+        
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    REQUEST:
+    {
+    	"password" : "password123", //ТЕКУЩИЙ ПАРОЛЬ
+    	"new_password" : "password"
+    }
+    
+    RESPONSE:
+    
+    {
+        "message": "Password updated",
+        "success": true
+    }
+```
+

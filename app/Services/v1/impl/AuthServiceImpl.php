@@ -182,5 +182,21 @@ class AuthServiceImpl implements AuthService
         }
     }
 
+    public function authorizedResetPassword($user, $password, $new_password)
+    {
+
+        if (Hash::check($password, $user->password)) {
+            $user->password = bcrypt($new_password);
+            $user->save();
+        } else {
+            throw new ApiServiceException(400, false, [
+                'errorCode' => ErrorCode::PASSWORDS_MISMATCH,
+                'errors' => [
+                    'Password does not match'
+                ]
+            ]);
+        }
+    }
+
 
 }
