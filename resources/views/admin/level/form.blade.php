@@ -53,7 +53,7 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-5">
         <input type="file"
                id="logo"
                class="form-control"
@@ -70,6 +70,15 @@
                checked
                data-toggle="toggle"
                data-size="md">
+    </div>
+    <div class="form-group col-md-6">
+        <textarea type="text" class="form-control"
+                  name="description"
+                  placeholder="Описание уровня"
+                  id="description"
+                  rows="8"
+                  required>{{$level ? $level->description : old('description')}}</textarea>
+        <label class="form-control-plaintext" for="description">Пожалуйста введите описание уровня</label>
     </div>
 </div>
 

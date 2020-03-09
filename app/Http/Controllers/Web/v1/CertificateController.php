@@ -18,14 +18,15 @@ class CertificateController extends WebBaseController
 
     public function getCertificate()
     {
-        $certificate = 'Сертификат';
+        $certificate = 'Сертификат #124312';
         $middleText = 'об участии на курсе «Cымбатты мүсін»';
         $given = 'ВЫДАЕТСЯ';
-        $fullName = 'АСКАР К. Б.';
+        $fullName = 'БЕКЗАТ БЕКМУРАТОВ АЗАМАТУЛЫ';
+        $author = 'АСКАР К. Б.';
         $infoText = 'Сайт рыбатекст поможет дизайнеру,
                 верстальщику, вебмастеру сгенерировать
                 несколько абзацев более менее
                 осмысленного текста рыбы на русском языке';
-        return view('pdf_view', compact('certificate', 'middleText', 'given', 'fullName', 'infoText'));
+        return view('pdf_view', compact('certificate', 'middleText', 'given', 'fullName', 'infoText', 'author'));
     }
 }

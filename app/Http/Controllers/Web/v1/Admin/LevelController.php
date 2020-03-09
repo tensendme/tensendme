@@ -54,6 +54,7 @@ class LevelController extends WebBaseController
                 'start_count' => $request->start_count,
                 'end_count' => $request->end_count,
                 'name' => $request->name,
+                'description' => $request->description,
                 'period_date' => $request->period_date,
             ]);
             DB::commit();
@@ -82,13 +83,13 @@ class LevelController extends WebBaseController
             $path = $this->fileService->updateWithRemoveOrStore($request->file('logo'),
                 Level::DEFAULT_RESOURCE_DIRECTORY, $path);
         }
-
             $level->update([
                 'logo' => $path,
                 'discount_percentage' => $request->discount_percentage,
                 'start_count' => $request->start_count,
                 'end_count' => $request->end_count,
                 'name' => $request->name,
+                'description' => $request->description,
                 'period_date' => $request->period_date]);
         $this->edited();
         return redirect()->route('level.index');
