@@ -351,7 +351,8 @@
     function createCryptogram() {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
-        // const token1 = urlParams.set('token');
+        // const asd = 1;
+        // const token1 = urlParams.set(asd);
         var name = $('#realCardNumber').val();
         var result = checkout.createCryptogramPacket();
         console.log(result);

@@ -10,7 +10,7 @@
         <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
-                    <h6 class="m-0">Все медитаций</h6>
+                    <h6 class="m-0">Все медитации</h6>
                 </div>
                 <div class="card-header border-bottom">
                     <a href="{{route('meditation.create')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Добавить

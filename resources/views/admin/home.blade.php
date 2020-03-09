@@ -16,9 +16,6 @@
                             <span class="stats-small__label text-uppercase">Подписки</span>
                             <h6 class="stats-small__value count my-3">{{$subscriptionsCount}}</h6>
                         </div>
-                        <div class="stats-small__data">
-                            <span class="stats-small__percentage stats-small__percentage--increase">0.0%</span>
-                        </div>
                     </div>
                     <canvas height="120" class="blog-overview-stats-small-1"></canvas>
                 </div>
@@ -31,9 +28,6 @@
                         <div class="stats-small__data text-center">
                             <span class="stats-small__label text-uppercase">История</span>
                             <h6 class="stats-small__value count my-3">{{$historiesCount}}</h6>
-                        </div>
-                        <div class="stats-small__data">
-                            <span class="stats-small__percentage stats-small__percentage--increase">0.0%</span>
                         </div>
                     </div>
                     <canvas height="120" class="blog-overview-stats-small-2"></canvas>
@@ -48,9 +42,6 @@
                             <span class="stats-small__label text-uppercase">Оценили</span>
                             <h6 class="stats-small__value count my-3">{{$ratingsCount}}</h6>
                         </div>
-                        <div class="stats-small__data">
-                            <span class="stats-small__percentage stats-small__percentage--decrease">0.0%</span>
-                        </div>
                     </div>
                     <canvas height="120" class="blog-overview-stats-small-3"></canvas>
                 </div>
@@ -63,9 +54,6 @@
                         <div class="stats-small__data text-center">
                             <span class="stats-small__label text-uppercase">Пользователи</span>
                             <h6 class="stats-small__value count my-3">{{$usersCount}}</h6>
-                        </div>
-                        <div class="stats-small__data">
-                            <span class="stats-small__percentage stats-small__percentage--increase">0.0%</span>
                         </div>
                     </div>
                     <canvas height="120" class="blog-overview-stats-small-4"></canvas>

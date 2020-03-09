@@ -8,6 +8,8 @@
 <div class="card-body p-0 pb-3 text-center">
     <button class="btn" onclick="submitForm()">submit</button>
     <button class="btn" onclick="submitForm1()">submitCard</button>
+    <button class="btn" onclick="submitForm3()">URL</button>
+
 </div>
 <div class="loader"></div>
 
@@ -63,6 +65,29 @@
 
             .catch(error => console.log('error', error));
 
+    }
+
+
+    function submitForm3() {
+        const urlParams = new URLSearchParams(window.location.search);
+
+
+        var url = new URL(window.location.href);
+
+        var query_string = url.search;
+
+        var search_params = new URLSearchParams(query_string);
+
+        search_params.append('id', '101');
+
+        search_params.append('id', '102');
+
+        url.search = search_params.toString();
+
+        var new_url = url.toString();
+
+        // console.log(new_url);
+        window.location.href = new_url;
     }
 </script>
 

@@ -2,8 +2,8 @@
 @section('content')
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <span class="text-uppercase page-subtitle">Редактирование роля пользователя</span>
-            <h3 class="page-title">Редактирование роля пользователя</h3>
+            <span class="text-uppercase page-subtitle">Редактирование роли пользователя</span>
+            <h3 class="page-title">Редактирование роли пользователя</h3>
         </div>
     </div>
     <div class="row">

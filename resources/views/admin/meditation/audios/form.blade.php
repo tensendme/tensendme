@@ -34,12 +34,12 @@
     </div>
     <div class="form-group col-md-3">
         <input type="checkbox" class="form-control" name="access"
-               data-on="Вкл"
-               data-off="Откл"
+               data-on="Бесплатно"
+               data-off="С подпиской"
                data-toggle="toggle"
                data-size="md" id="access"
                value="1" {{$audio ? ($audio->free ? 'checked' : '') : ''}}>
-        <label class="form-control-plaintext" for="access">Пожалуйста выберите тип доступа (Бесплатно или за подписку)</label>
+        <label class="form-control-plaintext" for="access">Пожалуйста выберите тип доступа (Бесплатно или с подпиской)</label>
     </div>
 </div>
 <div class="form-group col-md-12 text-right">

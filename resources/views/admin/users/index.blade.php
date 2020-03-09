@@ -2,15 +2,15 @@
 @section('content')
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <span class="text-uppercase page-subtitle">Новости</span>
-            <h3 class="page-title">Новости</h3>
+            <span class="text-uppercase page-subtitle">Пользователи</span>
+            <h3 class="page-title">Пользователи</h3>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
-                    <h6 class="m-0">Новости</h6>
+                    <h6 class="m-0">Все пользователи</h6>
                 </div>
                 <div class="card-body p-0 pb-3 text-center">
                     <table class="table mb-0">
@@ -49,11 +49,11 @@
                                 <td>{{$user->balance->balance}}</td>
                                 <td><a class="btn btn-outline-primary mb-2 "
                                        href="{{route('users.edit', ['id' => $user->id])}}">
-                                        Поменять роль<i class="material-icons md-12">edit</i>
+                                        Изменить роль<i class="material-icons md-12">edit</i>
                                     </a>
                                     <a class="btn btn-outline-primary mb-2 "
                                        href="{{route('users.subscribe', ['id' => $user->id])}}">
-                                        Сделать подписку<i class="material-icons md-12">add</i>
+                                        Оформить подписку<i class="material-icons md-12">add</i>
                                     </a>
                                 </td>
                             </tr>

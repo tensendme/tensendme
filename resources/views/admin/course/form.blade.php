@@ -83,9 +83,9 @@
             <input type="text" class="form-control"
                    name="information[{{$i}}]"
                    value="{{$course ? (array_key_exists($i, $course->information_list) ? $course->information_list[$i] : '') : old('information['.$i .']')}}"
-                   placeholder="Что возьмете с курса?"
+                   placeholder="Что пользователь возьмет с курса?"
                    id="get{{$i}}">
-            <label class="form-control-plaintext" for="get{{$i}}">Пожалуйста введите описание что возьмете?</label>
+            <label class="form-control-plaintext" for="get{{$i}}">Пожалуйста введите описание того, что пользователь возьмет с курса?</label>
         @endfor
     </div>
 </div>

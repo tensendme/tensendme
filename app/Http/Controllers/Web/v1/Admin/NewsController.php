@@ -25,11 +25,11 @@ class NewsController extends WebBaseController
 
     public function index()
     {
-//        $news = News::filter($this->request->all())->paginate(10);
+        $news = News::paginate(10);
 
-        $news = QueryBuilder::for(News::class)
-            ->allowedFilters('title')
-            ->paginate(10);
+//        $news = QueryBuilder::for(News::class)
+//            ->allowedFilters('title')
+//            ->paginate(10);
         return view('admin.news.index', compact('news'));
     }
 
