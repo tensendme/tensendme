@@ -78,6 +78,10 @@ class ProfileServiceImpl implements ProfileService
         $profile->followers_count = $user->followers->count();
         $profile->nickname = $user->nickname;
         $profile->permission = false;
+        $profile->activity = 4;
+        $profile->tensend = 5;
+        $profile->rating = 6;
+        $profile->passed = 6;
         $analyzes = $user->analyze();
         $userResult = array();
         for ($i = 1; $i < 4; $i++) {
