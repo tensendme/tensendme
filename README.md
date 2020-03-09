@@ -1141,6 +1141,10 @@ password: tensendme2020n
             "followers_count": 0,
             "nickname": "Test1",
             "permission": true,
+            "activity": 4,
+            "tensend": 5,
+            "rating": 6,
+            "passed": 6,
             "analyze": [
                         {
                             "type": 1, Просмотрено ссылок
