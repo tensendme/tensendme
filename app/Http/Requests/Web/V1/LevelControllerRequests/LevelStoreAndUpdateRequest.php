@@ -11,11 +11,12 @@ class LevelStoreAndUpdateRequest extends WebBaseRequest
     {
         return [
             'name' => ['required', 'string'],
+            'description' => ['required', 'string'],
             'start_count' => ['required','numeric'],
             'end_count' => ['required','numeric'],
             'discount_percentage' => ['required','numeric'],
             'period_date' => ['required', 'numeric'],
-            'logo' => ['image']
+            'logo' => ['image'],
         ];
     }
 }
