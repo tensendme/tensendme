@@ -395,7 +395,8 @@
                         document.body.appendChild(form).submit();
                     }
                     else {
-                        document.location = result.url + "?" + 'transaction_id=' + result.transaction_id;
+
+                        window.open(result.url + "?" + 'transaction_id=' + result.transaction_id, "_self")
                     }
                 })
                 .catch(error => console.log('error', error));

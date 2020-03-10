@@ -283,7 +283,7 @@ class CloudPaymentServiceImpl implements PaymentService
             $user_id = $transaction->user_id;
             $external_transaction_id = $transaction->order_id;
 
-            if (Card::where('token', $response->Model->Token)->first() == null) {
+            if (Card::where('token', $response->Model->Token)->first()  == null) {
                 Card::create([
                     'user_id' => $user_id,
                     'token' => $response->Model->Token,
