@@ -18,7 +18,8 @@ class CertificateController extends WebBaseController
 
     public function getCertificate()
     {
-        $certificate = 'Сертификат #124312';
+        $certificate = 'Сертификат';
+        $id = 'ID #124312';
         $middleText = 'об участии на курсе «Cымбатты мүсін»';
         $given = 'ВЫДАЕТСЯ';
         $fullName = 'БЕКЗАТ БЕКМУРАТОВ АЗАМАТУЛЫ';
@@ -27,6 +28,6 @@ class CertificateController extends WebBaseController
                 верстальщику, вебмастеру сгенерировать
                 несколько абзацев более менее
                 осмысленного текста рыбы на русском языке';
-        return view('pdf_view', compact('certificate', 'middleText', 'given', 'fullName', 'infoText', 'author'));
+        return view('pdf_view', compact('certificate', 'middleText', 'given', 'fullName', 'infoText', 'author', 'id'));
     }
 }

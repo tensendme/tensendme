@@ -162,7 +162,8 @@ class CourseServiceImpl implements CourseService
         $courseSertificate->save();
 
         if(!$courseSertificate) return view('welcome');
-        $certificate = 'Сертификат #' .$courseSertificate->id;
+        $certificate = 'Сертификат';
+        $id = 'ID #'.$courseSertificate->id;
         $middleText = 'об участии на курсе «'. $courseSertificate->course->title .'»';
         $author = $courseSertificate->course->author ? 'Автор курса: '.
             $courseSertificate->course->author->surname . ' '.$courseSertificate->course->author->name . ' '
@@ -174,6 +175,6 @@ class CourseServiceImpl implements CourseService
                 несколько абзацев более менее
                 осмысленного текста рыбы на русском языке';
         return view('pdf_view', compact('certificate', 'middleText', 'given',
-            'fullName', 'infoText', 'author'));
+            'fullName', 'infoText', 'author', 'id'));
     }
 }
