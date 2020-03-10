@@ -1460,6 +1460,34 @@ password: tensendme2020n
     }
 ```
 
+### Все уровни
+#### URL: https://tensend.me/api/v1/levels
+
+```
+    GET Request:
+        
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+   {
+       "levels": [
+           {
+               "id": 1,
+               "name": "Start Level",
+               "start_count": 0,
+               "end_count": 10,
+               "discount_percentage": 10,
+               "created_at": null,
+               "updated_at": "2020-03-10 15:24:22",
+               "period_date": 21,
+               "logo": "images/levels/158089602632cb8339-635c-4207-99d2-5be68579717fтест.jpg",
+               "description": "Lorem ipsum something like that cool level is starting to your tensend life is better that you wtf i am typing in. this description i don't know;"
+           }
+       ],
+       "success": true
+   }
+```
+
 ### Начать курс
 #### URL: https://tensend.me/api/v1/courses/start/{id}
 
