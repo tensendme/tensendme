@@ -302,6 +302,7 @@ class CloudPaymentServiceImpl implements PaymentService
 
             $this->makeCurlRequest($url, $json);
 
+
             $url = route('cardStatus');
             $result = ['url' => $url, 'transaction_id' => $transaction_id];
 
