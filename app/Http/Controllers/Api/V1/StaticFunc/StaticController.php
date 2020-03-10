@@ -27,4 +27,8 @@ class StaticController extends ApiBaseController
     {
         return $this->successResponse(['countries' => $this->staticService->getAllCountries()]);
     }
+
+    public function getAllLevels() {
+        return $this->successResponse(['levels' => $this->staticService->getLevels()]);
+    }
 }

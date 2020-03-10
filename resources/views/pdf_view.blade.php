@@ -28,6 +28,7 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 overflow: hidden;
+                -webkit-print-color-adjust: exact;
             }
 
         }
@@ -50,13 +51,13 @@
 
         * {
             font-family: 'Montserrat';
-            color: #344356;
+            /*color: #344356;*/
         }
 
         body {
-            position: relative;
-            width: 29.7cm;
-            height: 21.0cm;
+           position: relative;
+           width: 29.7cm;
+           height: 100%;
         }
 
         .image {
@@ -65,7 +66,7 @@
             left: 0;
             object-fit: cover;
             width: 29.7cm;
-            height: 21.0cm;
+            height: 23.0cm;
         }
 
         .container {
@@ -95,12 +96,13 @@
         }
 
         .full-name {
-            font-size: 1.5cm;
+            font-size: 0.85cm;
             font-weight: 600;
+            margin-top: -0.3cm;
         }
 
         .info-text {
-            margin: -1.2cm auto 0;
+            margin: -0.7cm auto 0;
             width: 6cm;
             text-align: center;
             font-size: 0.3cm;
@@ -109,6 +111,19 @@
         .author {
             font-size: 0.7cm;
             font-weight: 600;
+        }
+
+        .certificateId {
+            margin: 220px 980px 0 5px;
+            width: 250px;
+            text-align: left;
+        }
+        .pId {
+            position: relative;
+            color: #ffffff;
+            font-size: 0.9cm;
+            font-weight: 500;
+            letter-spacing: 0.4px;
         }
     </style>
 </head>
@@ -128,6 +143,10 @@
             {{$infoText}}
         </p>
         <p class="author">{{$author}}</p>
+        <div class="certificateId">
+            <p class="pId">{{$id}}</p>
+        </div>
+
     </div>
 </div>
 

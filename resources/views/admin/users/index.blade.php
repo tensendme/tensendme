@@ -28,7 +28,6 @@
                             <th scope="col" class="border-0">Платформа</th>
                             <th scope="col" class="border-0">Баланс</th>
                             <th scope="col" class="border-0">Действия</th>
-
                         </tr>
                         </thead>
                         <tbody>
@@ -59,7 +58,6 @@
                             </tr>
                         @endforeach
                         </tbody>
-
                     </table>
                 </div>
                 <div class="card-footer">

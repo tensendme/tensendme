@@ -11,6 +11,7 @@ use App\Models\Courses\Course;
 use App\Models\Education\Passing;
 use App\Models\Education\UserCourse;
 use App\Models\Profiles\Certificate;
+use App\Models\Rating;
 use App\Services\v1\CourseService;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -132,8 +133,10 @@ class CourseServiceImpl implements CourseService
         $course->lessons_count = $course->lessons->count();
         $course->information_list = array_filter(explode(',', $course->information_list));
         $passed = Passing::whereIn('course_material_id', $course->lessons->pluck('id'))->where('user_id', $user->id);
+        $isRated = Rating::where('course_id', $course->id)->where('user_id', $user->id)->first();
         $course->lessons_passing_count = $passed->count();
         $course->started = $startedCourse ? true : false;
+        $course->isRated = $isRated ? true :false;
         foreach ($course->lessons as $lesson) {
             $lesson->access = $subscriptions->exists() || $lesson->free ? true : false;
             $lesson->passed = $passed->get()->where('course_material_id', $lesson->id)->first() ? true : false;
@@ -162,7 +165,8 @@ class CourseServiceImpl implements CourseService
         $courseSertificate->save();
 
         if(!$courseSertificate) return view('welcome');
-        $certificate = 'Сертификат #' .$courseSertificate->id;
+        $certificate = 'Сертификат';
+        $id = 'ID #'.$courseSertificate->id;
         $middleText = 'об участии на курсе «'. $courseSertificate->course->title .'»';
         $author = $courseSertificate->course->author ? 'Автор курса: '.
             $courseSertificate->course->author->surname . ' '.$courseSertificate->course->author->name . ' '
@@ -174,6 +178,6 @@ class CourseServiceImpl implements CourseService
                 несколько абзацев более менее
                 осмысленного текста рыбы на русском языке';
         return view('pdf_view', compact('certificate', 'middleText', 'given',
-            'fullName', 'infoText', 'author'));
+            'fullName', 'infoText', 'author', 'id'));
     }
 }

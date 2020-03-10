@@ -12,4 +12,5 @@ namespace App\Services\v1;
 interface StaticService
 {
     public function getAllCountries();
+    public function getLevels();
 }
