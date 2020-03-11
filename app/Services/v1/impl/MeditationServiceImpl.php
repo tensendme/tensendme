@@ -45,6 +45,7 @@ class MeditationServiceImpl implements MeditationService
                         if(!$audio->free && !$subscription->exists())  {
                             $audio->audio_path = '';
                         }
+                        $audio->img_path = $meditation->img_path;
                         $audio->makeHidden(['meditation_id', 'audio_language_id', 'author_id']);
         }
             $result->duration_time = $duration;

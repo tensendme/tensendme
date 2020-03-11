@@ -14,7 +14,7 @@
     <div class="form-group col-md-12">
         <textarea type="text" class="form-control"
                   name="description"
-                  placeholder="Краткое описание курса"
+                  placeholder="Краткое описание медитации"
                   id="description"
                   rows="8"
                   required>{{$meditation ? $meditation->description : old('description')}}</textarea>
