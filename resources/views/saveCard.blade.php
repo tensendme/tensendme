@@ -458,7 +458,7 @@
         if (event.target == modal) {
             modal.hide();
         }
-    }
+    };
 
     function loader() {
         var x = document.getElementById("loader");
