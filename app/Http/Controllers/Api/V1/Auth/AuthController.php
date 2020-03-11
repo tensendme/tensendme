@@ -27,7 +27,9 @@ class AuthController extends ApiBaseController
 
     public function login(LoginApiRequest $request)
     {
-        return $this->successResponse(['token' => $this->authService->login($request)]);
+        $mobileUser = $this->authService->login($request);
+        return $this->successResponse(['token' => $mobileUser->token, 'name' => $mobileUser->name, 'surname' => $mobileUser->surname,
+            'nickname' => $mobileUser->nickname, 'avatar' => $mobileUser->avatar]);
     }
 
     public function me()

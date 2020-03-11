@@ -69,7 +69,13 @@ class AuthServiceImpl implements AuthService
         }
 
         $this->setDeviceToken($user, $request->device_token, $request->platform);
-        return ApiUtil::generateTokenFromUser($user);
+        $mobileUser = (object)array();
+        $mobileUser->token = ApiUtil::generateTokenFromUser($user);
+        $mobileUser->name = $user->name;
+        $mobileUser->surname = $user->surname;
+        $mobileUser->nickname = $user->nickname;
+        $mobileUser->avatar = $user->image_path;
+        return $mobileUser;
     }
 
     public function register(RegisterApiRequest $request)
