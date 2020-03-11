@@ -57,5 +57,9 @@ class CourseController extends ApiBaseController
         return $this->courseService->getCertificate($id);
     }
 
+    public function certificateUrl($id) {
+        return $this->successResponse(['url' => 'https://tensend.me/api/v1/courses/certificate/'.$id]);
+    }
+
 
 }
