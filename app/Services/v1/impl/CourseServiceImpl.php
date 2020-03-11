@@ -140,7 +140,6 @@ class CourseServiceImpl implements CourseService
         foreach ($course->lessons as $lesson) {
             $lesson->access = $subscriptions->exists() || $lesson->free ? true : false;
             $lesson->passed = $passed->get()->where('course_material_id', $lesson->id)->first() ? true : false;
-
         }
 
         return $course;
