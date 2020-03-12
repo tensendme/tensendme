@@ -8,7 +8,7 @@
     <link rel="stylesheet"
           href="{{asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/styles/fonts.css')}}">
-    <title>Промо код</title>
+    <title>Реферальная ссылка</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('admin/styles/select2.min.css')}}">
     <style>
