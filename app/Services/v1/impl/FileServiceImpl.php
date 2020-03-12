@@ -21,7 +21,7 @@ class FileServiceImpl implements FileService
 {
     public function store(UploadedFile $image, string $path): string
     {
-        $image_path = time() . ((string)Str::uuid()) . 'img';
+        $image_path = time() . ((string)Str::uuid()) . 'img.' .$image->getClientOriginalExtension();
         $imageFullPath = $image->move($path, $image_path);
         return $imageFullPath;
     }
@@ -39,7 +39,7 @@ class FileServiceImpl implements FileService
 
     public function courseMaterialStore(UploadedFile $video, string $path) {
         $material = (object) array();
-        $videoPath = time() . ((string)Str::uuid()) . 'video';
+        $videoPath = time() . ((string)Str::uuid()) . 'video.' . $video->getClientOriginalExtension();
         $videoFullPath = $video->move($path, $videoPath);
         $material->path = $videoFullPath;
 
@@ -102,7 +102,7 @@ class FileServiceImpl implements FileService
     public function meditationAudioStore(UploadedFile $audio, string $path)
     {
         $material = (object) array();
-        $audioPath = time() . ((string)Str::uuid()) . 'audio';
+        $audioPath = time() . ((string)Str::uuid()) . 'audio.' . $audio->getClientOriginalExtension();
         $audioFullPath = $audio->move($path, $audioPath);
         $material->path = $audioFullPath;
 
