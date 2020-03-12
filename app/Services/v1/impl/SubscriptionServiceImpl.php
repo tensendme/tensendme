@@ -58,7 +58,7 @@ class SubscriptionServiceImpl implements SubscriptionService
         $firstSubscription = false;
         $price = $subscriptionType->price;
         if($oldSubscription->isEmpty()) {
-            $price = $price * 80/100;
+//            $price = $price * 80/100;
             $firstSubscription = true;
         }
         try {

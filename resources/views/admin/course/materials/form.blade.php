@@ -38,11 +38,11 @@
     <div class="form-group col-md-6">
         <textarea type="text" class="form-control"
                   name="description"
-                  placeholder="Краткое описание курса"
+                  placeholder="Краткое описание урока"
                   id="description"
                   rows="8"
                   required>{{$material ? $material->description : old('description')}}</textarea>
-        <label class="form-control-plaintext" for="description">Пожалуйста введите описание курса</label>
+        <label class="form-control-plaintext" for="description">Пожалуйста введите описание урока</label>
     </div>
     <div class="form-group col-md-3">
         <input type="checkbox" class="form-control" name="access"

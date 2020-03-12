@@ -206,10 +206,9 @@
         <h1>1</h1>
     </div>
     <h3 class="content">
-        Чтобы получить скидку,<br>
+        Чтобы получить бесплатный просмотр начальных уроков,<br>
         введите номер телефона,<br>
         скачайте приложение нажав кнопку отправить и получите скидку<br>
-        <p class="discount">-20%</p>
     </h3>
     <div class="content">
         <form method="POST" action="{{route('promo-code.post', ['promoCode' => $promoCode])}}">
