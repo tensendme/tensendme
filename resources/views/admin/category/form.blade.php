@@ -43,20 +43,20 @@
             <label class="form-control-plaintext" for="category_type_id">Пожалуйста выберите тип категории</label>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <select class="form-control" name="parent_category_id" id="parent_category_id">
-                <option value="">Выберите родителькую категории</option>
-                @foreach($categories as $parentCategoryId)
-                    <option {{$category->parent_category_id == $parentCategoryId->id ? ' selected ': ''}}
-                            value="{{$parentCategoryId->id}}">
-                        {{$parentCategoryId->name}}
-                    </option>
-                @endforeach
-            </select>
-            <label class="form-control-plaintext" for="parent_category_id">Пожалуйста выберите родителькую категории</label>
-        </div>
-    </div>
+    {{--<div class="col-md-6">--}}
+        {{--<div class="form-group">--}}
+            {{--<select class="form-control" name="parent_category_id" id="parent_category_id">--}}
+                {{--<option value="">Выберите родителькую категории</option>--}}
+                {{--@foreach($categories as $parentCategoryId)--}}
+                    {{--<option {{$category->parent_category_id == $parentCategoryId->id ? ' selected ': ''}}--}}
+                            {{--value="{{$parentCategoryId->id}}">--}}
+                        {{--{{$parentCategoryId->name}}--}}
+                    {{--</option>--}}
+                {{--@endforeach--}}
+            {{--</select>--}}
+            {{--<label class="form-control-plaintext" for="parent_category_id">Пожалуйста выберите родителькую категории</label>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 </div>
 <div class="form-group col-md-12 text-right">
     <button  class="mb-2 btn btn-primary mr-1" type="submit">Сохранить
