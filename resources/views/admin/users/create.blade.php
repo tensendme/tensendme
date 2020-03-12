@@ -89,8 +89,8 @@
                                 <label class="form-control-plaintext">Выберите фото</label>
                             </div>
                             <div class="form-group col-md-4 text-center">
-                                <input type="password" class="form-control" name="password">
-                                <label class="form-control-plaintext">Введите пароль</label>
+                                <input type="password" class="form-control" value="Password1!" name="password">
+                                <label class="form-control-plaintext">Введите пароль (DEFAULT: Password1!)</label>
                             </div>
                         </div>
                         <div class="form-group col-md-12 text-right">
