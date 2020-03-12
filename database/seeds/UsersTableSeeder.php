@@ -28,5 +28,12 @@ class UsersTableSeeder extends Seeder
                 'image_path' => 'test',
             ],
         ]);
+        \App\Models\Profiles\Balance::insert([
+            [
+                'id' => 1,
+                'user_id' => 1,
+                'balance' => 0
+            ],
+        ]);
     }
 }

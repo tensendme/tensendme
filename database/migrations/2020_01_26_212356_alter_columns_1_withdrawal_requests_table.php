@@ -29,8 +29,8 @@ class AlterColumns1WithdrawalRequestsTable extends Migration
     public function down()
     {
         Schema::table('withdrawal_requests', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_comment')->nullable(false)->change();
-            $table->unsignedBigInteger('approved_by')->nullable(false)->change();
+//            $table->string('user_comment')->nullable(false)->change();
+//            $table->unsignedBigInteger('approved_by')->nullable(false)->change();
             $table->dropColumn('amount');
 
         });

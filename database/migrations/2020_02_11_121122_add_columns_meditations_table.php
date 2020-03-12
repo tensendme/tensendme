@@ -27,7 +27,7 @@ class AddColumnsMeditationsTable extends Migration
     public function down()
     {
         Schema::table('meditations', function (Blueprint $table) {
-            $table->dropColumn(['img_path', 'duration_time']);
+            $table->dropColumn(['img_path']);
         });
     }
 }

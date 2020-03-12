@@ -30,11 +30,11 @@ class AlterColumnsHistoriesTable extends Migration
     public function down()
     {
         Schema::table('histories', function (Blueprint $table) {
-            $table->bigInteger('follower_id')->nullable(false);
-            $table->bigInteger('subscription_id')->nullable(false);
-            $table->bigInteger('transaction_id')->nullable(false);
-            $table->bigInteger('course_id')->nullable(false);
-            $table->bigInteger('withdrawal_request_id')->nullable(false);
+//            $table->unsignedBigInteger('follower_id')->nullable(false)->change();
+//            $table->unsignedBigInteger('subscription_id')->nullable(false)->change();
+//            $table->unsignedBigInteger('transaction_id')->nullable(false)->change();
+//            $table->unsignedBigInteger('course_id')->nullable(false)->change();
+//            $table->unsignedBigInteger('withdrawal_request_id')->nullable(false)->change();
         });
     }
 }

@@ -32,13 +32,13 @@ class AlterTableUsersDropNullable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->nullable(false)->change();
-            $table->string('name')->nullable(false)->change();
-            $table->string('nickname')->nullable(false)->change();
-            $table->string('device_token')->nullable(false)->change();
-            $table->string('promo_code')->nullable(false)->change();
-            $table->unsignedBigInteger('city_id')->nullable(false)->change();
-            $table->string('image_path')->nullable(false)->change();
+//            $table->string('email')->nullable(false)->change();
+//            $table->string('name')->nullable(false)->change();
+//            $table->string('nickname')->nullable(false)->change();
+//            $table->string('device_token')->nullable(false)->change();
+//            $table->string('promo_code')->nullable(false)->change();
+//            $table->unsignedBigInteger('city_id')->nullable(false)->change();
+//            $table->string('image_path')->nullable(false)->change();
         });
     }
 }

@@ -34,7 +34,7 @@ class AlterColumnsWithdrawalRequestsTable extends Migration
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
             $table->renameColumn('user_comment','name');
-            $table->string('user_comment')->nullable(false)->change();
+//            $table->string('user_comment')->nullable(false)->change();
         });
     }
 }
