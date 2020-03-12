@@ -25,7 +25,7 @@ class UserStoreRequest extends WebBaseRequest
             'surname' => ['required', 'string'],
             'father_name' => ['nullable'],
             'password' => ['required', 'string'],
-            'image_path' => ['required', 'image'],
+            'image_path' => ['nullable', 'image'],
         ];
     }
 
