@@ -1,13 +1,22 @@
 {{csrf_field()}}
 <div class="form-row">
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
         <input type="text" class="form-control"
                name="title"
                value="{{$banner ? $banner->title : old('title')}}"
                placeholder="Наименование"
                id="title"
                required>
-        <label class="form-control-plaintext" for="title">Пожалуйста введите название курса</label>
+        <label class="form-control-plaintext" for="title">Пожалуйста введите название баннера</label>
+    </div>
+    <div class="form-group col-md-6">
+        <input type="text" class="form-control"
+               name="link"
+               value="{{$banner ? $banner->link_url : old('link')}}"
+               placeholder="Адрес ссылки"
+               id="link"
+               required>
+        <label class="form-control-plaintext" for="link">Пожалуйста введите ссылку</label>
     </div>
 </div>
 

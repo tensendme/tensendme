@@ -50,6 +50,7 @@ class BannerController extends WebBaseController
             'news_id' => $request->news_id,
             'image_path' => $path,
             'location_id' => $request->location_id,
+            'link_url' => $request->link
 
         ]);
         $this->added();
@@ -79,6 +80,7 @@ class BannerController extends WebBaseController
             'image_path' => $path,
             'location_id' => $request->location_id,
             'news_id' => $request->news_id,
+            'link_url' => $request->link
         ]);
         $this->edited();
         return redirect()->route('banner.index');

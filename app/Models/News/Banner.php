@@ -16,7 +16,8 @@ class Banner extends Model
         'title',
         'news_id',
         'location_id',
-        'image_path'
+        'image_path',
+        'link_url'
     ];
 
     public function news()

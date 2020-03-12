@@ -12,6 +12,7 @@ class BannerStoreAndUpdateRequest extends WebBaseRequest
             'title' => ['required', 'string'],
             'news_id' => ['required', 'numeric'],
             'location_id' => ['required', 'numeric'],
+            'link' => ['string'],
             'image' => ['image']
         ];
     }
