@@ -24,7 +24,7 @@ class CourseController extends ApiBaseController
 
         $title = $request->title ? $request->title : null;
 
-        $courses = $this->courseService->findAll($perPage,$title);
+        $courses = $this->courseService->findAll($perPage, $title);
 
         return $this->successResponse(['courses' => $courses]);
 
@@ -34,31 +34,36 @@ class CourseController extends ApiBaseController
     {
         $perPage = $request->size ? $request->size : 10;
         $userId = $request->user_id;
-        $courses = $this->courseService->findUserCourses($perPage,$userId);
+        $courses = $this->courseService->findUserCourses($perPage, $userId);
 
         return $this->successResponse(['courses' => $courses]);
     }
 
-    public function getCoursesByCategory($categoryId, Request $request) {
+    public function getCoursesByCategory($categoryId, Request $request)
+    {
         $size = $request->size ? $request->size : 10;
         $courses = $this->courseService->findByCategory($categoryId, $size);
         return $this->successResponse(['courses' => $courses]);
     }
 
-    public function getById($id) {
+    public function getById($id)
+    {
         return $this->successResponse(['course' => $this->courseService->findById($id)]);
     }
 
-    public function coursesForMe(Request $request) {
+    public function coursesForMe(Request $request)
+    {
         return $this->successResponse(['courses' => $this->courseService->forMe($request->size)]);
     }
 
-    public function certificate($id) {
+    public function certificate($id)
+    {
         return $this->courseService->getCertificate($id);
     }
 
-    public function certificateUrl($id) {
-        return $this->successResponse(['url' => 'https://tensend.me/api/v1/courses/certificate/'.$id]);
+    public function certificateUrl($id)
+    {
+        return $this->successResponse(['url' => 'https://tensend.me/api/v1/courses/certificate/' . $id]);
     }
 
 
