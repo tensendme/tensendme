@@ -107,9 +107,9 @@ class UserController extends WebBaseController
     public function update($id, UserRequest $request)
     {
         $user = User::findOrFail($id);
-        if ($request->file('image_path')) {
+        if ($request->file('image')) {
             $user->image_path = $this->fileService
-                ->updateWithRemoveOrStore($request->file('image_path'),
+                ->updateWithRemoveOrStore($request->file('image'),
                     User::DEFAULT_RESOURCE_DIRECTORY,
                     $user->image_path);
         }

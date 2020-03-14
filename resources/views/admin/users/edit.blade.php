@@ -16,7 +16,7 @@
                     <h6 class="m-0">Обновление роли пользователя</h6>
                 </div>
                 <div class="card-body p-2 pb-2 text-center">
-                    <form method="post" action="{{route('users.update', ['id' => $user->id])}}">
+                    <form method="post" action="{{route('users.update', ['id' => $user->id])}}" enctype="multipart/form-data">
                         @include('admin.users.form')
                     </form>
                 </div>
