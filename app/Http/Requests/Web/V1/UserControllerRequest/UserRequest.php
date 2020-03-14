@@ -18,7 +18,7 @@ class UserRequest extends WebBaseRequest
             'name' => ['required', 'string'],
             'surname' => ['required', 'string'],
             'father_name' => ['nullable', 'string'],
-            'image' => ['nullable', 'image'],
+            'image' => ['nullable'],
         ];
     }
 }

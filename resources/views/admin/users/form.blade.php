@@ -3,7 +3,7 @@
 @if($user->image_path)
     <div class="form-row">
         <div class="col-md-12">
-            <img class="img img-thumbnail" src="{{$user->image_path}}" alt="">
+            <img  style="height: 200px; width: auto;" class="m-2" src="{{asset($user->image_path)}}" alt="">
         </div>
     </div>
 @endif
