@@ -68,6 +68,10 @@ Route::group(['namespace' => 'Web\v1'], function () {
         Route::group(['namespace' => 'Admin'], function () {
             //users
 
+            Route::get('/profile', ['uses' => 'UserController@profile', 'as' => 'users.profile']);
+            Route::post('/profile', ['uses' => 'UserController@updateProfile', 'as' => 'users.profile.update']);
+            Route::post('/profile/change/password', ['uses' => 'UserController@updateProfilePassword', 'as' => 'users.profile.updatePassword']);
+
             Route::group(['middleware' => ['ROLE_OR:' . Role::ACCOUNTANT_ID . ',' . Role::SUPER_ADMIN_ID . ',' . Role::CONTENT_MANAGER_ID]], function () {
                 Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
                 Route::get('/levels', ['uses' => 'LevelController@index', 'as' => 'level.index']);

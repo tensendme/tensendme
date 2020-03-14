@@ -56,7 +56,7 @@
                                 <i class=" material-icons">book</i>
                                 <span>Курсы</span>
                             </a>
-                            @if($user->role_id != 4)
+                            @if(Auth::user()->role_id != 4)
                                 <a href="{{route('meditation.index')}}"
                                    class="nav-link dropdown-item {{Helper::urlActiveHelper('meditation')}}">
                                     <i class=" material-icons">library_music</i>

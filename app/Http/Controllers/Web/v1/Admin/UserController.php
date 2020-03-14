@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Web\V1\Admin;
 
+use App\Exceptions\WebServiceErroredException;
 use App\Http\Controllers\WebBaseController;
+use App\Http\Requests\Web\V1\UserControllerRequest\UpdateProfilePasswordWebRequest;
+use App\Http\Requests\Web\V1\UserControllerRequest\UpdateProfileWebRequest;
 use App\Http\Requests\Web\V1\UserControllerRequest\UserRequest;
 use App\Http\Requests\Web\V1\UserControllerRequest\UserStoreRequest;
 use App\Models\Profiles\Balance;
@@ -13,7 +16,9 @@ use App\Models\Profiles\User;
 use App\Models\Subscriptions\SubscriptionType;
 use App\Services\v1\FileService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends WebBaseController
 {
@@ -29,6 +34,49 @@ class UserController extends WebBaseController
         $this->fileService = $fileService;
     }
 
+    public function profile()
+    {
+        $cities = City::all();
+        return view('admin.users.profile', compact('cities'));
+    }
+
+
+    public function updateProfilePassword(UpdateProfilePasswordWebRequest $request)
+    {
+        $user = Auth::user();
+        if (Hash::check($request->old_password, $user->password)) {
+            $user->password = bcrypt($request->password);
+            $user->save();
+            $this->edited();
+            return redirect()->back();
+        }
+        throw new WebServiceErroredException('Введенный новый пароль не совпадает с вашим старым!');
+
+    }
+
+    public function updateProfile(UpdateProfileWebRequest $request)
+    {
+        $user = Auth::user();
+        if ($request->file('image')) {
+            $user->image_path = $this->fileService
+                ->updateWithRemoveOrStore($request->file('image'),
+                    User::DEFAULT_RESOURCE_DIRECTORY,
+                    $user->image_path);
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'father_name' => $request->father_name,
+            'email' => $request->email,
+            'nickname' => $request->nickname,
+            'phone' => $request->phone,
+            'image_path' => $user->image_path,
+        ]);
+
+        $this->edited();
+        return redirect()->back();
+    }
 
     public function index()
     {

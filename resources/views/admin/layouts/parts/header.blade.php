@@ -68,8 +68,8 @@
                                 <span class="d-none d-md-inline-block">Админ тест</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-small">
-                                {{--<a class="dropdown-item" href="#">--}}
-                                {{--<i class="material-icons">&#xE7FD;</i> Профиль</a>--}}
+                                <a class="dropdown-item" href="{{route('users.profile')}}">
+                                <i class="material-icons">&#xE7FD;</i> Профиль</a>
 
                                 <form action="{{route('logout')}}" method="post">
                                     {{csrf_field()}}
