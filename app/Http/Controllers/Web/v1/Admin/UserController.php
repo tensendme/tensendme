@@ -73,7 +73,7 @@ class UserController extends WebBaseController
         return $authors;
     }
 
-    public function changeRole($id)
+    public function change($id)
     {
         $user = User::find($id);
         $roles = Role::all();
@@ -104,9 +104,28 @@ class UserController extends WebBaseController
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
-    public function updateRole($id, UserRequest $request)
+    public function update($id, UserRequest $request)
     {
-        User::find($id)->update(['role_id' => $request->role_id]);
+        $user = User::findOrFail($id);
+
+        if ($request->file('image_path')) {
+            $user->image_path = $this->fileService
+                ->updateWithRemoveOrStore($request->file('image_path'),
+                    User::DEFAULT_RESOURCE_DIRECTORY,
+                    $user->image_path);
+        }
+
+        $user->update([
+            'role_id' => $request->role_id,
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'father_name' => $request->father_name,
+            'email' => $request->email,
+            'nickname' => $request->nickname,
+            'phone' => $request->phone,
+            'image_path' => $user->image_path,
+        ]);
+
         $this->edited();
         return redirect()->route('users.index');
     }

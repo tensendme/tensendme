@@ -10,7 +10,13 @@ class UserRequest extends WebBaseRequest
     public function injectedRules(): array
     {
         return [
-            'role_id' => ['required', 'numeric'],
+            'email' => ['email', 'required', 'unique:users,email'],
+            'phone' => ['numeric', 'required', 'unique:users,phone'],
+            'role_id' => ['numeric', 'required', 'exists:roles,id'],
+            'name' => ['required', 'string'],
+            'surname' => ['required', 'string'],
+            'father_name' => ['nullable'],
+            'image' => ['nullable', 'image'],
         ];
     }
 }

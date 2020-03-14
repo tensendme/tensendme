@@ -208,8 +208,8 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/country/store', ['uses' => 'CountryController@store', 'as' => 'country.store']);
                 Route::get('/country/edit/{id}', ['uses' => 'CountryController@edit', 'as' => 'country.edit']);
                 Route::post('/country/update/{id}', ['uses' => 'CountryController@update', 'as' => 'country.update']);
-                Route::get('/users/{id}', ['uses' => 'UserController@changeRole', 'as' => 'users.edit'])->where('id', '[0-9]+');
-                Route::post('/users/{id}', ['uses' => 'UserController@updateRole', 'as' => 'users.update'])->where('id', '[0-9]+');
+                Route::get('/users/{id}', ['uses' => 'UserController@change', 'as' => 'users.edit'])->where('id', '[0-9]+');
+                Route::post('/users/{id}', ['uses' => 'UserController@update', 'as' => 'users.update'])->where('id', '[0-9]+');
                 Route::get('/users/subscribe/{id}', ['uses' => 'UserController@subscribe', 'as' => 'users.subscribe'])->where('id', '[0-9]+');
                 Route::post('/users/subscribe/{id}', ['uses' => 'SubscriptionController@freeSubscribe', 'as' => 'users.subscribe.post'])->where('id', '[0-9]+');
                 Route::get('/users/create', ['uses' => 'UserController@create', 'as' => 'users.create']);

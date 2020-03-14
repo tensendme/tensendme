@@ -53,11 +53,11 @@
                                 <td>{{$user->balance->balance}}</td>
                                 <td><a class="btn btn-outline-primary mb-2 "
                                        href="{{route('users.edit', ['id' => $user->id])}}">
-                                        Изменить роль<i class="material-icons md-12">edit</i>
+                                        Изменить <i class="material-icons md-12">edit</i>
                                     </a>
                                     <a class="btn btn-outline-primary mb-2 "
                                        href="{{route('users.subscribe', ['id' => $user->id])}}">
-                                        Оформить подписку<i class="material-icons md-12">add</i>
+                                        Оформить подписку <i class="material-icons md-12">add</i>
                                     </a>
                                 </td>
                             </tr>
