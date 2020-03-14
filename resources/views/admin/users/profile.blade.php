@@ -165,15 +165,17 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-small">
-                <div class="card-body">
-                    @include('admin.layouts.parts.error')
+    @if ($errors->any())
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-small">
+                    <div class="card-body">
+                        @include('admin.layouts.parts.error')
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection
 
 
