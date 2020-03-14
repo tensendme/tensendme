@@ -9,13 +9,15 @@ class UserRequest extends WebBaseRequest
 {
     public function injectedRules(): array
     {
+
+        $id = $this->route('id');
         return [
-            'email' => ['email', 'required', 'unique:users,email'],
-            'phone' => ['numeric', 'required', 'unique:users,phone'],
+            'email' => ['email', 'required', 'unique:users,email' . ($id ? ',' . $id : '')],
+            'phone' => ['numeric', 'required', 'unique:users,phone' . ($id ? ',' . $id : '')],
             'role_id' => ['numeric', 'required', 'exists:roles,id'],
             'name' => ['required', 'string'],
             'surname' => ['required', 'string'],
-            'father_name' => ['nullable'],
+            'father_name' => ['nullable', 'string'],
             'image' => ['nullable', 'image'],
         ];
     }

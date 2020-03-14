@@ -40,12 +40,12 @@
                required>
         <label class="form-control-plaintext">Введите email</label>
     </div>
-    <div class="form-group col-md-4 text-center">
-        <input type="text" value="{{$user->nickname}}" class="form-control" name="nickname"
-               placeholder="Введите никнейм"
-               required>
-        <label class="form-control-plaintext">Введите nickname</label>
-    </div>
+    {{--<div class="form-group col-md-4 text-center">--}}
+        {{--<input type="text" value="{{$user->nickname}}" class="form-control" name="nickname"--}}
+               {{--placeholder="Введите никнейм"--}}
+               {{--required>--}}
+        {{--<label class="form-control-plaintext">Введите nickname</label>--}}
+    {{--</div>--}}
     <div class="form-group col-md-4 text-center">
         <input type="number" value="{{$user->phone}}" minlength="11" maxlength="11" class="form-control" name="phone"
                placeholder="77471234567" required>
@@ -59,7 +59,7 @@
                accept="image/*"
                placeholder="Фото"
                required>
-        <label class="form-control-plaintext" for="name">Пожалуйста выберите фото</label>
+        <label class="form-control-plaintext" for="image">Пожалуйста выберите фото</label>
     </div>
     <div class="form-group col-md-1">
         <input type="checkbox"
