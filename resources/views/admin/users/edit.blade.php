@@ -13,7 +13,7 @@
                     <a href="{{route('users.index')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
                         <i class="material-icons md-12">arrow_back</i> Назад
                     </a>
-                    <h6 class="m-0">Обновление роли пользователя</h6>
+                    <h6 class="m-0">Обновление пользователя</h6>
                 </div>
                 <div class="card-body p-2 pb-2 text-center">
                     <form method="post" action="{{route('users.update', ['id' => $user->id])}}" enctype="multipart/form-data">
