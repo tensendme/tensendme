@@ -189,6 +189,30 @@ class UserController extends WebBaseController
         $roles = Role::all();
         $cities = City::all();
         $levels = Level::all();
+        foreach ($roles as $role) {
+            $roleName = '';
+            switch ($role->id) {
+                case Role::AUTHOR_ID:
+                    $roleName = 'Автор';
+                    break;
+                case Role::ACCOUNTANT_ID:
+                    $roleName = 'Бухгалтер';
+                    break;
+                case Role::USER_ID:
+                    $roleName = 'Пользователь';
+                    break;
+                case Role::ADMIN_ID:
+                    $roleName = 'Админ';
+                    break;
+                case Role::SUPER_ADMIN_ID:
+                    $roleName = 'Супер Админ';
+                    break;
+                case Role::CONTENT_MANAGER_ID:
+                    $roleName = 'Контент Менеджер';
+                    break;
+            }
+            $role->name = $roleName;
+        }
         return view('admin.users.create', compact('levels', 'cities', 'roles'));
     }
 
