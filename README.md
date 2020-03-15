@@ -1615,3 +1615,30 @@ password: tensendme2020n
     WebView
 ```
 
+### Мои сертификаты
+#### URL: https://tensend.me/api/v1/profile/certificates
+
+```
+    GET Request:
+        
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+
+    RESPONSE:
+   {
+       "certificates": [
+           {
+               "id": 1,
+               "title": "bekza",
+               "image_path": "images/courses/1583925787b02350a9-1af8-4c59-919b-5337dae08a80Снимок экрана 2020-03-11 в 16.35.50.png",
+               "author": {
+                   "id": 2,
+                   "name": "test",
+                   "surname": "Test",
+                   "father_name": null
+               }
+           }
+       ],
+       "success": true
+   }
+```
+
