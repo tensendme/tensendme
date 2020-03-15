@@ -78,7 +78,7 @@ class HomeController extends WebBaseController
                 return Redirect::to('itms-apps://apple.com/today');
             }
             else if($platform == 'Android') {
-                return Redirect::to('http://market.android.com?details?id=kz.ysmaiyl.app.tensend');
+                return Redirect::to('https://play.google.com/store/apps/details?id=kz.ysmaiyl.app.tensend');
             }
             else return redirect()->route('welcome');
     }
