@@ -26,7 +26,7 @@ class LevelServiceImpl implements LevelService
             $followSubscriptionsCount = FollowSubscription::where('host_user_id', $hostUserId)->where('level_id', $levelId)->count();
             $level = Level::find($levelId);
             if($level) {
-                if($level->end_count == $followSubscriptionsCount) {
+                if($level->end_count - $level->start_count == $followSubscriptionsCount) {
                     $nextLevel = Level::where('start_count', $level->end_count)->first();
                     $user = User::find($hostUserId);
                     if($user && $nextLevel) {

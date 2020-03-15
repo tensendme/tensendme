@@ -29,7 +29,7 @@
                placeholder="Финиш"
                id="end_count"
                required>
-        <label class="form-control-plaintext" for="end_count">Пожалуйста введите конченое значение уровня</label>
+        <label class="form-control-plaintext" for="end_count">Пожалуйста введите конечное значение уровня</label>
     </div>
     <div class="form-group col-md-3">
         <input type="number" class="form-control"
@@ -39,7 +39,7 @@
                placeholder="Процент скидки"
                id="discount_percentage"
                required>
-        <label class="form-control-plaintext" for="discount_percentage">Пожалуйста введите  процент скидки уровня</label>
+        <label class="form-control-plaintext" for="discount_percentage">Пожалуйста введите  процент дохода уровня</label>
     </div>
     <div class="form-group col-md-3">
         <input type="number" class="form-control"

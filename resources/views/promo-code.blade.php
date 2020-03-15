@@ -206,14 +206,14 @@
         <h1>1</h1>
     </div>
     <h3 class="content">
-        Чтобы получить бесплатный просмотр начальных уроков,<br>
-        введите номер телефона,<br>
-        скачайте приложение нажав кнопку отправить и получите скидку<br>
+        Ақысыз сабақтарды көру үшін,<br>
+        телефон нөмеріңізді енгізіп,<br>
+        Tensend қосымшасын тегін жүктеп алыңыз.<br>
     </h3>
     <div class="content">
         <form method="POST" action="{{route('promo-code.post', ['promoCode' => $promoCode])}}">
             {{csrf_field()}}
-        <h3>Ваш номер телефона</h3>
+        <h3>Телефон нөмеріңіз</h3>
         <div class="row">
         <select id="id_select2_example" style="width: 150px;" name="country">
             @foreach($countries as $country)
@@ -224,25 +224,13 @@
         </select>
             <input id="phone" class="phone m-b-md" type="text" inputmode="numeric" name="phone" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
         </div>
-            <input class="w-97 submit-btn" type="submit" value="Отправить" id="sendPhone" disabled>
+            <input class="w-97 submit-btn" type="submit" value="Жіберу" id="sendPhone" disabled>
         </form>
         <br>
         <br>
         <br>
         <br>
     </div>
-    <div class="step">
-        <h1>2</h1>
-    </div>
-    <div class="content">
-        <h3>
-            Скачайте мобильное приложение <br>
-            Tensend по ссылке ниже<br>
-            и получите доступ<br>
-            к огромному количеству<br>
-            качественных курсов<br>
-        </h3>
-        <br>
         <div class="row">
             <a href="itms-apps://apple.com/today">
                 <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
