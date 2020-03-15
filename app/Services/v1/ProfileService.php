@@ -10,4 +10,5 @@ interface ProfileService
     public function changeAvatar($avatar);
     public function myProfile();
     public function myReferralLink($currentUser);
+    public function myCertificates();
 }

@@ -25,7 +25,8 @@ class Course extends Model
     }
 
     public function author() {
-        return $this->belongsTo(User::class, 'author_id', 'id')->select(array('id', 'name', 'email', 'image_path'));
+        return $this->belongsTo(User::class, 'author_id', 'id')->select(array('id',
+            'name', 'email', 'image_path', 'surname', 'father_name'));
     }
 
     public function lessons() {

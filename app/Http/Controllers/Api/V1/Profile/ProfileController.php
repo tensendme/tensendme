@@ -36,4 +36,8 @@ class ProfileController extends ApiBaseController
     {
         return $this->successResponse(['link' => $this->profileService->myReferralLink(Auth::user())]);
     }
+
+    public function myCertificates() {
+        return $this->successResponse(['certificates' => $this->profileService->myCertificates()]);
+    }
 }

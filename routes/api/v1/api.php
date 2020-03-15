@@ -143,6 +143,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('/profile/update', ['uses' => 'ProfileController@updateProfile']);
             Route::post('/profile/avatar', ['uses' => 'ProfileController@changeAvatar']);
             Route::get('/profile', ['uses' => 'ProfileController@myProfile']);
+            Route::get('/profile/certificates', ['uses' => 'ProfileController@myCertificates']);
             Route::get('/profile/promo-code', ['uses' => 'ProfileController@getMyReferralLink']);
         });
     });

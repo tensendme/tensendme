@@ -645,19 +645,20 @@ password: tensendme2020n
     
     RESPONSE
     {
-        "banners": [
-            {
-                "id": 1,
-                "news_id": 1,
-                "image_path": "/banner/Surok Day1579630331.png",
-                "title": "Surok Day",
-                "created_at": "2020-01-22 00:12:11",
-                "updated_at": "2020-01-22 00:12:11",
-                "location_id": 1
-            }
-        ],
-        "success": true
-    }
+    "banners": [
+        {
+            "id": 1,
+            "news_id": 1,
+            "image_path": "images/banner/15840119454c516fab-d13d-4436-bb0b-003293cf3027img.gif",
+            "title": "Баннер 1",
+            "created_at": "2020-03-12 17:19:05",
+            "updated_at": "2020-03-12 17:19:05",
+            "location_id": 1,
+            "link_url": "https://tensend.me"
+        }
+    ],
+    "success": true
+}
 ```
 ### Получение моих курсов (пагинировано)
 #### URL: https://tensend.me/api/v1/users/courses

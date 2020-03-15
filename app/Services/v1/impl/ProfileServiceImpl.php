@@ -123,5 +123,23 @@ class ProfileServiceImpl implements ProfileService
         return route('promo-code.index', ['promoCode' => $currentUser->promo_code]);
     }
 
+    public function myCertificates()
+    {
+        $user = Auth::user();
+        $certificates = $user->certificates;
+        $results = array();
+        foreach ($certificates as $certificate) {
+            $course = $certificate->course;
+            $result = (object) array();
+            $result->id = $course->id;
+            $result->title = $course->title;
+            $result->image_path = $course->image_path;
+            $result->author = $course->author ? array('id' => $course->author->id, 'name' => $course->author->name,
+                'surname' => $course->author->surname, 'father_name' => $course->author->father_name) : null;
+            $results[] = $result;
+        }
+        return $results;
+    }
+
 
 }

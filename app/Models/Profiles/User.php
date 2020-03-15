@@ -252,4 +252,10 @@ class User extends Authenticatable implements JWTSubject
         $result = $query->get();
         return $result;
     }
+
+    public function certificates() {
+        return $this->hasMany(Certificate::class, 'user_id', 'id')
+            ->with(['course.author', 'course.lessons']);
+
+    }
 }
