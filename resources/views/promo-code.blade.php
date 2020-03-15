@@ -35,7 +35,7 @@
             border-radius: 50%;
             background-color: rgba(0, 77, 192, 0.9);
             color: white;
-            margin: 0;
+            margin: 40px 0 0 0;
             height: 100px;
             width: 100px;
             display: flex;
@@ -200,7 +200,7 @@
     </style>
 </head>
 <body class="flex-center position-ref full-height wave">
-<img class="tensend-icon" src="{{asset('tensend_me.png')}}" alt="">
+<img class="tensend-icon" src="{{asset('logoTenSend.png')}}" alt="">
 @if($user)
     <div class="step">
         <h1>1</h1>
