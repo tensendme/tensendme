@@ -9,17 +9,19 @@
                required>
         <label class="form-control-plaintext" for="title">Пожалуйста введите название курса</label>
     </div>
-    <div class="form-group col-md-6">
-        <select id="author_id" class="form-control js-example-basic-single" name="author_id">
-            @if($course)
-                <option value="{{$course->author_id}}" selected>
-                    {{$course->author ? $course->author->name . '(' . $course->author->phone . ')' : ''}}</option>
-            @endif
-        </select>
-        <label class="form-control-plaintext" for="author_id">Пожалуйста выберите автора</label>
-    </div>
-</div>
-<div class="form-row">
+    @if(Auth::user()->isAuthor())
+        <input type="hidden" name="author_id" value="{{Auth::id()}}">
+    @else
+        <div class="form-group col-md-6">
+            <select id="author_id" class="form-control js-example-basic-single" name="author_id">
+                @if($course)
+                    <option value="{{$course->author_id}}" selected>
+                        {{$course->author ? $course->author->name . '(' . $course->author->phone . ')' : ''}}</option>
+                @endif
+            </select>
+            <label class="form-control-plaintext" for="author_id">Пожалуйста выберите автора</label>
+        </div>
+    @endif
     <div class="form-group col-md-6">
         <textarea type="text" class="form-control"
                   name="description"
@@ -42,8 +44,6 @@
             <label class="form-control-plaintext" for="category_id">Пожалуйста выберите категорию</label>
         </div>
     </div>
-</div>
-<div class="form-row">
     <div class="form-group col-md-5">
         <input type="file"
                id="file"
@@ -64,19 +64,19 @@
                data-size="md">
     </div>
     <div class="form-group col-md-5">
-            <input class="form-control" type="file" name="video" id="video" accept="video/*">
-            <label class="form-control-plaintext" for="video">Пожалуйста выберите видео материал для трейлера</label>
-        </div>
-        <div class="form-group col-md-1">
-            <input type="checkbox"
-                   data-on="Вкл"
-                   data-off="Откл"
-                   onchange="toggleVideo(this)"
-                   checked
-                   data-toggle="toggle"
-                   data-size="md">
-        </div>
+        <input class="form-control" type="file" name="video" id="video" accept="video/*">
+        <label class="form-control-plaintext" for="video">Пожалуйста выберите видео материал для трейлера</label>
     </div>
+    <div class="form-group col-md-1">
+        <input type="checkbox"
+               data-on="Вкл"
+               data-off="Откл"
+               onchange="toggleVideo(this)"
+               checked
+               data-toggle="toggle"
+               data-size="md">
+    </div>
+</div>
 <div class="form-row">
     <div class="form-group col-md-6">
         @for($i = 0; $i < 4; $i++)
@@ -85,7 +85,8 @@
                    value="{{$course ? (array_key_exists($i, $course->information_list) ? $course->information_list[$i] : '') : old('information['.$i .']')}}"
                    placeholder="Что пользователь возьмет с курса?"
                    id="get{{$i}}">
-            <label class="form-control-plaintext" for="get{{$i}}">Пожалуйста введите описание того, что пользователь возьмет с курса?</label>
+            <label class="form-control-plaintext" for="get{{$i}}">Пожалуйста введите описание того, что пользователь
+                возьмет с курса?</label>
         @endfor
     </div>
 </div>
@@ -117,12 +118,14 @@
                         nextLink = response.next_page_url;
                         var pagination = false;
                         const data = response.data;
-                        if(nextLink != null) pagination = true;
-                        var obj = {"results" : [], "pagination" : {"more" : pagination}};
+                        if (nextLink != null) pagination = true;
+                        var obj = {"results": [], "pagination": {"more": pagination}};
                         data.forEach(author => {
-                             obj1 = {"text": author.name + '(' + (author.phone || '') + ')',
-                                 "id": author.id};
-                             obj.results.push(obj1);
+                            obj1 = {
+                                "text": author.name + '(' + (author.phone || '') + ')',
+                                "id": author.id
+                            };
+                            obj.results.push(obj1);
                         });
                         console.log(JSON.parse(JSON.stringify(obj)));
                         return obj;
@@ -134,6 +137,7 @@
         function toggleImage(el) {
             document.getElementById('file').disabled = !el.checked;
         }
+
         function toggleVideo(el) {
             document.getElementById('video').disabled = !el.checked;
         }

@@ -12,6 +12,11 @@
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Все пользователи</h6>
                 </div>
+                <div class="card-header border-bottom">
+                    <a href="{{route('users.create')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Добавить
+                        <i class="material-icons md-12">add_circle</i>
+                    </a>
+                </div>
                 <div class="card-body p-0 pb-3 text-center">
                     <table class="table mb-0">
                         <thead class="bg-light">
@@ -38,7 +43,7 @@
                                 <td>{{$user->nickname}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>@if(!$user->phone && $user->city){{$user->city->country->phone_prefix}}
-                                @elseif($user->phone) {{$user->phone}}@endif
+                                    @elseif($user->phone) {{$user->phone}}@endif
                                 </td>
                                 <td>{{$user->promo_code}}</td>
                                 <td>@if($user->city){{$user->city->name}}@endif</td>
@@ -48,11 +53,11 @@
                                 <td>{{$user->balance->balance}}</td>
                                 <td><a class="btn btn-outline-primary mb-2 "
                                        href="{{route('users.edit', ['id' => $user->id])}}">
-                                        Изменить роль<i class="material-icons md-12">edit</i>
+                                        Изменить <i class="material-icons md-12">edit</i>
                                     </a>
                                     <a class="btn btn-outline-primary mb-2 "
                                        href="{{route('users.subscribe', ['id' => $user->id])}}">
-                                        Оформить подписку<i class="material-icons md-12">add</i>
+                                        Оформить подписку <i class="material-icons md-12">add</i>
                                     </a>
                                 </td>
                             </tr>

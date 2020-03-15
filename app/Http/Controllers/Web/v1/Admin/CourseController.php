@@ -6,8 +6,10 @@ use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\CourseControllerRequests\CourseStoreAndUpdateRequest;
 use App\Models\Categories\Category;
 use App\Models\Courses\Course;
+use App\Models\Profiles\Role;
 use App\Services\v1\FileService;
 use App\Utils\StaticConstants;
+use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 
 class CourseController extends WebBaseController
@@ -27,9 +29,16 @@ class CourseController extends WebBaseController
 
     public function index()
     {
-        $courses = Course::with(['author', 'lessons'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        if (!Auth::user()->isAuthor()) {
+            $courses = Course::with(['author', 'lessons'])
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        } else {
+            $courses = Course::with(['author', 'lessons'])
+                ->where('author_id', Auth::id())
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
         return view('admin.course.index', compact('courses'));
     }
 
@@ -39,7 +48,7 @@ class CourseController extends WebBaseController
             ->doesntHave('childrens')
             ->get();
         $course = new Course();
-        if(!empty($course)) $course = null;
+        if (!empty($course)) $course = null;
         return view('admin.course.create', compact('categories', 'course'));
     }
 
@@ -54,19 +63,19 @@ class CourseController extends WebBaseController
             $trailerPath = $this->fileService->store($request->file('video'), Course::DEFAULT_VIDEO_RESOURCE_DIRECTORY);
         }
         $information = implode(array_filter($request->information), ',');
-            Course::create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'image_path' => $path,
-                'category_id' => $request->category_id,
-                'is_visible' => false,
-                'view_count' => 0,
-                'scale' => 0,
-                'author_id' => $request->author_id,
-                'information_list' => $information,
-                'trailer' => $trailerPath
-            ]);
-            $this->added();
+        Course::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image_path' => $path,
+            'category_id' => $request->category_id,
+            'is_visible' => false,
+            'view_count' => 0,
+            'scale' => 0,
+            'author_id' => $request->author_id,
+            'information_list' => $information,
+            'trailer' => $trailerPath
+        ]);
+        $this->added();
         return redirect()->route('course.index');
     }
 
@@ -75,8 +84,13 @@ class CourseController extends WebBaseController
         $categories = Category::where('category_type_id', 1)
             ->doesntHave('childrens')
             ->get();
-        $course = Course::findOrFail($id);
-        $course->information_list = explode( ',', $course->information_list);
+
+        if (!Auth::user()->isAuthor()) {
+            $course = Course::findOrFail($id);
+        } else {
+            $course = Course::where('author_id', Auth::id())->findOrFail($id);
+        }
+        $course->information_list = explode(',', $course->information_list);
         return view('admin.course.edit', compact('categories', 'course'));
 
     }
@@ -112,7 +126,11 @@ class CourseController extends WebBaseController
     public function visibleChange($id)
     {
 
-        $course = Course::findOrFail($id);
+        if (!Auth::user()->isAuthor()) {
+            $course = Course::findOrFail($id);
+        } else {
+            $course = Course::where('author_id', Auth::id())->findOrFail($id);
+        }
         if ($course->is_visible) $course->is_visible = false;
         else $course->is_visible = true;
         $course->save();

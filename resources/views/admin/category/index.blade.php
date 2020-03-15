@@ -25,7 +25,7 @@
                             <th scope="col" class="border-0">#</th>
                             <th scope="col" class="border-0">Название</th>
                             <th scope="col" class="border-0">Относится к</th>
-                            <th scope="col" class="border-0">Родительская категория</th>
+                            {{--<th scope="col" class="border-0">Родительская категория</th>--}}
                             <th scope="col" class="border-0">Действия</th>
                         </tr>
                         </thead>
@@ -36,7 +36,7 @@
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->categoryType->name}}</td>
-                                <td>{{$category->parentCategory ? $category->parentCategory->name : ''}}</td>
+                                {{--<td>{{$category->parentCategory ? $category->parentCategory->name : ''}}</td>--}}
                                 <td>
                                     <a class="btn btn-outline-primary mb-2 "
                                        href="{{route('category.edit', ['id' => $category->id])}}">
