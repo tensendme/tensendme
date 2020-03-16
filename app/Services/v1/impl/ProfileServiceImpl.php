@@ -133,6 +133,7 @@ class ProfileServiceImpl implements ProfileService
             $result = (object) array();
             $result->id = $course->id;
             $result->title = $course->title;
+            $result->lessons_count = $course->lessons->count();
             $result->image_path = $course->image_path;
             $result->author = $course->author ? array('id' => $course->author->id, 'name' => $course->author->name,
                 'surname' => $course->author->surname, 'father_name' => $course->author->father_name) : null;
