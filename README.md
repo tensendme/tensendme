@@ -1629,6 +1629,7 @@ password: tensendme2020n
            {
                "id": 1,
                "title": "bekza",
+               "lessons_count": 1,
                "image_path": "images/courses/1583925787b02350a9-1af8-4c59-919b-5337dae08a80Снимок экрана 2020-03-11 в 16.35.50.png",
                "author": {
                    "id": 2,
