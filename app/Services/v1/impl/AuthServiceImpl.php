@@ -131,7 +131,7 @@ class AuthServiceImpl implements AuthService
             ]);
         }
         // create free subscription
-        $this->subscriptionService->freeSubscribe($user->id);
+//        $this->subscriptionService->freeSubscribe($user->id);
         //create balance
         $user->getBalance();
         return $token;
