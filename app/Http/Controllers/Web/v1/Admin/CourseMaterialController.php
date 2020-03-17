@@ -40,14 +40,20 @@ class CourseMaterialController extends WebBaseController
         $path->img = StaticConstants::DEFAULT_IMAGE;
         $path->duration = 0;
         if ($request->file('video')) {
-            $path = $this->fileService->courseMaterialStore($request->file('video'),
+            $path = $this->fileService->lessonStore($request->file('video'),
                 CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY);
+        }
+        $preview = StaticConstants::DEFAULT_IMAGE;
+        if ($request->file('preview')) {
+            $preview = $this->fileService->store($request->file('preview'),
+                CourseMaterial::DEFAULT_PREVIEW_RESOURCE_DIRECTORY);
         }
         $material = CourseMaterial::create([
             'title' => $request->title,
             'video_path' => $path->path,
             'duration_time' => ceil($path->duration/60),
-            'img_path' => $path->img,
+            'img_path' => $preview,
+//            'img_path' => $path->img,
             'course_id' => $course_id,
             'ordering' => $request->ordering,
             'description' => $request->description,
@@ -88,11 +94,18 @@ class CourseMaterialController extends WebBaseController
                 CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY, $path->path, $path->img);
             $path->duration = ceil($path->duration/60);
         }
+
+        $preview = $material->img_path;
+        if ($request->file('preview')) {
+            $preview = $this->fileService->store($request->file('preview'),
+                CourseMaterial::DEFAULT_PREVIEW_RESOURCE_DIRECTORY);
+        }
         $material->update([
             'title' => $request->title,
             'video_path' => $path->path,
             'duration_time' => $path->duration,
-            'img_path' => $path->img,
+//            'img_path' => $path->img,
+            'img_path' => $preview,
             'ordering' => $request->ordering,
             'description' => $request->description,
             'free' => $request->access ? true : false

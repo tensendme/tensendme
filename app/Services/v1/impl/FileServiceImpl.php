@@ -26,6 +26,39 @@ class FileServiceImpl implements FileService
         return $imageFullPath;
     }
 
+    public function lessonStore( UploadedFile $video, string $path) {
+            $material = (object) array();
+            $videoPath = time() . ((string)Str::uuid()) . 'video.' . $video->getClientOriginalExtension();
+            $videoFullPath = $video->move($path, $videoPath);
+            $material->path = $videoFullPath;
+
+            $ffprobe = FFProbe::create([
+                'ffmpeg.binaries'  => env('FF_MPEG_BINARY', '/usr/local/bin/ffmpeg'),
+                'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/local/bin/ffprobe')
+            ]);;
+            $duration = $ffprobe
+                ->streams($videoFullPath)
+                ->videos()
+                ->first()
+                ->get('duration');
+
+            $material->duration = $duration;
+            return $material;
+        }
+
+    public function lessonUpdate(UploadedFile $video, string $path, string $oldFilePath = null, string $oldImagePath)
+    {
+        if ($oldFilePath && $oldFilePath != StaticConstants::DEFAULT_VIDEO) {
+            $this->remove($oldFilePath);
+        }
+        if ($oldImagePath && $oldImagePath != StaticConstants::DEFAULT_IMAGE) {
+            $this->remove($oldImagePath);
+        }
+
+        return $this->lessonStore($video, $path);
+    }
+
+
     public function remove(string $path)
     {
         if ($path != StaticConstants::DEFAULT_IMAGE) {

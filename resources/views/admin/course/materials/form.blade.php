@@ -35,14 +35,24 @@
             <label class="form-control-plaintext" for="docs">Пожалуйста выберите документы </label>
         </div>
     </div>
-    <div class="form-group col-md-6">
-        <textarea type="text" class="form-control"
-                  name="description"
-                  placeholder="Краткое описание урока"
-                  id="description"
-                  rows="8"
-                  required>{{$material ? $material->description : old('description')}}</textarea>
-        <label class="form-control-plaintext" for="description">Пожалуйста введите описание урока</label>
+    <div class="form-group col-md-5">
+        <input type="file"
+               id="file"
+               class="form-control"
+               name="preview"
+               accept="image/*"
+               placeholder="Фото"
+               required>
+        <label class="form-control-plaintext" for="file">Пожалуйста выберите превью фото</label>
+    </div>
+    <div class="form-group col-md-1">
+        <input type="checkbox"
+               data-on="Вкл"
+               data-off="Откл"
+               onchange="toggleImage(this)"
+               checked
+               data-toggle="toggle"
+               data-size="md">
     </div>
     <div class="form-group col-md-3">
         <input type="checkbox" class="form-control" name="access"
@@ -54,9 +64,27 @@
         <label class="form-control-plaintext" for="access">Пожалуйста выберите тип доступа к уроку (Бесплатно или с подпиской)</label>
     </div>
 </div>
+<div class="form-row">
+    <div class="form-group col-md-12">
+        <textarea type="text" class="form-control"
+                  name="description"
+                  placeholder="Краткое описание урока"
+                  id="description"
+                  rows="8"
+                  required>{{$material ? $material->description : old('description')}}</textarea>
+        <label class="form-control-plaintext" for="description">Пожалуйста введите описание урока</label>
+    </div>
+</div>
 <div class="form-group col-md-12 text-right">
     <button  class="mb-2 btn btn-primary mr-1" type="submit">Сохранить
         <i class="material-icons md-12">check_circle</i>
     </button>
 </div>
 @include('admin.layouts.parts.error')
+@section('scripts')
+<script>
+    function toggleImage(el) {
+        document.getElementById('file').disabled = !el.checked;
+    }
+</script>
+@endsection

@@ -267,7 +267,7 @@
 {{--        <br>--}}
 {{--    </div>--}}
 @else
-    <h1 class="content">Просроченный промо-код!</h1>
+    <h1 class="content">Ссылка устарела или не найдена!</h1>
 @endif
 
 <div class="wave">
