@@ -1127,49 +1127,91 @@ password: tensendme2020n
     RESPONSE:
     {
         "profile": {
-            "avatar": "images/avatars/1581675506a3d1bf1e-fc94-4c1e-b4f7-65caf2789d08Снимок экрана 2020-02-05 в 20.50.56.png",
-            "name": "Test",
-            "surname": "Test",
-            "fatherName": "Test",
-            "promoCode": "TS-Test1-KUAN7U",
-            "created": "2020-02-03T13:41:49.000000Z",
-            "level": "Start Level",
-            "levelImage": "images/levels/15808911149d978361-fd53-44fa-a55d-f5f56b5ebf26тест.jpg",
-            "discountPercentage": 10,
-            "balance": 500,
+            "id": 1,
+            "avatar": "images/avatars/158416023427f3a2d6-4713-4f20-be77-55436a4066d7img.jpg",
+            "name": "Admin",
+            "surname": "Admin",
+            "phone": "7123123123",
+            "fatherName": "Admin",
+            "promoCode": "12JO3V",
+            "created": null,
+            "levelId": 1,
+            "level": "Бастаушы",
+            "levelImage": "images/levels/1584279933b5de32b3-617e-4c19-9de4-e4da33b3d3a0img.png",
+            "discountPercentage": 20,
+            "balance": 0,
             "city": "Алматы",
             "role": "Пользователь",
             "followers_count": 0,
-            "nickname": "Test1",
+            "nickname": null,
             "permission": true,
             "activity": 4,
             "tensend": 5,
             "rating": 6,
             "passed": 6,
             "analyze": [
-                        {
-                            "type": 1, Просмотрено ссылок
-                            "count": 2
-                        },
-                        {
-                            "type": 2, Зарегестрировались через промо код
-                            "count": 1
-                        },
-                        {
-                            "type": 3, Сделали подписок
-                            "count": 1
-                        }
-                    ],
-            "subscriptions": [
                 {
-                    "subscriptionType": "Bekzat",
-                    "price": 34594.4,
-                    "expiredAt": "2020-03-14 18:57:01"
+                    "type": 1,
+                    "count": 1
                 },
                 {
-                    "subscriptionType": "Bekzat",
-                    "price": 43243,
-                    "expiredAt": "2020-04-13 18:57:01"
+                    "type": 2,
+                    "count": 0
+                },
+                {
+                    "type": 3,
+                    "count": 0
+                }
+            ],
+            "subscriptions": [],
+            "levels": [
+                {
+                    "id": 1,
+                    "name": "Бастаушы",
+                    "start_count": 0,
+                    "end_count": 10,
+                    "discount_percentage": 20,
+                    "created_at": null,
+                    "updated_at": "2020-03-16 02:05:19",
+                    "period_date": 365,
+                    "logo": "images/levels/1584279933b5de32b3-617e-4c19-9de4-e4da33b3d3a0img.png",
+                    "description": "Tensend қосымшасының жылдық және 3 айлық жазылымын 10 сатып әр сатылымнан 20 % табыс табыңыз және Toyota Camry 70 автокөлігінің ұтыс ойынына қатысыңыз.\r\nАвтокөлік ұтыс ойынына тек жылдық жазылым сатылымдары есепке алынады.\r\n\r\nTensend қосымшасының 10 жылдық жазылымын сатсаңыз Сіздің табысыңыз - 49 800 теңгені құрайды."
+                },
+                {
+                    "id": 2,
+                    "name": "Кәсіпкер",
+                    "start_count": 10,
+                    "end_count": 50,
+                    "discount_percentage": 30,
+                    "created_at": "2020-03-16 01:56:59",
+                    "updated_at": "2020-03-16 02:04:27",
+                    "period_date": 365,
+                    "logo": "images/default.png",
+                    "description": "Tensend қосымшасының жылдық және 3 айлық жазылымын 10 мен 50 аралығында сатып әр сатылымнан 30 % табыс табыңыз.\r\n\r\nTensend қосымшасының 10 мен 50 аралығында жылдық жазылымын сатсаңыз Сіздің табысыңыз - 291 330 теңгені құрайды."
+                },
+                {
+                    "id": 3,
+                    "name": "Бизнесмен",
+                    "start_count": 50,
+                    "end_count": 100,
+                    "discount_percentage": 40,
+                    "created_at": "2020-03-16 01:58:50",
+                    "updated_at": "2020-03-16 02:04:12",
+                    "period_date": 365,
+                    "logo": "images/default.png",
+                    "description": "Tensend қосымшасының жылдық және 3 айлық жазылымын 50 мен 100 аралығында сатып әр сатылымнан 40 % табыс табыңыз. \r\n\r\nTensend қосымшасының 50 мен 100 аралығында жылдық жазылымын сатсаңыз Сіздің табысыңыз - 488 040 теңгені құрайды."
+                },
+                {
+                    "id": 4,
+                    "name": "Саяхатшы",
+                    "start_count": 101,
+                    "end_count": 3000,
+                    "discount_percentage": 50,
+                    "created_at": "2020-03-16 02:03:31",
+                    "updated_at": "2020-03-16 02:06:02",
+                    "period_date": 365,
+                    "logo": "images/default.png",
+                    "description": "Tensend қосымшасының жылдық жазылымның 100 ден жоғары әр сатылымнан 50 % табыс табыңыз және тегін шетелге саяхатқа жолдама алыңыз. Саяхатқа тегін жолдама тек жылдық жазылым сатылымдарына есепке алынады.\r\n\r\nӘр жылдық жазылымнан енді 50%, яғни 12 450 теңге табыс табыңыз.\r\nӘр 3 айлық жазылымнан енді 50%, яғни 6 450 теңге табыс табыңыз."
                 }
             ]
         },
