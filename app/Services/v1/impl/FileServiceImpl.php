@@ -33,8 +33,8 @@ class FileServiceImpl implements FileService
             $material->path = $videoFullPath;
 
             $ffprobe = FFProbe::create([
-                'ffmpeg.binaries'  => env('FF_MPEG_BINARY', '/usr/local/bin/ffmpeg'),
-                'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/local/bin/ffprobe')
+                'ffmpeg.binaries'  => env('FF_MPEG_BINARY', '/usr/bin/ffmpeg'),
+                'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/bin/ffprobe')
             ]);;
             $duration = $ffprobe
                 ->streams($videoFullPath)
