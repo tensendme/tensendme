@@ -13,7 +13,7 @@ class MeditationServiceImpl implements MeditationService
 {
     public function findAll($perPage)
     {
-        $meditations = Meditation::where('is_visible', 1)->with('audios')->paginate($perPage);
+        $meditations = Meditation::where('is_visible', true)->with('audios')->paginate($perPage);
         foreach ($meditations as $meditation) {
             $duration = $meditation->audios->first() ? $meditation->audios->first()->duration : 0;
             $meditation->duration_time = $duration;
@@ -26,7 +26,7 @@ class MeditationServiceImpl implements MeditationService
     {
         $user = Auth::user();
         $subscription = $user->activeSubscriptions();
-        $meditation = Meditation::where('id', $id)->where('is_visible', 1)->with('audios')->first();
+        $meditation = Meditation::where('id', $id)->where('is_visible', true)->with('audios')->first();
         if(!$meditation) {
             throw new ApiServiceException(404, false, [
                 'errors' => ['Медитация не найдена'],
