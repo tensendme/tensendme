@@ -11,4 +11,6 @@ interface ProfileService
     public function myProfile();
     public function myReferralLink($currentUser);
     public function myCertificates();
+    public function myMarketingMaterials();
+
 }

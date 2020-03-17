@@ -8,6 +8,7 @@
 
 namespace App\Services\v1\impl;
 
+use App\Models\Marketing\MarketingMaterial;
 use App\Models\Profiles\City;
 use App\Models\Profiles\User;
 use App\Services\v1\FileService;
@@ -87,7 +88,7 @@ class ProfileServiceImpl implements ProfileService
         for ($i = 1; $i < 4; $i++) {
             $userResult[] = array('type' => $i, 'count' => 0);
         }
-        if(!empty($analyzes)) {
+        if (!empty($analyzes)) {
             foreach ($userResult as $key => $val) {
                 $count = 0;
                 foreach ($analyzes as $analyze) {
@@ -130,7 +131,7 @@ class ProfileServiceImpl implements ProfileService
         $results = array();
         foreach ($certificates as $certificate) {
             $course = $certificate->course;
-            $result = (object) array();
+            $result = (object)array();
             $result->id = $course->id;
             $result->title = $course->title;
             $result->lessons_count = $course->lessons->count();
@@ -140,6 +141,11 @@ class ProfileServiceImpl implements ProfileService
             $results[] = $result;
         }
         return $results;
+    }
+
+    public function myMarketingMaterials()
+    {
+        return MarketingMaterial::all();
     }
 
 
