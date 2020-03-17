@@ -10,6 +10,7 @@ namespace App\Services\v1\impl;
 
 use App\Models\Marketing\MarketingMaterial;
 use App\Models\Profiles\City;
+use App\Models\Profiles\Level;
 use App\Models\Profiles\User;
 use App\Services\v1\FileService;
 use App\Services\v1\ProfileService;
@@ -70,8 +71,9 @@ class ProfileServiceImpl implements ProfileService
         $profile->fatherName = $user->father_name;
         $profile->promoCode = $user->promo_code;
         $profile->created = $user->created_at;
-        $profile->level = $user->level->name;
-        $profile->levelImage = $user->level->logo;
+        $profile->levelId = $user->level ? $user->level->id : '';
+        $profile->level = $user->level ? $user->level->name : '';
+        $profile->levelImage = $user->level ? $user->level->logo : '';
         $profile->discountPercentage = $user->level->discount_percentage;
         $profile->balance = $user->getBalance()->balance;
         $profile->city = $user->city ? $user->city->name : 'Алматы';
@@ -112,6 +114,7 @@ class ProfileServiceImpl implements ProfileService
         if (!empty($user->subscriptions)) {
             $profile->permission = true;
         }
+        $profile->levels = Level::all();
         return $profile;
     }
 
