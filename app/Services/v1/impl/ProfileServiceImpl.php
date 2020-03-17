@@ -8,7 +8,10 @@
 
 namespace App\Services\v1\impl;
 
+use App\Models\Marketing\MarketingMaterial;
+use App\Models\Profiles\Certificate;
 use App\Models\Profiles\City;
+use App\Models\Profiles\Level;
 use App\Models\Profiles\User;
 use App\Services\v1\FileService;
 use App\Services\v1\ProfileService;
@@ -69,8 +72,9 @@ class ProfileServiceImpl implements ProfileService
         $profile->fatherName = $user->father_name;
         $profile->promoCode = $user->promo_code;
         $profile->created = $user->created_at;
-        $profile->level = $user->level->name;
-        $profile->levelImage = $user->level->logo;
+        $profile->levelId = $user->level ? $user->level->id : '';
+        $profile->level = $user->level ? $user->level->name : '';
+        $profile->levelImage = $user->level ? $user->level->logo : '';
         $profile->discountPercentage = $user->level->discount_percentage;
         $profile->balance = $user->getBalance()->balance;
         $profile->city = $user->city ? $user->city->name : 'Алматы';
@@ -78,16 +82,16 @@ class ProfileServiceImpl implements ProfileService
         $profile->followers_count = $user->followers->count();
         $profile->nickname = $user->nickname;
         $profile->permission = false;
-        $profile->activity = 4;
+        $profile->activity = 0;
         $profile->tensend = 5;
         $profile->rating = 6;
-        $profile->passed = 6;
+        $profile->passed = Certificate::where('user_id', Auth::id())->count();
         $analyzes = $user->analyze();
         $userResult = array();
         for ($i = 1; $i < 4; $i++) {
             $userResult[] = array('type' => $i, 'count' => 0);
         }
-        if(!empty($analyzes)) {
+        if (!empty($analyzes)) {
             foreach ($userResult as $key => $val) {
                 $count = 0;
                 foreach ($analyzes as $analyze) {
@@ -111,6 +115,7 @@ class ProfileServiceImpl implements ProfileService
         if (!empty($user->subscriptions)) {
             $profile->permission = true;
         }
+        $profile->levels = Level::all();
         return $profile;
     }
 
@@ -130,7 +135,7 @@ class ProfileServiceImpl implements ProfileService
         $results = array();
         foreach ($certificates as $certificate) {
             $course = $certificate->course;
-            $result = (object) array();
+            $result = (object)array();
             $result->id = $course->id;
             $result->title = $course->title;
             $result->lessons_count = $course->lessons->count();
@@ -140,6 +145,11 @@ class ProfileServiceImpl implements ProfileService
             $results[] = $result;
         }
         return $results;
+    }
+
+    public function myMarketingMaterials()
+    {
+        return MarketingMaterial::all();
     }
 
 

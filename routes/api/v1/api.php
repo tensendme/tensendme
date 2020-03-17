@@ -145,6 +145,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('/profile', ['uses' => 'ProfileController@myProfile']);
             Route::get('/profile/certificates', ['uses' => 'ProfileController@myCertificates']);
             Route::get('/profile/promo-code', ['uses' => 'ProfileController@getMyReferralLink']);
+            Route::get('/profile/marketing-materials', ['uses' => 'ProfileController@myMarketingMaterials']);
         });
     });
 

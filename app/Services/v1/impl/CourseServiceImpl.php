@@ -166,16 +166,13 @@ class CourseServiceImpl implements CourseService
         if(!$courseSertificate) return view('welcome');
         $certificate = 'Сертификат';
         $id = 'ID #'.$courseSertificate->id;
-        $middleText = 'об участии на курсе «'. $courseSertificate->course->title .'»';
-        $author = $courseSertificate->course->author ? 'Автор курса: '.
+        $middleText = '«'. $courseSertificate->course->title .'» курсына қатысқаны үшін';
+        $author = $courseSertificate->course->author ? ' курс авторы: '.
             $courseSertificate->course->author->surname . ' '.$courseSertificate->course->author->name . ' '
-            .$courseSertificate->course->author->father_name: 'Автор курса: Tensend';
-        $given = 'ВЫДАЕТСЯ';
+            .$courseSertificate->course->author->father_name: 'Курс авторы: Tensend';
+        $given = 'БЕРІЛЕДІ';
         $fullName = $courseSertificate->name. ' '. $courseSertificate->surname. ' '. $courseSertificate->father_name;
-        $infoText = 'Сайт рыбатекст поможет дизайнеру,
-                верстальщику, вебмастеру сгенерировать
-                несколько абзацев более менее
-                осмысленного текста рыбы на русском языке';
+        $infoText = '';
         return view('pdf_view', compact('certificate', 'middleText', 'given',
             'fullName', 'infoText', 'author', 'id'));
     }
