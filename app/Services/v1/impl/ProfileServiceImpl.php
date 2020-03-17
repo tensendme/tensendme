@@ -9,6 +9,7 @@
 namespace App\Services\v1\impl;
 
 use App\Models\Marketing\MarketingMaterial;
+use App\Models\Profiles\Certificate;
 use App\Models\Profiles\City;
 use App\Models\Profiles\Level;
 use App\Models\Profiles\User;
@@ -81,10 +82,10 @@ class ProfileServiceImpl implements ProfileService
         $profile->followers_count = $user->followers->count();
         $profile->nickname = $user->nickname;
         $profile->permission = false;
-        $profile->activity = 4;
+        $profile->activity = 0;
         $profile->tensend = 5;
         $profile->rating = 6;
-        $profile->passed = 6;
+        $profile->passed = Certificate::where('user_id', Auth::id())->count();
         $analyzes = $user->analyze();
         $userResult = array();
         for ($i = 1; $i < 4; $i++) {
