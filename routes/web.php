@@ -116,6 +116,8 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/meditation/create', ['uses' => 'MeditationController@store', 'as' => 'meditation.store']);
                 Route::get('/meditation/edit/{id}', ['uses' => 'MeditationController@edit', 'as' => 'meditation.edit'])->where('id', '[0-9]+');
                 Route::post('/meditation/edit/{id}', ['uses' => 'MeditationController@update', 'as' => 'meditation.update'])->where('id', '[0-9]+');
+                Route::post('/meditation/visible/{id}', ['uses' => 'MeditationController@visibleChange', 'as' => 'meditation.visible'])->where('id', '[0-9]+');
+
 
                 Route::get('/meditations/themes/{meditationId}', ['uses' => 'MeditationThemeController@index', 'as' => 'meditation.theme.index'])->where('meditationId', '[0-9]+');
                 Route::get('/meditations/theme/create/{meditationId}', ['uses' => 'MeditationThemeController@create', 'as' => 'meditation.theme.create'])->where('meditationId', '[0-9]+');

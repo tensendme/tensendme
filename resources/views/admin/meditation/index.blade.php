@@ -38,6 +38,20 @@
                                 <td>{{$meditation->scale}}</td>
                                 <td>{{$meditation->created_at}}</td>
                                 <td>
+                                    <form class="d-inline" method="post"
+                                          action="{{route('meditation.visible', ['id' => $meditation->id])}}">
+                                        {{csrf_field()}}
+                                        @if($meditation->is_visible)
+                                            <button class="mb-2 btn  btn-outline-success mr-1" type="submit">
+                                                <i class="material-icons md-12">remove_red_eye</i>
+                                            </button>
+                                        @else
+                                            <button class="mb-2 btn  btn-outline-danger mr-1" type="submit">
+                                                <i class="material-icons md-12">remove_red_eye</i>
+                                            </button>
+                                        @endif
+                                    </form>
+
                                     <a class="btn btn-outline-primary mb-2 "
                                            href="{{route('meditation.edit', ['id' => $meditation->id])}}">
                                         <i class="material-icons md-12">edit</i>

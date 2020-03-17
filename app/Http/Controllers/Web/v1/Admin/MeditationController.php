@@ -76,4 +76,19 @@ class MeditationController extends WebBaseController
         $this->edited();
         return redirect()->route('meditation.index');
     }
+
+    public function visibleChange($id)
+    {
+
+//        if (!Auth::user()->isAuthor()) {
+            $meditation = Meditation::findOrFail($id);
+//        } else {
+//            $mditation = Course::where('author_id', Auth::id())->findOrFail($id);
+//        }
+        if ($meditation->is_visible) $meditation->is_visible = false;
+        else $meditation->is_visible = true;
+        $meditation->save();
+        $this->edited();
+        return redirect()->route('meditation.index');
+    }
 }

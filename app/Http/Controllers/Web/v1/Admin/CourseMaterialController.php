@@ -120,7 +120,11 @@ class CourseMaterialController extends WebBaseController
     public function delete($id) {
         $material = CourseMaterial::findOrFail($id);
         $course_id = $material->course->id;
+        $preview = $material->img_path;
+        $video = $material->video_path;
         $material->delete();
+        $this->fileService->remove($preview);
+        $this->fileService->remove($video);
         $this->deleted();
         return redirect()->route('course.material.index', compact('course_id'));
 

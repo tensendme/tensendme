@@ -17,6 +17,7 @@ class Meditation extends Model
         'title',
         'description',
         'img_path',
+        'is_visible',
         'scale'
     ];
 
