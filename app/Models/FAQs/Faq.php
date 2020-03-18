@@ -15,5 +15,4 @@ class Faq extends Model
         'answer',
         'image_path',
     ];
-
 }

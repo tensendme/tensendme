@@ -13,4 +13,5 @@ interface StaticService
 {
     public function getAllCountries();
     public function getLevels();
+    public function getAllFaqs();
 }

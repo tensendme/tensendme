@@ -9,6 +9,7 @@
 namespace App\Services\v1\impl;
 
 
+use App\Models\FAQs\Faq;
 use App\Models\Profiles\Country;
 use App\Models\Profiles\Level;
 use App\Services\v1\StaticService;
@@ -23,6 +24,11 @@ class StaticServiceImpl implements StaticService
     public function getLevels()
     {
         return Level::all();
+    }
+
+    public function getAllFaqs()
+    {
+        return Faq::all();
     }
 
 
