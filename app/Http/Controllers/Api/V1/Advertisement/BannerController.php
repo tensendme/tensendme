@@ -44,12 +44,19 @@ class BannerController extends ApiBaseController
 
     }
 
-    public function getBannerByLocation($location_id)
+    public function getBannerByLocation($location)
     {
-        $banner = $this->bannerService->findAllByLocation($location_id);
+        $banner = $this->bannerService->findAllByLocation($location);
 
-        return $this->successResponse(['banner' => $banner]);
+        return $this->successResponse(['banners' => $banner]);
 
     }
 
+    public function getAllLocations()
+    {
+        $locations = $this->bannerService->findAllLocations();
+
+        return $this->successResponse(['locations' => $locations]);
+
+    }
 }

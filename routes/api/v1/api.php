@@ -97,6 +97,8 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('/send/crypto', ['uses' => 'PaymentController@sendCrypto']);
             Route::post('/card/pay', ['uses' => 'PaymentController@cardPay']);
             Route::post('/delete/card/{id}', ['uses' => 'PaymentController@deleteCard']);
+            Route::get('/makeWithdraw', ['uses' => 'PaymentController@makeWithdraw']);
+
         });
     });
 
@@ -105,11 +107,11 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/news', ['uses' => 'NewsController@getAllNews']);
         Route::get('/newsPaginated', ['uses' => 'NewsController@getAllNewsPaginated']);
         Route::get('/news/{id}', ['uses' => 'NewsController@getNewsById'])->where('id', '[0-9]+');
-
+        Route::get('/locations', ['uses' => 'BannerController@getAllLocations']);
         Route::get('/banners', ['uses' => 'BannerController@getAllBanners']);
         Route::get('/bannersPaginated', ['uses' => 'BannerController@getAllBannersPaginated']);
         Route::get('/banner/{id}', ['uses' => 'BannerController@getBannerById'])->where('id', '[0-9]+');
-        Route::get('/banner/by/location/{id}', ['uses' => 'BannerController@getBannerByLocation'])->where('id', '[0-9]+');
+        Route::get('/banner/location/{location}', ['uses' => 'BannerController@getBannerByLocation']);
 
     });
 
