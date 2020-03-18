@@ -1762,3 +1762,36 @@ password: tensendme2020n
    }
 ```
 
+
+### Получить FAQ
+#### URL: https://tensend.me/api/v1/faqs
+
+```
+    GET Request:
+        
+    RESPONSE:
+   {
+       "faqs": [
+           {
+               "id": 1,
+               "question": "Қалай сатып алу керек?",
+               "answer": "Сабақ карап жатқан кезде, көз алдыңызда құлып пайда болады. Сол құлыпты бассаңыз, сізден сатып алу белгісі шығады.",
+               "image_path": "/faqs/1584535904.png",
+               "deleted_at": null,
+               "created_at": "2020-03-18 18:51:44",
+               "updated_at": "2020-03-18 18:51:44"
+           },
+           {
+               "id": 2,
+               "question": "Видео ұзақ ашылмайды",
+               "answer": "Өтінеміз, интернет желісіне қосылуыңызды тексеріңіз",
+               "image_path": "/news/default.png",
+               "deleted_at": null,
+               "created_at": "2020-03-18 18:53:07",
+               "updated_at": "2020-03-18 18:53:07"
+           }
+       ],
+       "success": true
+   }
+```
+
