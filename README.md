@@ -660,6 +660,59 @@ password: tensendme2020n
     "success": true
 }
 ```
+
+### Получение всех баннеров по имени локации
+#### URL: https://tensend.me/api/v1/banner/location/{location_name}
+```
+{
+    "banners": [
+        {
+            "id": 1,
+            "news_id": 1,
+            "image_path": "images/banner/1584206855755631b5-24b0-471c-951a-2639b79edfd9img.png",
+            "title": "Баннер 1",
+            "created_at": "2020-03-12 17:19:05",
+            "updated_at": "2020-03-14 23:27:35",
+            "location_id": 1,
+            "link_url": "https://tensend.me"
+        }
+    ],
+    "success": true
+}
+
+```
+
+
+
+### Получение всех локаций
+#### URL: https://tensend.me/api/v1/locations
+```
+{
+    "locations": [
+        {
+            "id": 1,
+            "name": "Top",
+            "created_at": "2020-03-12 17:17:57",
+            "updated_at": "2020-03-12 17:17:57"
+        },
+        {
+            "id": 2,
+            "name": "Middle",
+            "created_at": "2020-03-14 22:22:32",
+            "updated_at": "2020-03-14 22:22:32"
+        },
+        {
+            "id": 3,
+            "name": "Downsize",
+            "created_at": "2020-03-14 22:22:59",
+            "updated_at": "2020-03-14 22:22:59"
+        }
+    ],
+    "success": true
+}
+
+```
+
 ### Получение моих курсов (пагинировано)
 #### URL: https://tensend.me/api/v1/users/courses
 ##### Токен передается через HEADER: Authorization => Bearer Token
