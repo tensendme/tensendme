@@ -15,6 +15,9 @@ Route::group(['middleware' => 'api'], function () {
 
     Route::group(['namespace' => 'StaticFunc'], function () {
         Route::get('/countries', ['uses' => 'StaticController@getAllCountries']);
+
+        Route::get('/faqs', ['uses' => 'StaticController@getAllFaqs']);
+
         Route::group(['middleware' => 'auth:api'], function () {
             Route::get('/levels', ['uses' => 'StaticController@getAllLevels']);
         });
