@@ -66,7 +66,7 @@
         }
 
         .tensend-icon {
-            height: 100px;
+            height: 90px;
             width: auto;
             margin: 50px auto 20px auto;
         }

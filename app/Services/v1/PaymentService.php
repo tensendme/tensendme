@@ -15,6 +15,7 @@ interface PaymentService
     public function findAllCardsByUserId();
     public function cardPay($request);
     public function deleteCard($card_id);
+    public function makeWithdraw();
 
 
 
