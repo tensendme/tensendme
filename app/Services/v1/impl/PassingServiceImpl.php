@@ -27,15 +27,15 @@ class PassingServiceImpl implements PassingService
                 'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
             ]);
         $passing = Passing::where('course_material_id', $courseMaterialId)->where('user_id', $user->id)->first();
-//        if($passing) return "Урок уже успешно просмотрен";
-//
-//        Passing::create([
-//            'course_material_id' => $courseMaterialId,
-//            'user_id' => $user->id
-//        ]);
-//
-//        $material->view_count = $material->view_count + 1;
-//        $material->save();
+        if($passing) return "Урок уже успешно просмотрен";
+
+        Passing::create([
+            'course_material_id' => $courseMaterialId,
+            'user_id' => $user->id
+        ]);
+
+        $material->view_count = $material->view_count + 1;
+        $material->save();
 
         $course = $material->course;
         $course->view_count = $course->view_count + 1;
