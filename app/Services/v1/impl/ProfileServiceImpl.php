@@ -10,10 +10,8 @@ namespace App\Services\v1\impl;
 
 use App\Models\Education\Passing;
 use App\Models\Marketing\MarketingMaterial;
-use App\Models\Profiles\Certificate;
 use App\Models\Profiles\City;
 use App\Models\Profiles\Level;
-use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Services\v1\FileService;
 use App\Services\v1\ProfileService;
@@ -121,7 +119,10 @@ class ProfileServiceImpl implements ProfileService
         if (!empty($user->subscriptions)) {
             $profile->permission = true;
         }
-        $profile->levels = Level::all();
+        $profile->levels = Level::all()->orderBy('start_count', 'asc');
+        foreach ($profile->levels as $level) {
+            $level->start_count = $level->start_count + 1;
+        }
         return $profile;
     }
 
