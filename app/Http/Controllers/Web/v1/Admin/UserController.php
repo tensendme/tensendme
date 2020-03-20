@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends WebBaseController
 {
@@ -80,7 +81,9 @@ class UserController extends WebBaseController
 
     public function index()
     {
+
         $users = User::orderBy('created_at', 'desc')->with(['role', 'level', 'city', 'balance'])->paginate(10);
+        $roles = Role::all();
         foreach ($users as $user) {
             switch ($user->role->id) {
                 case Role::AUTHOR_ID:
@@ -104,7 +107,38 @@ class UserController extends WebBaseController
             }
             $user->role->name = $roleName;
         }
-        return view('admin.users.index', compact('users'));
+        foreach ($roles as $role) {
+            $roleName = '';
+            switch ($role->id) {
+                case Role::AUTHOR_ID:
+                    $roleName = 'Автор';
+                    break;
+                case Role::ACCOUNTANT_ID:
+                    $roleName = 'Бухгалтер';
+                    break;
+                case Role::USER_ID:
+                    $roleName = 'Пользователь';
+                    break;
+                case Role::ADMIN_ID:
+                    $roleName = 'Админ';
+                    break;
+                case Role::SUPER_ADMIN_ID:
+                    $roleName = 'Супер Админ';
+                    break;
+                case Role::CONTENT_MANAGER_ID:
+                    $roleName = 'Контент Менеджер';
+                    break;
+            }
+            $role->name = $roleName;
+        }
+        return view('admin.users.index', compact('users', 'roles'));
+    }
+
+    public function filter() {
+        $users = QueryBuilder::for(User::class)
+            ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email', 'created_at', 'phone'])
+            ->with(['role', 'level', 'city', 'balance'])->paginate(10);
+        return view('admin.users.table', compact('users'));
     }
 
     public function authors(Request $request)
