@@ -138,6 +138,29 @@ class UserController extends WebBaseController
         $users = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email', 'created_at', 'phone'])
             ->with(['role', 'level', 'city', 'balance'])->paginate(10);
+        foreach ($users as $user) {
+            switch ($user->role->id) {
+                case Role::AUTHOR_ID:
+                    $roleName = 'Автор';
+                    break;
+                case Role::ACCOUNTANT_ID:
+                    $roleName = 'Бухгалтер';
+                    break;
+                case Role::USER_ID:
+                    $roleName = 'Пользователь';
+                    break;
+                case Role::ADMIN_ID:
+                    $roleName = 'Админ';
+                    break;
+                case Role::SUPER_ADMIN_ID:
+                    $roleName = 'Супер Админ';
+                    break;
+                case Role::CONTENT_MANAGER_ID:
+                    $roleName = 'Контент Менеджер';
+                    break;
+            }
+            $user->role->name = $roleName;
+        }
         return view('admin.users.table', compact('users'));
     }
 

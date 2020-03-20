@@ -81,7 +81,7 @@ class ProfileServiceImpl implements ProfileService
         $profile->balance = $user->getBalance()->balance;
         $profile->city = $user->city ? $user->city->name : 'Алматы';
         $profile->role = $user->role->name == 'Author' ? 'Автор' : 'Пользователь';
-        $profile->followers_count = $user->followers->count();
+//        $profile->followers_count = $user->followers->count();
         $profile->nickname = $user->nickname;
         $profile->permission = false;
         $profile->activity = 0;
