@@ -67,10 +67,12 @@ class AuthServiceImpl implements AuthService
                 'errorCode' => ErrorCode::UNAUTHORIZED
             ]);
         }
+        $user->current_token = ApiUtil::generateTokenFromUser($user);
+        $user->save();
 
         $this->setDeviceToken($user, $request->device_token, $request->platform);
         $mobileUser = (object)array();
-        $mobileUser->token = ApiUtil::generateTokenFromUser($user);
+        $mobileUser->token = $user->current_token;
         $mobileUser->name = $user->name;
         $mobileUser->surname = $user->surname;
         $mobileUser->nickname = $user->nickname;
@@ -109,8 +111,8 @@ class AuthServiceImpl implements AuthService
             //VerifyEmail
         }
         $user->save();
-        if($user->phone)
-        $this->followerService->promoFollow($user->phone, $user->id);
+        if ($user->phone)
+            $this->followerService->promoFollow($user->phone, $user->id);
 
         if (!$user) {
             throw new ApiServiceException(400, false, [
@@ -121,8 +123,8 @@ class AuthServiceImpl implements AuthService
             ]);
         }
 
-        $token = ApiUtil::generateTokenFromUser($user);
-        if (!$token) {
+        $user->current_token = ApiUtil::generateTokenFromUser($user);
+        if (!$user->current_token) {
             throw new ApiServiceException(401, false, [
                 'errors' => [
                     'Invalid login or password'
@@ -130,11 +132,13 @@ class AuthServiceImpl implements AuthService
                 'errorCode' => ErrorCode::UNAUTHORIZED
             ]);
         }
+
+        $user->save();
         // create free subscription
 //        $this->subscriptionService->freeSubscribe($user->id);
         //create balance
         $user->getBalance();
-        return $token;
+        return $user->current_token;
     }
 
     public function checkEmailExistence($email): bool

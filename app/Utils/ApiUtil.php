@@ -35,6 +35,10 @@ class ApiUtil
 
     public static function generateTokenFromUser($user): string
     {
+        if ($user->current_token) {
+            $auth = JWTAuth::setToken($user->current_token);
+            $auth->invalidate();
+        }
         $expiration_date = Carbon::now()->addDays(7)->timestamp;
         $customClaims = ['exp' => $expiration_date];
         return JWTAuth::fromUser($user, $customClaims);

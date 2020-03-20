@@ -49,7 +49,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'current_token'
     ];
 
     /**
@@ -205,9 +205,9 @@ class User extends Authenticatable implements JWTSubject
             $random_string .= $random_character;
         }
 
-        if($this->nickname)
-            return 'TS-'. $this->nickname . '-' .$random_string;
-        else return 'TS-'.$random_string;
+        if ($this->nickname)
+            return 'TS-' . $this->nickname . '-' . $random_string;
+        else return 'TS-' . $random_string;
     }
 
     public function level()
@@ -253,7 +253,8 @@ class User extends Authenticatable implements JWTSubject
         return $result;
     }
 
-    public function certificates() {
+    public function certificates()
+    {
         return $this->hasMany(Certificate::class, 'user_id', 'id')
             ->with(['course.author', 'course.lessons']);
 
