@@ -68,9 +68,17 @@ class AuthServiceImpl implements AuthService
             ]);
         }
 
+        if ($user->current_token) {
+            $auth = JWTAuth::setToken($user->current_token);
+            $auth->invalidate();
+        }
+
+        $user->current_token = ApiUtil::generateTokenFromUser($user);
+        $user->save();
+
         $this->setDeviceToken($user, $request->device_token, $request->platform);
         $mobileUser = (object)array();
-        $mobileUser->token = ApiUtil::generateTokenFromUser($user);
+        $mobileUser->token = $user->current_token;
         $mobileUser->name = $user->name;
         $mobileUser->surname = $user->surname;
         $mobileUser->nickname = $user->nickname;
@@ -109,8 +117,8 @@ class AuthServiceImpl implements AuthService
             //VerifyEmail
         }
         $user->save();
-        if($user->phone)
-        $this->followerService->promoFollow($user->phone, $user->id);
+        if ($user->phone)
+            $this->followerService->promoFollow($user->phone, $user->id);
 
         if (!$user) {
             throw new ApiServiceException(400, false, [
