@@ -119,7 +119,7 @@ class ProfileServiceImpl implements ProfileService
         if (!empty($user->subscriptions)) {
             $profile->permission = true;
         }
-        $profile->levels = Level::all()->orderBy('start_count', 'asc');
+        $profile->levels = Level::orderBy('start_count', 'asc')->all();
         foreach ($profile->levels as $level) {
             $level->start_count = $level->start_count + 1;
         }
