@@ -67,12 +67,6 @@ class AuthServiceImpl implements AuthService
                 'errorCode' => ErrorCode::UNAUTHORIZED
             ]);
         }
-
-        if ($user->current_token) {
-            $auth = JWTAuth::setToken($user->current_token);
-            $auth->invalidate();
-        }
-
         $user->current_token = ApiUtil::generateTokenFromUser($user);
         $user->save();
 
