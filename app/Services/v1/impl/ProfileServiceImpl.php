@@ -12,6 +12,7 @@ use App\Models\Marketing\MarketingMaterial;
 use App\Models\Profiles\Certificate;
 use App\Models\Profiles\City;
 use App\Models\Profiles\Level;
+use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Services\v1\FileService;
 use App\Services\v1\ProfileService;
@@ -86,24 +87,28 @@ class ProfileServiceImpl implements ProfileService
         $profile->tensend = 5;
         $profile->rating = 6;
         $profile->passed = Certificate::where('user_id', Auth::id())->count();
+
+        $profile->clicks_count = 0;
+        $profile->registrations_count = 0;
+        $profile->subscriptions_count = 0;
+        $profile->requests_count = 0;
         $analyzes = $user->analyze();
-        $userResult = array();
-        for ($i = 1; $i < 4; $i++) {
-            $userResult[] = array('type' => $i, 'count' => 0);
-        }
-        if (!empty($analyzes)) {
-            foreach ($userResult as $key => $val) {
-                $count = 0;
-                foreach ($analyzes as $analyze) {
-                    if ($val['type'] === $analyze->type) {
-                        $count = $analyze->count;
-                    }
-                }
-                $userResult[$key]['count'] = $count;
+        foreach ($analyzes as $analyze) {
+            switch ($analyze->type) {
+                case 1:
+                    $profile->click_count = $analyze->count;
+                    break;
+                case 2:
+                    $profile->registrations_count = $analyze->count;
+                    break;
+                case 3:
+                    $profile->subscriptions_count = $analyze->count;
+                    break;
+                case 4:
+                    $profile->requests_count = $analyze->count;
+                    break;
             }
         }
-//        dd($userResult);
-        $profile->analyze = $userResult;
         $profile->subscriptions = array();
         foreach ($user->activeSubscriptions as $subscription) {
             $profile->subscriptions[] = array(
