@@ -139,6 +139,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.delete'])->where('id', '[0-9]+');
                 Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.destroy'])->where('id', '[0-9]+');
                 Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
+                Route::get('/users/filter', ['uses' => 'UserController@filter', 'as' => 'users.filter']);
                 Route::get('/authors', ['uses' => 'UserController@authors', 'as' => 'authors']);
                 Route::get('/categories', ['uses' => 'CategoryController@index', 'as' => 'category.index']);
                 Route::get('/category/create', ['uses' => 'CategoryController@create', 'as' => 'category.create']);

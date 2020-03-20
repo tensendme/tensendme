@@ -11,64 +11,130 @@
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Все пользователи</h6>
+                    <div class="card">
+                        <div class="card-header border-bottom">
+                            <h6 class="m-0">Фильтры</h6>
+                            <div class="card-body">
+                                <div class="row ml-1 mt-2">
+                                    <div class="col-3">
+                                        <label for="phone" class="form-control-plaintext">Номер телефона</label>
+                                        <input class="form-control" type="text" name="phone" placeholder="707"
+                                               id="phone" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="name" class="form-control-plaintext">Имя</label>
+                                        <input class="form-control" type="text" name="name" placeholder="Леонардо" id="name">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="surname" class="form-control-plaintext">Фамилия</label>
+                                        <input class="form-control" type="text" name="surname" placeholder="Ди" id="surname">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="fatherName" class="form-control-plaintext">Отчество</label>
+                                        <input class="form-control" type="text" name="fatherName" placeholder="Каприо" id="fatherName">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="fatherName" class="form-control-plaintext">Отчество</label>
+                                        <select class="form-control" type="text" name="role" id="role">
+                                            <option value="">Все роли</option>
+                                            @foreach($roles as $role)
+                                                <option value="{{$role->id}}">{{$role->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="mb-2 btn btn-medium btn-primary mr-1" onclick="search()">Поиск
+                                    <i class="material-icons md-12">search</i>
+                                </button>
+                            </div>
+                        </div>
+                     </div>
                 </div>
                 <div class="card-header border-bottom">
                     <a href="{{route('users.create')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Добавить
                         <i class="material-icons md-12">add_circle</i>
                     </a>
                 </div>
-                <div class="card-body p-0 pb-3 text-center">
-                    <table class="table mb-0">
-                        <thead class="bg-light">
-                        <tr>
-                            <th scope="col" class="border-0">#</th>
-                            <th scope="col" class="border-0">ФИО</th>
-                            <th scope="col" class="border-0">Логин</th>
-                            <th scope="col" class="border-0">Почта</th>
-                            <th scope="col" class="border-0">Телефон</th>
-                            <th scope="col" class="border-0">Промо-код</th>
-                            <th scope="col" class="border-0">Город</th>
-                            <th scope="col" class="border-0">Роль</th>
-                            <th scope="col" class="border-0">Уровень</th>
-                            <th scope="col" class="border-0">Платформа</th>
-                            <th scope="col" class="border-0">Баланс</th>
-                            <th scope="col" class="border-0">Действия</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($users as $user)
-                            <tr>
-                                <td>{{$user->id}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->nickname}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>@if(!$user->phone && $user->city){{$user->city->country->phone_prefix}}
-                                    @elseif($user->phone) {{$user->phone}}@endif
-                                </td>
-                                <td>{{$user->promo_code}}</td>
-                                <td>@if($user->city){{$user->city->name}}@endif</td>
-                                <td>{{$user->role->name}}</td>
-                                <td>{{$user->level->name}}</td>
-                                <td>{{$user->platform}}</td>
-                                <td>{{$user->balance->balance}}</td>
-                                <td><a class="btn btn-outline-primary mb-2 "
-                                       href="{{route('users.edit', ['id' => $user->id])}}">
-                                        Изменить <i class="material-icons md-12">edit</i>
-                                    </a>
-                                    <a class="btn btn-outline-primary mb-2 "
-                                       href="{{route('users.subscribe', ['id' => $user->id])}}">
-                                        Оформить подписку <i class="material-icons md-12">add</i>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-footer">
-                    {{ $users->links() }}
+                <div id="usersTable">
+                    @include('admin.users.table')
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        var table = document.getElementById('usersTable');
+        console.log(table);
+        function search() {
+            var filter = [];
+            var name = document.getElementById('name');
+            var phone = document.getElementById('phone');
+            var surname = document.getElementById('surname');
+            var fatherName = document.getElementById('fatherName');
+            var role = document.getElementById('role');
+            filter['name'] = name.value;
+            filter['surname'] = surname.value;
+            filter['father_name'] = fatherName.value;
+            filter['role_id'] = role.value;
+            filter['phone'] =  phone.value.replace(/\D/g,'');
+            var query = '';
+            for (var key in filter) {
+                if(filter[key]) {
+                    query +='filter[' + key + ']=' + filter[key] + '&';
+                }
+                console.log("key " + key + " has value " + filter[key]);
+            }
+            fetch('{{route('users.filter')}}?' + query)
+                .then((response) => response.text()).then((response) => {
+                    table.innerHTML = response;
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        function validate_int(myEvento) {
+            if ((myEvento.charCode >= 48 && myEvento.charCode <= 57) || myEvento.keyCode == 9 || myEvento.keyCode == 10 || myEvento.keyCode == 13 || myEvento.keyCode == 8 || myEvento.keyCode == 116 || myEvento.keyCode == 46 || (myEvento.keyCode <= 40 && myEvento.keyCode >= 37)) {
+                dato = true;
+            } else {
+                dato = false;
+            }
+            return dato;
+        }
+
+        function phone_number_mask() {
+            var myMask = "(___) ___-__-__";
+            var myCaja = document.getElementById("phone");
+            var myText = "";
+            var myNumbers = [];
+            var myOutPut = ""
+            var theLastPos = 1;
+            myText = myCaja.value;
+            //get numbers
+            for (var i = 0; i < myText.length; i++) {
+                if (!isNaN(myText.charAt(i)) && myText.charAt(i) != " ") {
+                    myNumbers.push(myText.charAt(i));
+                }
+            }
+            //write over mask
+            for (var j = 0; j < myMask.length; j++) {
+                if (myMask.charAt(j) == "_") { //replace "_" by a number
+                    if (myNumbers.length == 0)
+                        myOutPut = myOutPut + myMask.charAt(j);
+                    else {
+                        myOutPut = myOutPut + myNumbers.shift();
+                        theLastPos = j + 1; //set caret position
+                    }
+                } else {
+                    myOutPut = myOutPut + myMask.charAt(j);
+                }
+            }
+            document.getElementById("phone").value = myOutPut;
+            document.getElementById("phone").setSelectionRange(theLastPos, theLastPos);
+        }
+        document.getElementById("phone").onkeypress = validate_int;
+        document.getElementById("phone").onkeyup = phone_number_mask;
+    </script>
 @endsection

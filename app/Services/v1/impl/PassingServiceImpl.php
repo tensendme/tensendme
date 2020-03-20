@@ -41,7 +41,7 @@ class PassingServiceImpl implements PassingService
         $course->view_count = $course->view_count + 1;
         $course->save();
         $lesson_ids = $course->lessons->pluck('id');
-        $passed_counts = Passing::whereIn('course_material_id', $lesson_ids)->count();
+        $passed_counts = Passing::where('user_id', $user->id)->whereIn('course_material_id', $lesson_ids)->count();
         if($lesson_ids->count() == $passed_counts) {
             $certificate = Certificate::where('user_id', $user->id)->where('course_id', $course->id)->first();
             if (!$certificate) {

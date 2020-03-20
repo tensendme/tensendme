@@ -8,8 +8,8 @@
 
 namespace App\Services\v1\impl;
 
+use App\Models\Education\Passing;
 use App\Models\Marketing\MarketingMaterial;
-use App\Models\Profiles\Certificate;
 use App\Models\Profiles\City;
 use App\Models\Profiles\Level;
 use App\Models\Profiles\User;
@@ -79,31 +79,35 @@ class ProfileServiceImpl implements ProfileService
         $profile->balance = $user->getBalance()->balance;
         $profile->city = $user->city ? $user->city->name : 'Алматы';
         $profile->role = $user->role->name == 'Author' ? 'Автор' : 'Пользователь';
-        $profile->followers_count = $user->followers->count();
+//        $profile->followers_count = $user->followers->count();
         $profile->nickname = $user->nickname;
         $profile->permission = false;
         $profile->activity = 0;
-        $profile->tensend = 5;
-        $profile->rating = 6;
-        $profile->passed = Certificate::where('user_id', Auth::id())->count();
+        $profile->tensend = 0;
+        $profile->rating = 0;
+        $profile->passed = Passing::where('user_id', Auth::id())->count();
+
+        $profile->clicks_count = 0;
+        $profile->registrations_count = 0;
+        $profile->subscriptions_count = 0;
+        $profile->requests_count = 0;
         $analyzes = $user->analyze();
-        $userResult = array();
-        for ($i = 1; $i < 4; $i++) {
-            $userResult[] = array('type' => $i, 'count' => 0);
-        }
-        if (!empty($analyzes)) {
-            foreach ($userResult as $key => $val) {
-                $count = 0;
-                foreach ($analyzes as $analyze) {
-                    if ($val['type'] === $analyze->type) {
-                        $count = $analyze->count;
-                    }
-                }
-                $userResult[$key]['count'] = $count;
+        foreach ($analyzes as $analyze) {
+            switch ($analyze->type) {
+                case 1:
+                    $profile->click_count = $analyze->count;
+                    break;
+                case 2:
+                    $profile->registrations_count = $analyze->count;
+                    break;
+                case 3:
+                    $profile->subscriptions_count = $analyze->count;
+                    break;
+                case 4:
+                    $profile->requests_count = $analyze->count;
+                    break;
             }
         }
-//        dd($userResult);
-        $profile->analyze = $userResult;
         $profile->subscriptions = array();
         foreach ($user->activeSubscriptions as $subscription) {
             $profile->subscriptions[] = array(
@@ -115,7 +119,10 @@ class ProfileServiceImpl implements ProfileService
         if (!empty($user->subscriptions)) {
             $profile->permission = true;
         }
-        $profile->levels = Level::all();
+        $profile->levels = Level::orderBy('start_count', 'asc')->get();
+        foreach ($profile->levels as $level) {
+            $level->start_count = $level->start_count + 1;
+        }
         return $profile;
     }
 
