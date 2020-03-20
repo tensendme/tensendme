@@ -123,8 +123,8 @@ class AuthServiceImpl implements AuthService
             ]);
         }
 
-        $token = ApiUtil::generateTokenFromUser($user);
-        if (!$token) {
+        $user->current_token = ApiUtil::generateTokenFromUser($user);
+        if (!$user->current_token) {
             throw new ApiServiceException(401, false, [
                 'errors' => [
                     'Invalid login or password'
@@ -132,11 +132,13 @@ class AuthServiceImpl implements AuthService
                 'errorCode' => ErrorCode::UNAUTHORIZED
             ]);
         }
+
+        $user->save();
         // create free subscription
 //        $this->subscriptionService->freeSubscribe($user->id);
         //create balance
         $user->getBalance();
-        return $token;
+        return $user->current_token;
     }
 
     public function checkEmailExistence($email): bool
