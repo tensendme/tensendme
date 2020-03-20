@@ -8,6 +8,7 @@
 
 namespace App\Services\v1\impl;
 
+use App\Models\Education\Passing;
 use App\Models\Marketing\MarketingMaterial;
 use App\Models\Profiles\Certificate;
 use App\Models\Profiles\City;
@@ -84,9 +85,9 @@ class ProfileServiceImpl implements ProfileService
         $profile->nickname = $user->nickname;
         $profile->permission = false;
         $profile->activity = 0;
-        $profile->tensend = 5;
-        $profile->rating = 6;
-        $profile->passed = Certificate::where('user_id', Auth::id())->count();
+        $profile->tensend = 0;
+        $profile->rating = 0;
+        $profile->passed = Passing::where('user_id', Auth::id())->count();
 
         $profile->clicks_count = 0;
         $profile->registrations_count = 0;
