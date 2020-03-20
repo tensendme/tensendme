@@ -138,7 +138,7 @@ class UserController extends WebBaseController
         $users = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email', 'created_at', 'phone'])
             ->orderBy('id', 'desc')
-            ->with(['role', 'level', 'city', 'balance'])->paginate(1);
+            ->with(['role', 'level', 'city', 'balance'])->paginate(10);
         foreach ($users as $user) {
             switch ($user->role->id) {
                 case Role::AUTHOR_ID:
