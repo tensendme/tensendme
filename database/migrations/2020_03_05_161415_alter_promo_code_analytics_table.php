@@ -26,6 +26,8 @@ class AlterPromoCodeAnalyticsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('promo_code_analytics', function (Blueprint $table) {
+            $table->dropColumn('phone', 'ip_address');
+        });
     }
 }

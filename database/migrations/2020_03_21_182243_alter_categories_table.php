@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterMeditationsTable extends Migration
+class AlterCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AlterMeditationsTable extends Migration
      */
     public function up()
     {
-        Schema::table('meditations', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->tinyInteger('is_visible')->default(0);
         });
     }
@@ -25,8 +25,8 @@ class AlterMeditationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('meditations', function (Blueprint $table) {
-            $table->dropColumn('is_visible');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->tinyInteger('is_visible')->default(0);
         });
     }
 }

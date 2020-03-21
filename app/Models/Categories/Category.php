@@ -11,7 +11,7 @@ class Category extends Model
     public const DEFAULT_RESOURCE_DIRECTORY = 'images/categories';
 
     protected $fillable = [
-        'name', 'category_type_id', 'parent_category_id', 'img_path'
+        'name', 'category_type_id', 'parent_category_id', 'img_path', 'is_visible'
     ];
 
     public function categoryType()

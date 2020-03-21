@@ -19,12 +19,12 @@ class CategoryServiceImpl implements CategoryService
 
     public function findCoursesCategories($size = 10)
     {
-        return Category::where('category_type_id', 1)->paginate($size);
+        return Category::where('category_type_id', 1)->where('is_visible', true)->paginate($size);
     }
 
     public function findMeditationsCategories($size = 10)
     {
-        return Category::where('category_type_id', 2)->paginate($size);
+        return Category::where('category_type_id', 2)->where('is_visible', true)->paginate($size);
     }
 
     public function findAllPaginated($pageSize = 10)
@@ -34,7 +34,7 @@ class CategoryServiceImpl implements CategoryService
 
     public function findAll()
     {
-       return Category::where('parent_category_id', null)->get();
+       return Category::where('parent_category_id', null)->where('is_visible', true)->get();
     }
 
     public function recommendedCategory($ids)

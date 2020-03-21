@@ -125,4 +125,15 @@ class CategoryController extends WebBaseController
 
         return redirect()->route('category.index');
     }
+
+    public function visibleChange($id)
+    {
+
+        $category = Category::findOrFail($id);
+        if ($category->is_visible) $category->is_visible = false;
+        else $category->is_visible = true;
+        $category->save();
+        $this->edited();
+        return redirect()->route('category.index');
+    }
 }

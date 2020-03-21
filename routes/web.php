@@ -136,17 +136,12 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/category/store', ['uses' => 'CategoryController@store', 'as' => 'category.store']);
                 Route::get('/category/edit/{id}', ['uses' => 'CategoryController@edit', 'as' => 'category.edit'])->where('id', '[0-9]+');
                 Route::post('/category/update/{id}', ['uses' => 'CategoryController@update', 'as' => 'category.update'])->where('id', '[0-9]+');
+                Route::post('/category/visible/{id}', ['uses' => 'CategoryController@visibleChange', 'as' => 'category.visible'])->where('id', '[0-9]+');
                 Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.delete'])->where('id', '[0-9]+');
                 Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.destroy'])->where('id', '[0-9]+');
                 Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
                 Route::get('/users/filter', ['uses' => 'UserController@filter', 'as' => 'users.filter']);
                 Route::get('/authors', ['uses' => 'UserController@authors', 'as' => 'authors']);
-                Route::get('/categories', ['uses' => 'CategoryController@index', 'as' => 'category.index']);
-                Route::get('/category/create', ['uses' => 'CategoryController@create', 'as' => 'category.create']);
-                Route::post('/category/store', ['uses' => 'CategoryController@store', 'as' => 'category.store']);
-                Route::get('/category/edit/{id}', ['uses' => 'CategoryController@edit', 'as' => 'category.edit'])->where('id', '[0-9]+');
-                Route::post('/category/update/{id}', ['uses' => 'CategoryController@update', 'as' => 'category.update'])->where('id', '[0-9]+');
-                Route::delete('/category/delete/{id}', ['uses' => 'CategoryController@destroy', 'as' => 'category.delete'])->where('id', '[0-9]+');
 
                 Route::get('/levels', ['uses' => 'LevelController@index', 'as' => 'level.index']);
                 Route::get('/level/create', ['uses' => 'LevelController@create', 'as' => 'level.create']);
@@ -215,6 +210,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/country/store', ['uses' => 'CountryController@store', 'as' => 'country.store']);
                 Route::get('/country/edit/{id}', ['uses' => 'CountryController@edit', 'as' => 'country.edit']);
                 Route::post('/country/update/{id}', ['uses' => 'CountryController@update', 'as' => 'country.update']);
+
                 Route::get('/users/{id}', ['uses' => 'UserController@change', 'as' => 'users.edit'])->where('id', '[0-9]+');
                 Route::post('/users/{id}', ['uses' => 'UserController@update', 'as' => 'users.update'])->where('id', '[0-9]+');
                 Route::get('/users/subscribe/{id}', ['uses' => 'UserController@subscribe', 'as' => 'users.subscribe'])->where('id', '[0-9]+');
