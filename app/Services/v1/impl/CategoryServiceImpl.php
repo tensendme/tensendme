@@ -29,7 +29,7 @@ class CategoryServiceImpl implements CategoryService
 
     public function findAllPaginated($pageSize = 10)
     {
-        return Category::with('parentCategory')->where('is_visible', true)->paginate($pageSize);
+        return Category::with('parentCategory')->paginate($pageSize);
     }
 
     public function findAll()
