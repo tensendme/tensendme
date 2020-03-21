@@ -25,6 +25,8 @@ class AlterLevelsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('levels', function (Blueprint $table) {
+            $table->dropColumn('description');
+        });
     }
 }
