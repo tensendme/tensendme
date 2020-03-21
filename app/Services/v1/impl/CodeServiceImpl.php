@@ -60,13 +60,13 @@ class CodeServiceImpl implements CodeService
             $this->throwError($exception);
         }
 
-        $text = 'Код авторизации: ';
-        $message = iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text) . $code;
+        $message = 'Код авторизации: ' . $code;
         if ($isEmail) {
             $emailJobTemplate = new MailJobTemplate($login, $message);
             SendMail::dispatch($emailJobTemplate)->onQueue(QueueConstants::NOTIFICATIONS_QUEUE);
 //            $this->mailService->sendEmail($login, $message);
         } else {
+            $message = urlencode($message);
             $smsJobTemplate = new SmsJobTemplate($login, $message);
             SendSms::dispatch($smsJobTemplate)->onQueue(QueueConstants::NOTIFICATIONS_QUEUE);
 //            $this->smsService->sendSms($login, $message);
