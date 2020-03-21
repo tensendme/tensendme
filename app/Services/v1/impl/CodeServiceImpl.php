@@ -60,7 +60,7 @@ class CodeServiceImpl implements CodeService
             $this->throwError($exception);
         }
 
-        $message = 'Authorization code: ' . $code;
+        $message = 'Код авторизации: ' . $code;
         if ($isEmail) {
             $emailJobTemplate = new MailJobTemplate($login, $message);
             SendMail::dispatch($emailJobTemplate)->onQueue(QueueConstants::NOTIFICATIONS_QUEUE);

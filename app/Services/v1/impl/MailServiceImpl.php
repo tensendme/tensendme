@@ -19,7 +19,7 @@ class MailServiceImpl implements MailService
     {
         Mail::send('mail.mail', ['data' => compact('message')], function ($msg) use ($to) {
             $msg->to($to, 'Tensend me')
-                ->subject('Authorization code');
+                ->subject('Код авторизации');
         });
     }
 
