@@ -16,7 +16,11 @@ class Course extends Model
 
     protected $fillable = [
         'title', 'description', 'category_id', 'image_path', 'is_visible', 'view_count', 'scale',
-        'author_id', 'information_list', 'trailer', 'advertise'
+        'author_id', 'information_list', 'trailer'
+    ];
+
+    protected $hidden = [
+        'advertise'
     ];
 
     public function category()
