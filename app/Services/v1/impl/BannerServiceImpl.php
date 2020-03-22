@@ -16,7 +16,10 @@ class BannerServiceImpl implements BannerService
     {
         $user = Auth::user();
         if ($user && $user->activeSubscriptions()->count() > 0) {
-            $banners = Banner::where('is_payment_enabled', '=', false)->get();
+//            $banners = Banner::where('is_payment_enabled', '=', false)->get();
+
+            $banners = Banner::all();
+
         } else {
             $banners = Banner::all();
         }
