@@ -14,7 +14,7 @@ class AddColumnInformationListCoursesTable extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->string('information_list')->nullable(true);
+            $table->text('information_list')->nullable(true);
         });
     }
 
