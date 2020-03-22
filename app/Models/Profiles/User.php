@@ -151,7 +151,7 @@ class User extends Authenticatable implements JWTSubject
         $recommendedCategories = RecommendedCategory::where('user_id', $this->id)->get();
         if ($recommendedCategories) {
             $categoryIds = $recommendedCategories->pluck('category_id')->toArray();
-            $courses = Course::whereIn('category_id', $categoryIds)->where('is_visible', 1)
+            $courses = Course::whereIn('category_id', $categoryIds)->orWhere('advertise', true)->where('is_visible', true)
                 ->orderBy('scale', 'desc')
                 ->with('author')
                 ->with('lessons')
@@ -159,7 +159,8 @@ class User extends Authenticatable implements JWTSubject
 //            $courses = Course::where('is_visible', 1)->paginate($size ? $size : 10);
 
         } else {
-            $courses = Course::where('is_visible', 1)
+            $courses = Course::where('is_visible', true)
+                ->where('advertise', 1)
                 ->orderBy('scale', 'desc')
                 ->with('author')
                 ->with('lessons')
