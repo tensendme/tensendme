@@ -152,6 +152,7 @@ class User extends Authenticatable implements JWTSubject
         if ($recommendedCategories) {
             $categoryIds = $recommendedCategories->pluck('category_id')->toArray();
             $courses = Course::where('advertise', 1)->orWhereIn('category_id', $categoryIds)->where('is_visible', true)
+                ->orderBy('advertise', 'desc')
                 ->orderBy('scale', 'desc')
                 ->with('author')
                 ->with('lessons')
