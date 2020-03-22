@@ -14,8 +14,7 @@
                name="link"
                value="{{$banner ? $banner->link_url : old('link')}}"
                placeholder="Адрес ссылки"
-               id="link"
-               required>
+               id="link">
         <label class="form-control-plaintext" for="link">Пожалуйста введите ссылку</label>
     </div>
 </div>
