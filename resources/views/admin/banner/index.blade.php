@@ -24,6 +24,7 @@
                             <th scope="col" class="border-0">#</th>
                             <th scope="col" class="border-0">Название</th>
                             <th scope="col" class="border-0">Локация</th>
+                            <th scope="col" class="border-0">Показ оплаты</th>
                             <th scope="col" class="border-0">Новость</th>
                             <th scope="col" class="border-0">Действия</th>
                         </tr>
@@ -34,6 +35,7 @@
                                 <td>{{$banner->id}}</td>
                                 <td>{{$banner->title}}</td>
                                 <td>{{$banner->location->name}}</td>
+                                <td>{{$banner->is_payment_enabled ? 'ВКЛ' : 'ОТКЛ'}}</td>
                                 <td>{{$banner->news->title}}</td>
                                 <td>
                                     <a class="btn btn-outline-primary mb-2 "

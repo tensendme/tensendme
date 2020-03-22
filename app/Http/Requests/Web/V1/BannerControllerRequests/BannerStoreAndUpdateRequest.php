@@ -13,7 +13,8 @@ class BannerStoreAndUpdateRequest extends WebBaseRequest
             'news_id' => ['required', 'numeric'],
             'location_id' => ['required', 'numeric'],
             'link' => ['string'],
-            'image' => ['image']
+            'image' => ['image'],
+            'payment_enabled' => ['string']
         ];
     }
 }

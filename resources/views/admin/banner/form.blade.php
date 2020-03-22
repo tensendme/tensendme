@@ -68,6 +68,24 @@
                data-size="md">
     </div>
 </div>
+
+<div class="form-row">
+    <div class="col-md-12">
+        <div class="form-group text-left">
+            <label>Показ оплаты в мобильноом приложении:</label>
+            <input type="checkbox"
+                   data-on="Вкл"
+                   data-off="Откл"
+                   @if($banner->is_payment_enabled)
+                   checked
+                   @endif
+                   name="is_payment_enabled"
+                   data-toggle="toggle"
+                   data-size="md">
+        </div>
+    </div>
+</div>
+
 <div class="form-group col-md-12 text-right">
     <button class="mb-2 btn btn-primary mr-1" type="submit">Сохранить
         <i class="material-icons md-12">check_circle</i>
