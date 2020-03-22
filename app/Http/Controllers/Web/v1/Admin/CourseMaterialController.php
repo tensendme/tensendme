@@ -39,11 +39,18 @@ class CourseMaterialController extends WebBaseController
         $path->path = StaticConstants::DEFAULT_VIDEO;
         $path->img = StaticConstants::DEFAULT_IMAGE;
         $path->duration = 0;
+        $preview = StaticConstants::DEFAULT_IMAGE;
+
         if ($request->file('video')) {
+            if($request->file('preview'))
             $path = $this->fileService->lessonStore($request->file('video'),
                 CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY);
+            else {
+                $path = $this->fileService->courseMaterialStore($request->file('video'),
+                    CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY);
+                $preview = $path->img;
+            }
         }
-        $preview = StaticConstants::DEFAULT_IMAGE;
         if ($request->file('preview')) {
             $preview = $this->fileService->store($request->file('preview'),
                 CourseMaterial::DEFAULT_PREVIEW_RESOURCE_DIRECTORY);
@@ -89,21 +96,28 @@ class CourseMaterialController extends WebBaseController
         $path->path = $material->video_path;
         $path->img = $material->img_path;
         $path->duration = $material->duration_time;
+        $preview = $material->img_path;
+
         if($request->file('video')) {
-            $path = $this->fileService->courseMaterialUpdate($request->file('video'),
-                CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY, $path->path, $path->img);
-            $path->duration = ceil($path->duration/60);
+//            if($request->file('preview')) {
+                $path = $this->fileService->lessonUpdate($request->file('video'),
+                    CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY, $path->path, $path->img);
+//            }
+//            else {
+//                $path = $this->fileService->courseMaterialUpdate($request->file('video'),
+//                    CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY, $path->path, $path->img);
+//                $preview = $path->img;
+//            }
         }
 
-        $preview = $material->img_path;
         if ($request->file('preview')) {
-            $preview = $this->fileService->store($request->file('preview'),
-                CourseMaterial::DEFAULT_PREVIEW_RESOURCE_DIRECTORY);
+            $preview = $this->fileService->updateWithRemoveOrStore($request->file('preview'),
+                CourseMaterial::DEFAULT_PREVIEW_RESOURCE_DIRECTORY, $preview);
         }
         $material->update([
             'title' => $request->title,
             'video_path' => $path->path,
-            'duration_time' => $path->duration,
+            'duration_time' => ceil($path->duration/60),
 //            'img_path' => $path->img,
             'img_path' => $preview,
             'ordering' => $request->ordering,
