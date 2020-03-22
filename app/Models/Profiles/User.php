@@ -206,8 +206,8 @@ class User extends Authenticatable implements JWTSubject
         }
 
         if ($this->nickname)
-            return 'TS-' . $this->nickname . '-' . $random_string;
-        else return 'TS-' . $random_string;
+            return $this->nickname . '-' . $random_string;
+        else return $random_string;
     }
 
     public function level()

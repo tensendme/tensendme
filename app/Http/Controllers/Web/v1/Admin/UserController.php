@@ -134,7 +134,8 @@ class UserController extends WebBaseController
         return view('admin.users.index', compact('users', 'roles'));
     }
 
-    public function filter() {
+    public function filter()
+    {
         $users = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email', 'created_at', 'phone'])
             ->orderBy('id', 'desc')
@@ -292,6 +293,7 @@ class UserController extends WebBaseController
             $balance = new Balance();
             $balance->user_id = $user->id;
             $balance->balance = 0;
+            $user->promo_code = $user->promoCode();
             $balance->save();
 
             $this->added();

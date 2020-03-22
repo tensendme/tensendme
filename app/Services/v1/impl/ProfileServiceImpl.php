@@ -42,9 +42,15 @@ class ProfileServiceImpl implements ProfileService
         if ($city) {
             $user->city_id = $profile->cityId;
         }
-        $user->name = $profile->name;
-        $user->surname = $profile->surname;
-        $user->father_name = $profile->fatherName;
+        if ($profile->name) {
+            $user->name = $profile->name;
+        }
+        if ($profile->surname) {
+            $user->surname = $profile->surname;
+        }
+        if ($profile->fatherName) {
+            $user->father_name = $profile->fatherName;
+        }
         $user->save();
         return "Изменения успешно сохранены!";
     }
