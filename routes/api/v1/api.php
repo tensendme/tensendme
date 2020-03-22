@@ -107,15 +107,18 @@ Route::group(['middleware' => 'api'], function () {
 
     Route::group(['namespace' => 'Advertisement'], function () {
 
-        Route::get('/news', ['uses' => 'NewsController@getAllNews']);
-        Route::get('/newsPaginated', ['uses' => 'NewsController@getAllNewsPaginated']);
-        Route::get('/news/{id}', ['uses' => 'NewsController@getNewsById'])->where('id', '[0-9]+');
-        Route::get('/locations', ['uses' => 'BannerController@getAllLocations']);
-        Route::get('/banners', ['uses' => 'BannerController@getAllBanners']);
-        Route::get('/bannersPaginated', ['uses' => 'BannerController@getAllBannersPaginated']);
-        Route::get('/banner/{id}', ['uses' => 'BannerController@getBannerById'])->where('id', '[0-9]+');
-        Route::get('/banner/location/{location}', ['uses' => 'BannerController@getBannerByLocation']);
 
+        Route::group(['middleware' => 'auth:api'], function () {
+            Route::get('/news', ['uses' => 'NewsController@getAllNews']);
+            Route::get('/newsPaginated', ['uses' => 'NewsController@getAllNewsPaginated']);
+            Route::get('/news/{id}', ['uses' => 'NewsController@getNewsById'])->where('id', '[0-9]+');
+            Route::get('/locations', ['uses' => 'BannerController@getAllLocations']);
+
+            Route::get('/banners', ['uses' => 'BannerController@getAllBanners']);
+            Route::get('/bannersPaginated', ['uses' => 'BannerController@getAllBannersPaginated']);
+            Route::get('/banner/{id}', ['uses' => 'BannerController@getBannerById'])->where('id', '[0-9]+');
+            Route::get('/banner/location/{location}', ['uses' => 'BannerController@getBannerByLocation']);
+        });
     });
 
 //    Route::group(['namespace' => 'Cabinet'], function (){

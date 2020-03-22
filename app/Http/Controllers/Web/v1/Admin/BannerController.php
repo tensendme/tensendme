@@ -50,8 +50,8 @@ class BannerController extends WebBaseController
             'news_id' => $request->news_id,
             'image_path' => $path,
             'location_id' => $request->location_id,
-            'link_url' => $request->link
-
+            'link_url' => $request->link,
+            'is_payment_enabled' => !!$request->is_payment_enabled
         ]);
         $this->added();
         return redirect()->route('banner.index');
@@ -80,7 +80,8 @@ class BannerController extends WebBaseController
             'image_path' => $path,
             'location_id' => $request->location_id,
             'news_id' => $request->news_id,
-            'link_url' => $request->link
+            'link_url' => $request->link,
+            'is_payment_enabled' => !!$request->is_payment_enabled
         ]);
         $this->edited();
         return redirect()->route('banner.index');
