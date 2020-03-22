@@ -51,9 +51,9 @@ class FileServiceImpl implements FileService
         if ($oldFilePath && $oldFilePath != StaticConstants::DEFAULT_VIDEO) {
             $this->remove($oldFilePath);
         }
-        if ($oldImagePath && $oldImagePath != StaticConstants::DEFAULT_IMAGE) {
-            $this->remove($oldImagePath);
-        }
+//        if ($oldImagePath && $oldImagePath != StaticConstants::DEFAULT_IMAGE) {
+//            $this->remove($oldImagePath);
+//        }
 
         return $this->lessonStore($video, $path);
     }
