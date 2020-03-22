@@ -645,20 +645,43 @@ password: tensendme2020n
     
     RESPONSE
     {
-    "banners": [
-        {
-            "id": 1,
-            "news_id": 1,
-            "image_path": "images/banner/15840119454c516fab-d13d-4436-bb0b-003293cf3027img.gif",
-            "title": "Баннер 1",
-            "created_at": "2020-03-12 17:19:05",
-            "updated_at": "2020-03-12 17:19:05",
-            "location_id": 1,
-            "link_url": "https://tensend.me"
-        }
-    ],
-    "success": true
-}
+        "banners": [
+            {
+                "id": 1,
+                "news_id": 1,
+                "image_path": "images/banner/1584206855755631b5-24b0-471c-951a-2639b79edfd9img.png",
+                "title": "Баннер 1",
+                "created_at": "2020-03-12 17:19:05",
+                "updated_at": "2020-03-22 16:33:06",
+                "location_id": 1,
+                "link_url": "https://tensend.me",
+                "is_payment_enabled": 1
+            },
+            {
+                "id": 2,
+                "news_id": 1,
+                "image_path": "images/banner/1584206599a7e431cc-0a5f-4c8c-b919-ab5b475a7f0dimg.png",
+                "title": "Баннер 2",
+                "created_at": "2020-03-14 23:23:19",
+                "updated_at": "2020-03-19 22:39:33",
+                "location_id": 2,
+                "link_url": "https://tensend.me",
+                "is_payment_enabled": 0
+            },
+            {
+                "id": 3,
+                "news_id": 1,
+                "image_path": "images/banner/1584206712a4340fe4-899a-4d6e-8f99-da82fd94a5f1img.png",
+                "title": "Банер 3",
+                "created_at": "2020-03-14 23:25:12",
+                "updated_at": "2020-03-19 22:40:40",
+                "location_id": 3,
+                "link_url": "https://tensend.me",
+                "is_payment_enabled": 0
+            }
+        ],
+        "success": true
+    }
 ```
 
 ### Получение всех баннеров по имени локации
