@@ -19,7 +19,7 @@ class PromoCodeAnalyticServiceImpl implements PromoCodeAnalyticService
         PromoCodeAnalytic::create([
             'host_user_id' => $hostUserId,
             'promo_code' => $promoCodeText,
-            'type' => PromoCodeAnalytic::TYPE_PASSED
+            'type' => PromoCodeAnalytic::TYPE_CAME
         ]);
     }
 
