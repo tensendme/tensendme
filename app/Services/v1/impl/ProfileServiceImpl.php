@@ -96,17 +96,29 @@ class ProfileServiceImpl implements ProfileService
 
         $ratingAnalytic = $this->ratingService->specificUserRating($user->id);
 
-        $profile->activity = 0;
-        $profile->tensend = $ratingAnalytic->installed;
-        $profile->rating = $ratingAnalytic->installed;
         $profile->passed = Passing::where('user_id', Auth::id())->count();
 
+        if ($ratingAnalytic) {
 
-        $profile->clicks_count = $ratingAnalytic->came;
-        $profile->registrations_count = $ratingAnalytic->installed;
-        $profile->subscriptions_count = $ratingAnalytic->purchased;
-        $profile->requests_count = $ratingAnalytic->passed;
+            $profile->activity = 0;
+            $profile->tensend = $ratingAnalytic->installed;
+            $profile->rating = $ratingAnalytic->installed;
 
+            $profile->clicks_count = $ratingAnalytic->came;
+            $profile->registrations_count = $ratingAnalytic->installed;
+            $profile->subscriptions_count = $ratingAnalytic->purchased;
+            $profile->requests_count = $ratingAnalytic->passed;
+        } else {
+
+            $profile->activity = 0;
+            $profile->tensend = 0;
+            $profile->rating = 0;
+
+            $profile->clicks_count = 0;
+            $profile->registrations_count = 0;
+            $profile->subscriptions_count = 0;
+            $profile->requests_count = 0;
+        }
         $analyzes = $user->analyze();
         foreach ($analyzes as $analyze) {
             switch ($analyze->type) {
