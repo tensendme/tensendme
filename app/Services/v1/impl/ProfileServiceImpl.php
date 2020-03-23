@@ -81,10 +81,6 @@ class ProfileServiceImpl implements ProfileService
         $profile->surname = $user->surname;
         $profile->phone = $user->phone;
         $profile->fatherName = $user->father_name;
-//        if (!$user->promoCode) {
-////            $user->promoCode = $user->promoCode();
-//            $user->save();
-//        }
         $profile->promoCode = $user->promo_code;
         $profile->created = $user->created_at;
         $profile->levelId = $user->level ? $user->level->id : '';
@@ -95,7 +91,7 @@ class ProfileServiceImpl implements ProfileService
         $profile->city = $user->city ? $user->city->name : 'Алматы';
         $profile->role = $user->role->name == 'Author' ? 'Автор' : 'Пользователь';
 //        $profile->followers_count = $user->followers->count();
-        $profile->nickname = $user->nickname;
+        $profile->nickname = '/share/'.$user->promo_code;
         $profile->permission = false;
 //        $this->myReferralLink($this);
         $ratingAnalytic = $this->ratingService->specificUserRating($user->id);
