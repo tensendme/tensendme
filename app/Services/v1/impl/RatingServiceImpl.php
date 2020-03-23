@@ -178,6 +178,7 @@ class RatingServiceImpl implements RatingService
             ->orderBy('purchased.count', 'desc')
             ->orderBy('installed.count', 'desc')
             ->orderBy('passed.count', 'desc')
+            ->orderBy('came.count', 'desc')
             ->where('u.id', $userId)
             ->first();
     }

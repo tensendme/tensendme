@@ -104,7 +104,7 @@ class ProfileServiceImpl implements ProfileService
         $profile->registrations_count = $ratingAnalytic->installed;
         $profile->subscriptions_count = $ratingAnalytic->purchased;
         $profile->requests_count = $ratingAnalytic->passed;
-        
+
         $analyzes = $user->analyze();
         foreach ($analyzes as $analyze) {
             switch ($analyze->type) {
