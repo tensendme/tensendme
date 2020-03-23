@@ -93,7 +93,7 @@ class ProfileServiceImpl implements ProfileService
 //        $profile->followers_count = $user->followers->count();
         $profile->nickname = $user->nickname;
         $profile->permission = false;
-
+        $this->myReferralLink();
         $ratingAnalytic = $this->ratingService->specificUserRating($user->id);
 
         $profile->passed = Passing::where('user_id', Auth::id())->count();
@@ -121,6 +121,25 @@ class ProfileServiceImpl implements ProfileService
             $profile->subscriptions_count = 0;
             $profile->requests_count = 0;
         }
+
+//        $analyzes = $user->analyze();
+//        foreach ($analyzes as $analyze) {
+//            switch ($analyze->type) {
+//                case 1:
+//                    $profile->click_count = $analyze->count;
+//                    break;
+//                case 2:
+//                    $profile->registrations_count = $analyze->count;
+//                    break;
+//                case 3:
+//                    $profile->subscriptions_count = $analyze->count;
+//                    break;
+//                case 4:
+//                    $profile->requests_count = $analyze->count;
+//                    break;
+//            }
+//        }
+
         $profile->subscriptions = array();
         foreach ($user->activeSubscriptions as $subscription) {
             $profile->subscriptions[] = array(
