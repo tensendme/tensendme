@@ -17,6 +17,8 @@ Route::group(['middleware' => 'api'], function () {
         Route::get('/countries', ['uses' => 'StaticController@getAllCountries']);
 
         Route::get('/faqs', ['uses' => 'StaticController@getAllFaqs']);
+        Route::get('/about/tensend', ['uses' => 'StaticController@getAboutTensend']);
+
 
         Route::group(['middleware' => 'auth:api'], function () {
             Route::get('/levels', ['uses' => 'StaticController@getAllLevels']);

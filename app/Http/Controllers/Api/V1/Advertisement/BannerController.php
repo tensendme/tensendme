@@ -59,4 +59,6 @@ class BannerController extends ApiBaseController
         return $this->successResponse(['locations' => $locations]);
 
     }
+
+
 }

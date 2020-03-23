@@ -226,6 +226,11 @@
         <h2>
             0.01 KZT
         </h2>
+        <h6>
+            Назар аударыңыз! <br>
+            <h7 style="color:darkgray;">Төлем жасаудан алдын картаңыздан интернет-төлемдерге лимитті тексеріп көріңіз.</h7>
+
+        </h6>
     </div>
 </div>
 <!-- The Modal -->
@@ -376,8 +381,9 @@
                 headers: myHeaders,
                 body: raw,
                 redirect: 'follow'
-            };
-            fetch("https://tensend.me/api/v1/send/crypto", requestOptions)
+            }; 
+            // fetch("https://tensend.me/api/v1/send/crypto", requestOptions)
+            fetch("http://192.168.0.100:8000/api/v1/send/crypto", requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     console.log(result);
