@@ -91,18 +91,17 @@ class ProfileServiceImpl implements ProfileService
         $profile->city = $user->city ? $user->city->name : 'Алматы';
         $profile->role = $user->role->name == 'Author' ? 'Автор' : 'Пользователь';
 //        $profile->followers_count = $user->followers->count();
-        $profile->nickname = $user->nickname;
+        $profile->nickname = 'share/' . $user->promo_code;
         $profile->permission = false;
-
+//        $this->myReferralLink($this);
         $ratingAnalytic = $this->ratingService->specificUserRating($user->id);
 
         $profile->passed = Passing::where('user_id', Auth::id())->count();
 
         if ($ratingAnalytic) {
-
             $profile->activity = 0;
-            $profile->tensend = $ratingAnalytic->installed;
-            $profile->rating = $ratingAnalytic->installed;
+            $profile->tensend = $ratingAnalytic->installed ? $ratingAnalytic->installed : 0;
+            $profile->rating = $ratingAnalytic->installed ? $ratingAnalytic->installed : 0;
 
             $profile->clicks_count = $ratingAnalytic->came;
             $profile->click_count = $ratingAnalytic->came;
@@ -121,6 +120,24 @@ class ProfileServiceImpl implements ProfileService
             $profile->subscriptions_count = 0;
             $profile->requests_count = 0;
         }
+        $analyzes = $user->analyze();
+//        foreach ($analyzes as $analyze) {
+//            switch ($analyze->type) {
+//                case 1:
+//                    $profile->click_count = $analyze->count;
+//                    break;
+//                case 2:
+//                    $profile->registrations_count = $analyze->count;
+//                    break;
+//                case 3:
+//                    $profile->subscriptions_count = $analyze->count;
+//                    break;
+//                case 4:
+//                    $profile->requests_count = $analyze->count;
+//                    break;
+//            }
+//        }
+
         $profile->subscriptions = array();
         foreach ($user->activeSubscriptions as $subscription) {
             $profile->subscriptions[] = array(

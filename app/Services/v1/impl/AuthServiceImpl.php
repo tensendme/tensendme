@@ -99,6 +99,7 @@ class AuthServiceImpl implements AuthService
         $user->level_id = $level->id;
         $user->role_id = Role::USER_ID;
         $user->name = $request->name;
+        $user->current_token = '';
         $user->nickname = $request->nickname;
         $user->image_path = StaticConstants::DEFAULT_AVATAR;
         $user->promo_code = $user->promoCode();
