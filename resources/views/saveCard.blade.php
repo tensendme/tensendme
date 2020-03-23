@@ -100,7 +100,7 @@
             background-color: #004DC9;
             height: 50px;
             color: white;
-            margin: 15px auto 50px;
+            margin: 15px auto 80px auto;
             font-size: 20px;
             border: 0;
             -webkit-appearance: none;
@@ -185,15 +185,15 @@
             font-size: 20px;
             font-weight: bold;
         }
-        #loader{
+
+        #loader {
             position: fixed;
             left: 0px;
             top: 0px;
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background: url({{asset('payment/loader.gif')}})
-            50% 50% no-repeat rgb(249,249,249);
+            background: url({{asset('payment/loader.gif')}}) 50% 50% no-repeat rgb(249, 249, 249);
         }
     </style>
 <body>
@@ -291,7 +291,7 @@
         <input class="w-97 submit-btn" type="submit" value="Төлем жасау">
     </div>
 </form>
-<div id="loader" style="display: none"> </div>
+<div id="loader" style="display: none"></div>
 </body>
 
 
@@ -376,7 +376,7 @@
                 headers: myHeaders,
                 body: raw,
                 redirect: 'follow'
-            }; 
+            };
             fetch("https://tensend.me/api/v1/send/crypto", requestOptions)
                 .then(response => response.json())
                 .then(result => {
