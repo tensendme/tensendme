@@ -105,6 +105,7 @@ class ProfileServiceImpl implements ProfileService
             $profile->rating = $ratingAnalytic->installed;
 
             $profile->clicks_count = $ratingAnalytic->came;
+            $profile->click_count = $ratingAnalytic->came;
             $profile->registrations_count = $ratingAnalytic->installed;
             $profile->subscriptions_count = $ratingAnalytic->purchased;
             $profile->requests_count = $ratingAnalytic->passed;
@@ -115,11 +116,11 @@ class ProfileServiceImpl implements ProfileService
             $profile->rating = 0;
 
             $profile->clicks_count = 0;
+            $profile->click_count = 0;
             $profile->registrations_count = 0;
             $profile->subscriptions_count = 0;
             $profile->requests_count = 0;
         }
-        
         $profile->subscriptions = array();
         foreach ($user->activeSubscriptions as $subscription) {
             $profile->subscriptions[] = array(
