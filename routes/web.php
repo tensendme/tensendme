@@ -159,6 +159,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
                 Route::get('/subscription/type/create', ['uses' => 'SubscriptionTypeController@create', 'as' => 'subscription.type.create']);
                 Route::post('/subscription/type/store', ['uses' => 'SubscriptionTypeController@store', 'as' => 'subscription.type.store']);
+                Route::post('/subscription/type/change-visibility/{id}', ['uses' => 'SubscriptionTypeController@visibleChange', 'as' => 'subscription.type.visibility']);
                 Route::get('/subscription/type/edit/{id}', ['uses' => 'SubscriptionTypeController@edit', 'as' => 'subscription.type.edit'])->where('id', '[0-9]+');
                 Route::post('/subscription/type/update/{id}', ['uses' => 'SubscriptionTypeController@update', 'as' => 'subscription.type.update'])->where('id', '[0-9]+');
                 Route::delete('/subscription/type/delete/{id}', ['uses' => 'SubscriptionTypeController@destroy', 'as' => 'subscription.type.delete'])->where('id', '[0-9]+');

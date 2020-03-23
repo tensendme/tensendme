@@ -13,7 +13,8 @@
                     <h6 class="m-0">Типы подписок</h6>
                 </div>
                 <div class="card-header border-bottom">
-                    <a href="{{route('subscription.type.create')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Добавить
+                    <a href="{{route('subscription.type.create')}}" type="button"
+                       class="mb-2 btn btn-medium btn-primary mr-1">Добавить
                         <i class="material-icons md-12">add_circle</i>
                     </a>
                 </div>
@@ -36,6 +37,20 @@
                                 <td>{{$subscription_type->price}}</td>
                                 <td>{{$subscription_type->expired_at}}</td>
                                 <td>
+                                    <form class="d-inline" method="post"
+                                          action="{{route('subscription.type.visibility', ['id' => $subscription_type->id])}}">
+                                        {{csrf_field()}}
+                                        @if($subscription_type->is_visible)
+                                            <button class="mb-2 btn  btn-outline-success mr-1" type="submit">
+                                                <i class="material-icons md-12">remove_red_eye</i>
+                                            </button>
+                                        @else
+                                            <button class="mb-2 btn  btn-outline-danger mr-1" type="submit">
+                                                <i class="material-icons md-12">remove_red_eye</i>
+                                            </button>
+                                        @endif
+                                    </form>
+
                                     <a class="btn btn-outline-primary mb-2 "
                                        href="{{route('subscription.type.edit', ['id' => $subscription_type->id])}}">
                                         <i class="material-icons md-12">edit</i>

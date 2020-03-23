@@ -24,10 +24,11 @@ class SubscriptionController extends WebBaseController
         $subscriptions = Subscription::where('subscription_type_id', '!=', $subscriptionType->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-        return view('admin.userActions.subscriptions.index',compact('subscriptions'));
+        return view('admin.userActions.subscriptions.index', compact('subscriptions'));
     }
 
-    public function freeSubscribe(Request $request, $id) {
+    public function freeSubscribe(Request $request, $id)
+    {
         $subscriptionType = SubscriptionType::find($request->type_id);
         $date = new DateTime();
         $date->modify('+' . $subscriptionType->expired_at . 'days');
@@ -60,6 +61,5 @@ class SubscriptionController extends WebBaseController
             DB::rollBack();
             throw new WebServiceErroredException(trans('admin.error') . ': ' . $e->getMessage());
         }
-
     }
 }

@@ -14,11 +14,13 @@ class SubscriptionController extends ApiBaseController
         $this->subscriptionService = $subscriptionService;
     }
 
-    public function getSubscriptionTypes() {
+    public function getSubscriptionTypes()
+    {
         return $this->successResponse(['subscription_types' => $this->subscriptionService->getSubscriptions()]);
     }
 
-    public function subscribe($subscriptionTypeId) {
+    public function subscribe($subscriptionTypeId)
+    {
         return $this->successResponse(['message' => $this->subscriptionService->subscribe($subscriptionTypeId)]);
     }
 }

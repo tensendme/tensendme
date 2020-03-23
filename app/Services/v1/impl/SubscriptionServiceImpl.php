@@ -30,7 +30,7 @@ class SubscriptionServiceImpl implements SubscriptionService
 
     public function getSubscriptions()
     {
-        $subscriptionTypes = SubscriptionType::where('price', '!=', 0)->get();
+        $subscriptionTypes = SubscriptionType::where('price', '!=', 0)->where('is_visible', true)->get();
         return $subscriptionTypes;
     }
 
@@ -57,7 +57,7 @@ class SubscriptionServiceImpl implements SubscriptionService
         $oldSubscription = Subscription::where('user_id', $user->id)->where('actual_price', '!=', 0)->get();
         $firstSubscription = false;
         $price = $subscriptionType->price;
-        if($oldSubscription->isEmpty()) {
+        if ($oldSubscription->isEmpty()) {
 //            $price = $price * 80/100;
             $firstSubscription = true;
         }
@@ -72,13 +72,12 @@ class SubscriptionServiceImpl implements SubscriptionService
             // Level must be here calculate
             DB::commit();
             return "Успешно!";
-        }
-        catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             DB::rollBack();
             throw new ApiServiceException(500, false, ['errors' => [$exception->getMessage()],
                 'errorCode' => ErrorCode::SYSTEM_ERROR
             ]);
-    }
+        }
     }
 
     public function freeSubscribe($userId)

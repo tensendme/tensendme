@@ -59,4 +59,14 @@ class SubscriptionTypeController extends WebBaseController
 
         return redirect()->route('subscription.type.index');
     }
+
+
+    public function visibleChange($id)
+    {
+        $subscriptionType = SubscriptionType::findOrFail($id);
+        $subscriptionType->is_visible = !$subscriptionType->is_visible;
+        $subscriptionType->save();
+        $this->edited();
+        return redirect()->back();
+    }
 }
