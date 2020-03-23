@@ -93,7 +93,7 @@ class ProfileServiceImpl implements ProfileService
 //        $profile->followers_count = $user->followers->count();
         $profile->nickname = $user->nickname;
         $profile->permission = false;
-        $this->myReferralLink($this);
+//        $this->myReferralLink($this);
         $ratingAnalytic = $this->ratingService->specificUserRating($user->id);
 
         $profile->passed = Passing::where('user_id', Auth::id())->count();
