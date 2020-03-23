@@ -91,7 +91,7 @@ class ProfileServiceImpl implements ProfileService
         $profile->city = $user->city ? $user->city->name : 'Алматы';
         $profile->role = $user->role->name == 'Author' ? 'Автор' : 'Пользователь';
 //        $profile->followers_count = $user->followers->count();
-        $profile->nickname = '/share/'.$user->promo_code;
+        $profile->nickname = 'share/'.$user->promo_code;
         $profile->permission = false;
 //        $this->myReferralLink($this);
         $ratingAnalytic = $this->ratingService->specificUserRating($user->id);
