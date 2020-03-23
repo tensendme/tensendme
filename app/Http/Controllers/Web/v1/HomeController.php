@@ -47,17 +47,10 @@ class HomeController extends WebBaseController
     public function promoCode($promoCode)
     {
         $user = User::where('promo_code', $promoCode)->first();
-        if ($user) {
-            PromoCodeAnalytic::create([
-                'host_user_id' => $user->id,
-                'promo_code' => $promoCode,
-                'type' => PromoCodeAnalytic::TYPE_CAME
-            ]);
-        }
         $countries = Country::all();
-//        if ($user) {
-//            $this->promoCodeService->makePassed($user->id, $promoCode);
-//        }
+        if ($user) {
+            $this->promoCodeService->makePassed($user->id, $promoCode);
+        }
         return view('promo-code', compact('promoCode', 'user', 'countries'));
     }
 
