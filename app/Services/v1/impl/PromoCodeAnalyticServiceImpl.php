@@ -62,7 +62,7 @@ class PromoCodeAnalyticServiceImpl implements PromoCodeAnalyticService
         $promoCodeAnalytic = PromoCodeAnalytic::where('type', PromoCodeAnalytic::TYPE_PASSED)
             ->where('phone', $phone)
             ->first();
-        if(!$promoCodeAnalytic) {
+        if (!$promoCodeAnalytic) {
             PromoCodeAnalytic::create([
                 'host_user_id' => $hostUserId,
                 'promo_code' => $promoCode,

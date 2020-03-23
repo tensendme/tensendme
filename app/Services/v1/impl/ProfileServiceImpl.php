@@ -15,19 +15,24 @@ use App\Models\Profiles\Level;
 use App\Models\Profiles\User;
 use App\Services\v1\FileService;
 use App\Services\v1\ProfileService;
+use App\Services\v1\PromoCodeAnalyticService;
+use App\Services\v1\RatingService;
 use Auth;
 
 class ProfileServiceImpl implements ProfileService
 {
     protected $fileService;
+    protected $ratingService;
 
     /**
      * ProfileServiceImpl constructor.
      * @param $fileService
      */
-    public function __construct(FileService $fileService)
+    public function __construct(FileService $fileService,
+                                RatingService $ratingService)
     {
         $this->fileService = $fileService;
+        $this->ratingService = $ratingService;
     }
 
 
@@ -93,10 +98,13 @@ class ProfileServiceImpl implements ProfileService
         $profile->rating = 0;
         $profile->passed = Passing::where('user_id', Auth::id())->count();
 
-        $profile->clicks_count = 0;
-        $profile->registrations_count = 0;
-        $profile->subscriptions_count = 0;
-        $profile->requests_count = 0;
+        $ratingAnalytic = $this->ratingService->specificUserRating($user->id);
+
+        $profile->clicks_count = $ratingAnalytic->came;
+        $profile->registrations_count = $ratingAnalytic->installed;
+        $profile->subscriptions_count = $ratingAnalytic->purchased;
+        $profile->requests_count = $ratingAnalytic->passed;
+        
         $analyzes = $user->analyze();
         foreach ($analyzes as $analyze) {
             switch ($analyze->type) {

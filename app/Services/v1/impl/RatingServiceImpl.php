@@ -94,6 +94,11 @@ class RatingServiceImpl implements RatingService
             ->where('type', PromoCodeAnalytic::TYPE_PASSED)
             ->groupBy('host_user_id');
 
+        $cameJoinSub = DB::table('promo_code_analytics')
+            ->select([DB::raw('count(*) as count'), 'host_user_id'])
+            ->where('type', PromoCodeAnalytic::TYPE_CAME)
+            ->groupBy('host_user_id');
+
         return DB::table('users as u')
             ->select([
                 'u.id',
@@ -113,6 +118,8 @@ class RatingServiceImpl implements RatingService
                 'installed.host_user_id', '=', 'u.id')
             ->leftJoinSub($passedJoinSub, 'passed',
                 'passed.host_user_id', '=', 'u.id')
+            ->leftJoinSub($cameJoinSub, 'came',
+                'passed.host_user_id', '=', 'u.id')
             ->leftJoin('levels as l', 'u.level_id', 'l.id')
             ->whereIn('u.role_id', [Role::USER_ID, Role::AUTHOR_ID])
             ->orderBy('purchased.count', 'desc')
@@ -121,4 +128,59 @@ class RatingServiceImpl implements RatingService
             ->limit(10)
             ->get();
     }
+
+    public function specificUserRating($userId)
+    {
+        $purchasedJoinSub = DB::table('promo_code_analytics')
+            ->select([DB::raw('count(*) as count'), 'host_user_id'])
+            ->where('type', PromoCodeAnalytic::TYPE_PURCHASED)
+            ->groupBy('host_user_id');
+
+        $installedJoinSub = DB::table('promo_code_analytics')
+            ->select([DB::raw('count(*) as count'), 'host_user_id'])
+            ->where('type', PromoCodeAnalytic::TYPE_INSTALLED)
+            ->groupBy('host_user_id');
+
+        $passedJoinSub = DB::table('promo_code_analytics')
+            ->select([DB::raw('count(*) as count'), 'host_user_id'])
+            ->where('type', PromoCodeAnalytic::TYPE_PASSED)
+            ->groupBy('host_user_id');
+
+        $cameJoinSub = DB::table('promo_code_analytics')
+            ->select([DB::raw('count(*) as count'), 'host_user_id'])
+            ->where('type', PromoCodeAnalytic::TYPE_CAME)
+            ->groupBy('host_user_id');
+
+        return DB::table('users as u')
+            ->select([
+                'u.id',
+                'u.name',
+                'u.surname',
+                'u.father_name',
+                'u.image_path',
+                'u.level_id',
+                'l.logo',
+                DB::raw('case when ISNULL(purchased.count) then 0 else purchased.count end as purchased'),
+                DB::raw('case when ISNULL(installed.count) then 0 else installed.count end as installed'),
+                DB::raw('case when ISNULL(passed.count) then 0 else passed.count end as passed'),
+                DB::raw('case when ISNULL(came.count) then 0 else came.count end as came'),
+            ])
+            ->leftJoinSub($purchasedJoinSub, 'purchased',
+                'purchased.host_user_id', '=', 'u.id')
+            ->leftJoinSub($installedJoinSub, 'installed',
+                'installed.host_user_id', '=', 'u.id')
+            ->leftJoinSub($passedJoinSub, 'passed',
+                'passed.host_user_id', '=', 'u.id')
+            ->leftJoinSub($cameJoinSub, 'came',
+                'passed.host_user_id', '=', 'u.id')
+            ->leftJoin('levels as l', 'u.level_id', 'l.id')
+            ->whereIn('u.role_id', [Role::USER_ID, Role::AUTHOR_ID])
+            ->orderBy('purchased.count', 'desc')
+            ->orderBy('installed.count', 'desc')
+            ->orderBy('passed.count', 'desc')
+            ->where('u.id', $userId)
+            ->first();
+    }
+
+
 }

@@ -77,7 +77,7 @@ class SystemServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('App\Services\v1\SubscriptionService', function ($app) {
-            return (new SubscriptionServiceImpl( new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl())));
+            return (new SubscriptionServiceImpl(new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl())));
         });
         $this->app->bind('App\Services\v1\PaymentService', function ($app) {
             return (new CloudPaymentServiceImpl(new SubscriptionServiceImpl(new HistoryServiceImpl(
@@ -105,9 +105,9 @@ class SystemServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('App\Services\v1\AuthService', function ($app) {
-            return (new AuthServiceImpl(new SubscriptionServiceImpl( new HistoryServiceImpl(
+            return (new AuthServiceImpl(new SubscriptionServiceImpl(new HistoryServiceImpl(
                 new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl())), new FollowerServiceImpl(
-                    new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl()), new PromoCodeAnalyticServiceImpl()
+                new HistoryServiceImpl(new PromoCodeAnalyticServiceImpl(), new LevelServiceImpl()), new PromoCodeAnalyticServiceImpl()
             )));
         });
 
@@ -121,7 +121,7 @@ class SystemServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('App\Services\v1\ProfileService', function ($app) {
-            return (new ProfileServiceImpl(new FileServiceImpl()));
+            return (new ProfileServiceImpl(new FileServiceImpl(), new RatingServiceImpl()));
         });
 
         $this->app->bind('App\Services\v1\PromoCodeAnalyticService', function ($app) {
