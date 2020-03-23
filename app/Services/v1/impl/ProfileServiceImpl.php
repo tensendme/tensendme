@@ -93,12 +93,14 @@ class ProfileServiceImpl implements ProfileService
 //        $profile->followers_count = $user->followers->count();
         $profile->nickname = $user->nickname;
         $profile->permission = false;
-        $profile->activity = 0;
-        $profile->tensend = 0;
-        $profile->rating = 0;
-        $profile->passed = Passing::where('user_id', Auth::id())->count();
 
         $ratingAnalytic = $this->ratingService->specificUserRating($user->id);
+
+        $profile->activity = 0;
+        $profile->tensend = $ratingAnalytic->installed;
+        $profile->rating = $ratingAnalytic->installed;
+        $profile->passed = Passing::where('user_id', Auth::id())->count();
+
 
         $profile->clicks_count = $ratingAnalytic->came;
         $profile->registrations_count = $ratingAnalytic->installed;
