@@ -119,7 +119,7 @@ class RatingServiceImpl implements RatingService
             ->leftJoinSub($passedJoinSub, 'passed',
                 'passed.host_user_id', '=', 'u.id')
             ->leftJoinSub($cameJoinSub, 'came',
-                'passed.host_user_id', '=', 'u.id')
+                'came.host_user_id', '=', 'u.id')
             ->leftJoin('levels as l', 'u.level_id', 'l.id')
             ->whereIn('u.role_id', [Role::USER_ID, Role::AUTHOR_ID])
             ->orderBy('purchased.count', 'desc')
@@ -172,7 +172,7 @@ class RatingServiceImpl implements RatingService
             ->leftJoinSub($passedJoinSub, 'passed',
                 'passed.host_user_id', '=', 'u.id')
             ->leftJoinSub($cameJoinSub, 'came',
-                'passed.host_user_id', '=', 'u.id')
+                'came.host_user_id', '=', 'u.id')
             ->leftJoin('levels as l', 'u.level_id', 'l.id')
             ->whereIn('u.role_id', [Role::USER_ID, Role::AUTHOR_ID])
             ->orderBy('purchased.count', 'desc')
