@@ -99,7 +99,6 @@ class ProfileServiceImpl implements ProfileService
         $profile->passed = Passing::where('user_id', Auth::id())->count();
 
         if ($ratingAnalytic) {
-
             $profile->activity = 0;
             $profile->tensend = $ratingAnalytic->installed ? $ratingAnalytic->installed : 0;
             $profile->rating = $ratingAnalytic->installed ? $ratingAnalytic->installed : 0;
