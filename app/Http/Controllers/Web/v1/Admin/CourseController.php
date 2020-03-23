@@ -137,4 +137,15 @@ class CourseController extends WebBaseController
         $this->edited();
         return redirect()->route('course.index');
     }
+
+    public function advertiseChange($id)
+    {
+
+        $course = Course::findOrFail($id);
+        if ($course->advertise) $course->advertise = false;
+        else $course->advertise = true;
+        $course->save();
+        $this->edited();
+        return redirect()->route('course.index');
+    }
 }

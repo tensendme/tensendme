@@ -79,6 +79,21 @@
                                             </button>
                                         @endif
                                     </form>
+                                    @if(in_array(Auth::user()->role_id ,[1,2,3]))
+                                    <form class="d-inline" method="post"
+                                          action="{{route('course.advertise', ['id' => $course->id])}}">
+                                        {{csrf_field()}}
+                                        @if($course->advertise)
+                                            <button class="mb-2 btn  btn-outline-success mr-1" type="submit">
+                                                <i class="material-icons md-12">not_interested</i>
+                                            </button>
+                                        @else
+                                            <button class="mb-2 btn  btn-outline-danger mr-1" type="submit">
+                                                <i class="material-icons md-12">not_interested</i>
+                                            </button>
+                                        @endif
+                                    </form>
+                                    @endif
                                     <a class="btn btn-outline-primary mb-2 "
                                        href="{{route('course.material.index', ['course_id' => $course->id])}}">
                                         <i class="material-icons md-12">bookmark</i>

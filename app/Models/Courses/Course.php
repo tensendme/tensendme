@@ -19,6 +19,10 @@ class Course extends Model
         'author_id', 'information_list', 'trailer'
     ];
 
+    protected $hidden = [
+        'advertise'
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');

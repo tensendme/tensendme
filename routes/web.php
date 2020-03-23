@@ -198,6 +198,9 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/marketing-materials/edit/{id}', ['uses' => 'MarketingMaterialController@edit', 'as' => 'marketingMaterial.edit'])->where('id', '[0-9]+');
                 Route::post('/marketing-materials/update/{id}', ['uses' => 'MarketingMaterialController@update', 'as' => 'marketingMaterial.update'])->where('id', '[0-9]+');
                 Route::delete('/marketing-materials/delete/{id}', ['uses' => 'MarketingMaterialController@destroy', 'as' => 'marketingMaterial.delete'])->where('id', '[0-9]+');
+
+                Route::post('/courses/advertise/{id}', ['uses' => 'CourseController@advertiseChange', 'as' => 'course.advertise'])->where('id', '[0-9]+');
+
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::SUPER_ADMIN_ID]], function () {
