@@ -11,6 +11,7 @@ class PromoCodeAnalytic extends Model
     public const TYPE_PASSED = 1;
     public const TYPE_INSTALLED = 2;
     public const TYPE_PURCHASED = 3;
+    public const TYPE_CAME = 4;
 
     protected $fillable = [
         'host_user_id',

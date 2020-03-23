@@ -7,6 +7,7 @@ use App\Models\Histories\History;
 use App\Models\Profiles\Country;
 use App\Models\Profiles\User;
 use App\Models\Rating;
+use App\Models\Subscriptions\PromoCodeAnalytic;
 use App\Models\Subscriptions\Subscription;
 use App\Models\Subscriptions\SubscriptionType;
 use App\Services\v1\PromoCodeAnalyticService;
@@ -46,6 +47,13 @@ class HomeController extends WebBaseController
     public function promoCode($promoCode)
     {
         $user = User::where('promo_code', $promoCode)->first();
+        if ($user) {
+            PromoCodeAnalytic::create([
+                'host_user_id' => $user->id,
+                'promo_code' => $promoCode,
+                'type' => PromoCodeAnalytic::TYPE_CAME
+            ]);
+        }
         $countries = Country::all();
 //        if ($user) {
 //            $this->promoCodeService->makePassed($user->id, $promoCode);
@@ -60,26 +68,24 @@ class HomeController extends WebBaseController
         return redirect()->back();
     }
 
-    public function registerPromo($promoCode, Request $request) {
+    public function registerPromo($promoCode, Request $request)
+    {
         $userAgent = $request->userAgent();
         $platform = '';
-        if($userAgent) {
+        if ($userAgent) {
             if (strpos($userAgent, 'Android') !== false && strpos($userAgent, 'Windows Phone') == false) {
                 $platform = 'Android';
-            }
-            else if(strpos($userAgent, 'iPhone') !== false || strpos($userAgent, 'iPad') !== false) $platform = 'IOS';
+            } else if (strpos($userAgent, 'iPhone') !== false || strpos($userAgent, 'iPad') !== false) $platform = 'IOS';
         }
         $country = Country::find($request->country);
         $user = User::where('promo_code', $promoCode)->first();
-        $phone = preg_replace("/[^0-9]/","",
+        $phone = preg_replace("/[^0-9]/", "",
             $country->phone_prefix . $request->phone);
-        if($user) $this->promoCodeService->makePassPhone($user->id, $promoCode, $phone);
-            if($platform == 'IOS') {
-                return Redirect::to('itms-apps://apple.com/today');
-            }
-            else if($platform == 'Android') {
-                return Redirect::to('https://play.google.com/store/apps/details?id=kz.ysmaiyl.app.tensend');
-            }
-            else return redirect()->route('welcome');
+        if ($user) $this->promoCodeService->makePassPhone($user->id, $promoCode, $phone);
+        if ($platform == 'IOS') {
+            return Redirect::to('itms-apps://apple.com/today');
+        } else if ($platform == 'Android') {
+            return Redirect::to('https://play.google.com/store/apps/details?id=kz.ysmaiyl.app.tensend');
+        } else return redirect()->route('welcome');
     }
 }
