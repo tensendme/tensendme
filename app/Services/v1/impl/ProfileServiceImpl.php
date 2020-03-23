@@ -91,7 +91,7 @@ class ProfileServiceImpl implements ProfileService
         $profile->city = $user->city ? $user->city->name : 'Алматы';
         $profile->role = $user->role->name == 'Author' ? 'Автор' : 'Пользователь';
 //        $profile->followers_count = $user->followers->count();
-        $profile->nickname = 'share/'.$user->promo_code;
+        $profile->nickname = 'share/' . $user->promo_code;
         $profile->permission = false;
 //        $this->myReferralLink($this);
         $ratingAnalytic = $this->ratingService->specificUserRating($user->id);
@@ -101,8 +101,8 @@ class ProfileServiceImpl implements ProfileService
         if ($ratingAnalytic) {
 
             $profile->activity = 0;
-            $profile->tensend = $ratingAnalytic->installed;
-            $profile->rating = $ratingAnalytic->installed;
+            $profile->tensend = $ratingAnalytic->installed ? $ratingAnalytic->installed : 0;
+            $profile->rating = $ratingAnalytic->installed ? $ratingAnalytic->installed : 0;
 
             $profile->clicks_count = $ratingAnalytic->came;
             $profile->click_count = $ratingAnalytic->came;
@@ -121,8 +121,7 @@ class ProfileServiceImpl implements ProfileService
             $profile->subscriptions_count = 0;
             $profile->requests_count = 0;
         }
-
-//        $analyzes = $user->analyze();
+        $analyzes = $user->analyze();
 //        foreach ($analyzes as $analyze) {
 //            switch ($analyze->type) {
 //                case 1:
