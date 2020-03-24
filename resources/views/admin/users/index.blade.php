@@ -59,16 +59,16 @@
                                             <option value="ANDROID">Android</option>
                                         </select>
                                     </div>
-                                    <div class="col-3">
-                                        <div class="col-3">
-                                            <label for="platform" class="form-control-plaintext">Платформа</label>
-                                            <select class="form-control" type="text" name="platform" id="platform">
-                                                <option value="">Все</option>
-                                                <option value="IOS">Apple IOS</option>
-                                                <option value="ANDROID">Android</option>
-                                            </select>
-                                        </div>
-                                    </div>
+{{--                                    <div class="col-3">--}}
+{{--                                        <div class="col-3">--}}
+{{--                                            <label for="platform" class="form-control-plaintext">Платформа</label>--}}
+{{--                                            <select class="form-control" type="text" name="platform" id="platform">--}}
+{{--                                                <option value="">Все</option>--}}
+{{--                                                <option value="IOS">Apple IOS</option>--}}
+{{--                                                <option value="ANDROID">Android</option>--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                             <div class="card-footer">
