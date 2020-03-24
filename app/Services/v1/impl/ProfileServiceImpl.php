@@ -39,10 +39,10 @@ class ProfileServiceImpl implements ProfileService
     public function updateProfile($profile)
     {
         $user = Auth::user();
-        if ($profile->nickname != $user->nickname) {
-            $user->nickname = $profile->nickname;
-            $user->promo_code = $user->promoCode();
-        }
+//        if ($profile->nickname != $user->nickname) {
+//            $user->nickname = $profile->nickname;
+//            $user->promo_code = $user->promoCode();
+//        }
         $city = City::find($profile->cityId);
         if ($city) {
             $user->city_id = $profile->cityId;
