@@ -382,6 +382,7 @@
                 redirect: 'follow'
             };
             fetch("https://tensend.me/api/v1/send/crypto", requestOptions)
+            // fetch("http://192.168.0.102:8000/api/v1/send/crypto", requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     console.log(result);

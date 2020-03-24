@@ -56,8 +56,10 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
     Route::get('/pay', ['uses' => 'PaymentController@pay', 'as' => 'cryptogram']);
     Route::get('/saveCard', ['uses' => 'PaymentController@saveCard', 'as' => 'saveCard']);
-    Route::get('/status', ['uses' => 'PaymentController@status', 'as' => 'transactionStatus']);
-    Route::get('/cardStatus', ['uses' => 'PaymentController@cardStatus', 'as' => 'cardStatus']);
+    Route::get('/status/success', ['uses' => 'PaymentController@status', 'as' => 'transactionStatusSuccess']);
+    Route::get('/cardStatus/success', ['uses' => 'PaymentController@cardStatus', 'as' => 'cardStatusSuccess']);
+    Route::get('/status/failure', ['uses' => 'PaymentController@status', 'as' => 'transactionStatusFailure']);
+    Route::get('/cardStatus/failure', ['uses' => 'PaymentController@cardStatus', 'as' => 'cardStatusFailure']);
     Route::get('/testMobilka', ['uses' => 'PaymentController@test', 'as' => 'testMobilka']);
 
     Route::group(['middleware' => ['auth']], function () {

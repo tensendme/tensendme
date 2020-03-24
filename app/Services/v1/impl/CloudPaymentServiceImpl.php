@@ -231,13 +231,13 @@ class CloudPaymentServiceImpl implements PaymentService
                 ]);
             }
 
-            $url = route('transactionStatus');
+            $url = route('transactionStatusSuccess');
             $result = ['url' => $url, 'transaction_id' => $transaction_id];
 
         } else if (isset($response->Model->PaReq)) {
             $PaReq = $response->Model->PaReq;
             $MD = $response->Model->TransactionId;
-            $TermUrl = env('APP_URL'). "/api/v1/3d/secure";
+            $TermUrl = PaymentUtil::_APP_URL. "/api/v1/3d/secure";
             $AcsUrl = $response->Model->AcsUrl;
 
             $result = [
@@ -259,7 +259,7 @@ class CloudPaymentServiceImpl implements PaymentService
             $transaction_id = $transaction->id;
 
 
-            $url = route('transactionStatus');
+            $url = route('transactionStatusFailure');
             $result = ['url' => $url, 'transaction_id' => $transaction_id];
 
         }
@@ -303,13 +303,13 @@ class CloudPaymentServiceImpl implements PaymentService
             $this->makeCurlRequest($url, $json);
 
 
-            $url = route('cardStatus');
+            $url = route('cardStatusSuccess');
             $result = ['url' => $url, 'transaction_id' => $transaction_id];
 
         } else if (isset($response->Model->PaReq)) {
             $PaReq = $response->Model->PaReq;
             $MD = $response->Model->TransactionId;
-            $TermUrl = env('APP_URL'). "/api/v1/3d/secure";
+            $TermUrl = PaymentUtil::_APP_URL. "/api/v1/3d/secure";
             $AcsUrl = $response->Model->AcsUrl;
 
             $result = [
@@ -330,7 +330,7 @@ class CloudPaymentServiceImpl implements PaymentService
             $transaction_id = $transaction->id;
 
 
-            $url = route('cardStatus');
+            $url = route('cardStatusFailure');
             $result = ['url' => $url, 'transaction_id' => $transaction_id];
 
         }
@@ -369,7 +369,9 @@ class CloudPaymentServiceImpl implements PaymentService
                     'card_holder_message' => $card_holder_message,
                     'external_status' => $external_status,
                     'currency' => $currency]);
-                $result = view('cardStatus', compact('transaction'));
+//                $result = view('cardStatus', compact('transaction'));
+                $transaction_id = $transaction->id;
+                $result = redirect()->route('cardStatusSuccess',compact('transaction_id'));
             } else {
                 $card_holder_message = $response->Model->CardHolderMessage;
                 $external_status = $response->Model->Status;
@@ -378,7 +380,9 @@ class CloudPaymentServiceImpl implements PaymentService
                     'card_holder_message' => $card_holder_message,
                     'external_status' => $external_status,
                     'currency' => $currency]);
-                $result = view('transactionStatus', compact('transaction', 'user'));
+//                $result = view('transactionStatus', compact('transaction', 'user'));
+                $transaction_id = $transaction->id;
+                $result = redirect()->route('transactionStatusFailure',compact('transaction_id'));
             }
         } else {
 
@@ -410,7 +414,9 @@ class CloudPaymentServiceImpl implements PaymentService
                         'last_four' => $response->Model->CardLastFour
                     ]);
                 }
-                $result = view('cardStatus', compact('transaction'));
+//                $result = view('cardStatus', compact('transaction'));
+                $transaction_id = $transaction->id;
+                $result = redirect()->route('cardStatusSuccess',compact('transaction_id'));
             } else {
                 $subscription_type = SubscriptionType::where('price', $sum)->first();
                 $card_holder_message = $response->Model->CardHolderMessage;
@@ -421,7 +427,11 @@ class CloudPaymentServiceImpl implements PaymentService
                     'external_status' => $external_status,
                     'currency' => $currency]);
                 $this->subscriptionService->makeSubscription($subscription_type->id, $user, $transaction->id);
-                $result = view('transactionStatus', compact('transaction', 'user'));
+//                $result = view('transactionStatus', compact('transaction', 'user'));
+                $transaction_id = $transaction->id;
+                $result = redirect()->route('transactionStatusSuccess',compact('transaction_id'));
+
+
             }
             if (Card::where('token', $response->Model->Token)->first() == null) {
                 Card::create([
@@ -455,6 +465,32 @@ class CloudPaymentServiceImpl implements PaymentService
             ),
         ));
         $response = curl_exec($curl);
+        curl_close($curl);
+        return $response;
+    }
+
+    public function makeWithdraw(){
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.cloudpayments.ru/payments/token/topup",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>"{\n    \"Token\":\"tk_3806efed7c8eb30a29b67a7f5f3e0\",\n    \"Amount\":0.01,\n    \"AccountId\":\"daurlion1@gmail.com\",\n    \"Currency\":\"KZT\"\n}",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "Authorization: Basic cGtfNWNhNTQxZjgyNDQ4ZTExYWZiOThiNWMxYTNmZmE6Y2MwNmQ2Yjc2MTRkNDgzNDgwOWRmZGQ3NTU1MjdmMWE="
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
         curl_close($curl);
         return $response;
     }

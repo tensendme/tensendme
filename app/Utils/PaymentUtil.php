@@ -14,6 +14,8 @@ class PaymentUtil
     public const _REFUND_CONFIRM_URL = 'https://api.cloudpayments.ru/payments/confirm';
     public const _CLOUDPAYMENTS_USERNAME = 'pk_5ca541f82448e11afb98b5c1a3ffa';
     public const _CLOUDPAYMENTS_PASSWORD = 'cc06d6b7614d4834809dfdd755527f1a';
+    public const _APP_URL = 'https://tensend.me';
+//    public const _APP_URL = 'http://192.168.0.102:8000';
 
 
     public static function getUsername()
