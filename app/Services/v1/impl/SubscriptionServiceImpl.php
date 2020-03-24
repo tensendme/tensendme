@@ -9,6 +9,7 @@
 namespace App\Services\v1\impl;
 
 use App\Exceptions\ApiServiceException;
+use App\Services\v1\PushService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Errors\ErrorCode;
 use App\Models\Subscriptions\Subscription;
@@ -69,7 +70,6 @@ class SubscriptionServiceImpl implements SubscriptionService
                 'actual_price' => $price
             ]);
             $this->historyService->subscription($subscription, $firstSubscription);
-            // Level must be here calculate
             DB::commit();
             return "Успешно!";
         } catch (\Exception $exception) {
@@ -130,6 +130,7 @@ class SubscriptionServiceImpl implements SubscriptionService
             ]);
             $this->historyService->subscription($subscription, $firstSubscription, $transactionId);
             DB::commit();
+
             return "Успешно!";
         } catch (\Exception $exception) {
             DB::rollBack();

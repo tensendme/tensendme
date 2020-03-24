@@ -52,7 +52,7 @@ class WithdrawalServiceImpl implements WithdrawalRequestService
             'user_id' => $user->id,
             'status' => WithdrawalRequest::PROCESSING
         ]);
-        return "Ваш запрос успешно отправлен, в течений 2-3 суток вам поступят деньги на карту которую вы привязали!";
+        return "Ваш запрос успешно отправлен, в течений 2-3 суток с вами свяжутся!";
     }
 
     public function approve($id, $comment)
@@ -97,14 +97,19 @@ class WithdrawalServiceImpl implements WithdrawalRequestService
         if ($withdrawal->status != WithdrawalRequest::PROCESSING) {
             throw new WebServiceErroredException(trans('admin.error') . ': ' . 'Запрос уже обработан!');
         }
+        $user = User::find($withdrawal->user_id);
         $withdrawal->status = WithdrawalRequest::CANCELLED;
         $withdrawal->approved_by = Auth::user()->id;
         $withdrawal->approved_at = now();
         $withdrawal->comment = $comment;
 
-        $this->historyService->withdrawalMake($withdrawal);
+//        $this->historyService->withdrawalMake($withdrawal);
         $withdrawal->save();
-        // Push notification
+        $this->pushService
+            ->passGeneralPushToQueue(
+                $user,
+                'Ваша заявка по выводу средств отклонена!',
+                $comment);
     }
 
 }

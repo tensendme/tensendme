@@ -84,6 +84,7 @@ class UserController extends WebBaseController
 
         $users = User::orderBy('created_at', 'desc')->with(['role', 'level', 'city', 'balance'])->paginate(10);
         $roles = Role::all();
+        $levels = Level::all();
         foreach ($users as $user) {
             switch ($user->role->id) {
                 case Role::AUTHOR_ID:
@@ -131,13 +132,14 @@ class UserController extends WebBaseController
             }
             $role->name = $roleName;
         }
-        return view('admin.users.index', compact('users', 'roles'));
+        return view('admin.users.index', compact('users', 'roles', 'levels'));
     }
 
     public function filter()
     {
         $users = QueryBuilder::for(User::class)
-            ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email', 'created_at', 'phone'])
+            ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email',
+                'created_at', 'phone', 'level_id', 'platform'])
             ->orderBy('id', 'desc')
             ->with(['role', 'level', 'city', 'balance'])->paginate(10);
         foreach ($users as $user) {

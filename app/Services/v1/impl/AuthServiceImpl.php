@@ -105,6 +105,15 @@ class AuthServiceImpl implements AuthService
         $user->promo_code = $user->promoCode();
         $user->city_id = $request->city_id ? $request->city_id : 1;
         if ($request->has('phone')) {
+            $checkPhone = User::where('phone', '=', $request->phone)->first();
+            if($checkPhone) {
+                throw new ApiServiceException(409, false, [
+                    'errors' => [
+                        'User not created'
+                    ],
+                    'errorCode' => ErrorCode::ALREADY_EXISTS
+                ]);
+            }
             $user->phone = $request->phone;
             //VerifyPhone
         } else if ($request->has('email')) {
