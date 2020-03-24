@@ -109,7 +109,7 @@ class AuthServiceImpl implements AuthService
             if($checkPhone) {
                 throw new ApiServiceException(409, false, [
                     'errors' => [
-                        'User not created'
+                        'Phone number exist'
                     ],
                     'errorCode' => ErrorCode::ALREADY_EXISTS
                 ]);
