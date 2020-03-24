@@ -1818,3 +1818,17 @@ password: tensendme2020n
    }
 ```
 
+
+### Получить About Tensend
+#### URL: https://tensend.me/api/v1/about/tensend
+
+```
+    GET Request:
+        
+    RESPONSE:
+{
+    "url": "https://tensend.me/#features-section",
+    "success": true
+}
+```
+

@@ -37,4 +37,10 @@ class StaticController extends ApiBaseController
     {
         return $this->successResponse(['faqs' => $this->staticService->getAllFaqs()]);
     }
+
+    public function getAboutTensend()
+    {
+        $url="https://tensend.me/#features-section";
+        return $this->successResponse(['url' => $url]);
+    }
 }
