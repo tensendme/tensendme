@@ -101,7 +101,7 @@ class ProfileServiceImpl implements ProfileService
         if ($ratingAnalytic) {
             $profile->activity = 0;
             $profile->tensend = $ratingAnalytic->installed;
-            $profile->rating = $ratingAnalytic->installed;
+            $profile->rating = $ratingAnalytic->purchased;
 
             $profile->clicks_count = $ratingAnalytic->came;
             $profile->click_count = $ratingAnalytic->came;
