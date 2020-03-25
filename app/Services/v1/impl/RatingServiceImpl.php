@@ -102,8 +102,10 @@ class RatingServiceImpl implements RatingService
         return DB::table('users as u')
             ->select([
                 'u.id',
-                'u.name',
-                'u.surname',
+                DB::raw('case when ISNULL(u.name) then "" else u.name end as name'),
+//                'u.name',
+                DB::raw('case when ISNULL(u.surname) then "" else u.surname end as surname'),
+//                'u.surname',
                 'u.father_name',
                 'u.image_path',
                 'u.level_id',
