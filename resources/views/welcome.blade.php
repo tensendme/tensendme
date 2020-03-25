@@ -82,9 +82,9 @@
         <div class="site-navbar site-navbar-target js-sticky-header">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-6 col-lg-2">
-                        <h1 class="my-0 site-logo"><a href="/">Tensend</a></h1>
-                    </div>
+{{--                    <div class="col-6 col-lg-2">--}}
+{{--                        <h1 class="my-0 site-logo"><a href="/">Tensend</a></h1>--}}
+{{--                    </div>--}}
                     <div class="col-6 col-lg-10">
                         <nav class="site-navigation text-right" role="navigation">
                             <div class="container">
@@ -166,151 +166,151 @@
                     <a href="{{asset('docs/Payment.pdf')}}">@lang('messages.politicsHead')</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-book"></span>
-              </span>
-                        <h3>@lang('messages.educationHead')</h3>
-                        <p>@lang('messages.educationText')</p>
-                    </div>
+{{--            <div class="row">--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-book"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.educationHead')</h3>--}}
+{{--                        <p>@lang('messages.educationText')</p>--}}
+{{--                    </div>--}}
 
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-bar-chart"></span>
-              </span>
-                        <h3>@lang('messages.statisticsHead')</h3>
-                        <p>@lang('messages.statisticsText')
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-attach_money"></span>
-              </span>
-                        <h3>@lang('messages.getCashHead')</h3>
-                        <p>@lang('messages.getCashText')
-                        </p>
-                    </div>
-                </div>
+{{--                </div>--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-bar-chart"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.statisticsHead')</h3>--}}
+{{--                        <p>@lang('messages.statisticsText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-attach_money"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.getCashHead')</h3>--}}
+{{--                        <p>@lang('messages.getCashText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-first-order"></span>
-              </span>
-                        <h3>@lang('messages.HoaxesHead')</h3>
-                        <p>@lang('messages.HoaxesText')
-                    </div>
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-first-order"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.HoaxesHead')</h3>--}}
+{{--                        <p>@lang('messages.HoaxesText')--}}
+{{--                    </div>--}}
 
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-star"></span>
-              </span>
-                        <h3>@lang('messages.marketHead')</h3>
-                        <p>@lang('messages.marketText')</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-monetization_on"></span>
-              </span>
-                        <h3>@lang('messages.additionalInfoHead')</h3>
-                        <p>@lang('messages.additionalInfoText')</p>
-                    </div>
-                </div>
+{{--                </div>--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-star"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.marketHead')</h3>--}}
+{{--                        <p>@lang('messages.marketText')</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-monetization_on"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.additionalInfoHead')</h3>--}}
+{{--                        <p>@lang('messages.additionalInfoText')</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-            </div>
+{{--            </div>--}}
         </div>
     </div>
-    <div class="site-section bg-light" id="features-section">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md-7">
-                    <h2 class="heading">@lang('messages.text2')</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-attach_money"></span>
-              </span>
-                        <h3>@lang('messages.findMoneyHead')</h3>
-                        <p>@lang('messages.findMoneyText')</p>
-                    </div>
+{{--    <div class="site-section bg-light" id="features-section">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row mb-5">--}}
+{{--                <div class="col-md-7">--}}
+{{--                    <h2 class="heading">@lang('messages.text2')</h2>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-attach_money"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.findMoneyHead')</h3>--}}
+{{--                        <p>@lang('messages.findMoneyText')</p>--}}
+{{--                    </div>--}}
 
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-people_outline"></span>
-              </span>
-                        <h3>@lang('messages.findStudentHead')</h3>
-                        <p>@lang('messages.findStudentText')
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-plus"></span>
-              </span>
-                        <h3>@lang('messages.enterCommunityHead')</h3>
-                        <p>@lang('messages.enterCommunityText')
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="site-section bg-light" id="features-section">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md-7">
-                    <h2 class="heading">@lang('messages.text3')</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-event_note"></span>
-              </span>
-                        <h3>@lang('messages.planCourseHead')</h3>
-                        <p>@lang('messages.planCourseText')</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-camera"></span>
-              </span>
-                        <h3>@lang('messages.writeVideoHead')</h3>
-                        <p>@lang('messages.writeVideoText')
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service h-100">
-              <span class="wrap-icon">
-                <span class="icon-camera_front"></span>
-              </span>
-                        <h3>@lang('messages.newCourseHead')</h3>
-                        <p>@lang('messages.newCourseText')
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                </div>--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-people_outline"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.findStudentHead')</h3>--}}
+{{--                        <p>@lang('messages.findStudentText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-plus"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.enterCommunityHead')</h3>--}}
+{{--                        <p>@lang('messages.enterCommunityText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <div class="site-section bg-light" id="features-section">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row mb-5">--}}
+{{--                <div class="col-md-7">--}}
+{{--                    <h2 class="heading">@lang('messages.text3')</h2>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-event_note"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.planCourseHead')</h3>--}}
+{{--                        <p>@lang('messages.planCourseText')</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-camera"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.writeVideoHead')</h3>--}}
+{{--                        <p>@lang('messages.writeVideoText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-6 col-lg-4 mb-4">--}}
+{{--                    <div class="service h-100">--}}
+{{--              <span class="wrap-icon">--}}
+{{--                <span class="icon-camera_front"></span>--}}
+{{--              </span>--}}
+{{--                        <h3>@lang('messages.newCourseHead')</h3>--}}
+{{--                        <p>@lang('messages.newCourseText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     {{--    <div class="site-section">--}}
     {{--        <div class="container">--}}
@@ -335,82 +335,82 @@
     {{--            </div>--}}
     {{--        </div>--}}
     {{--    </div>--}}
-    <div class="site-section bg-light" id="features-section">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md-7">
-                    <h2 class="heading">@lang('messages.text5')</h2>
-                </div>
-                <div class="author  d-lg-flex" id="about-section">
-                    <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
-                    <div class="text">
-                        <h3>@lang('messages.courseLessonsHead')</h3>
-                        <p>@lang('messages.courseLessonsText')
-                        </p>
-                    </div>
-                </div>
-                <div class="author d-lg-flex mt-4" id="about-section">
-                    <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
-                    <div class="text">
-                        <h3>@lang('messages.courseAccessHead')</h3>
-                        <p>@lang('messages.courseAccessText')</p>
-                    </div>
-                </div>
-                <div class="author d-lg-flex mt-4" id="about-section">
-                    <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>
-                    <div class="text">
-                        <h3>@lang('messages.certifiHead')</h3>
-                        <p>@lang('messages.certifiText')</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="site-section bg-light" id="features-section">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row mb-5">--}}
+{{--                <div class="col-md-7">--}}
+{{--                    <h2 class="heading">@lang('messages.text5')</h2>--}}
+{{--                </div>--}}
+{{--                <div class="author  d-lg-flex" id="about-section">--}}
+{{--                    <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>--}}
+{{--                    <div class="text">--}}
+{{--                        <h3>@lang('messages.courseLessonsHead')</h3>--}}
+{{--                        <p>@lang('messages.courseLessonsText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="author d-lg-flex mt-4" id="about-section">--}}
+{{--                    <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>--}}
+{{--                    <div class="text">--}}
+{{--                        <h3>@lang('messages.courseAccessHead')</h3>--}}
+{{--                        <p>@lang('messages.courseAccessText')</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="author d-lg-flex mt-4" id="about-section">--}}
+{{--                    <div class="bg-img" style="background-image: url('{{asset('front/images/author_1.jpg')}}');"></div>--}}
+{{--                    <div class="text">--}}
+{{--                        <h3>@lang('messages.certifiHead')</h3>--}}
+{{--                        <p>@lang('messages.certifiText')</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
-    <div class="site-section bg-light" id="features-section">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md-6">
-                    <h2 class="heading">
-                        @lang('messages.CRMHead')</h2>
-                    <p>@lang('messages.CRMText')
-                    </p>
-                </div>
-                <div class="author  d-lg-flex" id="about-section">
-                    <div class="text">
-                        <h3>@lang('messages.onlinePayHead')</h3>
-                        <p>@lang('messages.onlinePayText')
-                        </p>
-                    </div>
+{{--    <div class="site-section bg-light" id="features-section">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row mb-5">--}}
+{{--                <div class="col-md-6">--}}
+{{--                    <h2 class="heading">--}}
+{{--                        @lang('messages.CRMHead')</h2>--}}
+{{--                    <p>@lang('messages.CRMText')--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--                <div class="author  d-lg-flex" id="about-section">--}}
+{{--                    <div class="text">--}}
+{{--                        <h3>@lang('messages.onlinePayHead')</h3>--}}
+{{--                        <p>@lang('messages.onlinePayText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
 
-                    <div class="card">
-                        <img class="img img-fluid smart_phone" src="{{asset('tensendMobile.png')}}">
-                    </div>
-                </div>
-                <div class="author d-lg-flex mt-4" id="about-section">
-                    <div class="text">
-                        <h3>@lang('messages.analyticsHead')</h3>
-                        <p>@lang('messages.analyticsText')
-                        </p>
-                    </div>
+{{--                    <div class="card">--}}
+{{--                        <img class="img img-fluid smart_phone" src="{{asset('tensendMobile.png')}}">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="author d-lg-flex mt-4" id="about-section">--}}
+{{--                    <div class="text">--}}
+{{--                        <h3>@lang('messages.analyticsHead')</h3>--}}
+{{--                        <p>@lang('messages.analyticsText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
 
-                    <div class="card">
-                        <img class="img img-fluid smart_phone" src="{{asset('tensendMobile.png')}}">
-                    </div>
-                </div>
-                <div class="author d-lg-flex mt-4" id="about-section">
-                    <div class="text">
-                        <h3>@lang('messages.pushHead')</h3>
-                        <p>@lang('messages.pushText')
-                        </p>
-                    </div>
-                    <div class="card">
-                        <img class="img img-fluid smart_phone" src="{{asset('tensendMobile.png')}}">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                    <div class="card">--}}
+{{--                        <img class="img img-fluid smart_phone" src="{{asset('tensendMobile.png')}}">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="author d-lg-flex mt-4" id="about-section">--}}
+{{--                    <div class="text">--}}
+{{--                        <h3>@lang('messages.pushHead')</h3>--}}
+{{--                        <p>@lang('messages.pushText')--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                    <div class="card">--}}
+{{--                        <img class="img img-fluid smart_phone" src="{{asset('tensendMobile.png')}}">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
 
     <div class="site-section bg-light" id="testimonial-section">

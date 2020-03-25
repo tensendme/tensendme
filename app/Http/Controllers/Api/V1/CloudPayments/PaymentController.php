@@ -26,6 +26,15 @@ class PaymentController extends ApiBaseController
 
     }
 
+    public function makeWithdraw() {
+
+
+//        return $this->successResponse(['result' => $this->paymentService->subscribe($request)]);
+        return $this->paymentService->makeWithdraw();
+
+
+    }
+
 
     public function saveCard(Request $request) {
 

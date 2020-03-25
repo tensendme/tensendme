@@ -120,7 +120,6 @@ class ProfileServiceImpl implements ProfileService
             $profile->subscriptions_count = 0;
             $profile->requests_count = 0;
         }
-        $analyzes = $user->analyze();
 //        foreach ($analyzes as $analyze) {
 //            switch ($analyze->type) {
 //                case 1:

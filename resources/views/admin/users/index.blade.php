@@ -34,7 +34,7 @@
                                         <input class="form-control" type="text" name="fatherName" placeholder="Каприо" id="fatherName">
                                     </div>
                                     <div class="col-3">
-                                        <label for="fatherName" class="form-control-plaintext">Отчество</label>
+                                        <label for="fatherName" class="form-control-plaintext">Роль</label>
                                         <select class="form-control" type="text" name="role" id="role">
                                             <option value="">Все роли</option>
                                             @foreach($roles as $role)
@@ -42,6 +42,33 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col-3">
+                                        <label for="level" class="form-control-plaintext">Уровень</label>
+                                        <select class="form-control" type="text" name="level" id="level">
+                                            <option value="">Все уровни</option>
+                                            @foreach($levels as $level)
+                                                <option value="{{$level->id}}">{{$level->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="platform" class="form-control-plaintext">Платформа</label>
+                                        <select class="form-control" type="text" name="platform" id="platform">
+                                            <option value="">Все</option>
+                                            <option value="IOS">Apple IOS</option>
+                                            <option value="ANDROID">Android</option>
+                                        </select>
+                                    </div>
+{{--                                    <div class="col-3">--}}
+{{--                                        <div class="col-3">--}}
+{{--                                            <label for="platform" class="form-control-plaintext">Платформа</label>--}}
+{{--                                            <select class="form-control" type="text" name="platform" id="platform">--}}
+{{--                                                <option value="">Все</option>--}}
+{{--                                                <option value="IOS">Apple IOS</option>--}}
+{{--                                                <option value="ANDROID">Android</option>--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -75,10 +102,14 @@
             var surname = document.getElementById('surname');
             var fatherName = document.getElementById('fatherName');
             var role = document.getElementById('role');
+            var level = document.getElementById('level');
+            var platform = document.getElementById('platform');
             filter['name'] = name.value;
             filter['surname'] = surname.value;
             filter['father_name'] = fatherName.value;
             filter['role_id'] = role.value;
+            filter['level_id'] = level.value;
+            filter['platform'] = platform.value;
             filter['phone'] =  phone.value.replace(/\D/g,'');
             var query = '';
             for (var key in filter) {
