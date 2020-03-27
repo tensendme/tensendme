@@ -138,11 +138,11 @@ class AuthServiceImpl implements AuthService
         // create free subscription
         if($user->phone == '77001234567'){
             $this->subscriptionService->freeSubscribe($user->id);
-
         }
 //        $this->subscriptionService->freeSubscribe($user->id);
         //create balance
         $user->getBalance();
+        $this->setDeviceToken($user, $request->device_token, $request->platform);
         return $user->current_token;
     }
 
