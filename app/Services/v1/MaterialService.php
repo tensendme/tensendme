@@ -12,4 +12,5 @@ namespace App\Services\v1;
 interface MaterialService
 {
     public function getMaterialById($id);
+    public function videoCompress($id);
 }
