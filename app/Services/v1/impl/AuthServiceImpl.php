@@ -136,7 +136,7 @@ class AuthServiceImpl implements AuthService
 
         $user->save();
         // create free subscription
-        if($user->phone == '77001234567'){
+        if ($user->phone == '77001234567') {
             $this->subscriptionService->freeSubscribe($user->id);
         }
 //        $this->subscriptionService->freeSubscribe($user->id);
