@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TransactionController extends Controller
 {
     public function index() {
-        $transactions = Transaction::with('user')->paginate(10);
+        $transactions = Transaction::with('user')->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.userActions.transactions.index', compact('transactions'));
     }
 }
