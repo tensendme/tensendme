@@ -47,6 +47,7 @@ Route::group(['middleware' => 'api'], function () {
     });
 
     Route::group(['namespace' => 'Course'], function () {
+//        Route::post('courses/material/{id}', ['uses' => 'MaterialController@videoCompress'])->where('id', '[0-9]+');
         Route::group(['middleware' => 'auth:api'], function () {
             Route::get('/courses', ['uses' => 'CourseController@getAllCourses']);
             Route::get('/courses/category/{categoryId}', ['uses' => 'CourseController@getCoursesByCategory'])
