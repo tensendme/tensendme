@@ -237,16 +237,16 @@
         <br>
         <br>
     </div>
-    {{--<div class="row">--}}
-        {{--<a href="itms-apps://apple.com/today">--}}
-            {{--<img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">--}}
-            {{--<span id="downloadUrlSpanIos">App Store</span>--}}
-        {{--</a>--}}
-        {{--<a href="https://play.google.com/store/apps/details?id=kz.ysmaiyl.app.tensend">--}}
-            {{--<img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">--}}
-            {{--<span id="downloadUrlSpanAndroid">Google Play</span>--}}
-        {{--</a>--}}
-    {{--</div>--}}
+    <div class="row">
+        <a>
+            <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
+            <span id="downloadUrlSpanIos">App Store</span>
+        </a>
+        <a>
+            <img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">
+            <span id="downloadUrlSpanAndroid">Google Play</span>
+        </a>
+    </div>
     {{--    <div class="step">--}}
     {{--        <h1>3</h1>--}}
     {{--    </div>--}}
