@@ -74,6 +74,7 @@
         .content {
             text-align: center;
         }
+
         .w-97 {
             background-color: rgba(0, 77, 192, 0.9);
             height: 50px;
@@ -86,12 +87,15 @@
             box-shadow: 0px 1px 18px 12px rgba(0, 77, 201, 0.17);
             border-radius: 15px;
         }
-        .w-97:disabled{
+
+        .w-97:disabled {
             opacity: 0.4;
         }
+
         .title {
             font-size: 35px;
         }
+
         .phone {
             font-size: 26.5px;
         }
@@ -163,8 +167,6 @@
             color: black;
         }
 
-
-
         .wave {
             background-image: url({{asset('wave.svg')}});
             background-size: 250px;
@@ -173,15 +175,17 @@
         }
 
         .downloadUrl {
-            width:40px;
-            height:40px;
-            margin-left:0.8px;
+            width: 40px;
+            height: 40px;
+            margin-left: 0.8px;
 
         }
+
         .downloadUrlApple {
-            width:42.5px;
-            height:40px;
+            width: 42.5px;
+            height: 40px;
         }
+
         #downloadUrlSpanIos {
             color: white;
             margin-top: 8px;
@@ -190,6 +194,7 @@
             font-style: normal;
 
         }
+
         #downloadUrlSpanAndroid {
             margin-top: 8px;
             color: white;
@@ -213,17 +218,18 @@
     <div class="content">
         <form method="POST" action="{{route('promo-code.post', ['promoCode' => $promoCode])}}">
             {{csrf_field()}}
-        <h3>Телефон нөмеріңіз</h3>
-        <div class="row">
-        <select id="id_select2_example" style="width: 150px;" name="country">
-            @foreach($countries as $country)
-                <option value="{{$country->id}}" data-img_src="{{asset($country->image_path)}}">
-                    {{$country->phone_prefix}}
-                </option>
-            @endforeach
-        </select>
-            <input id="phone" class="phone m-b-md" type="text" inputmode="numeric" name="phone" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
-        </div>
+            <h3>Телефон нөмеріңіз</h3>
+            <div class="row">
+                <select id="id_select2_example" style="width: 150px;" name="country">
+                    @foreach($countries as $country)
+                        <option value="{{$country->id}}" data-img_src="{{asset($country->image_path)}}">
+                            {{$country->phone_prefix}}
+                        </option>
+                    @endforeach
+                </select>
+                <input id="phone" class="phone m-b-md" type="text" inputmode="numeric" name="phone"
+                       pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
+            </div>
             <input class="w-97 submit-btn" type="submit" value="Жіберу" id="sendPhone" disabled>
         </form>
         <br>
@@ -231,41 +237,40 @@
         <br>
         <br>
     </div>
-        <div class="row">
-            <a href="itms-apps://apple.com/today">
-                <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
-                <span id="downloadUrlSpanIos">App Store</span>
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=kz.ysmaiyl.app.tensend">
-                <img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">
-                <span id="downloadUrlSpanAndroid">Google Play</span>
-            </a>
-        </div>
-    </div>
-{{--    <div class="step">--}}
-{{--        <h1>3</h1>--}}
-{{--    </div>--}}
-{{--    <h3 class="content">--}}
-{{--        После того как скачаешь<br>--}}
-{{--        введи уникальный промо-код,<br>--}}
-{{--        указанный ниже и получи скидку<br>--}}
-{{--        <p class="discount">-20%</p>--}}
-{{--    </h3>--}}
-{{--    <div class="content">--}}
-{{--        <h3>Твой промо-код</h3>--}}
-{{--        <input disabled id="copyText" class="title m-b-md" type="text" value="{{$promoCode}}">--}}
-{{--        <div>--}}
-{{--            <a style="margin-left: 50px; float: right" class="cursorShow position-ref"--}}
-{{--               onclick="copyFunction()">--}}
-{{--                <span class="fa fa-clone"></span>--}}
-{{--                <span id="myToolTip" class="tooltiptext">Скопировано</span>--}}
-{{--            </a>--}}
-{{--        </div>--}}
-{{--        <br>--}}
-{{--        <br>--}}
-{{--        <br>--}}
-{{--        <br>--}}
-{{--    </div>--}}
+    {{--<div class="row">--}}
+        {{--<a href="itms-apps://apple.com/today">--}}
+            {{--<img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">--}}
+            {{--<span id="downloadUrlSpanIos">App Store</span>--}}
+        {{--</a>--}}
+        {{--<a href="https://play.google.com/store/apps/details?id=kz.ysmaiyl.app.tensend">--}}
+            {{--<img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">--}}
+            {{--<span id="downloadUrlSpanAndroid">Google Play</span>--}}
+        {{--</a>--}}
+    {{--</div>--}}
+    {{--    <div class="step">--}}
+    {{--        <h1>3</h1>--}}
+    {{--    </div>--}}
+    {{--    <h3 class="content">--}}
+    {{--        После того как скачаешь<br>--}}
+    {{--        введи уникальный промо-код,<br>--}}
+    {{--        указанный ниже и получи скидку<br>--}}
+    {{--        <p class="discount">-20%</p>--}}
+    {{--    </h3>--}}
+    {{--    <div class="content">--}}
+    {{--        <h3>Твой промо-код</h3>--}}
+    {{--        <input disabled id="copyText" class="title m-b-md" type="text" value="{{$promoCode}}">--}}
+    {{--        <div>--}}
+    {{--            <a style="margin-left: 50px; float: right" class="cursorShow position-ref"--}}
+    {{--               onclick="copyFunction()">--}}
+    {{--                <span class="fa fa-clone"></span>--}}
+    {{--                <span id="myToolTip" class="tooltiptext">Скопировано</span>--}}
+    {{--            </a>--}}
+    {{--        </div>--}}
+    {{--        <br>--}}
+    {{--        <br>--}}
+    {{--        <br>--}}
+    {{--        <br>--}}
+    {{--    </div>--}}
 @else
     <h1 class="content">Ссылка устарела или не найдена!</h1>
 @endif
@@ -291,15 +296,16 @@
     }
 </script>
 <script type="text/javascript">
-    function custom_template(obj){
+    function custom_template(obj) {
         var data = $(obj.element).data();
         var text = $(obj.element).text();
-        if(data && data['img_src']){
+        if (data && data['img_src']) {
             img_src = data['img_src'];
             template = $("<div class=\"row\"><img class=\"custom_image_size\" src=\"" + img_src + "\" style=\"width:auto;height:25px;\"/><p style=\"font-weight: 700;font-size:11.5pt;text-align:center;\">" + text + "</p></div>");
             return template;
         }
     }
+
     var options = {
         'templateSelection': custom_template,
         'templateResult': custom_template,
@@ -307,6 +313,7 @@
     $('#id_select2_example').select2(options);
     $('.select2-container--default .select2-selection--single').css({'height': '59px'});
     $('.select2-container--default').css({'margin': '0 0 0 6px'});
+
     // $('.select2-container--open .select2-dropdown--below').css({'left': '6px'});
 
     function validate_int(myEvento) {
@@ -347,7 +354,7 @@
         }
         document.getElementById("phone").value = myOutPut;
         document.getElementById("phone").setSelectionRange(theLastPos, theLastPos);
-        if(theLastPos === 15) {
+        if (theLastPos === 15) {
             document.getElementById('sendPhone').disabled = false;
         }
         else {
@@ -355,6 +362,7 @@
         }
 
     }
+
     document.getElementById("phone").onkeypress = validate_int;
     document.getElementById("phone").onkeyup = phone_number_mask;
 </script>
