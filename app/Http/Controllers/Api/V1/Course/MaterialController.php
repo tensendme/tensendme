@@ -20,7 +20,7 @@ class MaterialController extends ApiBaseController
         return $this->successResponse(['material' => $this->materialService->getMaterialById($id)]);
     }
 
-    public function videoCompress($id) {
-        return $this->successResponse(['path' => $this->materialService->videoCompress($id)]);
-    }
+//    public function videoCompress($id) {
+//        return $this->successResponse(['path' => $this->materialService->videoCompress($id)]);
+//    }
 }

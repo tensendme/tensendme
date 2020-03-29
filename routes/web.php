@@ -82,6 +82,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/subscription/types', ['uses' => 'SubscriptionTypeController@index', 'as' => 'subscription.type.index']);
                 Route::get('/subscriptions', ['uses' => 'SubscriptionController@index', 'as' => 'subscription.index']);
                 Route::get('/followers', ['uses' => 'FollowerController@index', 'as' => 'follower.index']);
+                Route::get('/transactions', ['uses' => 'TransactionController@index', 'as' => 'transaction.index']);
 
 
             });

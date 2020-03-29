@@ -119,6 +119,11 @@
                                 <i class=" material-icons">monetization_on</i>
                                 <span>Запросы</span>
                             </a>
+                            <a href="{{route('transaction.index')}}"
+                               class="nav-link dropdown-item {{Helper::urlActiveHelper('transaction')}}">
+                                <i class=" material-icons">account_balance_wallet</i>
+                                <span>Транзакции</span>
+                            </a>
                             <a href="{{route('history.index')}}"
                                class="nav-link dropdown-item {{Helper::urlActiveHelper('history')}}">
                                 <i class=" material-icons">history</i>

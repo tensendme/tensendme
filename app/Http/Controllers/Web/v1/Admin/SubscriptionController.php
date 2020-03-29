@@ -23,6 +23,7 @@ class SubscriptionController extends WebBaseController
         $subscriptionType = SubscriptionType::where('price', 0)->first();
         $subscriptions = Subscription::where('subscription_type_id', '!=', $subscriptionType->id)
             ->orderBy('created_at', 'desc')
+            ->with('user', 'subscriptionType')
             ->paginate(10);
         return view('admin.userActions.subscriptions.index', compact('subscriptions'));
     }
