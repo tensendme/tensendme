@@ -189,7 +189,10 @@
                             description: $('#bootboxDescription').val(),
                         },
                         success: function (resp) {
-                            console.log(resp);
+                            toastr.success('Успешно отправлено!');
+                        },
+                        error: function (err) {
+                            toastr.warning('Ошибка!');
                         }
                     })
                 }
