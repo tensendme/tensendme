@@ -92,6 +92,9 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/withdrawals/approve/{id}', ['uses' => 'WithdrawalController@approve', 'as' => 'withdrawal.approve'])->where('id', '[0-9]+');
                 Route::post('/withdrawals/cancel/{id}', ['uses' => 'WithdrawalController@cancel', 'as' => 'withdrawal.cancel'])->where('id', '[0-9]+');
                 Route::get('/histories', ['uses' => 'HistoryController@index', 'as' => 'history.index']);
+
+                //AJAX REQUEST
+                Route::post('/send/push/{id}' ,['uses' => 'UserController@sendPush']);
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::CONTENT_MANAGER_ID . ',' . Role::SUPER_ADMIN_ID . ',' . Role::AUTHOR_ID]], function () {

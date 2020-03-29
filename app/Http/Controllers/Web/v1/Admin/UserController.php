@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\Web\V1\Admin;
 
+use App\CloudMessaging\Pushes\GeneralPush;
 use App\Exceptions\WebServiceErroredException;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Requests\Web\V1\UserControllerRequest\UpdateProfilePasswordWebRequest;
 use App\Http\Requests\Web\V1\UserControllerRequest\UpdateProfileWebRequest;
 use App\Http\Requests\Web\V1\UserControllerRequest\UserRequest;
 use App\Http\Requests\Web\V1\UserControllerRequest\UserStoreRequest;
+use App\Jobs\SendPush;
+use App\JobTemplates\PushJobTemplate;
 use App\Models\Profiles\Balance;
 use App\Models\Profiles\City;
 use App\Models\Profiles\Level;
 use App\Models\Profiles\Role;
 use App\Models\Profiles\User;
 use App\Models\Subscriptions\SubscriptionType;
+use App\Queues\QueueConstants;
 use App\Services\v1\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -275,6 +279,15 @@ class UserController extends WebBaseController
             $role->name = $roleName;
         }
         return view('admin.users.create', compact('levels', 'cities', 'roles'));
+    }
+
+    public function sendPush($id, Request $request)
+    {
+        $user = User::findOrFail($id);
+        $generalPush = new GeneralPush($request->title, $request->description);
+        $pushJobTemplate = new PushJobTemplate($user, $generalPush);
+        SendPush::dispatch($pushJobTemplate)->onQueue(QueueConstants::NOTIFICATIONS_QUEUE);
+        return response()->json(['message' => 'send']);
     }
 
     public function store(UserStoreRequest $request)

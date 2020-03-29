@@ -23,15 +23,18 @@
                                     </div>
                                     <div class="col-3">
                                         <label for="name" class="form-control-plaintext">Имя</label>
-                                        <input class="form-control" type="text" name="name" placeholder="Леонардо" id="name">
+                                        <input class="form-control" type="text" name="name" placeholder="Леонардо"
+                                               id="name">
                                     </div>
                                     <div class="col-3">
                                         <label for="surname" class="form-control-plaintext">Фамилия</label>
-                                        <input class="form-control" type="text" name="surname" placeholder="Ди" id="surname">
+                                        <input class="form-control" type="text" name="surname" placeholder="Ди"
+                                               id="surname">
                                     </div>
                                     <div class="col-3">
                                         <label for="fatherName" class="form-control-plaintext">Отчество</label>
-                                        <input class="form-control" type="text" name="fatherName" placeholder="Каприо" id="fatherName">
+                                        <input class="form-control" type="text" name="fatherName" placeholder="Каприо"
+                                               id="fatherName">
                                     </div>
                                     <div class="col-3">
                                         <label for="fatherName" class="form-control-plaintext">Роль</label>
@@ -59,16 +62,16 @@
                                             <option value="ANDROID">Android</option>
                                         </select>
                                     </div>
-{{--                                    <div class="col-3">--}}
-{{--                                        <div class="col-3">--}}
-{{--                                            <label for="platform" class="form-control-plaintext">Платформа</label>--}}
-{{--                                            <select class="form-control" type="text" name="platform" id="platform">--}}
-{{--                                                <option value="">Все</option>--}}
-{{--                                                <option value="IOS">Apple IOS</option>--}}
-{{--                                                <option value="ANDROID">Android</option>--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                                    {{--                                    <div class="col-3">--}}
+                                    {{--                                        <div class="col-3">--}}
+                                    {{--                                            <label for="platform" class="form-control-plaintext">Платформа</label>--}}
+                                    {{--                                            <select class="form-control" type="text" name="platform" id="platform">--}}
+                                    {{--                                                <option value="">Все</option>--}}
+                                    {{--                                                <option value="IOS">Apple IOS</option>--}}
+                                    {{--                                                <option value="ANDROID">Android</option>--}}
+                                    {{--                                            </select>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </div>--}}
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -77,7 +80,7 @@
                                 </button>
                             </div>
                         </div>
-                     </div>
+                    </div>
                 </div>
                 <div class="card-header border-bottom">
                     <a href="{{route('users.create')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Добавить
@@ -95,6 +98,7 @@
     <script>
         var table = document.getElementById('usersTable');
         console.log(table);
+
         function search() {
             var filter = [];
             var name = document.getElementById('name');
@@ -110,17 +114,17 @@
             filter['role_id'] = role.value;
             filter['level_id'] = level.value;
             filter['platform'] = platform.value;
-            filter['phone'] =  phone.value.replace(/\D/g,'');
+            filter['phone'] = phone.value.replace(/\D/g, '');
             var query = '';
             for (var key in filter) {
-                if(filter[key]) {
-                    query +='filter[' + key + ']=' + filter[key] + '&';
+                if (filter[key]) {
+                    query += 'filter[' + key + ']=' + filter[key] + '&';
                 }
                 console.log("key " + key + " has value " + filter[key]);
             }
             fetch('{{route('users.filter')}}?' + query)
                 .then((response) => response.text()).then((response) => {
-                    table.innerHTML = response;
+                table.innerHTML = response;
             }).catch((error) => {
                 console.error('Error:', error);
             });
@@ -165,7 +169,35 @@
             document.getElementById("phone").value = myOutPut;
             document.getElementById("phone").setSelectionRange(theLastPos, theLastPos);
         }
+
         document.getElementById("phone").onkeypress = validate_int;
         document.getElementById("phone").onkeyup = phone_number_mask;
+
+        function sendPush(userID) {
+            bootbox.confirm(`
+
+            <form id='infos' action=''>\
+            Тема: <input class='form-control' id='bootboxTitle' type='text' name='first_name' /><br/>\
+            Контент :<input class='form-control' id='bootboxDescription' type='text' name='last_name' />\
+            </form>`, function (result) {
+                if (result) {
+                    $.ajax('/send/push/' + userID, {
+                        type: 'post',
+                        data: {
+                            _token: $('#csrf-token')[0].content,
+                            title: $('#bootboxTitle').val(),
+                            description: $('#bootboxDescription').val(),
+                        },
+                        success: function (resp) {
+                            toastr.success('Успешно отправлено!');
+                        },
+                        error: function (err) {
+                            toastr.warning('Ошибка!');
+                        }
+                    })
+                }
+            });
+
+        }
     </script>
 @endsection
