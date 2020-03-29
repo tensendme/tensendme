@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterCategoriesTable extends Migration
+class CreateLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class AlterCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
+        Schema::create('links', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->longText('url')->nullable(true);
+            $table->string('img_path')->nullable(true);
+            $table->string('title')->nullable(true);
             $table->tinyInteger('is_visible')->default(0);
         });
     }
@@ -25,8 +29,6 @@ class AlterCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('is_visible');
-        });
+        Schema::dropIfExists('links');
     }
 }

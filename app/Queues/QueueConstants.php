@@ -12,4 +12,5 @@ namespace App\Queues;
 class QueueConstants
 {
     public const NOTIFICATIONS_QUEUE = "notifications";
+    public const VIDEO_COMPRESS_QUEUE = "compressions";
 }

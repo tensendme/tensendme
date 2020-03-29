@@ -176,7 +176,13 @@
                             <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('marketingMaterial.index')}}"
                                href="{{route('marketingMaterial.index')}}">
                                 <i class="material-icons">attach_file</i>
-                                <span>Marketing material</span>
+                                <span>Marketing материалы</span>
+                            </a>
+
+                            <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('setting.index')}}"
+                               href="{{route('setting.index')}}">
+                                <i class="material-icons">info</i>
+                                <span>Про нас</span>
                             </a>
                         </div>
                     </div>

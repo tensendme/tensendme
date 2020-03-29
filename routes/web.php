@@ -207,6 +207,8 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
                 Route::post('/courses/advertise/{id}', ['uses' => 'CourseController@advertiseChange', 'as' => 'course.advertise'])->where('id', '[0-9]+');
 
+                Route::get('settings', ['uses' => 'SettingController@index', 'as' => 'setting.index']);
+
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::SUPER_ADMIN_ID]], function () {
