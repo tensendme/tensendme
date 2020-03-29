@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>TenSendMe</title>
+<meta name="csrf-token" id="csrf-token" content="{{csrf_token()}}">
 <meta name="description" content="TenSend.me">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
