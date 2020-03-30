@@ -12,14 +12,16 @@ namespace App\JobTemplates;
 class VideoCompressJobTemplate
 {
     private $path;
+    private $materialId;
 
     /**
      * VideoCompressJobTemplate constructor.
      * @param $path
      */
-    public function __construct($path)
+    public function __construct($path, $materialId)
     {
         $this->path = $path;
+        $this->materialId = $materialId;
     }
 
     /**
@@ -28,6 +30,11 @@ class VideoCompressJobTemplate
     public function getPath()
     {
         return $this->path;
+    }
+
+    public function getMaterialId()
+    {
+        return $this->materialId;
     }
 
 

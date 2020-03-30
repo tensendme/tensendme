@@ -8,6 +8,7 @@ use App\Models\Courses\Course;
 use App\Models\Courses\CourseMaterial;
 use App\Models\Docs\Doc;
 use App\Services\v1\FileService;
+use App\Services\v1\MaterialService;
 use App\Utils\StaticConstants;
 use File;
 
@@ -141,7 +142,5 @@ class CourseMaterialController extends WebBaseController
         $this->fileService->remove($video);
         $this->deleted();
         return redirect()->route('course.material.index', compact('course_id'));
-
-
     }
 }

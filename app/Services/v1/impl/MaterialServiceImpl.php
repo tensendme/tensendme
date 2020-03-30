@@ -43,20 +43,20 @@ class MaterialServiceImpl implements MaterialService
 
     public function videoCompress($id)
     {
-        $material = CourseMaterial::where('id', $id)->first();
-        if(!$material) throw new ApiServiceException(404, false, [
-            'errors' => [
-                'Такого материала не существует'
-            ],
-            'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
-        ]);
-
-        $videoCompressJobTemplate = new VideoCompressJobTemplate($material->videeo_path);
-        $oldPath = $material->video_path;
-        $material->video_path = $this->compress($videoCompressJobTemplate);
-        $material->old_video_path = $oldPath;
-        $material->compressed = 1;
-        $material->save();
+//        $material = CourseMaterial::where('id', $id)->first();
+//        if(!$material) throw new ApiServiceException(404, false, [
+//            'errors' => [
+//                'Такого материала не существует'
+//            ],
+//            'errorCode' => ErrorCode::RESOURCE_NOT_FOUND
+//        ]);
+//
+//        $videoCompressJobTemplate = new VideoCompressJobTemplate($material->videeo_path);
+//        $oldPath = $material->video_path;
+//        $material->video_path = $this->compress($videoCompressJobTemplate);
+//        $material->old_video_path = $oldPath;
+//        $material->compressed = 1;
+//        $material->save();
         //  Ну и удаление надо сделать старый путь только опасно мне кажется
 
 
@@ -69,11 +69,11 @@ class MaterialServiceImpl implements MaterialService
 
     public function compressAll()
     {
-        $materials = CourseMaterial::where('compressed', false)->get();
-        foreach ($materials as $material) {
-            $videoCompressJobTemplate = new VideoCompressJobTemplate($material->path);
-            CompressVideo::dispatch($videoCompressJobTemplate)->onQueue(QueueConstants::VIDEO_COMPRESS_QUEUE);
-        }
+//        $materials = CourseMaterial::where('compressed', false)->get();
+//        foreach ($materials as $material) {
+//            $videoCompressJobTemplate = new VideoCompressJobTemplate($material->path);
+//            CompressVideo::dispatch($videoCompressJobTemplate)->onQueue(QueueConstants::VIDEO_COMPRESS_QUEUE);
+//        }
     }
 
 
@@ -91,14 +91,20 @@ class MaterialServiceImpl implements MaterialService
 
         $fileName = time() . ((string)Str::uuid()) . 'compressed.mp4';
         $path = CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY. '/' .$fileName;
+//        $path = CourseMaterial::DEFAULT_COMPRESS_VIDEO_RESOURCE_DIRECTORY. '/' .$fileName; По идее лучше новую папку открыть)
+        //Библиотека автоматом не может создать путь и пермишшны
         $video = $ffmpeg->open($videoCompressJobTemplate->getPath());
         $video
             ->filters()
             ->synchronize();
         $video
-            //   Надо путь создать либо в той же папке где лессонс а то он автоматом не создает и доступы дать
             ->save(new X264('libmp3lame'), $path);
-        return $path;
+
+        $material = CourseMaterial::find($videoCompressJobTemplate->getMaterialId());
+        $material->old_video_path = $material->video_path;
+        $material->video_path = $path;
+        $material->compressed = 1;
+        $material->save();
     }
 
 

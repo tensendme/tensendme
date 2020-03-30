@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CourseMaterial extends Model
 {
     public const DEFAULT_VIDEO_RESOURCE_DIRECTORY = 'videos/lessons';
+    public const DEFAULT_COMPRESS_VIDEO_RESOURCE_DIRECTORY = 'videos/compressed';
     public const DEFAULT_DOCUMENT_RESOURCE_DIRECTORY = 'documents/lessons';
     public const DEFAULT_PREVIEW_RESOURCE_DIRECTORY = 'images/materials';
 

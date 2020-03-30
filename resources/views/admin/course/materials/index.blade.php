@@ -72,6 +72,15 @@
                                             <i class="material-icons md-12">delete</i>
                                         </button>
                                     </form>
+                                    @if(!$material->compressed)
+                                        <form class="d-inline" method="post"
+                                              action="{{route('course.material.compress', ['id' => $material->id])}}">
+                                            {{csrf_field()}}
+                                            <button class="mb-2 btn btn-outline-secondary mr-1" type="submit">
+                                                <i class="material-icons md-12">archive</i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

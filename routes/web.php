@@ -112,7 +112,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/course/materials/edit/{id}', ['uses' => 'CourseMaterialController@edit', 'as' => 'course.material.edit'])->where('id', '[0-9]+');
                 Route::post('/course/materials/edit/{id}', ['uses' => 'CourseMaterialController@update', 'as' => 'course.material.update'])->where('id', '[0-9]+');
                 Route::delete('/course/materials/delete/{id}', ['uses' => 'CourseMaterialController@delete', 'as' => 'course.material.delete'])->where('id', '[0-9]+');
-
+                Route::post('/course/materials/compress/{id}', ['uses' => 'VideoController@compress', 'as' => 'course.material.compress'])->where('id', '[0-9]+');
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::CONTENT_MANAGER_ID . ',' . Role::SUPER_ADMIN_ID]], function () {
