@@ -85,13 +85,9 @@ class MaterialServiceImpl implements MaterialService
 //            'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/bin/ffprobe')
 //        ]);
 
-
-//        $path = CourseMaterial::DEFAULT_COMPRESS_VIDEO_RESOURCE_DIRECTORY. '/' .$fileName; По идее лучше новую папку открыть)
-        //Библиотека автоматом не может создать путь и пермишшны
         $fileFullOsPath = public_path($videoCompressJobTemplate->getPath());
         $video = $ffmpeg->open($fileFullOsPath);
-
-        $fileName = ((string)Str::uuid()) . basename($fileFullOsPath);
+        $fileName = ((string)Str::uuid()) . '.' . pathinfo(basename($fileFullOsPath), PATHINFO_EXTENSION);
         $publicPath = CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY . '/' . $fileName;
         $publicAbsolutePath = public_path($publicPath);
 
@@ -102,13 +98,17 @@ class MaterialServiceImpl implements MaterialService
             ->save(new X264('libmp3lame'), $publicAbsolutePath);
 
         $material = CourseMaterial::find($videoCompressJobTemplate->getMaterialId());
+        $oldPath = $material->old_video_path;
         $material->old_video_path = $material->video_path;
-        $material->video_path = $publicAbsolutePath;
+        $material->video_path = $publicPath;
         $material->compressed = 1;
         $material->save();
-        //        if (file_exists($material->old_video_path) && !is_dir($material->old_video_path)) {
-//            return unlink($material->old_video_path);
-//        }
+
+        if ($oldPath) {
+            if (file_exists(public_path($oldPath))) {
+                unlink(public_path($oldPath));
+            }
+        }
     }
 
 
