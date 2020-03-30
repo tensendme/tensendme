@@ -6,17 +6,12 @@ namespace App\Services\v1\impl;
 
 use App\Exceptions\ApiServiceException;
 use App\Http\Errors\ErrorCode;
-use App\Jobs\CompressVideo;
 use App\JobTemplates\VideoCompressJobTemplate;
 use App\Models\Courses\CourseMaterial;
-use App\Queues\QueueConstants;
 use App\Services\v1\MaterialService;
 use Auth;
 use FFMpeg\FFMpeg;
-use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Format\Video\X264;
-use FFMpeg\Format\Video\WMV;
-use FFMpeg\Format\Video\WebM;
 use Illuminate\Support\Str;
 
 class MaterialServiceImpl implements MaterialService
@@ -26,7 +21,7 @@ class MaterialServiceImpl implements MaterialService
 //        $user = Auth::user();
 //        $subscriptions = $user->activeSubscriptions();
         $material = CourseMaterial::where('id', $id)->with(['documents', 'course'])->first();
-        if(!$material) throw new ApiServiceException(404, false, [
+        if (!$material) throw new ApiServiceException(404, false, [
             'errors' => [
                 'Такого материала не существует'
             ],
@@ -77,9 +72,10 @@ class MaterialServiceImpl implements MaterialService
     }
 
 
-    public function compress(VideoCompressJobTemplate $videoCompressJobTemplate) {
+    public function compress(VideoCompressJobTemplate $videoCompressJobTemplate)
+    {
         $ffmpeg = FFMpeg::create([
-            'ffmpeg.binaries'  => env('FF_MPEG_BINARY', '/usr/local/bin/ffmpeg'),
+            'ffmpeg.binaries' => env('FF_MPEG_BINARY', '/usr/local/bin/ffmpeg'),
             'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/local/bin/ffprobe')
         ]);
 
@@ -89,20 +85,25 @@ class MaterialServiceImpl implements MaterialService
 //            'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/bin/ffprobe')
 //        ]);
 
-        $fileName = time() . ((string)Str::uuid()) . 'compressed.mp4';
-        $path = CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY. '/' .$fileName;
+
 //        $path = CourseMaterial::DEFAULT_COMPRESS_VIDEO_RESOURCE_DIRECTORY. '/' .$fileName; По идее лучше новую папку открыть)
         //Библиотека автоматом не может создать путь и пермишшны
-        $video = $ffmpeg->open($videoCompressJobTemplate->getPath());
+        $fileFullOsPath = public_path($videoCompressJobTemplate->getPath());
+        $video = $ffmpeg->open($fileFullOsPath);
+
+        $fileName = ((string)Str::uuid()) . basename($fileFullOsPath);
+        $publicPath = CourseMaterial::DEFAULT_VIDEO_RESOURCE_DIRECTORY . '/' . $fileName;
+        $publicAbsolutePath = public_path($publicPath);
+
         $video
             ->filters()
             ->synchronize();
         $video
-            ->save(new X264('libmp3lame'), $path);
+            ->save(new X264('libmp3lame'), $publicAbsolutePath);
 
         $material = CourseMaterial::find($videoCompressJobTemplate->getMaterialId());
         $material->old_video_path = $material->video_path;
-        $material->video_path = $path;
+        $material->video_path = $publicAbsolutePath;
         $material->compressed = 1;
         $material->save();
         //        if (file_exists($material->old_video_path) && !is_dir($material->old_video_path)) {

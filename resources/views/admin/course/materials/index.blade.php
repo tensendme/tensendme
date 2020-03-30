@@ -40,13 +40,14 @@
                                 <td>{{$material->id}}</td>
                                 <td>{{$material->title}}</td>
                                 <td>
-                                @if($material->video_path)
-{{--                                        <video src="{{asset($material->video_path)}}" controls--}}
-{{--                                               style="height: 130px; width: 150px"></video>--}}
-                                    <span class="text-accent">@if($material->duration_time) {{$material->duration_time}} минут@endif</span>
-                                @else
+                                    @if($material->video_path)
+                                        {{--                                        <video src="{{asset($material->video_path)}}" controls--}}
+                                        {{--                                               style="height: 130px; width: 150px"></video>--}}
+                                        <span class="text-accent">@if($material->duration_time) {{$material->duration_time}}
+                                            минут@endif</span>
+                                    @else
                                         <span class="text-danger">Нет видео!</span>
-                                @endif
+                                    @endif
                                 </td>
                                 <td>#{{$material->ordering}}</td>
                                 <td>@if($material->free)
@@ -89,7 +90,7 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                   Количество: {{ $materials->count() }}
+                    Количество: {{ $materials->count() }}
 
                 </div>
             </div>
