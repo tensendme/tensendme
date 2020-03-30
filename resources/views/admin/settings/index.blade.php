@@ -13,16 +13,18 @@
                     <h6 class="m-0">Про нас</h6>
                 </div>
                 <div class="card-header border-bottom">
-{{--                    <a href="{{route('setting')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Редактировать--}}
-{{--                        <i class="material-icons md-12">add_circle</i>--}}
-{{--                    </a>--}}
+                    <a href="{{route('setting.edit')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Редактировать
+                        <i class="material-icons md-12">edit</i>
+                    </a>
+                    <a href="{{route('link.create')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Добавить ссылку
+                        <i class="material-icons md-12">add</i>
+                    </a>
                 </div>
                 <div class="card-body p-0 pb-3 text-center">
                     <table class="table mb-0">
                         <thead class="bg-light">
                         <tr>
                             <th scope="col" class="border-0">Телефон</th>
-                            <th scope="col" class="border-0">Копирайт</th>
                             <th scope="col" class="border-0">Название</th>
                             <th scope="col" class="border-0">Адрес</th>
                         </tr>
@@ -30,7 +32,6 @@
                         <tbody>
                             <tr>
                                 <td>{{$setting->phone}}</td>
-                                <td>{{$setting->copyright}}</td>
                                 <td>{{$setting->title}}</td>
                                 <td>{{$setting->address}}</td>
                                 <td></td>
@@ -56,10 +57,23 @@
                                 <td>{{$link->title}}</td>
                                 <td>{{$link->url}}</td>
                                 <td>
-{{--                                    <a class="btn btn-outline-primary mb-2 "--}}
-{{--                                       href="{{route('link.edit', ['id' => $n->id])}}">--}}
-{{--                                        <i class="material-icons md-12">edit</i>--}}
-{{--                                    </a>--}}
+                                    <a class="btn btn-outline-primary mb-2 "
+                                       href="{{route('link.edit', ['id' => $link->id])}}">
+                                        <i class="material-icons md-12">edit</i>
+                                    </a>
+                                    <form class="d-inline" method="post"
+                                          action="{{route('link.visible', ['id' => $link->id])}}">
+                                        {{csrf_field()}}
+                                        @if($link->is_visible)
+                                            <button class="mb-2 btn  btn-outline-success mr-1" type="submit">
+                                                <i class="material-icons md-12">remove_red_eye</i>
+                                            </button>
+                                        @else
+                                            <button class="mb-2 btn  btn-outline-danger mr-1" type="submit">
+                                                <i class="material-icons md-12">remove_red_eye</i>
+                                            </button>
+                                        @endif
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

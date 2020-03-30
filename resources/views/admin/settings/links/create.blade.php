@@ -3,8 +3,8 @@
 @section('content')
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <span class="text-uppercase page-subtitle">Про нас</span>
-            <h3 class="page-title">Про нас</h3>
+            <span class="text-uppercase page-subtitle">Ссылки</span>
+            <h3 class="page-title">Ссылки</h3>
         </div>
     </div>
     <div class="row">
@@ -14,14 +14,13 @@
                     <a href="{{route('setting.index')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
                         <i class="material-icons md-12">arrow_back</i> Назад
                     </a>
-                    <h6 class="m-0">Редактирование про нас</h6>
+                    <h6 class="m-0">Добавить ссылку</h6>
                 </div>
                 <div class="card-body p-2 pb-4 text-center">
-                    <img class="default_image_size col-md-4" src="{{asset($setting->img_path)}}">
                     <form method="post"
-                          action="{{route('setting.update')}}"
+                          action="{{route('link.store')}}"
                           enctype="multipart/form-data">
-                        @include('admin.settings.form')
+                        @include('admin.settings.links.form')
                     </form>
                 </div>
             </div>

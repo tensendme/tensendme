@@ -18,6 +18,7 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::get('/faqs', ['uses' => 'StaticController@getAllFaqs']);
         Route::get('/about/tensend', ['uses' => 'StaticController@getAboutTensend']);
+        Route::get('/about/app', ['uses' => 'StaticController@aboutTensend']);
 
 
         Route::group(['middleware' => 'auth:api'], function () {
