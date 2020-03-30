@@ -105,6 +105,9 @@ class MaterialServiceImpl implements MaterialService
         $material->video_path = $path;
         $material->compressed = 1;
         $material->save();
+        //        if (file_exists($material->old_video_path) && !is_dir($material->old_video_path)) {
+//            return unlink($material->old_video_path);
+//        }
     }
 
 
