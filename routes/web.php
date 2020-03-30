@@ -82,6 +82,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/subscription/types', ['uses' => 'SubscriptionTypeController@index', 'as' => 'subscription.type.index']);
                 Route::get('/subscriptions', ['uses' => 'SubscriptionController@index', 'as' => 'subscription.index']);
                 Route::get('/followers', ['uses' => 'FollowerController@index', 'as' => 'follower.index']);
+                Route::get('/transactions', ['uses' => 'TransactionController@index', 'as' => 'transaction.index']);
 
 
             });
@@ -205,6 +206,8 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::delete('/marketing-materials/delete/{id}', ['uses' => 'MarketingMaterialController@destroy', 'as' => 'marketingMaterial.delete'])->where('id', '[0-9]+');
 
                 Route::post('/courses/advertise/{id}', ['uses' => 'CourseController@advertiseChange', 'as' => 'course.advertise'])->where('id', '[0-9]+');
+
+                Route::get('settings', ['uses' => 'SettingController@index', 'as' => 'setting.index']);
 
             });
 

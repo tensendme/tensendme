@@ -23,6 +23,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends WebBaseController
@@ -139,11 +140,11 @@ class UserController extends WebBaseController
         return view('admin.users.index', compact('users', 'roles', 'levels'));
     }
 
-    public function filter()
+    public function filter(Request $request)
     {
         $users = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email',
-                'created_at', 'phone', 'level_id', 'platform'])
+                'phone', 'level_id', 'platform'])
             ->orderBy('id', 'desc')
             ->with(['role', 'level', 'city', 'balance'])->paginate(10);
         foreach ($users as $user) {

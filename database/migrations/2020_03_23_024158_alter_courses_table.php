@@ -26,7 +26,7 @@ class AlterCoursesTable extends Migration
     public function down()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->tinyInteger('advertise');
+            $table->dropColumn('advertise');
         });
     }
 }

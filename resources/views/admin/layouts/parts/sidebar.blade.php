@@ -119,6 +119,11 @@
                                 <i class=" material-icons">monetization_on</i>
                                 <span>Запросы</span>
                             </a>
+                            <a href="{{route('transaction.index')}}"
+                               class="nav-link dropdown-item {{Helper::urlActiveHelper('transaction')}}">
+                                <i class=" material-icons">account_balance_wallet</i>
+                                <span>Транзакции</span>
+                            </a>
                             <a href="{{route('history.index')}}"
                                class="nav-link dropdown-item {{Helper::urlActiveHelper('history')}}">
                                 <i class=" material-icons">history</i>
@@ -171,7 +176,13 @@
                             <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('marketingMaterial.index')}}"
                                href="{{route('marketingMaterial.index')}}">
                                 <i class="material-icons">attach_file</i>
-                                <span>Marketing material</span>
+                                <span>Marketing материалы</span>
+                            </a>
+
+                            <a class="nav-link dropdown-item  {{Helper::urlActiveHelper('setting.index')}}"
+                               href="{{route('setting.index')}}">
+                                <i class="material-icons">info</i>
+                                <span>Про нас</span>
                             </a>
                         </div>
                     </div>

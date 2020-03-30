@@ -9,7 +9,7 @@ use App\Models\Histories\History;
 class HistoryController extends WebBaseController
 {
     public function index() {
-        $histories = History::orderBy('created_at', 'desc')->paginate(10);
+        $histories = History::orderBy('created_at', 'desc')->with('balance.user', 'historyType',)->paginate(10);
         return view('admin.userActions.histories.index', compact('histories'));
     }
 }

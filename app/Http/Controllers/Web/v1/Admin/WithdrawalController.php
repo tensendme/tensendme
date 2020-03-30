@@ -18,7 +18,7 @@ class WithdrawalController extends WebBaseController
     }
 
     public function index() {
-        $withdrawals = WithdrawalRequest::orderBy('created_at', 'desc')->paginate(10);
+        $withdrawals = WithdrawalRequest::orderBy('created_at', 'desc')->with('user','approvedByUser')->paginate(10);
         return view('admin.userActions.withdrawals.index',compact('withdrawals'));
     }
 

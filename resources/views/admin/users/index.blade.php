@@ -23,18 +23,15 @@
                                     </div>
                                     <div class="col-3">
                                         <label for="name" class="form-control-plaintext">Имя</label>
-                                        <input class="form-control" type="text" name="name" placeholder="Леонардо"
-                                               id="name">
+                                        <input class="form-control" type="text" name="name" placeholder="Леонардо" id="name">
                                     </div>
                                     <div class="col-3">
                                         <label for="surname" class="form-control-plaintext">Фамилия</label>
-                                        <input class="form-control" type="text" name="surname" placeholder="Ди"
-                                               id="surname">
+                                        <input class="form-control" type="text" name="surname" placeholder="Ди" id="surname">
                                     </div>
                                     <div class="col-3">
                                         <label for="fatherName" class="form-control-plaintext">Отчество</label>
-                                        <input class="form-control" type="text" name="fatherName" placeholder="Каприо"
-                                               id="fatherName">
+                                        <input class="form-control" type="text" name="fatherName" placeholder="Каприо" id="fatherName">
                                     </div>
                                     <div class="col-3">
                                         <label for="fatherName" class="form-control-plaintext">Роль</label>
@@ -62,16 +59,14 @@
                                             <option value="ANDROID">Android</option>
                                         </select>
                                     </div>
-                                    {{--                                    <div class="col-3">--}}
-                                    {{--                                        <div class="col-3">--}}
-                                    {{--                                            <label for="platform" class="form-control-plaintext">Платформа</label>--}}
-                                    {{--                                            <select class="form-control" type="text" name="platform" id="platform">--}}
-                                    {{--                                                <option value="">Все</option>--}}
-                                    {{--                                                <option value="IOS">Apple IOS</option>--}}
-                                    {{--                                                <option value="ANDROID">Android</option>--}}
-                                    {{--                                            </select>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
+{{--                                    <div class="col-3">--}}
+{{--                                            <label for="datemax" class="form-control-plaintext">Активность с</label>--}}
+{{--                                            <input type="date" class="form-control" id="before" name="datemax" min="2020-01-01">--}}
+{{--                                    </div>--}}
+{{--                                        <div class="col-3">--}}
+{{--                                            <label for="datemin" class="form-control-plaintext">Активность до</label>--}}
+{{--                                            <input type="date" class="form-control" id="after" name="datemin" min="2020-01-01">--}}
+{{--                                        </div>--}}
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -114,17 +109,17 @@
             filter['role_id'] = role.value;
             filter['level_id'] = level.value;
             filter['platform'] = platform.value;
-            filter['phone'] = phone.value.replace(/\D/g, '');
+            filter['phone'] =  phone.value.replace(/\D/g,'');
             var query = '';
             for (var key in filter) {
-                if (filter[key]) {
-                    query += 'filter[' + key + ']=' + filter[key] + '&';
+                if(filter[key]) {
+                    query +='filter[' + key + ']=' + filter[key] + '&';
                 }
                 console.log("key " + key + " has value " + filter[key]);
             }
             fetch('{{route('users.filter')}}?' + query)
                 .then((response) => response.text()).then((response) => {
-                table.innerHTML = response;
+                    table.innerHTML = response;
             }).catch((error) => {
                 console.error('Error:', error);
             });

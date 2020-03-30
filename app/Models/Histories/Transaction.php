@@ -2,6 +2,7 @@
 
 namespace App\Models\Histories;
 
+use App\Models\Profiles\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
@@ -21,4 +22,9 @@ class Transaction extends Model
         'card_holder_message',
         'currency'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
