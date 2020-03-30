@@ -140,6 +140,7 @@ class CourseMaterialController extends WebBaseController
         $material->delete();
         $this->fileService->remove($preview);
         $this->fileService->remove($video);
+        if($material->compressed) $this->fileService->remove($material->old_video_path);
         $this->deleted();
         return redirect()->route('course.material.index', compact('course_id'));
     }

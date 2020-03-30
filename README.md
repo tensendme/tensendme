@@ -1832,3 +1832,24 @@ password: tensendme2020n
 }
 ```
 
+### Получить About Tensend V2
+#### URL: https://tensend.me/api/v1/about/app
+
+```
+    GET Request:
+        
+    RESPONSE:
+{
+    "tensend": {
+        "about_us": "Test tesipsum lorem",
+        "title": "Tensend",
+        "address": "",
+        "phone": "",
+        "copyright": "",
+        "img_path": "tensend.png",
+        "links": []
+    },
+    "success": true
+}
+```
+
