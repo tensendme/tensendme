@@ -3,6 +3,7 @@
 <head>
     <title>Tensend</title>
     <meta charset="utf-8">
+    <meta name="yandex-verification" content="a8e58e23cec0472e" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('front/fonts/icomoon/style.css')}}">
