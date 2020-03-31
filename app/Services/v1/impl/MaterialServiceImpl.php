@@ -74,16 +74,16 @@ class MaterialServiceImpl implements MaterialService
 
     public function compress(VideoCompressJobTemplate $videoCompressJobTemplate)
     {
-        $ffmpeg = FFMpeg::create([
-            'ffmpeg.binaries' => env('FF_MPEG_BINARY', '/usr/local/bin/ffmpeg'),
-            'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/local/bin/ffprobe')
-        ]);
+//        $ffmpeg = FFMpeg::create([
+//            'ffmpeg.binaries' => env('FF_MPEG_BINARY', '/usr/local/bin/ffmpeg'),
+//            'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/local/bin/ffprobe')
+//        ]);
 
         // На серваке
-//        $ffmpeg = FFMpeg::create([
-//            'ffmpeg.binaries'  => env('FF_MPEG_BINARY', '/usr/bin/ffmpeg'),
-//            'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/bin/ffprobe')
-//        ]);
+        $ffmpeg = FFMpeg::create([
+            'ffmpeg.binaries'  => env('FF_MPEG_BINARY', '/usr/bin/ffmpeg'),
+            'ffprobe.binaries' => env('FF_PROBE_BINARY', '/usr/bin/ffprobe')
+        ]);
 
         $fileFullOsPath = public_path($videoCompressJobTemplate->getPath());
         $video = $ffmpeg->open($fileFullOsPath);
