@@ -77,12 +77,12 @@
                 ],
                 "ajax": "{{ route('awaiting.data.users') }}",
                 "columns": [
-                    {"data": 'name'},
-                    {"data": 'surname'},
-                    {"data": 'father_name'},
-                    {"data": 'email'},
-                    {"data": 'phone'},
-                    {"data": 'platform'},
+                    {"data": 'name', 'name': 'u.name'},
+                    {"data": 'surname', 'name': 'u.surname'},
+                    {"data": 'father_name', 'name': 'u.father_name'},
+                    {"data": 'email', 'name': 'u.email'},
+                    {"data": 'phone', 'name': 'u.phone'},
+                    {"data": 'platform', 'name': 'u.platform'},
                 ],
                 "language": {
                     "processing": "Подождите...",
