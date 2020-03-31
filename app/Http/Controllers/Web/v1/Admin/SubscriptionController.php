@@ -86,8 +86,7 @@ class SubscriptionController extends WebBaseController
             ->where(function ($query) {
                 $query->whereNull('s.id')
                     ->orWhereRaw('now() > s.expired_at');
-            })
-            ->where('u.device_token');
+            });
         return DataTables::of($select)->make(true);
     }
 }

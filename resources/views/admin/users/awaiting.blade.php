@@ -54,21 +54,21 @@
                 "serverSide": true,
                 "dom": 'Bfrltip',
                 "buttons": [
-                    {
-                        "extend": 'copy',
-                        "text": 'Копировать данные',
-                        "className": 'btn btn-primary'
-                    },
+                    // {
+                    //     "extend": 'copy',
+                    //     "text": 'Копировать данные',
+                    //     "className": 'btn btn-primary'
+                    // },
                     {
                         "extend": 'excel',
                         "text": 'EXCEL',
                         "className": 'btn btn-primary'
                     },
-                    {
-                        "extend": 'pdf',
-                        "text": 'PDF',
-                        "className": 'btn btn-primary'
-                    },
+                    // {
+                    //     "extend": 'pdf',
+                    //     "text": 'PDF',
+                    //     "className": 'btn btn-primary'
+                    // },
                     {
                         "extend": 'print',
                         "text": 'Распечатать',
