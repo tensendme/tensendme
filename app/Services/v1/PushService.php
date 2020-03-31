@@ -10,6 +10,7 @@ namespace App\Services\v1;
 
 
 use App\CloudMessaging\Pushable;
+use App\JobTemplates\MassPushJobTemplate;
 use App\JobTemplates\PushJobTemplate;
 use App\Models\Profiles\User;
 
@@ -20,4 +21,12 @@ interface PushService
     public function sendPushByPushJob(PushJobTemplate $pushJobTemplate);
 
     public function passGeneralPushToQueue(User $user, $title, $description);
+
+    public function sendMassPushByPushJobTemplate(MassPushJobTemplate $pushJobTemplate);
+
+    public function sendMassPush(Array $users, $platform, Pushable $pushable);
+
+    public function passGeneralPushToMassQueue(Array $users, $title, $description, $platform);
+
+    public function startMassPush($type, $title, $description);
 }

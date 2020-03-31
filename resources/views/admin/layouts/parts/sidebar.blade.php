@@ -133,6 +133,16 @@
                     </div>
                 </li>
             @endif
+
+            @if(in_array(Auth::user()->role_id ,[1]) )
+                <li class="nav-item">
+                    <a class="nav-link {{Helper::urlActiveHelper('notification.index')}}"
+                       href="{{route('notification.index')}}">
+                        <i class="material-icons">message</i>
+                        <span>Уведомления</span>
+                    </a>
+                </li>
+            @endif
             @if(in_array(Auth::user()->role_id ,[1,2,3]) )
                 <li class="nav-item">
                     <div class="dropdown">

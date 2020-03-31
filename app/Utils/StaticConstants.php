@@ -14,4 +14,8 @@ class StaticConstants
     public const DEFAULT_IMAGE = 'images/default.png';
     public const DEFAULT_VIDEO = 'videos/default.mp4';
     public const DEFAULT_AVATAR = 'images/user-default.png';
+
+
+    public const ALL_TYPE = 1;
+    public const NOT_PAID_TYPE = 2;
 }

@@ -49,4 +49,36 @@ class FireBase
 
         return $response;
     }
+
+    public static function sendMassPush(Pushable $push, Array $users, $platform)
+    {
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $info = [
+            'registration_ids' => $users
+        ];
+        if ($platform == User::PLATFORM_IOS) {
+            $message = $push->toIOS();
+        } else if ($platform == User::PLATFORM_ANDROID) {
+            $message = $push->toAndroid();
+        }
+        $info = array_merge($info, $message);
+
+        $fields = json_encode($info);
+        $request_headers = [
+            'Content-Type: application/json',
+            'Authorization: key=' . self::API_KEY,
+        ];
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        return $response;
+    }
 }

@@ -94,7 +94,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/histories', ['uses' => 'HistoryController@index', 'as' => 'history.index']);
 
                 //AJAX REQUEST
-                Route::post('/send/push/{id}' ,['uses' => 'UserController@sendPush']);
+                Route::post('/send/push/{id}', ['uses' => 'UserController@sendPush']);
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::CONTENT_MANAGER_ID . ',' . Role::SUPER_ADMIN_ID . ',' . Role::AUTHOR_ID]], function () {
@@ -217,6 +217,11 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/link/update/{id}', ['uses' => 'LinkController@update', 'as' => 'link.update'])->where('id', '[0-9]+');
                 Route::post('/link/visible/{id}', ['uses' => 'LinkController@visibleChange', 'as' => 'link.visible'])->where('id', '[0-9]+');
 
+            });
+
+            Route::group(['middleware' => ['ROLE_OR:' . Role::SUPER_ADMIN_ID]], function () {
+                Route::get('/notifications', ['uses' => 'NotificationController@index', 'as' => 'notification.index']);
+                Route::post('/notifications/start', ['uses' => 'NotificationController@start', 'as' => 'notification.start']);
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::SUPER_ADMIN_ID]], function () {

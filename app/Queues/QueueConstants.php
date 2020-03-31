@@ -13,4 +13,5 @@ class QueueConstants
 {
     public const NOTIFICATIONS_QUEUE = "notifications";
     public const VIDEO_COMPRESS_QUEUE = "compressions";
+    public const MASS_PUSH_QUEUE = "bulk-push-notifications";
 }
