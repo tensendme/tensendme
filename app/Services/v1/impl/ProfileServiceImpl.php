@@ -149,9 +149,6 @@ class ProfileServiceImpl implements ProfileService
             $profile->permission = true;
         }
         $profile->levels = Level::orderBy('start_count', 'asc')->get();
-        foreach ($profile->levels as $level) {
-            $level->start_count = $level->start_count + 1;
-        }
         return $profile;
     }
 
