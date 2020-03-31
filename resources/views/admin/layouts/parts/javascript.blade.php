@@ -14,6 +14,8 @@
 <script src="{{asset('js/toastr.js')}}"></script>
 <script src="{{asset('admin/scripts/bootstrap-toggle.js')}}"></script>
 <script src="{{asset('admin/scripts/select2.min.js')}}"></script>
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 
 <script>
     $.ajaxSetup({

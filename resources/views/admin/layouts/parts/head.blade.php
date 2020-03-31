@@ -16,3 +16,4 @@
 <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
 <link rel="stylesheet" href="{{asset('admin/styles/bootstrap-toggle.css')}}">
 <link rel="stylesheet" href="{{asset('admin/styles/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.min.css')}}">

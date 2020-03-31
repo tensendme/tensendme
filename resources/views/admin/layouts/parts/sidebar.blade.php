@@ -129,6 +129,11 @@
                                 <i class=" material-icons">history</i>
                                 <span>Истории</span>
                             </a>
+                            <a href="{{route('awaiting.subscribe.users')}}"
+                               class="nav-link dropdown-item {{Helper::urlActiveHelper('awaiting')}}">
+                                <i class=" material-icons">timer</i>
+                                <span>Люди ожидающие покупки</span>
+                            </a>
                         </div>
                     </div>
                 </li>

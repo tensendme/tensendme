@@ -242,6 +242,9 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/users/subscribe/{id}', ['uses' => 'SubscriptionController@freeSubscribe', 'as' => 'users.subscribe.post'])->where('id', '[0-9]+');
                 Route::get('/users/create', ['uses' => 'UserController@create', 'as' => 'users.create']);
                 Route::post('/users/store', ['uses' => 'UserController@store', 'as' => 'users.store']);
+
+                Route::get('/users/awaiting', ['uses' => 'SubscriptionController@subscriptionAwaitingUsers', 'as' => 'awaiting.subscribe.users']);
+                Route::get('/users/awaiting/data', ['uses' => 'SubscriptionController@awaitingUsersDataTable', 'as' => 'awaiting.data.users']);
             });
 
         });

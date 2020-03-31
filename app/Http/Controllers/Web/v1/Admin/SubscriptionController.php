@@ -14,6 +14,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
+use Yajra\DataTables\Facades\DataTables;
 
 class SubscriptionController extends WebBaseController
 {
@@ -62,5 +63,31 @@ class SubscriptionController extends WebBaseController
             DB::rollBack();
             throw new WebServiceErroredException(trans('admin.error') . ': ' . $e->getMessage());
         }
+    }
+
+
+    public function subscriptionAwaitingUsers()
+    {
+        return view('admin.users.awaiting');
+    }
+
+    public function awaitingUsersDataTable()
+    {
+        $select = DB::table('users as u')
+            ->select([
+                'u.name',
+                'u.surname',
+                'u.father_name',
+                'u.email',
+                'u.phone',
+                'u.platform'
+            ])
+            ->leftJoin('subscriptions as s', 's.user_id', '=', 'u.id')
+            ->where(function ($query) {
+                $query->whereNull('s.id')
+                    ->orWhereRaw('now() > s.expired_at');
+            })
+            ->where('u.device_token');
+        return DataTables::of($select)->make(true);
     }
 }
