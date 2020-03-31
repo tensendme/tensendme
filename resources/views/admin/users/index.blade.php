@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Фильтры</h6>
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col-12">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Все пользователи</h6>
