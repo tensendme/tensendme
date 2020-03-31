@@ -10,6 +10,7 @@ namespace App\CloudMessaging;
 
 
 use App\Models\Profiles\User;
+use App\Models\PushNotifications\Push;
 
 class FireBase
 {
@@ -46,7 +47,10 @@ class FireBase
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         $response = curl_exec($ch);
         curl_close($ch);
-
+        Push::create([
+            'push_type_id' => PushType::GENERAL_PUSH_INDB_ID,
+            'content' => $response
+        ]);
         return $response;
     }
 
@@ -78,7 +82,10 @@ class FireBase
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         $response = curl_exec($ch);
         curl_close($ch);
-
+        Push::create([
+            'push_type_id' => PushType::GENERAL_PUSH_INDB_ID,
+            'content' => $response
+        ]);
         return $response;
     }
 }
