@@ -36,7 +36,7 @@
                 <td>{{$user->role->name}}</td>
                 <td>{{$user->level->name}}</td>
                 <td>{{$user->platform}}</td>
-                <td>{{$user->balance->balance}}</td>
+                <td>{{$user->balance? $user->balance->balance: ''}}</td>
                 <td>
                     <a class="btn btn-outline-primary mb-2 "
                        href="{{route('users.edit', ['id' => $user->id])}}">

@@ -29,7 +29,8 @@
                         </div>
                         <div class="col-3">
                             <label for="fatherName" class="form-control-plaintext">Отчество</label>
-                            <input class="form-control" type="text" name="fatherName" placeholder="Каприо" id="fatherName">
+                            <input class="form-control" type="text" name="fatherName" placeholder="Каприо"
+                                   id="fatherName">
                         </div>
                         <div class="col-3">
                             <label for="fatherName" class="form-control-plaintext">Роль</label>
@@ -109,20 +110,24 @@
             filter['role_id'] = role.value;
             filter['level_id'] = level.value;
             filter['platform'] = platform.value;
-            filter['phone'] =  phone.value.replace(/\D/g,'');
+            filter['phone'] = phone.value.replace(/\D/g, '');
             var query = '';
             for (var key in filter) {
-                if(filter[key]) {
-                    query +='filter[' + key + ']=' + filter[key] + '&';
+                if (filter[key]) {
+                    query += 'filter[' + key + ']=' + filter[key] + '&';
                 }
                 console.log("key " + key + " has value " + filter[key]);
             }
             fetch('{{route('users.filter')}}?' + query)
                 .then((response) => response.text()).then((response) => {
-                    table.innerHTML = response;
+                table.innerHTML = response;
+
+                changePage();
             }).catch((error) => {
                 console.error('Error:', error);
             });
+
+
         }
 
         function validate_int(myEvento) {
@@ -194,5 +199,53 @@
             });
 
         }
+
+        $(document).ready(function () {
+            search();
+        });
+
+
+        function changePage() {
+            var filter = [];
+            var name = document.getElementById('name');
+            var phone = document.getElementById('phone');
+            var surname = document.getElementById('surname');
+            var fatherName = document.getElementById('fatherName');
+            var role = document.getElementById('role');
+            var level = document.getElementById('level');
+            var platform = document.getElementById('platform');
+            filter['name'] = name.value;
+            filter['surname'] = surname.value;
+            filter['father_name'] = fatherName.value;
+            filter['role_id'] = role.value;
+            filter['level_id'] = level.value;
+            filter['platform'] = platform.value;
+            filter['phone'] = phone.value.replace(/\D/g, '');
+            var query = '';
+            for (var key in filter) {
+                if (filter[key]) {
+                    query += 'filter[' + key + ']=' + filter[key] + '&';
+                }
+            }
+            document.querySelectorAll('.page-link').forEach(item => {
+                item.onclick = null;
+                item.onclick = function (event) {
+                    var href = item.attributes.getNamedItem('href');
+                    if (href) {
+                        fetch(href.value + '&' + query )
+                            .then((response) => response.text()).then((response) => {
+                            document.getElementById('usersTable').innerHTML = response;
+                            changePage();
+                        }).catch((error) => {
+                            console.error('Error:', error);
+                        });
+                    }
+                    event.preventDefault();
+                    return false;
+                };
+            });
+        }
+
+
     </script>
 @endsection
