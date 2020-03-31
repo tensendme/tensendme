@@ -11,6 +11,6 @@ class PushTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\CloudMessaging\PushType::create(['name' => 'General Push']);
+        \App\Models\PushNotifications\PushType::create(['name' => 'General Push']);
     }
 }

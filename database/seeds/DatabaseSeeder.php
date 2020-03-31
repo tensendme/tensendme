@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
 //        $this->call(HistoryTypeSeeder::class);
 //        $this->call(SubscriptionTypeSeeder::class);
 //        $this->call(SettingsTableSeeder::class);
+        $this->call(PushTypesTableSeeder::class);
     }
 }

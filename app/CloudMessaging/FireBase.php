@@ -11,6 +11,7 @@ namespace App\CloudMessaging;
 
 use App\Models\Profiles\User;
 use App\Models\PushNotifications\Push;
+use App\Models\PushNotifications\PushType as PushTypeModel;
 
 class FireBase
 {
@@ -48,7 +49,7 @@ class FireBase
         $response = curl_exec($ch);
         curl_close($ch);
         Push::create([
-            'push_type_id' => PushType::GENERAL_PUSH_INDB_ID,
+            'push_type_id' => PushTypeModel::GENERAL_PUSH_INDB_ID,
             'content' => $response
         ]);
         return $response;
@@ -83,7 +84,7 @@ class FireBase
         $response = curl_exec($ch);
         curl_close($ch);
         Push::create([
-            'push_type_id' => PushType::GENERAL_PUSH_INDB_ID,
+            'push_type_id' => PushTypeModel::GENERAL_PUSH_INDB_ID,
             'content' => $response
         ]);
         return $response;
