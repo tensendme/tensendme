@@ -11,66 +11,69 @@
             <div class="card">
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Фильтры</h6>
-                    <div class="card-body">
-                        <div class="row ml-1 mt-2">
-                            <div class="col-3">
-                                <label for="phone" class="form-control-plaintext">Номер телефона</label>
-                                <input class="form-control" type="text" name="phone" placeholder="707"
-                                       id="phone" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
-                            </div>
-                            <div class="col-3">
-                                <label for="name" class="form-control-plaintext">Имя</label>
-                                <input class="form-control" type="text" name="name" placeholder="Леонардо" id="name">
-                            </div>
-                            <div class="col-3">
-                                <label for="surname" class="form-control-plaintext">Фамилия</label>
-                                <input class="form-control" type="text" name="surname" placeholder="Ди" id="surname">
-                            </div>
-                            <div class="col-3">
-                                <label for="fatherName" class="form-control-plaintext">Отчество</label>
-                                <input class="form-control" type="text" name="fatherName" placeholder="Каприо" id="fatherName">
-                            </div>
-                            <div class="col-3">
-                                <label for="fatherName" class="form-control-plaintext">Роль</label>
-                                <select class="form-control" type="text" name="role" id="role">
-                                    <option value="">Все роли</option>
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-3">
-                                <label for="level" class="form-control-plaintext">Уровень</label>
-                                <select class="form-control" type="text" name="level" id="level">
-                                    <option value="">Все уровни</option>
-                                    @foreach($levels as $level)
-                                        <option value="{{$level->id}}">{{$level->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-3">
-                                <label for="platform" class="form-control-plaintext">Платформа</label>
-                                <select class="form-control" type="text" name="platform" id="platform">
-                                    <option value="">Все</option>
-                                    <option value="IOS">Apple IOS</option>
-                                    <option value="ANDROID">Android</option>
-                                </select>
-                            </div>
-                            {{--                                    <div class="col-3">--}}
-                            {{--                                            <label for="datemax" class="form-control-plaintext">Активность с</label>--}}
-                            {{--                                            <input type="date" class="form-control" id="before" name="datemax" min="2020-01-01">--}}
-                            {{--                                    </div>--}}
-                            {{--                                        <div class="col-3">--}}
-                            {{--                                            <label for="datemin" class="form-control-plaintext">Активность до</label>--}}
-                            {{--                                            <input type="date" class="form-control" id="after" name="datemin" min="2020-01-01">--}}
-                            {{--                                        </div>--}}
+                </div>
+                <div class="card-body">
+                    <div class="row ml-1 mt-2">
+                        <div class="col-3">
+                            <label for="phone" class="form-control-plaintext">Номер телефона</label>
+                            <input class="form-control" type="text" name="phone" placeholder="707"
+                                   id="phone" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
                         </div>
+                        <div class="col-3">
+                            <label for="name" class="form-control-plaintext">Имя</label>
+                            <input class="form-control" type="text" name="name" placeholder="Леонардо" id="name">
+                        </div>
+                        <div class="col-3">
+                            <label for="surname" class="form-control-plaintext">Фамилия</label>
+                            <input class="form-control" type="text" name="surname" placeholder="Ди" id="surname">
+                        </div>
+                        <div class="col-3">
+                            <label for="fatherName" class="form-control-plaintext">Отчество</label>
+                            <input class="form-control" type="text" name="fatherName" placeholder="Каприо" id="fatherName">
+                        </div>
+                        <div class="col-3">
+                            <label for="fatherName" class="form-control-plaintext">Роль</label>
+                            <select class="form-control" type="text" name="role" id="role">
+                                <option value="">Все роли</option>
+                                @foreach($roles as $role)
+                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label for="level" class="form-control-plaintext">Уровень</label>
+                            <select class="form-control" type="text" name="level" id="level">
+                                <option value="">Все уровни</option>
+                                @foreach($levels as $level)
+                                    <option value="{{$level->id}}">{{$level->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label for="platform" class="form-control-plaintext">Платформа</label>
+                            <select class="form-control" type="text" name="platform" id="platform">
+                                <option value="">Все</option>
+                                <option value="IOS">Apple IOS</option>
+                                <option value="ANDROID">Android</option>
+                            </select>
+                        </div>
+                        {{--                                    <div class="col-3">--}}
+                        {{--                                            <label for="datemax" class="form-control-plaintext">Активность с</label>--}}
+                        {{--                                            <input type="date" class="form-control" id="before" name="datemax" min="2020-01-01">--}}
+                        {{--                                    </div>--}}
+                        {{--                                        <div class="col-3">--}}
+                        {{--                                            <label for="datemin" class="form-control-plaintext">Активность до</label>--}}
+                        {{--                                            <input type="date" class="form-control" id="after" name="datemin" min="2020-01-01">--}}
+                        {{--                                        </div>--}}
                     </div>
-                    <div class="card-footer">
-                        <button class="mb-2 btn btn-medium btn-primary mr-1" onclick="search()">Поиск
-                            <i class="material-icons md-12">search</i>
-                        </button>
-                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="mb-2 btn btn-medium btn-primary mr-1" onclick="search()">Поиск
+                        <i class="material-icons md-12">search</i>
+                    </button>
+                    <a href="{{route('users.create')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Добавить
+                        <i class="material-icons md-12">add_circle</i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -78,11 +81,6 @@
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Все пользователи</h6>
-                </div>
-                <div class="card-header border-bottom">
-                    <a href="{{route('users.create')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">Добавить
-                        <i class="material-icons md-12">add_circle</i>
-                    </a>
                 </div>
                 <div id="usersTable">
                     @include('admin.users.table')
