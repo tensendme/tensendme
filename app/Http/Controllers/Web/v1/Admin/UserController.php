@@ -90,7 +90,6 @@ class UserController extends WebBaseController
         $users = User::orderBy('created_at', 'desc')->with(['role', 'level', 'city', 'balance'])->paginate(10);
         $roles = Role::all();
         $levels = Level::all();
-
         $this->switchRole($roles);
 
         return view('admin.users.index', compact('users', 'roles', 'levels'));
