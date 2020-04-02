@@ -92,7 +92,7 @@ class UserController extends WebBaseController
         $levels = Level::all();
 
         $this->switchRole($roles);
-        
+
         return view('admin.users.index', compact('users', 'roles', 'levels'));
     }
 
