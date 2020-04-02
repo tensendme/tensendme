@@ -48,7 +48,6 @@ class AuthServiceImpl implements AuthService
             $user = User::where('email', $request->input('email'))
                 ->first();
         }
-
         if (!$user) {
             throw new ApiServiceException(400, false, [
                 'errors' => [
@@ -60,11 +59,11 @@ class AuthServiceImpl implements AuthService
 
 
         if (!$this->checkPassword($request->password, $user->password)) {
-            throw new ApiServiceException(401, false, [
+            throw new ApiServiceException(400, false, [
                 'errors' => [
                     'Invalid login or password'
                 ],
-                'errorCode' => ErrorCode::UNAUTHORIZED
+                'errorCode' => ErrorCode::INVALID_ARGUMENT
             ]);
         }
         $user->current_token = ApiUtil::generateTokenFromUser($user);
