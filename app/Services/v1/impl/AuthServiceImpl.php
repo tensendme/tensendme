@@ -50,11 +50,11 @@ class AuthServiceImpl implements AuthService
         }
 
         if (!$user) {
-            throw new ApiServiceException(401, false, [
+            throw new ApiServiceException(400, false, [
                 'errors' => [
                     'provide with login or password'
                 ],
-                'errorCode' => ErrorCode::UNAUTHORIZED
+                'errorCode' => ErrorCode::INVALID_ARGUMENT
             ]);
         }
 
