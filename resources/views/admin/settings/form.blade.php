@@ -28,14 +28,14 @@
         <input type="text" class="form-control"
                name="phone"
                value="{{$setting->phone}}"
-               placeholder="Адрес"
+               placeholder="+7-700-000-00-00"
                id="phone">
-        <label class="form-control-plaintext" for="phone">Пожалуйста введите адрес</label>
+        <label class="form-control-plaintext" for="phone">Пожалуйста введите контакт</label>
     </div>
     <div class="form-group col-md-4">
         <input type="text" class="form-control"
                name="copyright"
-               value="{{$setting->address}}"
+               value="{{$setting->copyright}}"
                placeholder="Copyright@"
                id="copyright">
         <label class="form-control-plaintext" for="copyright">Пожалуйста введите copyright</label>
