@@ -53,7 +53,7 @@ class AuthServiceImpl implements AuthService
                 'errors' => [
                     'provide with login or password'
                 ],
-                'errorCode' => ErrorCode::INVALID_ARGUMENT
+                'errorCode' => ErrorCode::INVALID_FIELD
             ]);
         }
 
@@ -63,7 +63,7 @@ class AuthServiceImpl implements AuthService
                 'errors' => [
                     'Invalid login or password'
                 ],
-                'errorCode' => ErrorCode::INVALID_ARGUMENT
+                'errorCode' => ErrorCode::INVALID_FIELD
             ]);
         }
         $user->current_token = ApiUtil::generateTokenFromUser($user);
