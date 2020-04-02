@@ -8,6 +8,8 @@ use App\Models\Education\Passing;
 use App\Models\Education\UserCourse;
 use App\Models\Histories\Follower;
 use App\Models\Subscriptions\Subscription;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
@@ -260,5 +262,15 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Certificate::class, 'user_id', 'id')
             ->with(['course.author', 'course.lessons']);
 
+    }
+
+    public function scopeRegisterBefore(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '<=', Carbon::parse($date));
+    }
+
+    public function scopeRegisterAfter(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '>=', Carbon::parse($date));
     }
 }
