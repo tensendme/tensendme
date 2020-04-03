@@ -58,14 +58,14 @@
                                 <option value="ANDROID">Android</option>
                             </select>
                         </div>
-                        {{--                                    <div class="col-3">--}}
-                        {{--                                            <label for="datemax" class="form-control-plaintext">Активность с</label>--}}
-                        {{--                                            <input type="date" class="form-control" id="before" name="datemax" min="2020-01-01">--}}
-                        {{--                                    </div>--}}
-                        {{--                                        <div class="col-3">--}}
-                        {{--                                            <label for="datemin" class="form-control-plaintext">Активность до</label>--}}
-                        {{--                                            <input type="date" class="form-control" id="after" name="datemin" min="2020-01-01">--}}
-                        {{--                                        </div>--}}
+                        <div class="col-3">
+                            <label for="datemax" class="form-control-plaintext">Регистрирован до</label>
+                            <input type="date" class="form-control" id="before" name="datemax" min="2020-01-01">
+                        </div>
+                        <div class="col-3">
+                            <label for="datemin" class="form-control-plaintext">Регистрирован после</label>
+                            <input type="date" class="form-control" id="after" name="datemin" min="2020-01-01">
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -96,28 +96,7 @@
         console.log(table);
 
         function search() {
-            var filter = [];
-            var name = document.getElementById('name');
-            var phone = document.getElementById('phone');
-            var surname = document.getElementById('surname');
-            var fatherName = document.getElementById('fatherName');
-            var role = document.getElementById('role');
-            var level = document.getElementById('level');
-            var platform = document.getElementById('platform');
-            filter['name'] = name.value;
-            filter['surname'] = surname.value;
-            filter['father_name'] = fatherName.value;
-            filter['role_id'] = role.value;
-            filter['level_id'] = level.value;
-            filter['platform'] = platform.value;
-            filter['phone'] = phone.value.replace(/\D/g, '');
-            var query = '';
-            for (var key in filter) {
-                if (filter[key]) {
-                    query += 'filter[' + key + ']=' + filter[key] + '&';
-                }
-                console.log("key " + key + " has value " + filter[key]);
-            }
+            var query = filter();
             fetch('{{route('users.filter')}}?' + query)
                 .then((response) => response.text()).then((response) => {
                 table.innerHTML = response;
@@ -206,27 +185,7 @@
 
 
         function changePage() {
-            var filter = [];
-            var name = document.getElementById('name');
-            var phone = document.getElementById('phone');
-            var surname = document.getElementById('surname');
-            var fatherName = document.getElementById('fatherName');
-            var role = document.getElementById('role');
-            var level = document.getElementById('level');
-            var platform = document.getElementById('platform');
-            filter['name'] = name.value;
-            filter['surname'] = surname.value;
-            filter['father_name'] = fatherName.value;
-            filter['role_id'] = role.value;
-            filter['level_id'] = level.value;
-            filter['platform'] = platform.value;
-            filter['phone'] = phone.value.replace(/\D/g, '');
-            var query = '';
-            for (var key in filter) {
-                if (filter[key]) {
-                    query += 'filter[' + key + ']=' + filter[key] + '&';
-                }
-            }
+            var query = filter();
             document.querySelectorAll('.page-link').forEach(item => {
                 item.onclick = null;
                 item.onclick = function (event) {
@@ -245,7 +204,35 @@
                 };
             });
         }
-
+        function filter() {
+            var filter = [];
+            var name = document.getElementById('name');
+            var phone = document.getElementById('phone');
+            var surname = document.getElementById('surname');
+            var fatherName = document.getElementById('fatherName');
+            var role = document.getElementById('role');
+            var level = document.getElementById('level');
+            var platform = document.getElementById('platform');
+            var before = document.getElementById('before');
+            var after = document.getElementById('after');
+            filter['name'] = name.value;
+            filter['surname'] = surname.value;
+            filter['father_name'] = fatherName.value;
+            filter['role_id'] = role.value;
+            filter['level_id'] = level.value;
+            filter['platform'] = platform.value;
+            filter['phone'] = phone.value.replace(/\D/g, '');
+            filter['register_before'] = before.value;
+            filter['register_after'] = after.value;
+            var query = '';
+            for (var key in filter) {
+                if (filter[key]) {
+                    query += 'filter[' + key + ']=' + filter[key] + '&';
+                    console.log(query);
+                }
+            }
+            return query;
+        }
 
     </script>
 @endsection

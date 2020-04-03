@@ -90,53 +90,8 @@ class UserController extends WebBaseController
         $users = User::orderBy('created_at', 'desc')->with(['role', 'level', 'city', 'balance'])->paginate(10);
         $roles = Role::all();
         $levels = Level::all();
-        foreach ($users as $user) {
-            switch ($user->role->id) {
-                case Role::AUTHOR_ID:
-                    $roleName = 'Автор';
-                    break;
-                case Role::ACCOUNTANT_ID:
-                    $roleName = 'Бухгалтер';
-                    break;
-                case Role::USER_ID:
-                    $roleName = 'Пользователь';
-                    break;
-                case Role::ADMIN_ID:
-                    $roleName = 'Админ';
-                    break;
-                case Role::SUPER_ADMIN_ID:
-                    $roleName = 'Супер Админ';
-                    break;
-                case Role::CONTENT_MANAGER_ID:
-                    $roleName = 'Контент Менеджер';
-                    break;
-            }
-            $user->role->name = $roleName;
-        }
-        foreach ($roles as $role) {
-            $roleName = '';
-            switch ($role->id) {
-                case Role::AUTHOR_ID:
-                    $roleName = 'Автор';
-                    break;
-                case Role::ACCOUNTANT_ID:
-                    $roleName = 'Бухгалтер';
-                    break;
-                case Role::USER_ID:
-                    $roleName = 'Пользователь';
-                    break;
-                case Role::ADMIN_ID:
-                    $roleName = 'Админ';
-                    break;
-                case Role::SUPER_ADMIN_ID:
-                    $roleName = 'Супер Админ';
-                    break;
-                case Role::CONTENT_MANAGER_ID:
-                    $roleName = 'Контент Менеджер';
-                    break;
-            }
-            $role->name = $roleName;
-        }
+        $this->switchRole($roles);
+
         return view('admin.users.index', compact('users', 'roles', 'levels'));
     }
 
@@ -144,32 +99,14 @@ class UserController extends WebBaseController
     {
         $users = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email',
-                'phone', 'level_id', 'platform'])
+                'phone', 'level_id', 'platform', AllowedFilter::scope('register_before'),
+                AllowedFilter::scope('register_after')])
             ->orderBy('id', 'desc')
             ->with(['role', 'level', 'city', 'balance'])->paginate(10);
-        foreach ($users as $user) {
-            switch ($user->role->id) {
-                case Role::AUTHOR_ID:
-                    $roleName = 'Автор';
-                    break;
-                case Role::ACCOUNTANT_ID:
-                    $roleName = 'Бухгалтер';
-                    break;
-                case Role::USER_ID:
-                    $roleName = 'Пользователь';
-                    break;
-                case Role::ADMIN_ID:
-                    $roleName = 'Админ';
-                    break;
-                case Role::SUPER_ADMIN_ID:
-                    $roleName = 'Супер Админ';
-                    break;
-                case Role::CONTENT_MANAGER_ID:
-                    $roleName = 'Контент Менеджер';
-                    break;
-            }
-            $user->role->name = $roleName;
-        }
+
+        $userRoles = $users->pluck('role');
+        $this->switchRole($userRoles);
+
         return view('admin.users.table', compact('users'));
     }
 
@@ -191,30 +128,7 @@ class UserController extends WebBaseController
     {
         $user = User::find($id);
         $roles = Role::all();
-        foreach ($roles as $role) {
-            $roleName = '';
-            switch ($role->id) {
-                case Role::AUTHOR_ID:
-                    $roleName = 'Автор';
-                    break;
-                case Role::ACCOUNTANT_ID:
-                    $roleName = 'Бухгалтер';
-                    break;
-                case Role::USER_ID:
-                    $roleName = 'Пользователь';
-                    break;
-                case Role::ADMIN_ID:
-                    $roleName = 'Админ';
-                    break;
-                case Role::SUPER_ADMIN_ID:
-                    $roleName = 'Супер Админ';
-                    break;
-                case Role::CONTENT_MANAGER_ID:
-                    $roleName = 'Контент Менеджер';
-                    break;
-            }
-            $role->name = $roleName;
-        }
+
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
@@ -255,30 +169,7 @@ class UserController extends WebBaseController
         $roles = Role::all();
         $cities = City::all();
         $levels = Level::all();
-        foreach ($roles as $role) {
-            $roleName = '';
-            switch ($role->id) {
-                case Role::AUTHOR_ID:
-                    $roleName = 'Автор';
-                    break;
-                case Role::ACCOUNTANT_ID:
-                    $roleName = 'Бухгалтер';
-                    break;
-                case Role::USER_ID:
-                    $roleName = 'Пользователь';
-                    break;
-                case Role::ADMIN_ID:
-                    $roleName = 'Админ';
-                    break;
-                case Role::SUPER_ADMIN_ID:
-                    $roleName = 'Супер Админ';
-                    break;
-                case Role::CONTENT_MANAGER_ID:
-                    $roleName = 'Контент Менеджер';
-                    break;
-            }
-            $role->name = $roleName;
-        }
+        $this->switchRole($roles);
         return view('admin.users.create', compact('levels', 'cities', 'roles'));
     }
 
@@ -324,6 +215,33 @@ class UserController extends WebBaseController
             return redirect()->back();
         }
 
+    }
+
+    private function switchRole($roles) {
+        foreach ($roles as $role) {
+            $roleName = '';
+            switch ($role->id) {
+                case Role::AUTHOR_ID:
+                    $roleName = 'Автор';
+                    break;
+                case Role::ACCOUNTANT_ID:
+                    $roleName = 'Бухгалтер';
+                    break;
+                case Role::USER_ID:
+                    $roleName = 'Пользователь';
+                    break;
+                case Role::ADMIN_ID:
+                    $roleName = 'Админ';
+                    break;
+                case Role::SUPER_ADMIN_ID:
+                    $roleName = 'Супер Админ';
+                    break;
+                case Role::CONTENT_MANAGER_ID:
+                    $roleName = 'Контент Менеджер';
+                    break;
+            }
+            $role->name = $roleName;
+        }
     }
 
 

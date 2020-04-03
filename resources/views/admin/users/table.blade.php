@@ -17,6 +17,7 @@
                 <th scope="col" class="border-0">Уровень</th>
                 <th scope="col" class="border-0">Платформа</th>
                 <th scope="col" class="border-0">Баланс</th>
+                <th scope="col" class="border-0">Дата регистрации</th>
                 <th scope="col" class="border-0">Действия</th>
             </tr>
         @endif
@@ -37,6 +38,7 @@
                 <td>{{$user->level->name}}</td>
                 <td>{{$user->platform}}</td>
                 <td>{{$user->balance? $user->balance->balance: ''}}</td>
+                <td>{{$user->created_at}}</td>
                 <td>
                     <a class="btn btn-outline-primary mb-2 "
                        href="{{route('users.edit', ['id' => $user->id])}}">
@@ -57,5 +59,7 @@
     </table>
 </div>
 <div class="card-footer">
+    <p style="text-align: center">Показано с {{ $users->firstItem() }} до {{ $users->lastItem() }}
+        из {{$users->total()}} записей</p>
     {{ $users->links() }}
 </div>
