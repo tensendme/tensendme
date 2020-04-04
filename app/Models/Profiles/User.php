@@ -160,8 +160,8 @@ class User extends Authenticatable implements JWTSubject
             $coursesQuery->orWhereIn('category_id', $categoryIds);
         }
 
-        $courses = $coursesQuery->orderBy('scale', 'desc')
-            ->orderBy('trending_scale', 'desc')
+        $courses = $coursesQuery->orderBy('trending_scale', 'desc')
+            ->orderBy('scale', 'desc')
             ->with('author')
             ->with('lessons')
             ->paginate($size ? $size : 10);
