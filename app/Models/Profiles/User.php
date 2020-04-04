@@ -151,25 +151,21 @@ class User extends Authenticatable implements JWTSubject
     public function forMe($size)
     {
         $recommendedCategories = RecommendedCategory::where('user_id', $this->id)->get();
+
+        $coursesQuery = Course::where('is_visible', true)
+            ->where('advertise', true);
+
         if ($recommendedCategories) {
             $categoryIds = $recommendedCategories->pluck('category_id')->toArray();
-            $courses = Course::where('advertise', 1)->orWhereIn('category_id', $categoryIds)->where('is_visible', true)
-                ->orderBy('id', 'desc')
-                ->orderBy('advertise', 'desc')
-                ->orderBy('scale', 'desc')
-                ->with('author')
-                ->with('lessons')
-                ->paginate($size ? $size : 10);
-//            $courses = Course::where('is_visible', 1)->paginate($size ? $size : 10);
-
-        } else {
-            $courses = Course::where('is_visible', true)
-                ->where('advertise', true)
-                ->orderBy('scale', 'desc')
-                ->with('author')
-                ->with('lessons')
-                ->paginate($size ? $size : 10);
+            $coursesQuery->orWhereIn('category_id', $categoryIds);
         }
+
+        $courses = $coursesQuery->orderBy('scale', 'desc')
+            ->orderBy('trending_scale', 'desc')
+            ->with('author')
+            ->with('lessons')
+            ->paginate($size ? $size : 10);
+
         $coursesItems = $courses->getCollection();
         $startedCourse = UserCourse::whereIn('course_id', $coursesItems->pluck('id'))->where('user_id', $this->id)->get();
         foreach ($coursesItems as $course) {
