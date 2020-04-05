@@ -9,7 +9,9 @@ use App\Models\Courses\Course;
 use App\Models\Profiles\Role;
 use App\Services\v1\FileService;
 use App\Utils\StaticConstants;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 
 class CourseController extends WebBaseController
@@ -146,6 +148,31 @@ class CourseController extends WebBaseController
         else $course->advertise = true;
         $course->save();
         $this->edited();
-        return redirect()->route('course.index');
+        return redirect()->back();
+    }
+
+
+    public function trending()
+    {
+        $courses = Course::where('advertise', true)
+            ->orderBy('trending_scale', 'DESC')
+            ->get();
+        return view('admin.course.trending', compact('courses'));
+    }
+
+    public function changePriority(Request $request)
+    {
+        $results = json_decode($request->getContent(), true);
+        $results = collect($results);
+        DB::beginTransaction();
+        try {
+            foreach ($results as $result) {
+                Course::find($result['courseId'])->update(['trending_scale' => $result['priority']]);
+            }
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            dd($exception);
+        }
     }
 }

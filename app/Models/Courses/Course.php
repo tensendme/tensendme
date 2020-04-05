@@ -15,7 +15,10 @@ class Course extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'description', 'category_id', 'image_path', 'is_visible', 'view_count', 'scale',
+        'title', 'description',
+        'category_id', 'image_path',
+        'is_visible', 'view_count',
+        'scale', 'trending_scale',
         'author_id', 'information_list', 'trailer'
     ];
 
@@ -28,12 +31,14 @@ class Course extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function author() {
+    public function author()
+    {
         return $this->belongsTo(User::class, 'author_id', 'id')->select(array('id',
             'name', 'email', 'image_path', 'surname', 'father_name'));
     }
 
-    public function lessons() {
+    public function lessons()
+    {
         return $this->hasMany(CourseMaterial::class, 'course_id', 'id')
             ->orderBy('ordering', 'asc')
             ->select(array('id', 'title', 'img_path', 'duration_time', 'course_id', 'free'));

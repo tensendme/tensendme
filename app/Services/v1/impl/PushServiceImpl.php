@@ -106,7 +106,7 @@ class PushServiceImpl implements PushService
                         ->leftJoin('subscriptions as s', 's.user_id', '=', 'u.id')
                         ->where(function ($query) {
                             $query->whereNull('s.id')
-                                ->orWhereRaw('now() > s.expired_a');
+                                ->orWhereRaw('now() > s.expired_at');
                         })
                         ->where('u.device_token')
                         ->orderBy('u.id', 'desc')

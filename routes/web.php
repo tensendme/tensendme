@@ -100,6 +100,8 @@ Route::group(['namespace' => 'Web\v1'], function () {
             Route::group(['middleware' => ['ROLE_OR:' . Role::CONTENT_MANAGER_ID . ',' . Role::SUPER_ADMIN_ID . ',' . Role::AUTHOR_ID]], function () {
 
                 Route::get('/courses', ['uses' => 'CourseController@index', 'as' => 'course.index']);
+                Route::get('/courses/trending', ['uses' => 'CourseController@trending', 'as' => 'course.trending']);
+                Route::post('/courses/changePriority', ['uses' => 'CourseController@changePriority', 'as' => 'course.changePriority']);
                 Route::get('/courses/create', ['uses' => 'CourseController@create', 'as' => 'course.create']);
                 Route::get('/courses/edit/{id}', ['uses' => 'CourseController@edit', 'as' => 'course.edit'])->where('id', '[0-9]+');
                 Route::post('/courses/edit/{id}', ['uses' => 'CourseController@update', 'as' => 'course.update'])->where('id', '[0-9]+');
