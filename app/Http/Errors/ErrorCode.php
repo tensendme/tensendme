@@ -36,5 +36,6 @@ class ErrorCode
     public const PASSWORDS_MISMATCH = 23;
     public const FIELD_REQUIRED = 24;
     public const NOT_ENOUGH_BALANCE = 25;
-    public const INVALID_LOGIN_OR_PASSWORD = 26;
+    public const INVALID_LOGIN = 26;
+    public const INVALID_PASSWORD = 27;
 }
