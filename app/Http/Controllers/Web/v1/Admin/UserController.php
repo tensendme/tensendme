@@ -11,6 +11,7 @@ use App\Http\Requests\Web\V1\UserControllerRequest\UserRequest;
 use App\Http\Requests\Web\V1\UserControllerRequest\UserStoreRequest;
 use App\Jobs\SendPush;
 use App\JobTemplates\PushJobTemplate;
+use App\Models\ModelSorts\BalanceSort;
 use App\Models\Profiles\Balance;
 use App\Models\Profiles\City;
 use App\Models\Profiles\Level;
@@ -24,7 +25,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\Sorts\Sort;
 
 class UserController extends WebBaseController
 {
@@ -101,8 +104,12 @@ class UserController extends WebBaseController
             ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email',
                 'phone', 'level_id', 'platform', AllowedFilter::scope('register_before'),
                 AllowedFilter::scope('register_after')])
-            ->orderBy('id', 'desc')
-            ->with(['role', 'level', 'city', 'balance'])->paginate(10);
+            ->defaultSort('-id')
+            ->allowedIncludes(['role', 'level', 'city', 'balance'])
+            ->allowedSorts('id', 'created_at', 'name', 'surname', 'level_id'
+//                ,AllowedSort::custom('balance', new BalanceSort())
+    )
+            ->paginate(10);
 
         $userRoles = $users->pluck('role');
         $this->switchRole($userRoles);

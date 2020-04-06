@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-3">
                             <label for="name" class="form-control-plaintext">Имя</label>
-                            <input class="form-control" type="text" name="name" placeholder="Леонардо" id="name">
+                            <input class="form-control" type="text" name="name" placeholder="Леонардо" id="firstName">
                         </div>
                         <div class="col-3">
                             <label for="surname" class="form-control-plaintext">Фамилия</label>
@@ -100,8 +100,13 @@
             fetch('{{route('users.filter')}}?' + query)
                 .then((response) => response.text()).then((response) => {
                 table.innerHTML = response;
-
                 changePage();
+                if(elementId != null) {
+                    console.log(elementId);
+                    console.log(icon);
+                    console.log( document.getElementById(elementId).parentElement);
+                    document.getElementById(elementId).parentElement.appendChild(icon);
+                }
             }).catch((error) => {
                 console.error('Error:', error);
             });
@@ -206,7 +211,7 @@
         }
         function filter() {
             var filter = [];
-            var name = document.getElementById('name');
+            var name = document.getElementById('firstName');
             var phone = document.getElementById('phone');
             var surname = document.getElementById('surname');
             var fatherName = document.getElementById('fatherName');
@@ -225,13 +230,50 @@
             filter['register_before'] = before.value;
             filter['register_after'] = after.value;
             var query = '';
+            if(elementId != null) {
+                if(sort === 'asc')
+                query = 'sort=' + elementId + '&';
+                else query = 'sort=-' + elementId + '&';
+            }
             for (var key in filter) {
                 if (filter[key]) {
                     query += 'filter[' + key + ']=' + filter[key] + '&';
-                    console.log(query);
                 }
             }
             return query;
+        }
+        var icon = document.createElement('i');
+        icon.className = 'material-icons md-18';
+        var elementId = null;
+        var sort = 'desc';
+        $(document).on("click", ".sort", function(event){
+            if(elementId == null) {
+                icon.innerText = 'arrow_drop_down';
+                sorting(event);
+                search();
+            }
+            else if(elementId === event.target.id) {
+                if(sort === 'desc') {
+                    icon.innerText = 'arrow_drop_up';
+                    sort = 'asc';
+                }
+                else {
+                    icon.innerText = 'arrow_drop_down';
+                    sort = 'desc';
+                }
+                search();
+            }
+            else {
+                sorting(event);
+                icon.innerText = 'arrow_drop_down';
+                search();
+            }
+        });
+
+        function sorting(event) {
+            element = event.target;
+            elementId = event.target.id;
+            console.log(elementId);
         }
 
     </script>
