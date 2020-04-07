@@ -43,7 +43,7 @@ class CourseController extends WebBaseController
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $categories = Category::where('category_type_id', 1);
+        $categories = Category::where('category_type_id', 1)->get();
         return view('admin.course.index', compact('courses', 'categories'));
     }
 
