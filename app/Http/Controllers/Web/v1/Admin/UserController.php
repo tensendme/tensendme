@@ -109,8 +109,7 @@ class UserController extends WebBaseController
             ->allowedSorts('id', 'created_at', 'name', 'surname', 'level_id'
 //                ,AllowedSort::custom('balance', new BalanceSort())
     )
-            ->paginate(10);
-
+            ->paginate($request->perPage);
         $userRoles = $users->pluck('role');
         $this->switchRole($userRoles);
 

@@ -82,6 +82,13 @@
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Все пользователи</h6>
+                    <label for="perPage">Записей на одну страницу</label>
+                    <select id="perPage" class="form-control col-1" onchange="search()">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
                 </div>
                 <div id="usersTable">
                     @include('admin.users.table')
@@ -220,6 +227,7 @@
             var platform = document.getElementById('platform');
             var before = document.getElementById('before');
             var after = document.getElementById('after');
+            var perPage = document.getElementById('perPage');
             filter['name'] = name.value;
             filter['surname'] = surname.value;
             filter['father_name'] = fatherName.value;
@@ -229,7 +237,7 @@
             filter['phone'] = phone.value.replace(/\D/g, '');
             filter['register_before'] = before.value;
             filter['register_after'] = after.value;
-            var query = '';
+            var query = 'perPage=' + perPage.value + '&';
             if(elementId != null) {
                 if(sort === 'asc')
                 query = 'sort=' + elementId + '&';
