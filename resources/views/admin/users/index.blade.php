@@ -237,8 +237,8 @@
             var query = 'perPage=' + perPage.value + '&';
             if(elementId != null) {
                 if(sort === 'asc')
-                query = 'sort=' + elementId + '&';
-                else query = 'sort=-' + elementId + '&';
+                query += 'sort=' + elementId + '&';
+                else query += 'sort=-' + elementId + '&';
             }
             for (var key in filter) {
                 if (filter[key]) {

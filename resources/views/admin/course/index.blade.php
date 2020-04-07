@@ -36,7 +36,7 @@
                             </select>
                         </div>
                         <div class="col-3">
-                            <label class="form-control-plaintext" for="author_id">Пожалуйста выберите автора</label>
+                            <label class="form-control-plaintext" for="author_id">Автор</label>
                             <select id="author_id" class="form-control search js-example-basic-single" name="author_id">
                             </select>
                         </div>
@@ -139,8 +139,8 @@
             var query = 'perPage=' + perPage.value + '&';
             if(elementId != null) {
                 if(sort === 'asc')
-                    query = 'sort=' + elementId + '&';
-                else query = 'sort=-' + elementId + '&';
+                    query += 'sort=' + elementId + '&';
+                else query += 'sort=-' + elementId + '&';
             }
             for (var key in filter) {
                 if (filter[key]) {
@@ -180,7 +180,6 @@
         function sorting(event) {
             element = event.target;
             elementId = event.target.id;
-            console.log(elementId);
         }
         var authorSelect = document.getElementById('author_id');
         var nextLink = '/authors';
