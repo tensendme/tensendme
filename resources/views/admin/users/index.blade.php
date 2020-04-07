@@ -211,6 +211,7 @@
                             console.error('Error:', error);
                         });
                     }
+                    $('html, body').animate({ scrollTop: 500 }, 'fast');
                     event.preventDefault();
                     return false;
                 };
