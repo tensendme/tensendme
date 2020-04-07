@@ -102,7 +102,7 @@ class UserController extends WebBaseController
     {
         $users = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email',
-                'phone', 'level_id', 'platform', AllowedFilter::scope('register_before'),
+                'phone', AllowedFilter::exact('level_id'), 'platform', AllowedFilter::scope('register_before'),
                 AllowedFilter::scope('register_after')])
             ->defaultSort('-id')
             ->allowedIncludes(['role', 'level', 'city', 'balance'])

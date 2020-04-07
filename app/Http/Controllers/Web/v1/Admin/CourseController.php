@@ -181,7 +181,9 @@ class CourseController extends WebBaseController
 
     public function filter(Request $request) {
         $courses = QueryBuilder::for(Course::class)
-            ->allowedFilters(['title', 'category_id', 'author_id','is_visible','advertise',
+            ->allowedFilters(['title', 'is_visible','advertise',
+                AllowedFilter::exact('category_id'),
+                AllowedFilter::exact('author_id'),
                 AllowedFilter::scope('created_after'),
                 AllowedFilter::scope('created_before')])
             ->defaultSort('-id')
