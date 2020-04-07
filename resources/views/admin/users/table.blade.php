@@ -59,7 +59,9 @@
     </table>
 </div>
 <div class="card-footer">
-    <p style="text-align: center">Показано с {{ $users->firstItem() }} до {{ $users->lastItem() }}
-        из {{$users->total()}} записей</p>
-    {{ $users->links() }}
+    @if($users->items())
+        <p style="text-align: center">Показано с {{ $users->firstItem() }} до {{ $users->lastItem() }}
+            из {{$users->total()}} записей</p>
+        {{ $users->links() }}
+    @endif
 </div>

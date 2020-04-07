@@ -100,7 +100,6 @@
 @section('scripts')
     <script>
         var table = document.getElementById('usersTable');
-        console.log(table);
 
         function search() {
             var query = filter();
@@ -109,9 +108,6 @@
                 table.innerHTML = response;
                 changePage();
                 if(elementId != null) {
-                    console.log(elementId);
-                    console.log(icon);
-                    console.log( document.getElementById(elementId).parentElement);
                     document.getElementById(elementId).parentElement.appendChild(icon);
                 }
             }).catch((error) => {
@@ -282,7 +278,6 @@
         function sorting(event) {
             element = event.target;
             elementId = event.target.id;
-            console.log(elementId);
         }
 
     </script>

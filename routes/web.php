@@ -107,6 +107,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/courses/edit/{id}', ['uses' => 'CourseController@update', 'as' => 'course.update'])->where('id', '[0-9]+');
                 Route::post('/courses/create', ['uses' => 'CourseController@store', 'as' => 'course.store'])->where('id', '[0-9]+');
                 Route::post('/courses/visible/{id}', ['uses' => 'CourseController@visibleChange', 'as' => 'course.visible'])->where('id', '[0-9]+');
+                Route::get('/courses/filter', ['uses' => 'CourseController@filter', 'as' => 'course.filter']);
 
                 Route::get('/course/materials/{course_id}', ['uses' => 'CourseMaterialController@index', 'as' => 'course.material.index'])->where('course_id', '[0-9]+');
                 Route::get('/course/materials/create/{course_id}', ['uses' => 'CourseMaterialController@create', 'as' => 'course.material.create'])->where('course_id', '[0-9]+');

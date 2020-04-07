@@ -4,6 +4,8 @@ namespace App\Models\Courses;
 
 use App\Models\Categories\Category;
 use App\Models\Profiles\User;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -42,5 +44,15 @@ class Course extends Model
         return $this->hasMany(CourseMaterial::class, 'course_id', 'id')
             ->orderBy('ordering', 'asc')
             ->select(array('id', 'title', 'img_path', 'duration_time', 'course_id', 'free'));
+    }
+
+    public function scopeCreatedBefore(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '<=', Carbon::parse($date));
+    }
+
+    public function scopeCreatedAfter(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '>=', Carbon::parse($date));
     }
 }
