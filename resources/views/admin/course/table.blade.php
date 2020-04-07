@@ -65,8 +65,6 @@
                                 </button>
                             @endif
                         </form>
-                    @endif
-                    @if(in_array(Auth::user()->role_id ,[1,2,3]))
                         <form class="d-inline" method="post"
                               action="{{route('course.advertise', ['id' => $course->id])}}">
                             {{csrf_field()}}

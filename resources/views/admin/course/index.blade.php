@@ -35,11 +35,13 @@
                                 <option value="0">Не виден</option>
                             </select>
                         </div>
+                        @if(in_array(Auth::user()->role_id ,[1,2,3]))
                         <div class="col-3">
                             <label class="form-control-plaintext" for="author_id">Автор</label>
                             <select id="author_id" class="form-control search js-example-basic-single" name="author_id">
                             </select>
                         </div>
+                        @endif
                         <div class="col-3">
                             <label for="datemax" class="form-control-plaintext">Создан до</label>
                             <input type="date" class="form-control search" id="created_before" name="created_before" min="2020-01-01">

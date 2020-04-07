@@ -43,7 +43,7 @@ class CourseController extends WebBaseController
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $categories = Category::all();
+        $categories = Category::where('category_type_id', 1);
         return view('admin.course.index', compact('courses', 'categories'));
     }
 
@@ -180,16 +180,31 @@ class CourseController extends WebBaseController
     }
 
     public function filter(Request $request) {
-        $courses = QueryBuilder::for(Course::class)
-            ->allowedFilters(['title', 'is_visible','advertise',
-                AllowedFilter::exact('category_id'),
-                AllowedFilter::exact('author_id'),
-                AllowedFilter::scope('created_after'),
-                AllowedFilter::scope('created_before')])
-            ->defaultSort('-id')
-            ->allowedIncludes(['author', 'lessons'])
-            ->allowedSorts('id', 'created_at', 'name', 'title', 'is_visible', 'scale', 'view_count')
-            ->paginate($request->perPage);
+        if (!Auth::user()->isAuthor()) {
+            $courses = QueryBuilder::for(Course::class)
+                ->allowedFilters(['title', 'is_visible', 'advertise',
+                    AllowedFilter::exact('category_id'),
+                    AllowedFilter::exact('author_id'),
+                    AllowedFilter::scope('created_after'),
+                    AllowedFilter::scope('created_before')])
+                ->defaultSort('-id')
+                ->allowedIncludes(['author', 'lessons'])
+                ->allowedSorts('id', 'created_at', 'name', 'title', 'is_visible', 'scale', 'view_count')
+                ->paginate($request->perPage);
+        }
+        else {
+            $courses = QueryBuilder::for(Course::class)
+                ->allowedFilters(['title', 'is_visible', 'advertise',
+                    AllowedFilter::exact('category_id'),
+                    AllowedFilter::scope('created_after'),
+                    AllowedFilter::scope('created_before')])
+                ->where('author_id', Auth::id())
+                ->defaultSort('-id')
+                ->allowedIncludes(['author', 'lessons'])
+                ->allowedSorts('id', 'created_at', 'name', 'title', 'is_visible', 'scale', 'view_count')
+                ->paginate($request->perPage);
+
+        }
 
         return view('admin.course.table', compact('courses'));
     }
