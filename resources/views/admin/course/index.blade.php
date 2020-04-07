@@ -117,7 +117,7 @@
                     if (href) {
                         fetch(href.value + '&' + query )
                             .then((response) => response.text()).then((response) => {
-                            document.getElementById('usersTable').innerHTML = response;
+                            document.getElementById('coursesTable').innerHTML = response;
                             changePage();
                         }).catch((error) => {
                             console.error('Error:', error);
