@@ -71,7 +71,7 @@
 <div class="form-row">
     <div class="col-md-12">
         <div class="form-group text-left">
-            <label>Показ оплаты в мобильноом приложении:</label>
+            <label>Показ оплаты в мобильном приложении:</label>
             <input type="checkbox"
                    data-on="Вкл"
                    data-off="Откл"
