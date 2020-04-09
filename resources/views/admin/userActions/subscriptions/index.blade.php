@@ -27,6 +27,7 @@
                             <th scope="col" class="border-0">Тип подписки</th>
                             <th scope="col" class="border-0">Цена</th>
                             <th scope="col" class="border-0">Срок истечения</th>
+                            <th scope="col" class="border-0">Дата оформления</th>
 
                         </tr>
                         </thead>
@@ -39,6 +40,7 @@
                                 <td>{{$subscription->subscriptionType->name}}</td>
                                 <td>{{$subscription->actual_price}}</td>
                                 <td>{{$subscription->expired_at}}</td>
+                                <td>{{$subscription->created_at}}</td>
 
                             </tr>
                         @endforeach
