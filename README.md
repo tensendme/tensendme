@@ -37,6 +37,8 @@ password: tensendme2020n
 <br> PASSWORDS_MISMATCH = 23;
 <br> FIELD_REQUIRED = 24;
 <br> NOT_ENOUGH_BALANCE = 25;
+<br> INVALID_LOGIN = 26;
+<br> INVALID_PASSWORD = 27;
 <hr>
 
 ### Авторизация:

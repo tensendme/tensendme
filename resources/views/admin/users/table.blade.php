@@ -6,18 +6,18 @@
             <tr>Пользователей нет!</tr>
         @else
             <tr>
-                <th scope="col" class="border-0">#</th>
-                <th scope="col" class="border-0">ФИО</th>
-                <th scope="col" class="border-0">Логин</th>
+                <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="id">#</a></th>
+                <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="name">ФИО</a></th>
+                <th scope="col" class="border-0">Ник</th>
                 <th scope="col" class="border-0">Почта</th>
                 <th scope="col" class="border-0">Телефон</th>
                 <th scope="col" class="border-0">Промо-код</th>
                 <th scope="col" class="border-0">Город</th>
                 <th scope="col" class="border-0">Роль</th>
-                <th scope="col" class="border-0">Уровень</th>
+                <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="level_id">Уровень</a></th>
                 <th scope="col" class="border-0">Платформа</th>
                 <th scope="col" class="border-0">Баланс</th>
-                <th scope="col" class="border-0">Дата регистрации</th>
+                <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="created_at">Дата регистрации</a></th>
                 <th scope="col" class="border-0">Действия</th>
             </tr>
         @endif
@@ -59,7 +59,9 @@
     </table>
 </div>
 <div class="card-footer">
-    <p style="text-align: center">Показано с {{ $users->firstItem() }} до {{ $users->lastItem() }}
-        из {{$users->total()}} записей</p>
-    {{ $users->links() }}
+    @if($users->items())
+        <p style="text-align: center">Показано с {{ $users->firstItem() }} до {{ $users->lastItem() }}
+            из {{$users->total()}} записей</p>
+        {{ $users->links() }}
+    @endif
 </div>

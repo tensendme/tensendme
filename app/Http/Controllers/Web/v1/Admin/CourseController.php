@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class CourseController extends WebBaseController
 {
@@ -41,7 +43,8 @@ class CourseController extends WebBaseController
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('admin.course.index', compact('courses'));
+        $categories = Category::where('category_type_id', 1)->get();
+        return view('admin.course.index', compact('courses', 'categories'));
     }
 
     public function create()
@@ -174,5 +177,35 @@ class CourseController extends WebBaseController
             DB::rollBack();
             dd($exception);
         }
+    }
+
+    public function filter(Request $request) {
+        if (!Auth::user()->isAuthor()) {
+            $courses = QueryBuilder::for(Course::class)
+                ->allowedFilters(['title', 'is_visible', 'advertise',
+                    AllowedFilter::exact('category_id'),
+                    AllowedFilter::exact('author_id'),
+                    AllowedFilter::scope('created_after'),
+                    AllowedFilter::scope('created_before')])
+                ->defaultSort('-id')
+                ->allowedIncludes(['author', 'lessons'])
+                ->allowedSorts('id', 'created_at', 'name', 'title', 'is_visible', 'scale', 'view_count')
+                ->paginate($request->perPage);
+        }
+        else {
+            $courses = QueryBuilder::for(Course::class)
+                ->allowedFilters(['title', 'is_visible', 'advertise',
+                    AllowedFilter::exact('category_id'),
+                    AllowedFilter::scope('created_after'),
+                    AllowedFilter::scope('created_before')])
+                ->where('author_id', Auth::id())
+                ->defaultSort('-id')
+                ->allowedIncludes(['author', 'lessons'])
+                ->allowedSorts('id', 'created_at', 'name', 'title', 'is_visible', 'scale', 'view_count')
+                ->paginate($request->perPage);
+
+        }
+
+        return view('admin.course.table', compact('courses'));
     }
 }
