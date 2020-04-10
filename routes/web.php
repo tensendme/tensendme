@@ -44,6 +44,8 @@ Route::group(['namespace' => 'Web\v1'], function () {
     Route::get('/share/{promoCode}', ['as' => 'promo-code.index', 'uses' => 'HomeController@promoCode']);
     Route::post('/share/{promoCode}', ['as' => 'promo-code.post', 'uses' => 'HomeController@registerPromo']);
 
+    Route::get('/subscribe', ['as' => 'pay.subscription', 'uses' => 'PaymentController@subscribe']);
+
     Route::get('/secure/config/send-push', ['uses' => 'ConfigController@sendPush']);
     Route::get('/secure/config/migrate-refresh', ['uses' => 'ConfigController@migrateRefresh']);
     Route::get('/secure/config/migrate', ['uses' => 'ConfigController@migrate']);

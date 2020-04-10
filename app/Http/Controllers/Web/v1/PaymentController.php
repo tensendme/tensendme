@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebBaseController;
 use App\Http\Errors\ErrorCode;
 use App\Models\Histories\Transaction;
+use App\Models\Profiles\Country;
 use App\Models\Subscriptions\SubscriptionType;
 use App\Models\Profiles\User;
 use Illuminate\Http\Request;
@@ -40,6 +41,12 @@ class PaymentController  extends WebBaseController
         $transaction= Transaction::find($request->transaction_id);
 
         return view('cardStatus',compact('transaction'));
+    }
+
+    public function subscribe() {
+        $subscriptions = SubscriptionType::where('price', '!=', 0)->get();
+        $countries = Country::all();
+        return view('subscription', compact('subscriptions', 'countries'));
     }
 
 
