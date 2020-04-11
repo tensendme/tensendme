@@ -67,14 +67,29 @@
             text-align: center;
         }
 
+        h5.content {
+            color: #344356;
+            font-family: 'Montserrat';
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        h3.content {
+            color: #344356;
+            font-family: 'Montserrat';
+            font-weight: 100;
+            font-size: 13.5px;
+        }
+
         .w-97 {
             background-color: #004DC9;
             height: 60px;
             width:100%;
             color: white;
-            margin: 15px auto 50px;
-            font-size: 25px;
+            margin: 15px auto 15px;
+            font-size: 20px;
             letter-spacing: 1.6px;
+            text-align: center;
             font-weight:600;
             border: 0;
             -webkit-appearance: none;
@@ -85,6 +100,10 @@
 
         .w-97:disabled {
             opacity: 0.4;
+        }
+        .w-97 i {
+            margin-left: 20px;
+            margin-right:-25px;
         }
 
         .links > a {
@@ -229,9 +248,9 @@
         .form-group {
 
             position: relative;
-            font-size: 15px;
+            font-size: 18px;
             color: #344356;
-            margin-top: 30px;
+            /*margin-top: 30px;*/
             text-align: left;
         }
 
@@ -293,7 +312,7 @@
             font-size:12.5pt;
             text-align:center;
         }
-        @media( max-width : 585px ) {
+        @media( max-width : 700px ) {
 
             .wizard {
                 width: 95%;
@@ -336,6 +355,26 @@
                 /*-webkit-box-shadow: 1px 1px 0.25em 0.25em #a8a8a8;*/
 
             }
+            .form-group {
+
+                font-size: 22px;
+                color: #344356;
+                /*margin-top: 30px;*/
+                text-align: left;
+            }
+
+            .form-label{
+                font-family: 'Montserrat';
+                transition: 0.3s;
+                translateY: -15px;
+
+
+            }
+
+            .form-control{
+                font-size:22px;
+
+            }
         }
     </style>
 </head>
@@ -364,7 +403,7 @@
                         </li>
 
                         <li role="presentation" class="disabled">
-                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Төлем">
+                            <a href="#step4" data-toggle="tab" aria-controls="complete" role="tab" title="Төлем">
                             <span class="round-tab">4</span>
                             </a>
                         </li>
@@ -378,22 +417,22 @@
 <div class="tab-content">
     <div class="content first-step tab-pane active" role="tabpanel" id="step1">
         <img class="tensend-icon" src="{{asset('illustration.png')}}" alt="">
-        <h3 class="content">
+        <h5 class="content">
             Tensend төлем <br>
             парақшасына қош келдіңіз!
-        </h3>
-        <h5>
+        </h5>
+        <h3 class="content">
             Небәрі 3 қадамнан соң Tensend-тегі барлық
             <br>курстарды қарауыңызға
             <br>болады.<br>
-        </h5>
-        <button class="w-97 next-step" type="button" id="">Кеттік</button>
+        </h3>
+        <button class="w-97 next-step" type="button" id="">КЕТТІК</button>
     </div>
     <div class="content second-step tab-pane" role="tabpanel" id="step2">
         <img class="tensend-icon" src="{{asset('illustration2.png')}}" alt="">
         <form>
             <div class="form-group">
-                <label class="form-label">Телефон нөмеріңіз</label>
+                <label class="form-label">Телефон нөміріңіз</label>
                 <div class="form-row">
                     <select id="id_select2_example" class="form-control" name="country">
                         @foreach($countries as $country)
@@ -408,12 +447,57 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Құпия сөзіңіз</label>
-                <input id="password" class="password form-control" type="password" name="password"
-                    pattern="">
+                <input id="password" class="password form-control" type="password" name="password">
             </div>
-        <button class="w-97 next-step" type="button" id="sendPhone">Жалғастыру</button>
+        <button class="w-97 next-step" type="button" id="sendPhone">ЖАЛҒАСТЫРУ<i class="glyphicon glyphicon-arrow-right"></i></button>
     </form>
     </div>
+    <div class="content second-step tab-pane" role="tabpanel" id="step3">
+        <img class="tensend-icon" src="{{asset('illustration3.png')}}" alt="">
+        <form>
+            <div class="form-group">
+                <label class="form-label">Телефон нөміріңіз</label>
+                <div class="form-row">
+                    <select id="id_select2_example1" class="form-control" name="country">
+                        @foreach($countries as $country)
+                            <option value="{{$country->id}}" data-img_src="{{asset($country->image_path)}}">
+                                {{$country->phone_prefix}}
+                            </option>
+                        @endforeach
+                    </select>
+                    <input id="phone2" class="phone m-b-md form-control" type="text" inputmode="numeric" name="phone"
+                           pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
+                </div>
+            </div>
+            <button class="w-97 next-step" type="button" id="">APPSTORE-ГЕ КӨШУ</button>
+        </form>
+        <h5 class="content">
+            Бұл нөмір жүйеде тіркелмеген!
+        </h5>
+        <h3 class="content">
+            Appstore-ден Tensend қосымшасын жүктеп, <br>жүйеге тіркеліңіз
+        </h3>
+    </div>
+    <div class="content first-step tab-pane" role="tabpanel" id="step4">
+        @if(true)
+            <img class="tensend-icon" src="{{asset('illustration4.png')}}" alt="">
+            <h5 class="content">
+                Төлем сәтті аяқталды!
+            </h5>
+            <h3 class="content">
+                Tensend-пен бірге таптырмас білім алуда <br>сізге сәттілік тілейміз!
+            </h3>
+        @else
+            <img class="tensend-icon" src="{{asset('illustration5.png')}}" alt="">
+            <h5 class="content">
+                Енгізілген ақпарат жарамсыз!
+            </h5>
+            <h3 class="content">
+                Ақпаратты қайтадан тексеріп, енгізіңіз!
+            </h3>
+        @endif
+    </div>
+
 </div>
 <script src="{{asset('admin/scripts/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('admin/scripts/select2.min.js')}}"></script>
