@@ -76,7 +76,7 @@ class HomeController extends WebBaseController
             $country->phone_prefix . $request->phone);
         if ($user) $this->promoCodeService->makePassPhone($user->id, $promoCode, $phone);
         if ($platform == 'IOS') {
-            return Redirect::to('itms-apps://apple.com/today');
+            return Redirect::to('https://apps.apple.com/kz/app/tensend/id1502844330');
         } else if ($platform == 'Android') {
             return Redirect::to('https://play.google.com/store/apps/details?id=kz.ysmaiyl.app.tensend');
         } else return redirect()->route('welcome');
