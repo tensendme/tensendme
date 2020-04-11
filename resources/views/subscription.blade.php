@@ -32,20 +32,11 @@
             position: relative;
         }
 
-        .step {
-            border-radius: 50%;
-            background-color: rgba(0, 77, 192, 0.9);
-            color: white;
-            margin: 40px 0 0 0;
-            height: 100px;
-            width: 100px;
+        .form-row {
             display: flex;
-            align-content: center;
-            align-items: center;
             justify-content: center;
-            -webkit-appearance: none;
-            -webkit-box-shadow: 0px 1px 20px 15px rgba(0, 77, 201, 0.21);
-            box-shadow: 0px 1px 18px 12px rgba(0, 77, 201, 0.17);
+            align-items: center;
+            align-content: center;
         }
 
         .row {
@@ -67,7 +58,7 @@
         }
 
         .tensend-icon {
-            height: 300px;
+            height: 180px;
             width: auto;
             margin: 50px auto 20px auto;
         }
@@ -77,12 +68,13 @@
         }
 
         .w-97 {
-            background-color: rgba(0, 77, 192, 0.9);
+            background-color: #004DC9;
             height: 60px;
             width:100%;
             color: white;
             margin: 15px auto 50px;
-            font-size: 20px;
+            font-size: 25px;
+            letter-spacing: 1.6px;
             border: 0;
             -webkit-appearance: none;
             -webkit-box-shadow: 0px 1px 20px 15px rgba(0, 77, 201, 0.21);
@@ -92,20 +84,6 @@
 
         .w-97:disabled {
             opacity: 0.4;
-        }
-
-        .title {
-            font-size: 35px;
-        }
-
-        .phone {
-            font-size: 26.5px;
-        }
-
-        .discount {
-            font-size: 45px;
-            font-weight: 600;
-            text-align: center;
         }
 
         .links > a {
@@ -122,69 +100,20 @@
             margin-bottom: 20px;
         }
 
-        .cursorShow {
-            cursor: pointer;
-            right: 40px;
-        }
-
-        .tooltiptext {
-            position: absolute;
-            visibility: hidden;
-            width: 120px;
-            background-color: black;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            opacity: 0.6;
-            right: -22px;
-            bottom: -40px;
-            z-index: 1;
-        }
-
         input:focus {
             outline: none;
         }
 
-        #copyText {
-            width: 95%;
-            padding: 12px 15px;
-            margin: 8px 0;
-            text-align: center;
-            border-radius: 10px;
-            border: 0;
-            box-sizing: border-box;
-            background-color: #0048cd;
-            color: white;
-        }
-
-        #phone {
-            width: 95%;
-            padding: 12px 15px;
-            margin: 0 6px 0 1.5px;
-            text-align: left;
-            border-radius: 3.5px;
-            box-sizing: border-box;
-            border: rgba(9, 11, 12, 0.36) solid 1px;
-            color: black;
-        }
-
-        .wave {
-            background-image: url({{asset('wave.svg')}});
-            background-size: 250px;
-            background-repeat: repeat-x;
-            background-position: center top;
-        }
         .wizard {
-            margin: 20px auto;
+            margin: 0px auto;
             background: #fff;
         }
 
         .wizard .nav-tabs {
             position: relative;
-            margin: 40px auto;
+            margin: 30px auto;
             margin-bottom: 0;
-            border-bottom-color: #e0e0e0;
+            border-bottom-color: #344356;
         }
 
         .wizard > div.wizard-inner {
@@ -193,52 +122,47 @@
 
         .connecting-line {
             height: 3px;
-            background: #e0e0e0;
+            background: #344356;
             position: absolute;
-            width: 80%;
+            width: 78%;
             margin: 0 auto;
             left: 0;
-            right: 9;
-            top: 25%;
+            right: 0;
+            top: 28%;
             z-index: 1;
         }
 
         .wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
-            color: #0048cd;
+            color: white;
             cursor: default;
             border: 0;
             border-bottom-color: transparent;
         }
 
         span.round-tab {
-            width: 20px;
-            height: 20px;
-            line-height: 15px;
+            width: 40px;
+            height: 40px;
+            line-height: 35px;
             display: inline-block;
-            border-radius: 50px;
-            background: #fff;
-            border: 2px solid #e0e0e0;
+            border-radius: 100px;
+            background: #E3EBF8;
+            border: 2px solid #344356;
             z-index: 2;
             position: absolute;
             left: 0;
             text-align: center;
-            font-size: 12px;
+            font-size: 25px;
         }
         span.round-tab i{
-            color:#0048cd;
+            color: #0066DF;
         }
         .wizard li.active span.round-tab {
-            background: #fff;
-            border: 2px solid #0048cd;
+            background: #0066DF;
+            border: 2px solid #344356;
 
         }
         .wizard li.active span.round-tab i{
-            color: #0048cd;
-        }
-
-        span.round-tab:hover {
-            color: #0048cd;
-            border: 2px solid #0048cd;
+            color: #0066DF;
         }
 
         .wizard .nav-tabs > li {
@@ -253,31 +177,38 @@
             margin: 0 auto;
             bottom: 0px;
             border: 5px solid transparent;
-            border-bottom-color: #0048cd;
+            border-bottom-color: #0066DF;
             transition: 0.1s ease-in-out;
+        }
+
+        .wizard li.processing span.round-tab  {
+            color: white;
+            border: 2px solid #344356;
+            background: #0066DF;
         }
 
         .wizard li.active:after {
             content: " ";
             position: absolute;
-            left: 5%;
+            left: 47%;
             opacity: 1;
             margin: 0 auto;
             bottom: 0px;
             border: 10px solid transparent;
-            border-bottom-color: #0048cd;
+            border-bottom-color: #0066DF;
         }
 
         .wizard .nav-tabs > li a {
             width: 80px;
-            height: 50px;
-            margin: 9px auto;
+            height: 65px;
+            margin: 0 30px 0 40%;
             border-radius: 100%;
             padding: 0;
         }
 
         .wizard .nav-tabs > li a:hover {
             background: transparent;
+            border:0;
         }
 
         .wizard h3 {
@@ -287,58 +218,100 @@
         @media( max-width : 585px ) {
 
             .wizard {
-                width: 100%;
+                width: 95%;
                 height: auto !important;
             }
 
             span.round-tab {
-                font-size: 5px;
-                width: 50px;
-                height: 50px;
-                line-height: 50px;
+                font-size: 25px;
+                width: 40px;
+                height: 40px;
+                line-height: 35px;
             }
 
             .wizard .nav-tabs > li a {
-                width: 90px;
-                height: 50px;
-                line-height: 50px;
+                width: 40px;
+                height: 65px;
             }
 
             .wizard li.active:after {
                 content: " ";
                 position: absolute;
-                left: 35%;
+                left: 53.5%;
             }
+
+            .country_text {
+                font-weight: 700;
+                margin:2px 2px 2px 2px;
+                font-size:12.5pt;
+                text-align:center;
+            }
+
+            .custom_image_size{
+                width:auto;
+                height:20px
+            }
+            .form-group {
+
+                position: relative;
+                font-size: 15px;
+                color: #666;
+                margin-top: 30px;
+                text-align: left;
+            }
+
+            .form-label{
+                position: relative;
+                z-index: 1;
+                left: 0;
+                top: 5px;
+                font-family: 'Montserrat';
+                font-weight: 500;
+                color:#344356
+
+
+            }
+
+            .form-control{
+                width: 100%;
+                position: relative;
+                z-index: 3;
+                height: 35px;
+                background: none;
+                border:none;
+                padding: 5px 0;
+                border-bottom: 1px solid #777;
+                color: #555;
+        }
         }
     </style>
 </head>
-<div class="content">
+<div class="container">
     <div class="row">
         <section>
             <div class="wizard">
                 <div class="wizard-inner">
                     <div class="connecting-line"></div>
                     <ul class="nav nav-tabs" role="tablist">
-
-                        <li role="presentation" class="active">
-                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                        <li role="presentation" class="processing">
+                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="1">
                             <span class="round-tab">1</span>
                             </a>
                         </li>
 
                         <li role="presentation" class="disabled">
-                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="2">
                             <span class="round-tab">2</span>
                             </a>
                         </li>
                         <li role="presentation" class="disabled">
-                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="3">
                             <span class="round-tab">3</span>
                             </a>
                         </li>
 
                         <li role="presentation" class="disabled">
-                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Төлем">
                             <span class="round-tab">4</span>
                             </a>
                         </li>
@@ -348,41 +321,47 @@
         </section>
     </div>
 </div>
-<body class="flex-center position-ref full-height wave">
-<div class="content first-step" id="step1">
-    <img class="tensend-icon" src="{{asset('mobile.jpg')}}" alt="">
-    <h2 class="content">
-        Tensend төлем <br>
-        парақшасына қош келдіңіз!</h2>
-        <h4>
-        Небәрі 3 қадамнан соң Tensend-тегі барлық
-        <br>курстарды қарауыңызға
-        <br>болады.<br>
-    </h4>
-    <input class="w-97 submit-btn" type="submit" value="Кеттік" id="">
-</div>
-<div class="content second-step">
-    <img class="tensend-icon" src="{{asset('mobile.jpg')}}" alt="">
-    <h3>Телефон нөмеріңіз</h3>
-    <div class="row">
-        <select id="id_select2_example" style="width: 150px;" name="country">
-            @foreach($countries as $country)
-                <option value="{{$country->id}}" data-img_src="{{asset($country->image_path)}}">
-                    {{$country->phone_prefix}}
-                </option>
-            @endforeach
-        </select>
-        <input id="phone" class="phone m-b-md" type="text" inputmode="numeric" name="phone"
-               pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
+<body class="flex-center position-ref full-height">
+<div class="tab-content">
+    <div class="content first-step tab-pane" role="tabpanel" id="step1">
+        <img class="tensend-icon" src="{{asset('illustration.png')}}" alt="">
+        <h3 class="content">
+            Tensend төлем <br>
+            парақшасына қош келдіңіз!
+        </h3>
+        <h5>
+            Небәрі 3 қадамнан соң Tensend-тегі барлық
+            <br>курстарды қарауыңызға
+            <br>болады.<br>
+        </h5>
+        <button class="w-97 next-step" type="button" id="">Кеттік</button>
     </div>
-    <div class="row">
-        <input id="password" class="password" type="text" name="phone"
-               pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
+    <div class="content second-step tab-pane active" role="tabpanel" id="step2">
+        <img class="tensend-icon" src="{{asset('illustration2.png')}}" alt="">
+        <form>
+            <div class="form-group">
+                <label class="form-label">Телефон нөмеріңіз</label>
+                <div class="form-row">
+                    <select id="id_select2_example" class="form-control" style="width: 70px;" name="country">
+                        @foreach($countries as $country)
+                            <option value="{{$country->id}}" data-img_src="{{asset($country->image_path)}}">
+                                {{$country->phone_prefix}}
+                            </option>
+                        @endforeach
+                    </select>
+                    <input id="phone" class="phone m-b-md form-control" type="text" inputmode="numeric" name="phone"
+                           pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
+                </div>
+            </div>
+            <input id="password" class="password" type="text" name="password"
+                   pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
+        <button class="w-97 next-step" type="button" id="sendPhone">Кеттік</button>
+    </form>
     </div>
-    <input class="w-97 submit-btn" type="submit" value="Kettik" id="">
 </div>
 <script src="{{asset('admin/scripts/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('admin/scripts/select2.min.js')}}"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script>
 </script>
 <script type="text/javascript">
@@ -391,7 +370,7 @@
         var text = $(obj.element).text();
         if (data && data['img_src']) {
             img_src = data['img_src'];
-            template = $("<div class=\"row\"><img class=\"custom_image_size\" src=\"" + img_src + "\" style=\"width:auto;height:25px;\"/><p style=\"font-weight: 700;font-size:11.5pt;text-align:center;\">" + text + "</p></div>");
+            template = $("<div class=\"row\"><img class=\"custom_image_size\" src=\"" + img_src + "\"/><p class=\"country_text\">" + text + "</p></div>");
             return template;
         }
     }
@@ -401,7 +380,7 @@
         'templateResult': custom_template,
     };
     $('#id_select2_example').select2(options);
-    $('.select2-container--default .select2-selection--single').css({'height': '59px'});
+    $('.select2-container--default .select2-selection--single').css({'height': '40px'});
     $('.select2-container--default').css({'margin': '0 0 0 6px'});
 
     // $('.select2-container--open .select2-dropdown--below').css({'left': '6px'});
@@ -453,8 +432,44 @@
 
     }
 
-    document.getElementById("phone").onkeypress = validate_int;
-    document.getElementById("phone").onkeyup = phone_number_mask;
+    // document.getElementById("phone").onkeypress = validate_int;
+    // document.getElementById("phone").onkeyup = phone_number_mask;
+
+    $(document).ready(function () {
+        //Initialize tooltips
+        $('.nav-tabs > li a[title]').tooltip();
+
+        //Wizard
+        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+            var $target = $(e.target);
+
+            if ($target.parent().hasClass('disabled')) {
+                return false;
+            }
+        });
+
+        $(".next-step").click(function (e) {
+            var $active = $('.wizard .nav-tabs li.active');
+            $active.next().removeClass('disabled');
+            $active.next().addClass('processing');
+            nextTab($active);
+
+        });
+        $(".prev-step").click(function (e) {
+
+            var $active = $('.wizard .nav-tabs li.active');
+            prevTab($active);
+
+        });
+    });
+
+    function nextTab(elem) {
+        $(elem).next().find('a[data-toggle="tab"]').click();
+    }
+    function prevTab(elem) {
+        $(elem).prev().find('a[data-toggle="tab"]').click();
+    }
 </script>
 </body>
 </html>
