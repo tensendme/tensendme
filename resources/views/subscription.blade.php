@@ -353,8 +353,11 @@
                            pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
                 </div>
             </div>
-            <input id="password" class="password" type="text" name="password"
-                   pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
+            <div class="form-group">
+                <label class="form-label">Құпия сөзіңіз</label>
+                <input id="password" class="password form-control" type="password" name="password"
+                    pattern="">
+            </div>
         <button class="w-97 next-step" type="button" id="sendPhone">Кеттік</button>
     </form>
     </div>
