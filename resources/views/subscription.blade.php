@@ -75,6 +75,7 @@
             margin: 15px auto 50px;
             font-size: 25px;
             letter-spacing: 1.6px;
+            font-weight:600;
             border: 0;
             -webkit-appearance: none;
             -webkit-box-shadow: 0px 1px 20px 15px rgba(0, 77, 201, 0.21);
@@ -98,10 +99,6 @@
 
         .m-b-md {
             margin-bottom: 20px;
-        }
-
-        input:focus {
-            outline: none;
         }
 
         .wizard {
@@ -166,7 +163,7 @@
         }
 
         .wizard .nav-tabs > li {
-            width: 25%;
+            width: 24%;
         }
 
         .wizard li:after {
@@ -214,11 +211,93 @@
         .wizard h3 {
             margin-top: 0;
         }
+        .custom_image_size{
+            width:auto;
+            height:20px
+        }
+        form{
+            /*max-width: 400px;*/
+            /*padding: 20px 40px;*/
+            /*background: #fff;*/
+            /*height: 300px;*/
+            /*margin: auto;*/
+            /*display: block;*/
+            /*position: relative;*/
+            /*z-index: 500;*/
+            /*border:1px solid #eee;*/
+        }
+        .form-group {
 
+            position: relative;
+            font-size: 15px;
+            color: #344356;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .form-label{
+            position: relative;
+            z-index: 1;
+            left: 0;
+            top: 5px;
+            font-family: 'Montserrat';
+            font-weight: 500;
+            color:#344356;
+            transition: 0.3s;
+            translateY: -15px;
+
+
+        }
+
+        .form-control{
+            width: 100%;
+            position: relative;
+            margin: 0 0 0 0;
+            z-index: 3;
+            height: 40px;
+            background: none;
+            border:none;
+            padding: 5px 5px;
+            border-bottom: 2px solid #344356;
+            color: #344356;
+            font-size:18px;
+            transition: 0.3s;
+            border-radius: 0px;
+            box-shadow:0 1px #344356;
+        }
+
+        input {
+            background-color: white !important;
+            font-family: 'Montserrat';
+            font-weight: 500;
+            color:#344356;
+            border:none;
+            margin: 0 0 0 0;
+            position: relative;
+        }
+        .select2-container--default .select2-selection--single {
+            background-color: white !important;
+            font-family: 'Montserrat';
+            font-weight: 500;
+            color:#344356;
+            border:none;
+            border-bottom: 2px solid #344356;
+            position: relative;
+            border-radius: 0px;
+            box-shadow:0 1px #344356;
+            height: auto;
+        }
+        .country_text {
+            font-weight: 700;
+            margin:5px 5px 5px 0;
+            font-size:12.5pt;
+            text-align:center;
+        }
         @media( max-width : 585px ) {
 
             .wizard {
                 width: 95%;
+                margin: 0 0 0 0;
                 height: auto !important;
             }
 
@@ -251,38 +330,12 @@
                 width:auto;
                 height:20px
             }
-            .form-group {
-
-                position: relative;
-                font-size: 15px;
-                color: #666;
-                margin-top: 30px;
-                text-align: left;
-            }
-
-            .form-label{
-                position: relative;
-                z-index: 1;
-                left: 0;
-                top: 5px;
-                font-family: 'Montserrat';
-                font-weight: 500;
-                color:#344356
-
-
-            }
-
             .form-control{
-                width: 100%;
-                position: relative;
-                z-index: 3;
-                height: 35px;
-                background: none;
-                border:none;
-                padding: 5px 0;
-                border-bottom: 1px solid #777;
-                color: #555;
-        }
+                margin: 0 0 2% 0;
+                box-shadow:0 1px #344356;
+                /*-webkit-box-shadow: 1px 1px 0.25em 0.25em #a8a8a8;*/
+
+            }
         }
     </style>
 </head>
@@ -293,7 +346,7 @@
                 <div class="wizard-inner">
                     <div class="connecting-line"></div>
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="processing">
+                        <li role="presentation" class="active processing">
                             <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="1">
                             <span class="round-tab">1</span>
                             </a>
@@ -323,7 +376,7 @@
 </div>
 <body class="flex-center position-ref full-height">
 <div class="tab-content">
-    <div class="content first-step tab-pane" role="tabpanel" id="step1">
+    <div class="content first-step tab-pane active" role="tabpanel" id="step1">
         <img class="tensend-icon" src="{{asset('illustration.png')}}" alt="">
         <h3 class="content">
             Tensend төлем <br>
@@ -336,13 +389,13 @@
         </h5>
         <button class="w-97 next-step" type="button" id="">Кеттік</button>
     </div>
-    <div class="content second-step tab-pane active" role="tabpanel" id="step2">
+    <div class="content second-step tab-pane" role="tabpanel" id="step2">
         <img class="tensend-icon" src="{{asset('illustration2.png')}}" alt="">
         <form>
             <div class="form-group">
                 <label class="form-label">Телефон нөмеріңіз</label>
                 <div class="form-row">
-                    <select id="id_select2_example" class="form-control" style="width: 70px;" name="country">
+                    <select id="id_select2_example" class="form-control" name="country">
                         @foreach($countries as $country)
                             <option value="{{$country->id}}" data-img_src="{{asset($country->image_path)}}">
                                 {{$country->phone_prefix}}
@@ -358,7 +411,7 @@
                 <input id="password" class="password form-control" type="password" name="password"
                     pattern="">
             </div>
-        <button class="w-97 next-step" type="button" id="sendPhone">Кеттік</button>
+        <button class="w-97 next-step" type="button" id="sendPhone">Жалғастыру</button>
     </form>
     </div>
 </div>
@@ -383,8 +436,6 @@
         'templateResult': custom_template,
     };
     $('#id_select2_example').select2(options);
-    $('.select2-container--default .select2-selection--single').css({'height': '40px'});
-    $('.select2-container--default').css({'margin': '0 0 0 6px'});
 
     // $('.select2-container--open .select2-dropdown--below').css({'left': '6px'});
 
