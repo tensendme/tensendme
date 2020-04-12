@@ -50,7 +50,7 @@
         }
 
         .downloadUrlBlock {
-            background-color: #0a0c0d;
+            /*background-color: #0a0c0d;*/
         }
 
         #downloadUrlSpanIos {
