@@ -69,7 +69,9 @@ class AuthServiceImpl implements AuthService
         $user->current_token = ApiUtil::generateTokenFromUser($user);
         $user->save();
 
-        $this->setDeviceToken($user, $request->device_token, $request->platform);
+        if ($request->device_token) {
+            $this->setDeviceToken($user, $request->device_token, $request->platform);
+        }
         $mobileUser = (object)array();
         $mobileUser->token = $user->current_token;
         $mobileUser->name = $user->name;
@@ -141,7 +143,9 @@ class AuthServiceImpl implements AuthService
 //        $this->subscriptionService->freeSubscribe($user->id);
         //create balance
         $user->getBalance();
-        $this->setDeviceToken($user, $request->device_token, $request->platform);
+        if ($request->device_token) {
+            $this->setDeviceToken($user, $request->device_token, $request->platform);
+        }
         return $user->current_token;
     }
 

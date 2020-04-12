@@ -13,7 +13,7 @@ class LoginApiRequest extends ApiBaseRequest
             'phone' => ['string'],
             'email' => ['email', 'string'],
             'password' => ['required', 'string'],
-            'device_token' => ['required', 'string'],
+            'device_token' => ['string'],
             'platform' => ['required', 'string', "in:" . User::PLATFORM_ANDROID . "," . User::PLATFORM_IOS],
         ];
     }
