@@ -97,11 +97,11 @@
                         <nav class="site-navigation text-right" role="navigation">
                             <div class="container">
 
-                                <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3 "><a href="#"
-                                                                                               class="site-menu-toggle js-menu-toggle text-black">
+                                <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3 ">
+                                    <a href="#" class="site-menu-toggle js-menu-toggle text-black">
                                         <span class="icon-menu h3"></span>
-                                    </a></div>
-
+                                    </a>
+                                </div>
                                 <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
                                     <li><a href="#home-section" class="nav-link">@lang('messages.mainPage')</a></li>
                                     <li><a href="#features-section" class="nav-link">@lang('messages.aboutPage')</a>
@@ -150,11 +150,11 @@
                     <p class="text-white mb-5">@lang('messages.text1')
                     </p>
                     <div id="downloadUrlDiv">
-                        <a href="#" class="btn btn-white px-2 py-1" id="downloadUrlBlock">
+                        <a href="#" class="btn btn-white m-1 px-2 py-1" id="downloadUrlBlock">
                             <img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">
                             <span id="downloadUrlSpanAndroid">Google Play</span>
                         </a>
-                        <a href="#" class="btn btn-white px-2 py-1" id="downloadUrlBlock">
+                        <a href="#" class="btn btn-white m-1 px-2 py-1" id="downloadUrlBlock">
                             <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
                             <span id="downloadUrlSpanIos">App Store</span>
                         </a>
