@@ -49,8 +49,8 @@
             margin-left: 12px;
         }
 
-        .downloadUrlBlock {
-            /*background-color: #0a0c0d;*/
+        #downloadUrlBlock {
+            background-color: #0a0c0d;
         }
 
         #downloadUrlSpanIos {
@@ -150,14 +150,14 @@
                     <p class="text-white mb-5">@lang('messages.text1')
                     </p>
                     <div id="downloadUrlDiv">
-                        <a href="#" class="btn btn-primary m-1 px-2 py-1 downloadUrlBlock">
+                        <a href="#" class="btn btn-primary m-1 px-2 py-1" id="downloadUrlBlock">
                             <span id="downloadUrlSpanAndroid">Купить</span>
                         </a>
-                        <a href="#" class="btn btn-white m-1 px-2 py-1 downloadUrlBlock">
+                        <a href="#" class="btn btn-white m-1 px-2 py-1" id="downloadUrlBlock">
                             <img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">
                             <span id="downloadUrlSpanAndroid">Google Play</span>
                         </a>
-                        <a href="#" class="btn btn-white m-1 px-2 py-1 downloadUrlBlock">
+                        <a href="#" class="btn btn-white m-1 px-2 py-1" id="downloadUrlBlock">
                             <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
                             <span id="downloadUrlSpanIos">App Store</span>
                         </a>
