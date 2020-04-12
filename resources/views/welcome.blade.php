@@ -150,7 +150,7 @@
                     <p class="text-white mb-5">@lang('messages.text1')
                     </p>
                     <div id="downloadUrlDiv">
-                        <a href="#" class="btn btn-white m-1 px-2 py-1" id="downloadUrlBlock">
+                        <a href="#" class="btn btn-primary m-1 px-2 py-1" id="downloadUrlBlock">
                             <span id="downloadUrlSpanAndroid">Купить</span>
                         </a>
                         <a href="#" class="btn btn-white m-1 px-2 py-1" id="downloadUrlBlock">
