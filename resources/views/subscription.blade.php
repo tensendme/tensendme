@@ -339,6 +339,12 @@
             font-size: 30px;
         }
 
+        .list-group-item.active,
+        .list-group-item.active:hover {
+            background-color: #FFAD00 !important;
+            border-color: grey !important;
+        }
+
         @media ( max-width: 700px ) {
 
             .wizard {
@@ -485,10 +491,10 @@
 
         <form id="form1">
 
-        <div class="form-group">
-            <img class="tensend-icon" src="result.image" alt="">
+            <div class="form-group">
+                <img class="tensend-icon" src="result.image" alt="">
 
-            <p class="text-center">
+                <p class="text-center">
                     <label class="form-label">
                         Қош келдіңіз
                     </label>
@@ -502,9 +508,9 @@
                         Тандалған тариф
                     </label>
                 </p>
-                <ul class="list-group">
+                <ul class="list-group" id="subscriptionList">
                     @foreach($subscriptions as $subscription)
-                        <li class="list-group-item">
+                        <li class="list-group-item" onclick="toggleChoosen(this)">
                             <p class="sub-title text-center">
                                 {{$subscription->name}}
                             </p>
@@ -516,7 +522,8 @@
 
                 </ul>
             </div>
-            <button class="w-97 next-step" type="submit">ТӨЛЕМГЕ КӨШУ<i class="glyphicon glyphicon-arrow-right"></i>
+            <button class="w-97 next-step" type="submit" disabled>
+                ТӨЛЕМГЕ КӨШУ<i class="glyphicon glyphicon-arrow-right"></i>
             </button>
         </form>
     </div>
@@ -548,6 +555,22 @@
 <script>
 </script>
 <script type="text/javascript">
+    var subscriptionList = document.getElementById("subscriptionList");
+
+    function toggleChoosen(li) {
+        var all = subscriptionList.querySelectorAll('.list-group-item');
+        all.forEach(el => {
+            if (el.classList.contains('active')) {
+                el.classList.remove('active');
+            }
+        });
+        li.classList.add('active');
+        if (document.getElementById('step3').querySelector('button').disabled) {
+            document.getElementById('step3').querySelector('button').disabled = false;
+        }
+
+    }
+
     function custom_template(obj) {
         var data = $(obj.element).data();
         var text = $(obj.element).text();
@@ -766,6 +789,7 @@
 
 
                     });
+
                     function submitForm() {
                         var myHeaders = new Headers();
                         myHeaders.append("Authorization", `Bearer ${token}`);
