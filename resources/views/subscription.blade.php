@@ -528,16 +528,17 @@
 
     function toggleChoosen(li) {
         var all = document.getElementById("subscriptionList");
-        all.forEach(el => {
-            if (el.classList.contains('active')) {
-                el.classList.remove('active');
-            }
-        });
+        if (all) {
+            all.forEach(el => {
+                if (el.classList.contains('active')) {
+                    el.classList.remove('active');
+                }
+            });
+        }
         li.classList.add('active');
         if (document.getElementById('step3').querySelector('button').disabled) {
             document.getElementById('step3').querySelector('button').disabled = false;
         }
-
     }
 
     function custom_template(obj) {
