@@ -73,6 +73,7 @@
 
         .tensend-icon.rounded-circle {
             border-radius: 50%;
+            object-fit: cover;
         }
 
         .content {
