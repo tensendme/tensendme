@@ -430,7 +430,7 @@
     </div>
     <div class="content second-step tab-pane" role="tabpanel" id="step2">
         <img class="tensend-icon" src="{{asset('illustration2.png')}}" alt="">
-        <form>
+        <form id="paymentFormSample" class="container-col">
             <div class="form-group">
                 <label class="form-label">Телефон нөміріңіз</label>
                 <div class="form-row">
@@ -441,42 +441,23 @@
                             </option>
                         @endforeach
                     </select>
-                    <input id="phone" class="phone m-b-md form-control" type="text" inputmode="numeric" name="phone"
-                           pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
+                    <input id="phone" class="phone m-b-md form-control" type="text" inputmode="numeric" name="phone">
+{{--                           pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">--}}
                 </div>
             </div>
             <div class="form-group">
                 <label class="form-label">Құпия сөзіңіз</label>
                 <input id="password" class="password form-control" type="password" name="password">
             </div>
-        <button class="w-97 next-step" type="button" id="sendPhone">ЖАЛҒАСТЫРУ<i class="glyphicon glyphicon-arrow-right"></i></button>
+        <button class="w-97 next-step" type="submit" >ЖАЛҒАСТЫРУ<i class="glyphicon glyphicon-arrow-right"></i></button>
     </form>
     </div>
     <div class="content second-step tab-pane" role="tabpanel" id="step3">
-        <img class="tensend-icon" src="{{asset('illustration3.png')}}" alt="">
-        <form>
-            <div class="form-group">
-                <label class="form-label">Телефон нөміріңіз</label>
-                <div class="form-row">
-                    <select id="id_select2_example1" class="form-control" name="country">
-                        @foreach($countries as $country)
-                            <option value="{{$country->id}}" data-img_src="{{asset($country->image_path)}}">
-                                {{$country->phone_prefix}}
-                            </option>
-                        @endforeach
-                    </select>
-                    <input id="phone2" class="phone m-b-md form-control" type="text" inputmode="numeric" name="phone"
-                           pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">
-                </div>
-            </div>
-            <button class="w-97 next-step" type="button" id="">APPSTORE-ГЕ КӨШУ</button>
+        <form id = "form1">
+            <img class="tensend-icon" src="result.image" alt="">
+
         </form>
-        <h5 class="content">
-            Бұл нөмір жүйеде тіркелмеген!
-        </h5>
-        <h3 class="content">
-            Appstore-ден Tensend қосымшасын жүктеп, <br>жүйеге тіркеліңіз
-        </h3>
+
     </div>
     <div class="content first-step tab-pane" role="tabpanel" id="step4">
         @if(true)
@@ -608,6 +589,166 @@
     function prevTab(elem) {
         $(elem).prev().find('a[data-toggle="tab"]').click();
     }
+
+
+    $(document).ready(function () {
+        var form = $('#paymentFormSample');
+
+        form.on('submit', (e) => {
+            e.preventDefault();
+            sendPhone1();
+            return false;
+        });
+
+
+    });
+
+
+
+
+
+    function sendPhone1(){
+        var raw =  JSON.stringify({
+            "password": document.getElementById("password").value,
+            "country": document.getElementById("id_select2_example").value,
+            "phone": document.getElementById("phone").value
+        });
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        // myHeaders.append("Authorization", `Bearer ${token}`);
+
+
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("http://127.0.0.1:8000/api/v1/send/phone", requestOptions)
+        // fetch("http://192.168.0.102:8000/api/v1/send/crypto", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if ( result.success == false) {
+
+                    // document.getElementById("user-avatar").
+                    $("#form1").append('<img class="tensend-icon" src="{{asset("illustration3.png")}}" alt="">\n' +
+                        '\n' +
+                        '\n' +
+                        '            <div class="form-group">\n' +
+                        '                <label class="form-label">Телефон нөміріңіз</label>\n' +
+                        '\n' +
+                        '                <div class="form-row">\n' +
+                        '                    <select id="id_select2_example1" class="form-control" name="country">\n' +
+                        '                        @foreach($countries as $country)\n' +
+                        '                            <option value="{{$country->id}}" data-img_src="{{asset($country->image_path)}}">\n' +
+                        '                                {{$country->phone_prefix}}\n' +
+                        '                            </option>\n' +
+                        '                        @endforeach\n' +
+                        '                    </select>\n' +
+                        '                                        <input id="phone2" class="phone m-b-md form-control" type="text" inputmode="numeric" name="phone"\n' +
+                        '                                               pattern="^\\([0-9]{3}\\)\\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">\n' +
+                        '                </div>\n' +
+                        '            </div>\n' +
+                        '            <button class="w-97 next-step" type="button" id="">APPSTORE-ГЕ КӨШУ</button>\n' +
+                        '\n' +
+                        '        <h5 class="content">\n' +
+                        '            Бұл нөмір жүйеде тіркелмеген!\n' +
+                        '        </h5>\n' +
+                        '        <h3 class="content">\n' +
+                        '            Appstore-ден Tensend қосымшасын жүктеп, <br>жүйеге тіркеліңіз\n' +
+                        '        </h3>\n');
+
+                    document.getElementById("username").value = result.username;
+
+                }
+                else {
+
+                    $("#form1").append('<div class="form-group">\n' +
+                        '<img class="tensend-icon" src="'+result.avatar+'" alt="">\n' +
+                        '                            <label class="form-label" id="username">'+result.username+'</label>\n' +
+                        '\n' +
+                        '\n' +
+                        '\n' +
+                        '                    @foreach($subscriptions as $subscription)\n' +
+                        '                    <form id = "subscriptionForm">\n' +
+                        '                        <div class="form-row">\n' +
+                        '                            <label class="form-label">{{$subscription->name}}</label>\n' +
+                        '                            <br>\n' +
+                        '                            <label class="form-label">{{$subscription->price}}</label>\n' +
+                        '                            <br>\n' +
+                        '                            <label class="form-label">{{$subscription->id}}</label>\n' +
+                        '                            <br>\n' +
+
+                        '                            <br>\n' +
+                        '\n' +
+
+                    '                        </div>\n' +
+                        '                        <br>\n' +
+                        '                    </form>\n' +
+                        '                            <button class="btn" onclick="submitForm()">толемге кошу</i></button>\n' +
+                        '                    @endforeach\n' +
+                        '\n' +
+                        '\n' +
+                        '\n' +
+                        '\n' +
+                        '            </div>\n');
+                    const token = result.token;
+                    const id = result.subscription_type_id;
+                    function submitForm() {
+                        var myHeaders = new Headers();
+                        myHeaders.append("Authorization", `Bearer ${token}`);
+                        var requestOptions = {
+                            method: 'GET',
+                            headers: myHeaders,
+                            redirect: 'follow'
+                        };
+
+                        // fetch("http://192.168.0.101:8000/api/v1/pay?subscription_type_id=1", requestOptions)
+                        fetch("https://tensend.me/api/v1/pay?subscription_type_id="+id, requestOptions)
+
+                            .then(result => result.text()).then(result => {
+                            console.log(result);
+                            document.open();
+                            document.write(result);
+                            document.close();
+
+
+                        })
+                            .catch(error => console.log('error', error));
+
+                    }
+                }
+                });
+
+
+
+
+
+    }
+
+
+
+
+    // $(document).ready(function () {
+    //     var form = $('#subscriptionForm');
+    //
+    //     form.on('submit', (e) => {
+    //         e.preventDefault();
+    //         sendSubscription();
+    //         return false;
+    //     });
+    //
+    //
+    // });
+
+
+
+        // const urlParams = new URLSearchParams(window.location.search);
+        // const token = urlParams.get('token');
+
 </script>
 </body>
 </html>

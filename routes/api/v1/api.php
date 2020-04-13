@@ -94,6 +94,10 @@ Route::group(['middleware' => 'api'], function () {
 
 
         Route::post('/3d/secure', ['uses' => 'PaymentController@send3dSecure']);
+        Route::post('/send/phone', ['uses' => 'PaymentController@sendPhone']);
+        Route::post('/send/crypto', ['uses' => 'PaymentController@sendCrypto']);
+
+
         Route::group(['middleware' => 'auth:api'], function () {
             Route::get('/pay', ['uses' => 'PaymentController@subscribe']);
 
@@ -105,6 +109,10 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('/card/pay', ['uses' => 'PaymentController@cardPay']);
             Route::post('/delete/card/{id}', ['uses' => 'PaymentController@deleteCard']);
             Route::get('/makeWithdraw', ['uses' => 'PaymentController@makeWithdraw']);
+
+
+
+
 
         });
     });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\CloudPayments;
 
 use App\Http\Controllers\ApiBaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Profiles\User;
 use Illuminate\Http\Request;
 use App\Services\v1\PaymentService;
 use Illuminate\Support\Facades\Auth;
@@ -87,6 +88,41 @@ class PaymentController extends ApiBaseController
     {
 
         return $this->successResponse(['result' => $this->paymentService->cardPay($request)]);
+
+    }
+
+
+    public function sendPhone(Request $request)
+    {
+
+        $phone= $request->phone;
+        $password = $request->password;
+        $user = User::where('phone',$phone)->first();
+        if (!$user){
+
+            $result   = [
+                'success' => false,
+                'phone' => $phone= $request->phone,
+                'password' => $password = $request->password
+                ];
+
+            $result = json_encode($result);
+        }
+        else{
+            $img = $user->image_path;
+            $result   = [
+                'success' => true,
+                'token' => $user->current_token,
+                'username' => $user->name,
+                'avatar' => env('APP_URL')."/".$img
+
+            ];
+            $result = json_encode($result);
+
+        }
+
+        return $result ;
+
 
     }
 

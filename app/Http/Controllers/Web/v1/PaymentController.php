@@ -49,10 +49,6 @@ class PaymentController  extends WebBaseController
         return view('subscription', compact('subscriptions', 'countries'));
     }
 
-
-
-
-
     public function test()
     {
 

@@ -46,6 +46,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
     Route::get('/subscribe', ['as' => 'pay.subscription', 'uses' => 'PaymentController@subscribe']);
 
+
     Route::get('/secure/config/send-push', ['uses' => 'ConfigController@sendPush']);
     Route::get('/secure/config/migrate-refresh', ['uses' => 'ConfigController@migrateRefresh']);
     Route::get('/secure/config/migrate', ['uses' => 'ConfigController@migrate']);
