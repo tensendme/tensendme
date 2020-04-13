@@ -396,7 +396,7 @@
                 font-family: 'Montserrat';
                 transition: 0.3s;
                 translateY: -15px;
-                font-weight: bold;
+
             }
 
             .form-control {
@@ -483,9 +483,12 @@
     </div>
     <div class="content second-step tab-pane" role="tabpanel" id="step3">
 
-        <form id="paymentFormSample" class="container-col">
-            <div class="form-group">
-                <p class="text-center">
+        <form id="form1">
+
+        <div class="form-group">
+            <img class="tensend-icon" src="result.image" alt="">
+
+            <p class="text-center">
                     <label class="form-label">
                         Қош келдіңіз
                     </label>
@@ -577,7 +580,7 @@
         var myCaja = document.getElementById("phone");
         var myText = "";
         var myNumbers = [];
-        var myOutPut = "";
+        var myOutPut = ""
         var theLastPos = 1;
         myText = myCaja.value;
         //get numbers
@@ -763,7 +766,6 @@
 
 
                     });
-
                     function submitForm() {
                         var myHeaders = new Headers();
                         myHeaders.append("Authorization", `Bearer ${token}`);
