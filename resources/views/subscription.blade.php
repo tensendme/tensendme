@@ -495,43 +495,6 @@
     <div class="content second-step tab-pane" role="tabpanel" id="step3">
 
         <form id="form1">
-
-            <div class="form-group">
-                <p class="text-center">
-                    <img class="rounded-circle tensend-icon" src="{{asset('images/user-default.png')}}" alt="">
-                </p>
-
-                <p class="text-center">
-                    <label class="form-label">
-                        Қош келдіңіз
-                    </label>
-                </p>
-                <p class="text-center">
-                    Төлемге көшпес бұрын, тарифіңізді <br>
-                    тексеріп алыңыз
-                </p>
-                <p class="text-center">
-                    <label class="form-label">
-                        Тандалған тариф
-                    </label>
-                </p>
-                <ul class="list-group" id="subscriptionList">
-                    @foreach($subscriptions as $subscription)
-                        <li class="list-group-item" onclick="toggleChoosen(this)">
-                            <p class="sub-title text-center">
-                                {{$subscription->name}}
-                            </p>
-                            <p class="sub-price  text-center">
-                                {{$subscription->price}} KZT
-                            </p>
-                        </li>
-                    @endforeach
-
-                </ul>
-            </div>
-            <button class="w-97 next-step" type="submit" disabled>
-                ТӨЛЕМГЕ КӨШУ<i class="glyphicon glyphicon-arrow-right"></i>
-            </button>
         </form>
     </div>
 
