@@ -84,13 +84,13 @@
         .w-97 {
             background-color: #004DC9;
             height: 60px;
-            width:100%;
+            width: 100%;
             color: white;
             margin: 15px auto 15px;
             font-size: 20px;
             letter-spacing: 1.6px;
             text-align: center;
-            font-weight:600;
+            font-weight: 600;
             border: 0;
             -webkit-appearance: none;
             -webkit-box-shadow: 0px 1px 20px 15px rgba(0, 77, 201, 0.21);
@@ -101,9 +101,10 @@
         .w-97:disabled {
             opacity: 0.4;
         }
+
         .w-97 i {
             margin-left: 20px;
-            margin-right:-25px;
+            margin-right: -25px;
         }
 
         .links > a {
@@ -169,15 +170,18 @@
             text-align: center;
             font-size: 25px;
         }
-        span.round-tab i{
+
+        span.round-tab i {
             color: #0066DF;
         }
+
         .wizard li.active span.round-tab {
             background: #0066DF;
             border: 2px solid #344356;
 
         }
-        .wizard li.active span.round-tab i{
+
+        .wizard li.active span.round-tab i {
             color: #0066DF;
         }
 
@@ -197,7 +201,7 @@
             transition: 0.1s ease-in-out;
         }
 
-        .wizard li.processing span.round-tab  {
+        .wizard li.processing span.round-tab {
             color: white;
             border: 2px solid #344356;
             background: #0066DF;
@@ -224,17 +228,19 @@
 
         .wizard .nav-tabs > li a:hover {
             background: transparent;
-            border:0;
+            border: 0;
         }
 
         .wizard h3 {
             margin-top: 0;
         }
-        .custom_image_size{
-            width:auto;
-            height:20px
+
+        .custom_image_size {
+            width: auto;
+            height: 20px
         }
-        form{
+
+        form {
             /*max-width: 400px;*/
             /*padding: 20px 40px;*/
             /*background: #fff;*/
@@ -245,6 +251,7 @@
             /*z-index: 500;*/
             /*border:1px solid #eee;*/
         }
+
         .form-group {
 
             position: relative;
@@ -254,65 +261,67 @@
             text-align: left;
         }
 
-        .form-label{
+        .form-label {
             position: relative;
             z-index: 1;
             left: 0;
             top: 5px;
             font-family: 'Montserrat';
             font-weight: 500;
-            color:#344356;
+            color: #344356;
             transition: 0.3s;
             translateY: -15px;
 
-
         }
 
-        .form-control{
+        .form-control {
             width: 100%;
             position: relative;
             margin: 0 0 0 0;
             z-index: 3;
             height: 40px;
             background: none;
-            border:none;
+            border: none;
             padding: 5px 5px;
             border-bottom: 2px solid #344356;
             color: #344356;
-            font-size:18px;
+            font-size: 18px;
             transition: 0.3s;
             border-radius: 0px;
-            box-shadow:0 1px #344356;
+            box-shadow: 0 1px #344356;
         }
 
         input {
             background-color: white !important;
             font-family: 'Montserrat';
             font-weight: 500;
-            color:#344356;
-            border:none;
+            color: #344356;
+            border: none;
             margin: 0 0 0 0;
             position: relative;
         }
+
         .select2-container--default .select2-selection--single {
             background-color: white !important;
             font-family: 'Montserrat';
             font-weight: 500;
-            color:#344356;
-            border:none;
+            color: #344356;
+            border: none;
             border-bottom: 2px solid #344356;
             position: relative;
             border-radius: 0px;
-            box-shadow:0 1px #344356;
+            box-shadow: 0 1px #344356;
             height: auto;
         }
+
         .country_text {
             font-weight: 700;
-            margin:5px 5px 5px 0;
-            font-size:12.5pt;
-            text-align:center;
+            margin: 5px 5px 5px 0;
+            font-size: 12.5pt;
+            text-align: center;
         }
-        @media( max-width : 700px ) {
+
+        @media ( max-width: 700px ) {
 
             .wizard {
                 width: 95%;
@@ -340,21 +349,23 @@
 
             .country_text {
                 font-weight: 700;
-                margin:2px 2px 2px 2px;
-                font-size:12.5pt;
-                text-align:center;
+                margin: 2px 2px 2px 2px;
+                font-size: 12.5pt;
+                text-align: center;
             }
 
-            .custom_image_size{
-                width:auto;
-                height:20px
+            .custom_image_size {
+                width: auto;
+                height: 20px
             }
-            .form-control{
+
+            .form-control {
                 margin: 0 0 2% 0;
-                box-shadow:0 1px #344356;
+                box-shadow: 0 1px #344356;
                 /*-webkit-box-shadow: 1px 1px 0.25em 0.25em #a8a8a8;*/
 
             }
+
             .form-group {
 
                 font-size: 22px;
@@ -363,16 +374,15 @@
                 text-align: left;
             }
 
-            .form-label{
+            .form-label {
                 font-family: 'Montserrat';
                 transition: 0.3s;
                 translateY: -15px;
 
-
             }
 
-            .form-control{
-                font-size:22px;
+            .form-control {
+                font-size: 22px;
 
             }
         }
@@ -387,24 +397,24 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active processing">
                             <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="1">
-                            <span class="round-tab">1</span>
+                                <span class="round-tab">1</span>
                             </a>
                         </li>
 
                         <li role="presentation" class="disabled">
                             <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="2">
-                            <span class="round-tab">2</span>
+                                <span class="round-tab">2</span>
                             </a>
                         </li>
                         <li role="presentation" class="disabled">
                             <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="3">
-                            <span class="round-tab">3</span>
+                                <span class="round-tab">3</span>
                             </a>
                         </li>
 
                         <li role="presentation" class="disabled">
                             <a href="#step4" data-toggle="tab" aria-controls="complete" role="tab" title="Төлем">
-                            <span class="round-tab">4</span>
+                                <span class="round-tab">4</span>
                             </a>
                         </li>
                     </ul>
@@ -442,18 +452,19 @@
                         @endforeach
                     </select>
                     <input id="phone" class="phone m-b-md form-control" type="text" inputmode="numeric" name="phone">
-{{--                           pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">--}}
+                    {{--                           pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">--}}
                 </div>
             </div>
             <div class="form-group">
                 <label class="form-label">Құпия сөзіңіз</label>
                 <input id="password" class="password form-control" type="password" name="password">
             </div>
-        <button class="w-97 next-step" type="submit" >ЖАЛҒАСТЫРУ<i class="glyphicon glyphicon-arrow-right"></i></button>
-    </form>
+            <button class="w-97 next-step" type="submit">ЖАЛҒАСТЫРУ<i class="glyphicon glyphicon-arrow-right"></i>
+            </button>
+        </form>
     </div>
     <div class="content second-step tab-pane" role="tabpanel" id="step3">
-        <form id = "form1">
+        <form id="form1">
             <img class="tensend-icon" src="result.image" alt="">
 
         </form>
@@ -586,6 +597,7 @@
     function nextTab(elem) {
         $(elem).next().find('a[data-toggle="tab"]').click();
     }
+
     function prevTab(elem) {
         $(elem).prev().find('a[data-toggle="tab"]').click();
     }
@@ -604,11 +616,8 @@
     });
 
 
-
-
-
-    function sendPhone1(){
-        var raw =  JSON.stringify({
+    function sendPhone1() {
+        var raw = JSON.stringify({
             "password": document.getElementById("password").value,
             "country": document.getElementById("id_select2_example").value,
             "phone": document.getElementById("phone").value
@@ -619,19 +628,18 @@
         // myHeaders.append("Authorization", `Bearer ${token}`);
 
 
-
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: raw,
             redirect: 'follow'
         };
-        fetch("tensend.me/api/v1/send/phone", requestOptions)
-        // fetch("http://192.168.0.102:8000/api/v1/send/crypto", requestOptions)
+        // fetch("tensend.me/api/v1/send/phone", requestOptions)
+        fetch("http://127.0.0.1:8000/api/v1/send/phone", requestOptions)
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                if ( result.success == false) {
+                if (result.success == false) {
 
                     // document.getElementById("user-avatar").
                     $("#form1").append('<img class="tensend-icon" src="{{asset("illustration3.png")}}" alt="">\n' +
@@ -667,8 +675,8 @@
                 else {
 
                     $("#form1").append('<div class="form-group">\n' +
-                        '<img class="tensend-icon" src="'+result.avatar+'" alt="">\n' +
-                        '                            <label class="form-label" id="username">'+result.username+'</label>\n' +
+                        '<img class="tensend-icon" src="' + result.avatar + '" alt="">\n' +
+                        '                            <label class="form-label" id="username">' + result.username + '</label>\n' +
                         '\n' +
                         '\n' +
                         '\n' +
@@ -686,7 +694,7 @@
                         '                            <br>\n' +
                         '\n' +
 
-                    '                        </div>\n' +
+                        '                        </div>\n' +
                         '                        <br>\n' +
                         '                    </form>\n' +
                         '                    @endforeach\n' +
@@ -697,6 +705,7 @@
                         '            </div>\n');
                     const token = result.token;
                     const id = result.subscription_type_id;
+
                     function submitForm() {
                         var myHeaders = new Headers();
                         myHeaders.append("Authorization", `Bearer ${token}`);
@@ -707,29 +716,21 @@
                         };
 
                         // fetch("http://192.168.0.101:8000/api/v1/pay?subscription_type_id=1", requestOptions)
-                        fetch("https://tensend.me/api/v1/pay?subscription_type_id="{{$subscription->id}}, requestOptions)
-
+                        fetch("https://tensend.me/api/v1/pay?subscription_type_id={{$subscription->id}}", requestOptions)
                             .then(result => result.text()).then(result => {
                             console.log(result);
                             document.open();
                             document.write(result);
                             document.close();
-
-
                         })
                             .catch(error => console.log('error', error));
 
                     }
                 }
-                });
-
-
-
+            });
 
 
     }
-
-
 
 
     // $(document).ready(function () {
@@ -745,9 +746,8 @@
     // });
 
 
-
-        // const urlParams = new URLSearchParams(window.location.search);
-        // const token = urlParams.get('token');
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const token = urlParams.get('token');
 
 </script>
 </body>
