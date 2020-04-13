@@ -70,7 +70,9 @@
             width: auto;
             margin: 50px auto 20px auto;
         }
-
+        .tensend-icon.rounded-circle {
+            border-radius: 50%;
+        }
         .content {
             text-align: center;
         }
