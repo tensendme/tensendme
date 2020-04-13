@@ -528,13 +528,10 @@
 
     function toggleChoosen(li) {
         var all = document.getElementById("subscriptionList");
-        if (all) {
-
-            for (var i = 0; i < all.length; i++) {
-                var el = all[i];
-                if (el.classList.contains('active')) {
-                    el.classList.remove('active');
-                }
+        for (var i = 0; i < all.length; i++) {
+            var el = all[i];
+            if (el.classList.contains('active')) {
+                el.classList.remove('active');
             }
         }
         li.classList.add('active');
