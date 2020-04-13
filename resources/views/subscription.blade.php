@@ -722,7 +722,7 @@
                         defaultImg = result.avatar;
                     }
                     $("#form1").html(`
-                    <div class="form-group">
+                    <div class='container'><div class="form-group">
                 <p class="text-center">
                     <img class="rounded-circle tensend-icon" src='${defaultImg}' alt="">
                 </p>
@@ -757,7 +757,7 @@
                     </div>
                     <button id="submitForm(${result.token})" class="w-97 next-step" type="submit" disabled>
                         ТӨЛЕМГЕ КӨШУ<i class="glyphicon glyphicon-arrow-right"></i>
-                    </button>`);
+                    </button></div>`);
                     const token = result.token;
                     document.getElementById('subscriptionList').querySelectorAll('.active')
                     $(document).ready(function () {
