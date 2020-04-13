@@ -528,7 +528,7 @@
 </script>
 <script type="text/javascript">
 
-    function toggleChoosen(li) {
+    function toggleChoosen(li, id) {
         var all = document.getElementById("subscriptionList").querySelectorAll('.list-group-item');
         for (var i = 0; i < all.length; i++) {
             var el = all[i];
@@ -540,6 +540,7 @@
         if (document.getElementById('step3').querySelector('button').disabled) {
             document.getElementById('step3').querySelector('button').disabled = false;
         }
+        $('#subscriptionList').data('subId', id);
     }
 
     function custom_template(obj) {
@@ -742,7 +743,7 @@
                 </p>
                 <ul class="list-group" id="subscriptionList">
                     @foreach($subscriptions as $subscription)
-                        <li class="list-group-item" onclick="toggleChoosen(this)">
+                        <li class="list-group-item" onclick="toggleChoosen(this, {{$subscription->id}})">
                             <p class="sub-title text-center">
                                 {{$subscription->name}}
                         </p>
@@ -758,16 +759,17 @@
                         ТӨЛЕМГЕ КӨШУ<i class="glyphicon glyphicon-arrow-right"></i>
                     </button>`);
                     const token = result.token;
+                    document.getElementById('subscriptionList').querySelectorAll('.active')
                     $(document).ready(function () {
                         var form = $('#form1');
                         form.on('submit', (e) => {
                             e.preventDefault();
-                            submitForm(token);
+                            submitForm(token, $('#subscriptionList').data('subId'));
                             return false;
                         });
                     });
 
-                    function submitForm(token) {
+                    function submitForm(token, subTypeId) {
                         var myHeaders = new Headers();
                         myHeaders.append("Authorization", `Bearer ${token}`);
                         var requestOptions = {
@@ -777,7 +779,7 @@
                         };
 
                         {{--fetch("http://127.0.0.1:8000/api/v1/pay?subscription_type_id={{$subscription->id}}", requestOptions)--}}
-                        fetch("https://tensend.me/api/v1/pay?subscription_type_id={{$subscription->id}}", requestOptions)
+                        fetch("https://tensend.me/api/v1/pay?subscription_type_id=" + subTypeId, requestOptions)
                             .then(result => result.text()).then(result => {
                             console.log({{$subscription->id}});
                             document.open();
