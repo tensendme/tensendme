@@ -778,16 +778,7 @@
                             redirect: 'follow'
                         };
 
-                        {{--fetch("http://127.0.0.1:8000/api/v1/pay?subscription_type_id={{$subscription->id}}", requestOptions)--}}
-                        fetch("https://tensend.me/api/v1/pay?subscription_type_id=" + subTypeId, requestOptions)
-                            .then(result => result.text()).then(result => {
-                            console.log({{$subscription->id}});
-                            document.open();
-                            document.write(result);
-                            document.close();
-                        })
-                            .catch(error => console.log('error', error));
-
+                        document.location.href = "https://tensend.me/api/v1/pay?subscription_type_id=" + subTypeId;
                     }
                 }
             });
