@@ -527,7 +527,7 @@
 <script type="text/javascript">
 
     function toggleChoosen(li) {
-        var all = document.getElementById("subscriptionList");
+        var all = document.getElementById("subscriptionList").querySelectorAll('.list-group-item');
         for (var i = 0; i < all.length; i++) {
             var el = all[i];
             if (el.classList.contains('active')) {
