@@ -463,13 +463,7 @@
             </button>
         </form>
     </div>
-    <div class="content second-step tab-pane" role="tabpanel" id="step3">
-        <form id="form1">
-            <img class="tensend-icon" src="result.image" alt="">
 
-        </form>
-
-    </div>
     <div class="content first-step tab-pane" role="tabpanel" id="step4">
         @if(true)
             <img class="tensend-icon" src="{{asset('illustration4.png')}}" alt="">
@@ -634,7 +628,7 @@
             body: raw,
             redirect: 'follow'
         };
-        fetch("tensend.me/api/v1/send/phone", requestOptions)
+        fetch("https://tensend.me/api/v1/send/phone", requestOptions)
         // fetch("http://127.0.0.1:8000/api/v1/send/phone", requestOptions)
             .then(response => response.json())
             .then(result => {
