@@ -634,8 +634,8 @@
             body: raw,
             redirect: 'follow'
         };
-        // fetch("tensend.me/api/v1/send/phone", requestOptions)
-        fetch("http://127.0.0.1:8000/api/v1/send/phone", requestOptions)
+        fetch("tensend.me/api/v1/send/phone", requestOptions)
+        // fetch("http://127.0.0.1:8000/api/v1/send/phone", requestOptions)
             .then(response => response.json())
             .then(result => {
                 console.log(result);
@@ -704,8 +704,17 @@
                         '\n' +
                         '            </div>\n');
                     const token = result.token;
-                    const id = result.subscription_type_id;
+                    $(document).ready(function () {
+                        var form = $('#subscriptionForm');
 
+                        form.on('submit', (e) => {
+                            e.preventDefault();
+                            submitForm();
+                            return false;
+                        });
+
+
+                    });
                     function submitForm() {
                         var myHeaders = new Headers();
                         myHeaders.append("Authorization", `Bearer ${token}`);
@@ -715,10 +724,10 @@
                             redirect: 'follow'
                         };
 
-                        // fetch("http://192.168.0.101:8000/api/v1/pay?subscription_type_id=1", requestOptions)
+                        {{--fetch("http://127.0.0.1:8000/api/v1/pay?subscription_type_id={{$subscription->id}}", requestOptions)--}}
                         fetch("https://tensend.me/api/v1/pay?subscription_type_id={{$subscription->id}}", requestOptions)
                             .then(result => result.text()).then(result => {
-                            console.log(result);
+                            console.log({{$subscription->id}});
                             document.open();
                             document.write(result);
                             document.close();
