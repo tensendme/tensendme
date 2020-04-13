@@ -525,10 +525,9 @@
 <script>
 </script>
 <script type="text/javascript">
-    var subscriptionList = document.getElementById("subscriptionList");
 
     function toggleChoosen(li) {
-        var all = subscriptionList.querySelectorAll('.list-group-item');
+        var all = document.getElementById("subscriptionList");
         all.forEach(el => {
             if (el.classList.contains('active')) {
                 el.classList.remove('active');
