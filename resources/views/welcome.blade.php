@@ -49,8 +49,8 @@
             margin-left: 12px;
         }
 
-        #downloadUrlBlock {
-            background-color: #0a0c0d;
+        .downloadUrlBlock {
+            background-color: #0a0c0d !important;
         }
 
         #downloadUrlSpanIos {
@@ -103,13 +103,18 @@
                                     </a>
                                 </div>
                                 <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
-                                    <li><a href="#home-section" class="nav-link">@lang('messages.mainPage')</a></li>
-                                    <li><a href="#features-section" class="nav-link">@lang('messages.aboutPage')</a>
+                                    <li>
+                                        <a href="#home-section" class="nav-link">@lang('messages.mainPage')</a>
                                     </li>
-                                    {{--                                    <li><a href="#about-section" class="nav-link">О нас</a></li>--}}
-                                    <li><a href="#testimonial-section"
-                                           class="nav-link">@lang('messages.politicPage')</a></li>
-                                    <li><a href="#contact-section" class="nav-link">@lang('messages.contactPage')</a>
+                                    <li>
+                                        <a href="#features-section" class="nav-link">@lang('messages.aboutPage')</a>
+                                    </li>
+                                    <li>
+                                        <a href="#testimonial-section"
+                                           class="nav-link">@lang('messages.politicPage')</a>
+                                    </li>
+                                    <li>
+                                        <a href="#contact-section" class="nav-link">@lang('messages.contactPage')</a>
                                     </li>
                                     <li>
                                         <a class="nav-link dropdown-toggle" id="navbarDropdown"
@@ -150,16 +155,16 @@
                     <p class="text-white mb-5">@lang('messages.text1')
                     </p>
                     <div id="downloadUrlDiv">
-                        <a href="#" class="btn btn-primary m-1 px-2 py-1" id="downloadUrlBlock">
-                            <span id="downloadUrlSpanAndroid">Купить</span>
-                        </a>
-                        <a href="#" class="btn btn-white m-1 px-2 py-1" id="downloadUrlBlock">
+                        <a href="#" class="btn btn-white m-1 px-2 py-1 downloadUrlBlock">
                             <img src="{{asset('google.png')}}" class="downloadUrl" alt="Доступно в">
                             <span id="downloadUrlSpanAndroid">Google Play</span>
                         </a>
-                        <a href="#" class="btn btn-white m-1 px-2 py-1" id="downloadUrlBlock">
+                        <a href="#" class="btn btn-white m-1 px-2 py-1 downloadUrlBlock">
                             <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
                             <span id="downloadUrlSpanIos">App Store</span>
+                        </a>
+                        <a href="#" class="btn btn-primary m-1 px-2 py-1 downloadUrlBlock">
+                            <span id="downloadUrlSpanAndroid">Купить</span>
                         </a>
                     </div>
                 </div>
