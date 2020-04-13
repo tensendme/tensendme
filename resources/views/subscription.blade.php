@@ -687,7 +687,6 @@
         // fetch("http://127.0.0.1:8000/api/v1/send/phone", requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 if (result.success === false) {
                     $("#form1").html('<img class="tensend-icon" src="{{asset("illustration3.png")}}" alt="">\n' +
                         '\n' +
@@ -755,24 +754,20 @@
 
                         </ul>
                     </div>
-                    <button class="w-97 next-step" type="submit" disabled>
+                    <button id="submitForm(${result.token})" class="w-97 next-step" type="submit" disabled>
                         ТӨЛЕМГЕ КӨШУ<i class="glyphicon glyphicon-arrow-right"></i>
-                    </button>
-`);
+                    </button>`);
                     const token = result.token;
                     $(document).ready(function () {
-                        var form = $('#subscriptionForm');
-
+                        var form = $('#form1');
                         form.on('submit', (e) => {
                             e.preventDefault();
-                            submitForm();
+                            submitForm(token);
                             return false;
                         });
-
-
                     });
 
-                    function submitForm() {
+                    function submitForm(token) {
                         var myHeaders = new Headers();
                         myHeaders.append("Authorization", `Bearer ${token}`);
                         var requestOptions = {
