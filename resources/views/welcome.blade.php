@@ -163,7 +163,7 @@
                             <img src="{{asset('apple.png')}}" class="downloadUrlApple" alt="Доступно в">
                             <span id="downloadUrlSpanIos">App Store</span>
                         </a>
-                        <a href="#" class="btn btn-primary m-1 px-2 py-1 downloadUrlBlock">
+                        <a href="{{route('pay.subscription')}}" class="btn btn-primary m-1 px-2 py-1 downloadUrlBlock">
                             <span id="downloadUrlSpanAndroid">Купить</span>
                         </a>
                     </div>
