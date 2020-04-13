@@ -19,7 +19,6 @@ class PaymentController extends WebBaseController
 
         $token = $request->token;
         $subscription_type = SubscriptionType::find($request->subscription_type_id);
-
         return view('cryptogram', compact('subscription_type', 'token'));
     }
 

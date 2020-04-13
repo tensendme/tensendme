@@ -228,7 +228,8 @@
         </h2>
         <h6>
             Назар аударыңыз! <br>
-            <h7 style="color:darkgray;">Төлем жасаудан алдын картаңыздан интернет-төлемдерге лимитті тексеріп көріңіз.</h7>
+            <h7 style="color:darkgray;">Төлем жасаудан алдын картаңыздан интернет-төлемдерге лимитті тексеріп көріңіз.
+            </h7>
 
         </h6>
     </div>
@@ -358,12 +359,11 @@
         const token = urlParams.get('token');
         var name = $('#realCardNumber').val();
         var result = checkout.createCryptogramPacket();
-        console.log(result);
-
+        let stateObj = {id: "100"};
+        window.history.replaceState(stateObj, "Төлем жасау", "/payment");
         if (result.success) {
             // сформирована криптограмма
             loader();
-            console.log(result.packet);
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             myHeaders.append("Authorization", `Bearer ${token}`);
