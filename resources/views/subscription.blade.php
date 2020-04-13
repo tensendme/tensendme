@@ -626,7 +626,7 @@
             body: raw,
             redirect: 'follow'
         };
-        fetch("http://127.0.0.1:8000/api/v1/send/phone", requestOptions)
+        fetch("tensend.me/api/v1/send/phone", requestOptions)
         // fetch("http://192.168.0.102:8000/api/v1/send/crypto", requestOptions)
             .then(response => response.json())
             .then(result => {
@@ -681,6 +681,7 @@
                         '                            <br>\n' +
                         '                            <label class="form-label">{{$subscription->id}}</label>\n' +
                         '                            <br>\n' +
+                        '                    <button class="w-97 next-step" type="submit" >толем жасау<i class="glyphicon glyphicon-arrow-right"></i></button>\n' +
 
                         '                            <br>\n' +
                         '\n' +
@@ -688,7 +689,6 @@
                     '                        </div>\n' +
                         '                        <br>\n' +
                         '                    </form>\n' +
-                        '                            <button class="btn" onclick="submitForm()">толемге кошу</i></button>\n' +
                         '                    @endforeach\n' +
                         '\n' +
                         '\n' +
@@ -707,7 +707,7 @@
                         };
 
                         // fetch("http://192.168.0.101:8000/api/v1/pay?subscription_type_id=1", requestOptions)
-                        fetch("https://tensend.me/api/v1/pay?subscription_type_id="+id, requestOptions)
+                        fetch("https://tensend.me/api/v1/pay?subscription_type_id="{{$subscription->id}}, requestOptions)
 
                             .then(result => result.text()).then(result => {
                             console.log(result);
