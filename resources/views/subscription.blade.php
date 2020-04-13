@@ -687,7 +687,7 @@
                         '                            <br>\n' +
                         '                            <label class="form-label">{{$subscription->price}}</label>\n' +
                         '                            <br>\n' +
-                        '                            <label class="form-label">{{$subscription->id}}</label>\n' +
+                        '                            <label class="form-label" id="id" style="display: none;">{{$subscription->id}}</label>\n' +
                         '                            <br>\n' +
                         '                    <button class="w-97 next-step" type="submit" >толем жасау<i class="glyphicon glyphicon-arrow-right"></i></button>\n' +
 
@@ -704,6 +704,7 @@
                         '\n' +
                         '            </div>\n');
                     const token = result.token;
+                    const id = document.getElementById("id").textContent;
                     $(document).ready(function () {
                         var form = $('#subscriptionForm');
 
@@ -724,10 +725,9 @@
                             redirect: 'follow'
                         };
 
-                        {{--fetch("http://127.0.0.1:8000/api/v1/pay?subscription_type_id={{$subscription->id}}", requestOptions)--}}
-                        fetch("https://tensend.me/api/v1/pay?subscription_type_id={{$subscription->id}}", requestOptions)
+                        // fetch("http://127.0.0.1:8000/api/v1/pay?subscription_type_id="+id, requestOptions)
+                        fetch("https://tensend.me/api/v1/pay?subscription_type_id="+id, requestOptions)
                             .then(result => result.text()).then(result => {
-                            console.log({{$subscription->id}});
                             document.open();
                             document.write(result);
                             document.close();
