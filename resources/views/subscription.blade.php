@@ -463,7 +463,13 @@
             </button>
         </form>
     </div>
+    <div class="content second-step tab-pane" role="tabpanel" id="step3">
+        <form id="form1">
+            <img class="tensend-icon" src="result.image" alt="">
 
+        </form>
+
+    </div>
     <div class="content first-step tab-pane" role="tabpanel" id="step4">
         @if(true)
             <img class="tensend-icon" src="{{asset('illustration4.png')}}" alt="">
@@ -633,7 +639,7 @@
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                if (result.success === false) {
+                if (result.success == false) {
 
                     // document.getElementById("user-avatar").
                     $("#form1").append('<img class="tensend-icon" src="{{asset("illustration3.png")}}" alt="">\n' +
