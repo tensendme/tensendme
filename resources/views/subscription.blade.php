@@ -687,8 +687,6 @@
             .then(result => {
                 console.log(result);
                 if (result.success === false) {
-
-                    // document.getElementById("user-avatar").
                     $("#form1").html('<img class="tensend-icon" src="{{asset("illustration3.png")}}" alt="">\n' +
                         '\n' +
                         '\n' +
@@ -717,16 +715,19 @@
                         '        </h3>\n');
                 }
                 else {
-
+                    var defaultImg = "{{asset('images/user-default.png')}}";
+                    if (result.avatar) {
+                        defaultImg = result.avatar;
+                    }
                     $("#form1").html(`
                     <div class="form-group">
                 <p class="text-center">
-                    <img class="rounded-circle tensend-icon" src="{{asset('images/user-default.png')}}" alt="">
+                    <img class="rounded-circle tensend-icon" src='${defaultImg}' alt="">
                 </p>
 
                 <p class="text-center">
                     <label class="form-label">
-                        Қош келдіңіз
+                        Қош келдіңіз, ${result.username}!
                     </label>
                 </p>
                 <p class="text-center">
