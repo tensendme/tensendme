@@ -306,7 +306,7 @@
     var currentUrl = window.location.search;
     let stateObj = {id: "100"};
     window.history.replaceState(stateObj, "Төлем жасау", "/subscribe");
-    
+
     var cardInfo = [
         {
             id: 1,

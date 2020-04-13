@@ -45,7 +45,7 @@ class PaymentController extends WebBaseController
     public function subscribe()
     {
         $subscriptions = SubscriptionType::where('price', '!=', 0)
-//            ->where('is_visible', true)
+            ->where('is_visible', true)
             ->get();
         $countries = Country::all();
         return view('subscription', compact('subscriptions', 'countries'));
