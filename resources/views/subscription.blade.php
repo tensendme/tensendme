@@ -698,8 +698,7 @@
 
 
     function sendPhone1() {
-        prefix = $("#id_select2_example option:selected").text();
-        prefix.trim();
+        prefix = $("#id_select2_example option:selected").text().trim();
         if (prefix.startsWith("+")) {
             prefix = prefix.substring(1);
         }
