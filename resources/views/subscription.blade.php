@@ -492,7 +492,9 @@
         <form id="form1">
 
             <div class="form-group">
-                <img class="tensend-icon" src="{{asset('images/user-default.png')}}" alt="">
+                <p class="text-center">
+                    <img class="tensend-icon rounded-circle" src="{{asset('images/user-default.png')}}" alt="">
+                </p>
 
                 <p class="text-center">
                     <label class="form-label">
