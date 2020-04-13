@@ -70,9 +70,11 @@
             width: auto;
             margin: 50px auto 20px auto;
         }
+
         .tensend-icon.rounded-circle {
             border-radius: 50%;
         }
+
         .content {
             text-align: center;
         }
@@ -485,7 +487,8 @@
                 <label class="form-label">Құпия сөзіңіз</label>
                 <input id="password" class="password form-control" type="password" name="password">
             </div>
-            <button class="w-97 next-step" type="submit">ЖАЛҒАСТЫРУ<i class="glyphicon glyphicon-arrow-right"></i>
+            <button class="w-97 next-step" type="submit">
+                ЖАЛҒАСТЫРУ<i class="glyphicon glyphicon-arrow-right"></i>
             </button>
         </form>
     </div>
@@ -695,11 +698,16 @@
 
 
     function sendPhone1() {
+        prefix = $("#list option[value=" + document.getElementById("id_select2_example").value + "]").text();
+        if (prefix.startsWith("+")) {
+            prefix = prefix.substring(1);
+        }
         var raw = JSON.stringify({
             "password": document.getElementById("password").value,
             "country": document.getElementById("id_select2_example").value,
-            "phone": document.getElementById("phone").value
+            "phone": prefix + document.getElementById("phone").value
         });
+
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
