@@ -728,7 +728,7 @@
                 if (result.success === false) {
 
                     // document.getElementById("user-avatar").
-                    $("#form1").append('<img class="tensend-icon" src="{{asset("illustration3.png")}}" alt="">\n' +
+                    $("#form1").html('<img class="tensend-icon" src="{{asset("illustration3.png")}}" alt="">\n' +
                         '\n' +
                         '\n' +
                         '            <div class="form-group">\n' +
@@ -760,7 +760,7 @@
                 }
                 else {
 
-                    $("#form1").append('<div class="form-group">\n' +
+                    $("#form1").html('<div class="form-group">\n' +
                         '<img class="tensend-icon" src="' + result.avatar + '" alt="">\n' +
                         '                            <label class="form-label" id="username">' + result.username + '</label>\n' +
                         '\n' +
