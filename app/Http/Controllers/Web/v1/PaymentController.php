@@ -12,7 +12,7 @@ use App\Models\Subscriptions\SubscriptionType;
 use App\Models\Profiles\User;
 use Illuminate\Http\Request;
 
-class PaymentController  extends WebBaseController
+class PaymentController extends WebBaseController
 {
     public function pay(Request $request)
     {
@@ -20,31 +20,34 @@ class PaymentController  extends WebBaseController
         $token = $request->token;
         $subscription_type = SubscriptionType::find($request->subscription_type_id);
 
-        return view('cryptogram', compact('subscription_type','token'));
+        return view('cryptogram', compact('subscription_type', 'token'));
     }
 
     public function saveCard(Request $request)
     {
         $token = $request->token;
-        return view('saveCard',compact('token'));
+        return view('saveCard', compact('token'));
     }
 
     public function status(Request $request)
     {
-        $transaction= Transaction::find($request->transaction_id);
+        $transaction = Transaction::find($request->transaction_id);
         $user = User::find($transaction->user_id);
-        return view('transactionStatus',compact('transaction','user'));
+        return view('transactionStatus', compact('transaction', 'user'));
     }
 
     public function cardStatus(Request $request)
     {
-        $transaction= Transaction::find($request->transaction_id);
+        $transaction = Transaction::find($request->transaction_id);
 
-        return view('cardStatus',compact('transaction'));
+        return view('cardStatus', compact('transaction'));
     }
 
-    public function subscribe() {
-        $subscriptions = SubscriptionType::where('price', '!=', 0)->get();
+    public function subscribe()
+    {
+        $subscriptions = SubscriptionType::where('is_visible', true)
+            ->where('price', '!=', 0)
+            ->get();
         $countries = Country::all();
         return view('subscription', compact('subscriptions', 'countries'));
     }

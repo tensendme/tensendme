@@ -21,6 +21,14 @@
             margin: 0;
         }
 
+        select::-ms-expand {
+            display: none;
+        }
+
+        .select2-selection__arrow b {
+            display: none !important;
+        }
+
         .flex-center {
             align-items: center;
             display: flex;
@@ -321,6 +329,16 @@
             text-align: center;
         }
 
+        .sub-title {
+            font-weight: 400;
+            font-size: 20px;
+        }
+
+        .sub-price {
+            font-weight: 600;
+            font-size: 30px;
+        }
+
         @media ( max-width: 700px ) {
 
             .wizard {
@@ -378,7 +396,7 @@
                 font-family: 'Montserrat';
                 transition: 0.3s;
                 translateY: -15px;
-
+                font-weight: bold;
             }
 
             .form-control {
@@ -463,6 +481,42 @@
             </button>
         </form>
     </div>
+    <div class="content second-step tab-pane" role="tabpanel" id="step3">
+
+        <form id="paymentFormSample" class="container-col">
+            <div class="form-group">
+                <p class="text-center">
+                    <label class="form-label">
+                        Қош келдіңіз
+                    </label>
+                </p>
+                <p class="text-center">
+                    Төлемге көшпес бұрын, тарифіңізді <br>
+                    тексеріп алыңыз
+                </p>
+                <p class="text-center">
+                    <label class="form-label">
+                        Тандалған тариф
+                    </label>
+                </p>
+                <ul class="list-group">
+                    @foreach($subscriptions as $subscription)
+                        <li class="list-group-item">
+                            <p class="sub-title text-center">
+                                {{$subscription->name}}
+                            </p>
+                            <p class="sub-price  text-center">
+                                {{$subscription->price}} KZT
+                            </p>
+                        </li>
+                    @endforeach
+
+                </ul>
+            </div>
+            <button class="w-97 next-step" type="submit">ТӨЛЕМГЕ КӨШУ<i class="glyphicon glyphicon-arrow-right"></i>
+            </button>
+        </form>
+    </div>
 
     <div class="content first-step tab-pane" role="tabpanel" id="step4">
         @if(true)
@@ -523,7 +577,7 @@
         var myCaja = document.getElementById("phone");
         var myText = "";
         var myNumbers = [];
-        var myOutPut = ""
+        var myOutPut = "";
         var theLastPos = 1;
         myText = myCaja.value;
         //get numbers
@@ -709,6 +763,7 @@
 
 
                     });
+
                     function submitForm() {
                         var myHeaders = new Headers();
                         myHeaders.append("Authorization", `Bearer ${token}`);
