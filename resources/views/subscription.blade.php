@@ -760,35 +760,44 @@
                 }
                 else {
 
-                    $("#form1").html('<div class="form-group">\n' +
-                        '<img class="tensend-icon" src="' + result.avatar + '" alt="">\n' +
-                        '                            <label class="form-label" id="username">' + result.username + '</label>\n' +
-                        '\n' +
-                        '\n' +
-                        '\n' +
-                        '                    @foreach($subscriptions as $subscription)\n' +
-                        '                    <form id = "subscriptionForm">\n' +
-                        '                        <div class="form-row">\n' +
-                        '                            <label class="form-label">{{$subscription->name}}</label>\n' +
-                        '                            <br>\n' +
-                        '                            <label class="form-label">{{$subscription->price}}</label>\n' +
-                        '                            <br>\n' +
-                        '                            <label class="form-label">{{$subscription->id}}</label>\n' +
-                        '                            <br>\n' +
-                        '                    <button class="w-97 next-step" type="submit" >толем жасау<i class="glyphicon glyphicon-arrow-right"></i></button>\n' +
+                    $("#form1").html(`
+                    <div class="form-group">
+                <p class="text-center">
+                    <img class="rounded-circle tensend-icon" src="{{asset('images/user-default.png')}}" alt="">
+                </p>
 
-                        '                            <br>\n' +
-                        '\n' +
+                <p class="text-center">
+                    <label class="form-label">
+                        Қош келдіңіз
+                    </label>
+                </p>
+                <p class="text-center">
+                    Төлемге көшпес бұрын, тарифіңізді <br>
+                    тексеріп алыңыз
+                </p>
+                <p class="text-center">
+                    <label class="form-label">
+                        Тандалған тариф
+                    </label>
+                </p>
+                <ul class="list-group" id="subscriptionList">
+                    @foreach($subscriptions as $subscription)
+                        <li class="list-group-item" onclick="toggleChoosen(this)">
+                            <p class="sub-title text-center">
+                                {{$subscription->name}}
+                        </p>
+                        <p class="sub-price  text-center">
+{{$subscription->price}} KZT
+                            </p>
+                        </li>
+                    @endforeach
 
-                        '                        </div>\n' +
-                        '                        <br>\n' +
-                        '                    </form>\n' +
-                        '                    @endforeach\n' +
-                        '\n' +
-                        '\n' +
-                        '\n' +
-                        '\n' +
-                        '            </div>\n');
+                        </ul>
+                    </div>
+                    <button class="w-97 next-step" type="submit" disabled>
+                        ТӨЛЕМГЕ КӨШУ<i class="glyphicon glyphicon-arrow-right"></i>
+                    </button>
+`);
                     const token = result.token;
                     $(document).ready(function () {
                         var form = $('#subscriptionForm');
