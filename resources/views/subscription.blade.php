@@ -633,7 +633,7 @@
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                if (result.success == false) {
+                if (result.success === false) {
 
                     // document.getElementById("user-avatar").
                     $("#form1").append('<img class="tensend-icon" src="{{asset("illustration3.png")}}" alt="">\n' +
