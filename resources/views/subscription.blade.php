@@ -493,7 +493,7 @@
 
             <div class="form-group">
                 <p class="text-center">
-                    <img class="tensend-icon rounded-circle" src="{{asset('images/user-default.png')}}" alt="">
+                    <img class="rounded-circle tensend-icon" src="{{asset('images/user-default.png')}}" alt="">
                 </p>
 
                 <p class="text-center">
