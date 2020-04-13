@@ -360,7 +360,7 @@
         var name = $('#realCardNumber').val();
         var result = checkout.createCryptogramPacket();
         let stateObj = {id: "100"};
-        window.history.replaceState(stateObj, "Төлем жасау", "/payment");
+        window.history.replaceState(stateObj, "Төлем жасау", "/subscribe");
         if (result.success) {
             // сформирована криптограмма
             loader();
