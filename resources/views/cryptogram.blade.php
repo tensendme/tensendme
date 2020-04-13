@@ -303,6 +303,10 @@
 
 <script>
 
+    var currentUrl = window.location.search;
+    let stateObj = {id: "100"};
+    window.history.replaceState(stateObj, "Төлем жасау", "/subscribe");
+    
     var cardInfo = [
         {
             id: 1,
@@ -355,12 +359,10 @@
     });
 
     function createCryptogram() {
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(currentUrl);
         const token = urlParams.get('token');
         var name = $('#realCardNumber').val();
         var result = checkout.createCryptogramPacket();
-        let stateObj = {id: "100"};
-        window.history.replaceState(stateObj, "Төлем жасау", "/subscribe");
         if (result.success) {
             // сформирована криптограмма
             loader();
