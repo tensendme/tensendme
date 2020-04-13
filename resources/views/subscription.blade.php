@@ -675,7 +675,6 @@
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         // myHeaders.append("Authorization", `Bearer ${token}`);
-        return;
 
         var requestOptions = {
             method: 'POST',
