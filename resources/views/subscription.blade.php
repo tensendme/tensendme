@@ -772,13 +772,7 @@
                     function submitForm(token, subTypeId) {
                         var myHeaders = new Headers();
                         myHeaders.append("Authorization", `Bearer ${token}`);
-                        var requestOptions = {
-                            method: 'GET',
-                            headers: myHeaders,
-                            redirect: 'follow'
-                        };
-
-                        document.location.href = "https://tensend.me/api/v1/pay?subscription_type_id=" + subTypeId;
+                        document.location.href = `https://tensend.me/api/v1/pay?subscription_type_id=${subTypeId}&token=${token}`;
                     }
                 }
             });
