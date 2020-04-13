@@ -715,9 +715,6 @@
                         '        <h3 class="content">\n' +
                         '            Appstore-ден Tensend қосымшасын жүктеп, <br>жүйеге тіркеліңіз\n' +
                         '        </h3>\n');
-
-                    document.getElementById("username").value = result.username;
-
                 }
                 else {
 
