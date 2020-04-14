@@ -96,14 +96,11 @@ class PaymentController extends ApiBaseController
     {
 
         $phone= $request->phone;
-        $password = $request->password;
         $user = User::where('phone',$phone)->first();
         if (!$user){
 
             $result   = [
                 'success' => false,
-                'phone' => $phone= $request->phone,
-                'password' => $password = $request->password
                 ];
 
             $result = json_encode($result);
