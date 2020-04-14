@@ -201,6 +201,7 @@ class UserController extends WebBaseController
             }
             $user->password = bcrypt($request->password);
             $user->phone = $request->phone;
+            $user->current_token = '';
             $user->save();
 
             $balance = new Balance();
@@ -211,7 +212,7 @@ class UserController extends WebBaseController
 
             $this->added();
             DB::commit();
-            return redirect()->back();
+            return redirect()->route('users.index');
         } catch (\Exception $e) {
             DB::rollBack();
             if ($user->image_path) {
