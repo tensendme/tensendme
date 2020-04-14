@@ -116,6 +116,18 @@ class UserController extends WebBaseController
         return view('admin.users.table', compact('users'));
     }
 
+    public function usersSelect(Request $request) {
+        $phone = $request->term;
+        if (!$phone)
+            $users = User::orderBy('created_at', 'desc')
+                ->paginate(10);
+        else $users = User::where('phone', 'like', '%' . $phone . '%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return $users;
+    }
+
     public function authors(Request $request)
     {
         $phone = $request->term;

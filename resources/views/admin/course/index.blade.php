@@ -199,7 +199,6 @@
                         //     page: params.page
                         // };
                         params.page = params.page || 1;
-                        console.log(params);
                         nextLink = response.next_page_url;
                         var pagination = false;
                         const data = response.data;
@@ -212,7 +211,6 @@
                             };
                             obj.results.push(obj1);
                         });
-                        console.log(JSON.parse(JSON.stringify(obj)));
                         return obj;
                     }
                 }

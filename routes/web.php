@@ -86,6 +86,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/subscriptions', ['uses' => 'SubscriptionController@index', 'as' => 'subscription.index']);
                 Route::get('/followers', ['uses' => 'FollowerController@index', 'as' => 'follower.index']);
                 Route::get('/transactions', ['uses' => 'TransactionController@index', 'as' => 'transaction.index']);
+                Route::get('/transactions/filter', ['uses' => 'TransactionController@filter', 'as' => 'transaction.filter']);
 
 
             });
@@ -154,6 +155,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
                 Route::get('/users/filter', ['uses' => 'UserController@filter', 'as' => 'users.filter']);
                 Route::get('/authors', ['uses' => 'UserController@authors', 'as' => 'authors']);
+                Route::get('/users/select', ['uses' => 'UserController@usersSelect', 'as' => 'users.select']);
 
                 Route::get('/levels', ['uses' => 'LevelController@index', 'as' => 'level.index']);
                 Route::get('/level/create', ['uses' => 'LevelController@create', 'as' => 'level.create']);
