@@ -2,7 +2,7 @@
     <table class="table mb-0">
         <thead class="bg-light">
         @if(!$withdrawals->items())
-            <tr>Транзакции не найдено!</tr>
+            <tr>Запросов не найдено!</tr>
         @else
             <tr>
                 <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="id">#</a></th>
