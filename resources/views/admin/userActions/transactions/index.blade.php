@@ -189,7 +189,7 @@
                         var obj = {"results": [], "pagination": {"more": pagination}};
                         data.forEach(author => {
                             obj1 = {
-                                "text": author.name + '(+' + (author.phone || '') + ')',
+                                "text": author.name ? author.name : ' ' + '(+' + (author.phone || '') + ')',
                                 "id": author.id
                             };
                             obj.results.push(obj1);

@@ -24,7 +24,7 @@ class TransactionController extends Controller
                     AllowedFilter::scope('created_before')])
                 ->defaultSort('-id')
                 ->allowedIncludes(['user'])
-                ->allowedSorts('id', 'created_at', 'status', 'sum')
+                ->allowedSorts('id', 'created_at', 'status', 'sum', 'order_id')
                 ->paginate($request->perPage);
 
         return view('admin.userActions.transactions.table', compact('transactions'));

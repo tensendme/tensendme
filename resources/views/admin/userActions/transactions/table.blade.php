@@ -5,14 +5,14 @@
             <tr>Транзакции не найдено!</tr>
         @else
             <tr>
-                <th scope="col" class="border-0">#</th>
+                <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="id">#</a></th>
                 <th scope="col" class="border-0">Пользователь</th>
                 <th scope="col" class="border-0">Номер телефона</th>
-                <th scope="col" class="border-0">Номер транзакции</th>
-                <th scope="col" class="border-0">Цена</th>
-                <th scope="col" class="border-0">Статус</th>
+                <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="order_id">Номер транзакции</a></th>
+                <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="sum">Цена</a></th>
+                <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="status">Статус</a></th>
                 <th scope="col" class="border-0">Сообщение</th>
-                <th scope="col" class="border-0">Дата</th>
+                <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="created_at">Дата</a></th>
             </tr>
         @endif
         </thead>
