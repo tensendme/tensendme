@@ -43,12 +43,12 @@
                         </div>
                         @endif
                         <div class="col-3">
-                            <label for="datemax" class="form-control-plaintext">Создан до</label>
-                            <input type="date" class="form-control search" id="created_before" name="created_before" min="2020-01-01">
-                        </div>
-                        <div class="col-3">
                             <label for="datemin" class="form-control-plaintext">Создан после</label>
                             <input type="date" class="form-control search" id="created_after" name="created_after" min="2020-01-01">
+                        </div>
+                        <div class="col-3">
+                            <label for="datemax" class="form-control-plaintext">Создан до</label>
+                            <input type="date" class="form-control search" id="created_before" name="created_before" min="2020-01-01">
                         </div>
                     </div>
                 </div>
