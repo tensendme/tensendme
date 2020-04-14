@@ -128,6 +128,19 @@ class UserController extends WebBaseController
         return $users;
     }
 
+    public function accountants(Request $request) {
+        $phone = $request->term;
+        if (!$phone)
+            $accountants = User::whereIn('role_id', [Role::SUPER_ADMIN_ID, Role::ACCOUNTANT_ID])
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        else $accountants = User::whereIn('role_id',[Role::SUPER_ADMIN_ID, Role::ACCOUNTANT_ID])->where('phone', 'like', '%' . $phone . '%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return $accountants;
+    }
+
     public function authors(Request $request)
     {
         $phone = $request->term;

@@ -187,10 +187,10 @@
                         const data = response.data;
                         if (nextLink != null) pagination = true;
                         var obj = {"results": [], "pagination": {"more": pagination}};
-                        data.forEach(author => {
+                        data.forEach(user => {
                             obj1 = {
-                                "text": author.name ? author.name : ' ' + '(+' + (author.phone || '') + ')',
-                                "id": author.id
+                                "text": user.name ? user.name : ' ' + '(+' + (user.phone || '') + ')',
+                                "id": user.id
                             };
                             obj.results.push(obj1);
                         });
