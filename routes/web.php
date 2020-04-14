@@ -93,8 +93,11 @@ Route::group(['namespace' => 'Web\v1'], function () {
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::ACCOUNTANT_ID . ',' . Role::SUPER_ADMIN_ID]], function () {
                 Route::get('/withdrawals', ['uses' => 'WithdrawalController@index', 'as' => 'withdrawal.index']);
-                Route::post('/withdrawals/approve/{id}', ['uses' => 'WithdrawalController@approve', 'as' => 'withdrawal.approve'])->where('id', '[0-9]+');
-                Route::post('/withdrawals/cancel/{id}', ['uses' => 'WithdrawalController@cancel', 'as' => 'withdrawal.cancel'])->where('id', '[0-9]+');
+                Route::get('/withdrawals/filter', ['uses' => 'WithdrawalController@filter', 'as' => 'withdrawal.filter']);
+                Route::post('/withdrawals/approve/{id}', ['uses' => 'WithdrawalController@approve', 'as' => 'withdrawal.approve'])
+                    ->where('id', '[0-9]+');
+                Route::post('/withdrawals/cancel/{id}', ['uses' => 'WithdrawalController@cancel', 'as' => 'withdrawal.cancel'])
+                    ->where('id', '[0-9]+');
                 Route::get('/histories', ['uses' => 'HistoryController@index', 'as' => 'history.index']);
 
                 //AJAX REQUEST
@@ -156,6 +159,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/users/filter', ['uses' => 'UserController@filter', 'as' => 'users.filter']);
                 Route::get('/authors', ['uses' => 'UserController@authors', 'as' => 'authors']);
                 Route::get('/users/select', ['uses' => 'UserController@usersSelect', 'as' => 'users.select']);
+                Route::get('/accountants/select', ['uses' => 'UserController@accountants', 'as' => 'users.accountants']);
 
                 Route::get('/levels', ['uses' => 'LevelController@index', 'as' => 'level.index']);
                 Route::get('/level/create', ['uses' => 'LevelController@create', 'as' => 'level.create']);
