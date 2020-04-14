@@ -275,7 +275,7 @@
                     var obj = {"results": [], "pagination": {"more": pagination}};
                     data.forEach(user => {
                         obj1 = {
-                            "text": user.name ? user.name : ' ' + '(+' + (user.phone || '') + ')',
+                            "text": user.name ? user.name + '(+' + (user.phone || '') + ')': ' ' + '(+' + (user.phone || '') + ')',
                             "id": user.id
                         };
                         obj.results.push(obj1);
