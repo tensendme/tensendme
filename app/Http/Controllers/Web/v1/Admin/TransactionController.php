@@ -21,7 +21,8 @@ class TransactionController extends Controller
                     AllowedFilter::exact('status'),
                     AllowedFilter::exact('user_id'),
                     AllowedFilter::scope('created_after'),
-                    AllowedFilter::scope('created_before')])
+                    AllowedFilter::scope('created_before')
+                ])
                 ->defaultSort('-id')
                 ->allowedIncludes(['user'])
                 ->allowedSorts('id', 'created_at', 'status', 'sum', 'order_id')

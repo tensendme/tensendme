@@ -46,7 +46,8 @@ class WithdrawalController extends WebBaseController
                 AllowedFilter::scope('created_after'),
                 AllowedFilter::scope('created_before'),
                 AllowedFilter::scope('updated_before'),
-                AllowedFilter::scope('updated_after')])
+                AllowedFilter::scope('updated_after')
+            ])
             ->defaultSort('-id')
             ->allowedIncludes(['user', 'approvedByUser'])
             ->allowedSorts('id', 'created_at', 'approved_at','status', 'amount')

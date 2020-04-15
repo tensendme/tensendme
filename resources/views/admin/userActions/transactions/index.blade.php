@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-3">
                             <label for="status" class="form-control-plaintext">Статус</label>
-                            <select class="form-control search" id="status" type="text" name="status">
+                            <select class="form-control search" id="transactionStatus" type="text" name="status">
                                 <option value="">Все</option>
                                 <option value="0">В обработке</option>
                                 <option value="1">Подтвержден</option>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-3">
                             <label for="sum" class="form-control-plaintext">Цена</label>
-                            <input class="form-control search" type="number" min="0" id="sum" name="sum" placeholder="9900">
+                            <input class="form-control search" type="number" min="0" id="price" name="sum" placeholder="9900">
                         </div>
                         <div class="col-3">
                             <label for="datemin" class="form-control-plaintext">Проведена после</label>

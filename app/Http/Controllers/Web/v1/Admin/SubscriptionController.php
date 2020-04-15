@@ -14,6 +14,8 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 use Yajra\DataTables\Facades\DataTables;
 
 class SubscriptionController extends WebBaseController
@@ -21,12 +23,30 @@ class SubscriptionController extends WebBaseController
 
     public function index()
     {
-        $subscriptionType = SubscriptionType::where('price', 0)->first();
-        $subscriptions = Subscription::where('subscription_type_id', '!=', $subscriptionType->id)
-            ->orderBy('created_at', 'desc')
+        $subscription_types = SubscriptionType::all();
+        $subscriptions = Subscription::orderBy('created_at', 'desc')
             ->with('user', 'subscriptionType')
             ->paginate(10);
-        return view('admin.userActions.subscriptions.index', compact('subscriptions'));
+        return view('admin.userActions.subscriptions.index', compact('subscriptions', 'subscription_types'));
+    }
+
+    public function filter(Request $request) {
+        $subscriptions = QueryBuilder::for(Subscription::class)
+            ->allowedFilters(['actual_price',
+                AllowedFilter::exact('subscription_type_id'),
+                AllowedFilter::exact('user_id'),
+                AllowedFilter::scope('created_after'),
+                AllowedFilter::scope('created_before'),
+                AllowedFilter::scope('expired_after'),
+                AllowedFilter::scope('expired_before'),
+            ])
+            ->defaultSort('-id')
+            ->allowedIncludes(['user', 'subscriptionType'])
+            ->allowedSorts('id', 'created_at', 'expired_at', 'actual_price',
+                'subscription_type_id')
+            ->paginate($request->perPage);
+
+        return view('admin.userActions.subscriptions.table', compact('subscriptions'));
     }
 
     public function freeSubscribe(Request $request, $id)

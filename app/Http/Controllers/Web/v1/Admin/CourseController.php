@@ -186,7 +186,8 @@ class CourseController extends WebBaseController
                     AllowedFilter::exact('category_id'),
                     AllowedFilter::exact('author_id'),
                     AllowedFilter::scope('created_after'),
-                    AllowedFilter::scope('created_before')])
+                    AllowedFilter::scope('created_before')
+                ])
                 ->defaultSort('-id')
                 ->allowedIncludes(['author', 'lessons'])
                 ->allowedSorts('id', 'created_at', 'name', 'title', 'is_visible', 'scale', 'view_count')
@@ -197,7 +198,8 @@ class CourseController extends WebBaseController
                 ->allowedFilters(['title', 'is_visible', 'advertise',
                     AllowedFilter::exact('category_id'),
                     AllowedFilter::scope('created_after'),
-                    AllowedFilter::scope('created_before')])
+                    AllowedFilter::scope('created_before')
+                ])
                 ->where('author_id', Auth::id())
                 ->defaultSort('-id')
                 ->allowedIncludes(['author', 'lessons'])
