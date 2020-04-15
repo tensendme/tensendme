@@ -86,6 +86,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/subscriptions', ['uses' => 'SubscriptionController@index', 'as' => 'subscription.index']);
                 Route::get('/subscriptions/filter', ['uses' => 'SubscriptionController@filter', 'as' => 'subscription.filter']);
                 Route::get('/followers', ['uses' => 'FollowerController@index', 'as' => 'follower.index']);
+                Route::get('/followers/filter', ['uses' => 'FollowerController@filter', 'as' => 'follower.filter']);
                 Route::get('/transactions', ['uses' => 'TransactionController@index', 'as' => 'transaction.index']);
                 Route::get('/transactions/filter', ['uses' => 'TransactionController@filter', 'as' => 'transaction.filter']);
 

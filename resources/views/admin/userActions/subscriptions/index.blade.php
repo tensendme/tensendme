@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row ml-1 mt-2">
                         <div class="col-3">
-                            <label class="form-control-plaintext" for="user_id">Пользотватель</label>
+                            <label class="form-control-plaintext" for="user_id">Пользователь</label>
                             <select id="user_id" class="form-control search js-example-basic-single" name="user_id"></select>
                         </div>
                         <div class="col-3">
@@ -61,13 +61,13 @@
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Подписки</h6>
-                <label for="perPage">Записей на одну страницу</label>
-                <select id="perPage" class="form-control col-1" onchange="search()">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
+                    <label for="perPage">Записей на одну страницу</label>
+                    <select id="perPage" class="form-control col-1" onchange="search()">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
                 </div>
                 <div id="filterTable">
                     @include('admin.userActions.subscriptions.table')

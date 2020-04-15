@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row ml-1 mt-2">
                         <div class="col-3">
-                            <label class="form-control-plaintext" for="user_id">Пользотватель</label>
+                            <label class="form-control-plaintext" for="user_id">Пользователь</label>
                             <select id="user_id" class="form-control search js-example-basic-single" name="user_id"></select>
                         </div>
                         <div class="col-3">
