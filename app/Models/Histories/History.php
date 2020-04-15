@@ -5,6 +5,8 @@ namespace App\Models\Histories;
 use App\Models\Courses\Course;
 use App\Models\Profiles\Balance;
 use App\Models\Subscriptions\Subscription;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class History extends Model
@@ -56,5 +58,15 @@ class History extends Model
     public function withdrawalRequest()
     {
         return $this->belongsTo(WithdrawalRequest::class, 'withdrawal_request_id', 'id');
+    }
+
+    public function scopeCreatedBefore(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '<=', Carbon::parse($date));
+    }
+
+    public function scopeCreatedAfter(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '>=', Carbon::parse($date));
     }
 }

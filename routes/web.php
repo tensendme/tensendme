@@ -101,6 +101,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/withdrawals/cancel/{id}', ['uses' => 'WithdrawalController@cancel', 'as' => 'withdrawal.cancel'])
                     ->where('id', '[0-9]+');
                 Route::get('/histories', ['uses' => 'HistoryController@index', 'as' => 'history.index']);
+                Route::get('/histories/filter', ['uses' => 'HistoryController@filter', 'as' => 'history.filter']);
 
                 //AJAX REQUEST
                 Route::post('/send/push/{id}', ['uses' => 'UserController@sendPush']);
@@ -161,6 +162,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/users/filter', ['uses' => 'UserController@filter', 'as' => 'users.filter']);
                 Route::get('/authors', ['uses' => 'UserController@authors', 'as' => 'authors']);
                 Route::get('/users/select', ['uses' => 'UserController@usersSelect', 'as' => 'users.select']);
+                Route::get('/users/balance/select', ['uses' => 'UserController@usersBalanceSelect', 'as' => 'users.balance.select']);
                 Route::get('/accountants/select', ['uses' => 'UserController@accountants', 'as' => 'users.accountants']);
 
                 Route::get('/levels', ['uses' => 'LevelController@index', 'as' => 'level.index']);

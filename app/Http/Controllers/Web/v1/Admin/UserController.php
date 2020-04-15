@@ -130,6 +130,20 @@ class UserController extends WebBaseController
         return $users;
     }
 
+    public function usersBalanceSelect(Request $request) {
+        $phone = $request->term;
+        if (!$phone)
+            $users = User::orderBy('created_at', 'desc')
+                ->with('balance')
+                ->paginate(10);
+        else $users = User::where('phone', 'like', '%' . $phone . '%')
+            ->orderBy('created_at', 'desc')
+            ->with('balance')
+            ->paginate(10);
+
+        return $users;
+    }
+
     public function accountants(Request $request) {
         $phone = $request->term;
         if (!$phone)
