@@ -3,6 +3,8 @@
 namespace App\Models\Meditations;
 
 use App\Models\Categories\Category;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -34,5 +36,15 @@ class Meditation extends Model
         return $this->hasMany(MeditationAudio::class, 'meditation_id', 'id')
             ->with(['author', 'language'])->select(array('id', 'audio_path', 'img_path', 'free',
                 'author_id', 'duration', 'audio_language_id', 'meditation_id'));
+    }
+
+    public function scopeCreatedBefore(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '<=', Carbon::parse($date));
+    }
+
+    public function scopeCreatedAfter(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '>=', Carbon::parse($date));
     }
 }

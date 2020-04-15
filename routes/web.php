@@ -131,6 +131,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
             Route::group(['middleware' => ['ROLE_OR:' . Role::CONTENT_MANAGER_ID . ',' . Role::SUPER_ADMIN_ID]], function () {
 
                 Route::get('/meditations', ['uses' => 'MeditationController@index', 'as' => 'meditation.index']);
+                Route::get('/meditations/filter', ['uses' => 'MeditationController@filter', 'as' => 'meditation.filter']);
                 Route::get('/meditation/create', ['uses' => 'MeditationController@create', 'as' => 'meditation.create']);
                 Route::post('/meditation/create', ['uses' => 'MeditationController@store', 'as' => 'meditation.store']);
                 Route::get('/meditation/edit/{id}', ['uses' => 'MeditationController@edit', 'as' => 'meditation.edit'])->where('id', '[0-9]+');

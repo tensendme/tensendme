@@ -34,11 +34,11 @@ class CourseController extends WebBaseController
     public function index()
     {
         if (!Auth::user()->isAuthor()) {
-            $courses = Course::with(['author', 'lessons'])
+            $courses = Course::with(['author', 'lessons', 'category'])
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         } else {
-            $courses = Course::with(['author', 'lessons'])
+            $courses = Course::with(['author', 'lessons', 'category'])
                 ->where('author_id', Auth::id())
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
@@ -182,15 +182,16 @@ class CourseController extends WebBaseController
     public function filter(Request $request) {
         if (!Auth::user()->isAuthor()) {
             $courses = QueryBuilder::for(Course::class)
-                ->allowedFilters(['title', 'is_visible', 'advertise',
+                ->allowedFilters(['title',
                     AllowedFilter::exact('category_id'),
                     AllowedFilter::exact('author_id'),
+                    AllowedFilter::exact('is_visible'),
                     AllowedFilter::scope('created_after'),
                     AllowedFilter::scope('created_before')
                 ])
                 ->defaultSort('-id')
-                ->allowedIncludes(['author', 'lessons'])
-                ->allowedSorts('id', 'created_at', 'name', 'title', 'is_visible', 'scale', 'view_count')
+                ->allowedIncludes(['author', 'lessons', 'category'])
+                ->allowedSorts('id', 'created_at', 'title', 'is_visible', 'scale', 'view_count')
                 ->paginate($request->perPage);
         }
         else {
@@ -202,8 +203,8 @@ class CourseController extends WebBaseController
                 ])
                 ->where('author_id', Auth::id())
                 ->defaultSort('-id')
-                ->allowedIncludes(['author', 'lessons'])
-                ->allowedSorts('id', 'created_at', 'name', 'title', 'is_visible', 'scale', 'view_count')
+                ->allowedIncludes(['author', 'lessons', 'category'])
+                ->allowedSorts('id', 'created_at', 'title', 'is_visible', 'scale', 'view_count')
                 ->paginate($request->perPage);
 
         }
