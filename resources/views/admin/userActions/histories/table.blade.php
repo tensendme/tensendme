@@ -13,7 +13,7 @@
                 <th scope="col" class="border-0">ID подписки приложениия</th>
                 <th scope="col" class="border-0">ID транзакции</th>
                 <th scope="col" class="border-0">ID запроса</th>
-                <th scope="col" class="border-0">ID подписчика</th>
+{{--                <th scope="col" class="border-0">ID подписчика</th>--}}
                 <th scope="col" class="border-0"><i class="material-icons">height</i><a class="sort" id="created_at">Записан</a></th>
 
             </tr>
@@ -30,7 +30,7 @@
                 <td>{{$history->subscription_id}}</td>
                 <td>{{$history->transaction_id}}</td>
                 <td>{{$history->withdrawal_request_id}}</td>
-                <td>{{$history->follower_id}}</td>
+{{--                <td>{{$history->follower_id}}</td>--}}
                 <td>{{$history->created_at}}</td>
             </tr>
         @endforeach

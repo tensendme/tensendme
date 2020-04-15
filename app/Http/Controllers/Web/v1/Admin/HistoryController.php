@@ -25,7 +25,6 @@ class HistoryController extends WebBaseController
                 AllowedFilter::exact('subscription_type_id'),
                 AllowedFilter::exact('balance_id'),
                 AllowedFilter::exact('transaction_id'),
-                AllowedFilter::exact('follower_id'),
                 AllowedFilter::exact('subscription_id'),
                 AllowedFilter::exact('withdrawal_request_id'),
                 AllowedFilter::exact('history_type_id'),

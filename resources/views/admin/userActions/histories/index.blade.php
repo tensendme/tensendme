@@ -35,22 +35,22 @@
                         <div class="col-3">
                             <label for="actual_price" class="form-control-plaintext">ID транзакции</label>
                             <input class="form-control search" type="number" min="0" id="transaction"
-                                   name="transaction_id" placeholder="9900">
+                                   name="transaction_id" placeholder="1">
                         </div>
-                        <div class="col-3">
-                            <label for="actual_price" class="form-control-plaintext">ID подписчика</label>
-                            <input class="form-control search" type="number" min="0" id="follower"
-                                   name="follower_id" placeholder="9900">
-                        </div>
+{{--                        <div class="col-3">--}}
+{{--                            <label for="actual_price" class="form-control-plaintext">ID подписчика</label>--}}
+{{--                            <input class="form-control search" type="number" min="0" id="follower"--}}
+{{--                                   name="follower_id" placeholder="9900">--}}
+{{--                        </div>--}}
                         <div class="col-3">
                             <label for="actual_price" class="form-control-plaintext">ID подписки</label>
                             <input class="form-control search" type="number" min="0" id="subscription"
-                                   name="subscription_id" placeholder="9900">
+                                   name="subscription_id" placeholder="2">
                         </div>
                         <div class="col-3">
                             <label for="actual_price" class="form-control-plaintext">ID запроса</label>
                             <input class="form-control search" type="number" min="0" id="withdrawal"
-                                   name="withdrawal_request_id" placeholder="9900">
+                                   name="withdrawal_request_id" placeholder="3">
                         </div>
                         <div class="col-3">
                             <label for="datemin" class="form-control-plaintext">Записан после</label>
