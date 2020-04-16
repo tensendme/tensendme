@@ -485,10 +485,6 @@
                     {{--                           pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">--}}
                 </div>
             </div>
-            <div class="form-group">
-                <label class="form-label">Құпия сөзіңіз</label>
-                <input id="password" class="password form-control" type="password" name="password">
-            </div>
             <button class="w-97 next-step" type="submit">
                 ЖАЛҒАСТЫРУ<i class="glyphicon glyphicon-arrow-right"></i>
             </button>
@@ -668,7 +664,6 @@
             prefix = prefix.substring(1);
         }
         var raw = JSON.stringify({
-            "password": document.getElementById("password").value,
             "country": document.getElementById("id_select2_example").value,
             "phone": prefix + document.getElementById("phone").value
         });
@@ -692,22 +687,11 @@
                     $("#form1").html('<img class="tensend-icon" src="{{asset("illustration3.png")}}" alt="">\n' +
                         '\n' +
                         '\n' +
-                        '            <div class="form-group">\n' +
-                        '                <label class="form-label">Телефон нөміріңіз</label>\n' +
-                        '\n' +
-                        '                <div class="form-row">\n' +
-                        '                    <select id="id_select2_example1" class="form-control" name="country">\n' +
-                        '                        @foreach($countries as $country)\n' +
-                        '                            <option value="{{$country->id}}" data-img_src="{{asset($country->image_path)}}">\n' +
-                        '                                {{$country->phone_prefix}}\n' +
-                        '                            </option>\n' +
-                        '                        @endforeach\n' +
-                        '                    </select>\n' +
-                        '                                        <input id="phone2" class="phone m-b-md form-control" type="text" inputmode="numeric" name="phone"\n' +
-                        '                                               pattern="^\\([0-9]{3}\\)\\s[0-9]{3}-[0-9]{2}-[0-9]{2}$">\n' +
-                        '                </div>\n' +
-                        '            </div>\n' +
+                        '<br>\n'+
+                        '<a href="https://apps.apple.com/kz/app/tensend/id1502844330" class="btn btn-white m-1 px-2 py-1 downloadUrlBlock">\n'+
+
                         '            <button class="w-97 next-step" type="button" id="">APPSTORE-ГЕ КӨШУ</button>\n' +
+                        '</a>\n'+
                         '\n' +
                         '        <h5 class="content">\n' +
                         '            Бұл нөмір жүйеде тіркелмеген!\n' +

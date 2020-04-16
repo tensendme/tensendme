@@ -3,6 +3,8 @@
 namespace App\Models\Histories;
 
 use App\Models\Profiles\User;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
@@ -26,5 +28,15 @@ class Transaction extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function scopeCreatedBefore(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '<=', Carbon::parse($date));
+    }
+
+    public function scopeCreatedAfter(Builder $query, $date): Builder
+    {
+        return $query->where('created_at', '>=', Carbon::parse($date));
     }
 }

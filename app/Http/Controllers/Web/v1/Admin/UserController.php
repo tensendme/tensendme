@@ -102,8 +102,10 @@ class UserController extends WebBaseController
     {
         $users = QueryBuilder::for(User::class)
             ->allowedFilters(['name', 'surname', 'father_name', 'role_id', 'email',
-                'phone', AllowedFilter::exact('level_id'), 'platform', AllowedFilter::scope('register_before'),
-                AllowedFilter::scope('register_after')])
+                'phone', AllowedFilter::exact('level_id'), 'platform',
+                AllowedFilter::scope('register_before'),
+                AllowedFilter::scope('register_after')
+            ])
             ->defaultSort('-id')
             ->allowedIncludes(['role', 'level', 'city', 'balance'])
             ->allowedSorts('id', 'created_at', 'name', 'surname', 'level_id'
@@ -114,6 +116,45 @@ class UserController extends WebBaseController
         $this->switchRole($userRoles);
 
         return view('admin.users.table', compact('users'));
+    }
+
+    public function usersSelect(Request $request) {
+        $phone = $request->term;
+        if (!$phone)
+            $users = User::orderBy('created_at', 'desc')
+                ->paginate(10);
+        else $users = User::where('phone', 'like', '%' . $phone . '%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return $users;
+    }
+
+    public function usersBalanceSelect(Request $request) {
+        $phone = $request->term;
+        if (!$phone)
+            $users = User::orderBy('created_at', 'desc')
+                ->with('balance')
+                ->paginate(10);
+        else $users = User::where('phone', 'like', '%' . $phone . '%')
+            ->orderBy('created_at', 'desc')
+            ->with('balance')
+            ->paginate(10);
+
+        return $users;
+    }
+
+    public function accountants(Request $request) {
+        $phone = $request->term;
+        if (!$phone)
+            $accountants = User::whereIn('role_id', [Role::SUPER_ADMIN_ID, Role::ACCOUNTANT_ID])
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        else $accountants = User::whereIn('role_id',[Role::SUPER_ADMIN_ID, Role::ACCOUNTANT_ID])->where('phone', 'like', '%' . $phone . '%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return $accountants;
     }
 
     public function authors(Request $request)
@@ -201,6 +242,7 @@ class UserController extends WebBaseController
             }
             $user->password = bcrypt($request->password);
             $user->phone = $request->phone;
+            $user->current_token = '';
             $user->save();
 
             $balance = new Balance();
@@ -211,7 +253,7 @@ class UserController extends WebBaseController
 
             $this->added();
             DB::commit();
-            return redirect()->back();
+            return redirect()->route('users.index');
         } catch (\Exception $e) {
             DB::rollBack();
             if ($user->image_path) {

@@ -84,17 +84,24 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/cities', ['uses' => 'CityController@index', 'as' => 'city.index']);
                 Route::get('/subscription/types', ['uses' => 'SubscriptionTypeController@index', 'as' => 'subscription.type.index']);
                 Route::get('/subscriptions', ['uses' => 'SubscriptionController@index', 'as' => 'subscription.index']);
+                Route::get('/subscriptions/filter', ['uses' => 'SubscriptionController@filter', 'as' => 'subscription.filter']);
                 Route::get('/followers', ['uses' => 'FollowerController@index', 'as' => 'follower.index']);
+                Route::get('/followers/filter', ['uses' => 'FollowerController@filter', 'as' => 'follower.filter']);
                 Route::get('/transactions', ['uses' => 'TransactionController@index', 'as' => 'transaction.index']);
+                Route::get('/transactions/filter', ['uses' => 'TransactionController@filter', 'as' => 'transaction.filter']);
 
 
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::ACCOUNTANT_ID . ',' . Role::SUPER_ADMIN_ID]], function () {
                 Route::get('/withdrawals', ['uses' => 'WithdrawalController@index', 'as' => 'withdrawal.index']);
-                Route::post('/withdrawals/approve/{id}', ['uses' => 'WithdrawalController@approve', 'as' => 'withdrawal.approve'])->where('id', '[0-9]+');
-                Route::post('/withdrawals/cancel/{id}', ['uses' => 'WithdrawalController@cancel', 'as' => 'withdrawal.cancel'])->where('id', '[0-9]+');
+                Route::get('/withdrawals/filter', ['uses' => 'WithdrawalController@filter', 'as' => 'withdrawal.filter']);
+                Route::post('/withdrawals/approve/{id}', ['uses' => 'WithdrawalController@approve', 'as' => 'withdrawal.approve'])
+                    ->where('id', '[0-9]+');
+                Route::post('/withdrawals/cancel/{id}', ['uses' => 'WithdrawalController@cancel', 'as' => 'withdrawal.cancel'])
+                    ->where('id', '[0-9]+');
                 Route::get('/histories', ['uses' => 'HistoryController@index', 'as' => 'history.index']);
+                Route::get('/histories/filter', ['uses' => 'HistoryController@filter', 'as' => 'history.filter']);
 
                 //AJAX REQUEST
                 Route::post('/send/push/{id}', ['uses' => 'UserController@sendPush']);
@@ -124,6 +131,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
             Route::group(['middleware' => ['ROLE_OR:' . Role::CONTENT_MANAGER_ID . ',' . Role::SUPER_ADMIN_ID]], function () {
 
                 Route::get('/meditations', ['uses' => 'MeditationController@index', 'as' => 'meditation.index']);
+                Route::get('/meditations/filter', ['uses' => 'MeditationController@filter', 'as' => 'meditation.filter']);
                 Route::get('/meditation/create', ['uses' => 'MeditationController@create', 'as' => 'meditation.create']);
                 Route::post('/meditation/create', ['uses' => 'MeditationController@store', 'as' => 'meditation.store']);
                 Route::get('/meditation/edit/{id}', ['uses' => 'MeditationController@edit', 'as' => 'meditation.edit'])->where('id', '[0-9]+');
@@ -154,6 +162,9 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/users', ['uses' => 'UserController@index', 'as' => 'users.index']);
                 Route::get('/users/filter', ['uses' => 'UserController@filter', 'as' => 'users.filter']);
                 Route::get('/authors', ['uses' => 'UserController@authors', 'as' => 'authors']);
+                Route::get('/users/select', ['uses' => 'UserController@usersSelect', 'as' => 'users.select']);
+                Route::get('/users/balance/select', ['uses' => 'UserController@usersBalanceSelect', 'as' => 'users.balance.select']);
+                Route::get('/accountants/select', ['uses' => 'UserController@accountants', 'as' => 'users.accountants']);
 
                 Route::get('/levels', ['uses' => 'LevelController@index', 'as' => 'level.index']);
                 Route::get('/level/create', ['uses' => 'LevelController@create', 'as' => 'level.create']);

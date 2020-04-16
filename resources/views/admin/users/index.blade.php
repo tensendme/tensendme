@@ -59,12 +59,12 @@
                             </select>
                         </div>
                         <div class="col-3">
-                            <label for="datemax" class="form-control-plaintext">Регистрирован до</label>
-                            <input type="date" class="form-control" id="before" name="datemax" min="2020-01-01">
-                        </div>
-                        <div class="col-3">
                             <label for="datemin" class="form-control-plaintext">Регистрирован после</label>
                             <input type="date" class="form-control" id="after" name="datemin" min="2020-01-01">
+                        </div>
+                        <div class="col-3">
+                            <label for="datemax" class="form-control-plaintext">Регистрирован до</label>
+                            <input type="date" class="form-control" id="before" name="datemax" min="2020-01-01">
                         </div>
                     </div>
                 </div>

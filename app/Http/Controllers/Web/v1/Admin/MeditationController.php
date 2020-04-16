@@ -8,6 +8,9 @@ use App\Models\Categories\Category;
 use App\Models\Meditations\Meditation;
 use App\Services\v1\FileService;
 use App\Utils\StaticConstants;
+use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class MeditationController extends WebBaseController
 {
@@ -23,9 +26,26 @@ class MeditationController extends WebBaseController
     }
 
     public function index() {
-        $meditations = Meditation::orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.meditation.index', compact('meditations'));
+        $meditations = Meditation::orderBy('created_at', 'desc')->with('category')->paginate(10);
+        $categories = Category::where('category_type_id', 2)->get();
+        return view('admin.meditation.index', compact('meditations', 'categories'));
     }
+    public function filter(Request $request) {
+            $meditations = QueryBuilder::for(Meditation::class)
+                ->allowedFilters(['title',
+                    AllowedFilter::exact('category_id'),
+                    AllowedFilter::exact('is_visible'),
+                    AllowedFilter::scope('created_after'),
+                    AllowedFilter::scope('created_before')
+                ])
+                ->defaultSort('-id')
+                ->allowedIncludes(['category'])
+                ->allowedSorts('id', 'created_at', 'title', 'is_visible', 'scale')
+                ->paginate($request->perPage);
+
+        return view('admin.meditation.table', compact('meditations'));
+    }
+
 
     public function create(){
         $categories = Category::where('category_type_id', 2)

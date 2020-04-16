@@ -40,6 +40,10 @@ class AuthController extends ApiBaseController
 
     public function logout()
     {
+        $user = Auth::user();
+        $user->current_token = '';
+        $user->device_token = null;
+        $user->save();
         auth()->logout();
         return $this->successResponse(['message' => 'Successfully logged out']);
     }
