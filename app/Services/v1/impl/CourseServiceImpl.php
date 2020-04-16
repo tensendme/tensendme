@@ -18,18 +18,18 @@ use Auth;
 
 class CourseServiceImpl implements CourseService
 {
-    public function findAll($perPage,$title)
+    public function findAll($perPage, $title)
     {
 
         $user = Auth::user();
 
-        if(!$title) $courses =  Course::where('is_visible',true)
+        if (!$title) $courses = Course::where('is_visible', true)
             ->with('author')
             ->with('lessons')
             ->orderBy('scale', 'desc')
             ->paginate($perPage);
-         else $courses =  Course::where('title', 'like', '%' . $title . '%')
-            ->where('is_visible',true)
+        else $courses = Course::where('title', 'like', '%' . $title . '%')
+            ->where('is_visible', true)
             ->with('author')
             ->with('lessons')
             ->orderBy('scale', 'desc')
@@ -40,7 +40,7 @@ class CourseServiceImpl implements CourseService
         foreach ($coursesItems as $course) {
             $courseMaterials = $course->lessons;
             $course->lessons_count = $courseMaterials->count();
-            if($user) $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
+            if ($user) $count = Passing::whereIn('course_material_id', $courseMaterials->pluck('id'))->where('user_id', $user->id)->count();
             $course->information_list = array_filter(explode(',', $course->information_list));
             $course->lessons_passing_count = $count;
             $started = $startedCourse->where('course_id', $course->id)->first();
@@ -90,7 +90,7 @@ class CourseServiceImpl implements CourseService
     public function findByCategory($categoryId, $size)
     {
         $user = Auth::user();
-        $courses =  Course::where('category_id', $categoryId)
+        $courses = Course::where('category_id', $categoryId)
             ->where('is_visible', true)
             ->with('author')
             ->with('lessons')
@@ -120,7 +120,7 @@ class CourseServiceImpl implements CourseService
             ->with('author')
             ->with('lessons')
             ->first();
-        if(!$course) throw new ApiServiceException(404, false, [
+        if (!$course) throw new ApiServiceException(404, false, [
             'errors' => [
                 'Такого курса не существует'
             ],
@@ -136,7 +136,7 @@ class CourseServiceImpl implements CourseService
         $isRated = Rating::where('course_id', $course->id)->where('user_id', $user->id)->first();
         $course->lessons_passing_count = $passed->count();
         $course->started = $startedCourse ? true : false;
-        $course->isRated = $isRated ? true :false;
+        $course->isRated = $isRated ? true : false;
         foreach ($course->lessons as $lesson) {
             $lesson->access = $subscriptions->exists() || $lesson->free ? true : false;
             $lesson->passed = $passed->get()->where('course_material_id', $lesson->id)->first() ? true : false;
@@ -157,21 +157,21 @@ class CourseServiceImpl implements CourseService
         $courseSertificate = Certificate::where('user_id', $user->id)->where('course_id', $courseId)
             ->with('course.author')
             ->first();
-        if(!$courseSertificate) return view('welcome');
-        if(!$courseSertificate->father_name) $courseSertificate->father_name = $user->father_name;
-        if(!$courseSertificate->surname) $courseSertificate->surname = $user->surname;
-        if(!$courseSertificate->name) $courseSertificate->name = $user->name;
+        if (!$courseSertificate) return view('welcome');
+        if (!$courseSertificate->father_name) $courseSertificate->father_name = $user->father_name;
+        if (!$courseSertificate->surname) $courseSertificate->surname = $user->surname;
+        if (!$courseSertificate->name) $courseSertificate->name = $user->name;
         $courseSertificate->save();
 
-        if(!$courseSertificate) return view('welcome');
+        if (!$courseSertificate) return view('welcome');
         $certificate = 'Сертификат';
-        $id = 'ID #'.$courseSertificate->id;
-        $middleText = '«'. $courseSertificate->course->title .'» курсына қатысқаны үшін';
-        $author = $courseSertificate->course->author ? ' курс авторы: '.
-            $courseSertificate->course->author->surname . ' '.$courseSertificate->course->author->name . ' '
-            .$courseSertificate->course->author->father_name: 'Курс авторы: Tensend';
+        $id = 'ID #' . $courseSertificate->id;
+        $middleText = '«' . $courseSertificate->course->title . '» курсына қатысқаны үшін';
+        $author = $courseSertificate->course->author ? ' курс авторы: ' .
+            $courseSertificate->course->author->surname . ' ' . $courseSertificate->course->author->name . ' '
+            . $courseSertificate->course->author->father_name : 'Курс авторы: Tensend';
         $given = 'БЕРІЛЕДІ';
-        $fullName = $courseSertificate->name. ' '. $courseSertificate->surname. ' '. $courseSertificate->father_name;
+        $fullName = $courseSertificate->name . ' ' . $courseSertificate->surname . ' ' . $courseSertificate->father_name;
         $infoText = '';
         return view('pdf_view', compact('certificate', 'middleText', 'given',
             'fullName', 'infoText', 'author', 'id'));
