@@ -201,11 +201,11 @@ class CourseServiceImpl implements CourseService
         $pdf->Cell(100, 10, "ҚҰТТЫҚТАЙМЫЗ!", 0, 0, 'C');
 
         $pdf->SetFont($fontName, 'B', '10');
-        $pdf->SetXY(100, 170);
+        $pdf->SetXY(100, 165);
         $pdf->Cell(100, 10, "СЕРТИФИКАТ НӨМІРІ: $id", 0, 0, 'C');
 
         $pdf->SetFont($fontName, 'B', '10');
-        $pdf->SetXY(100, 175);
+        $pdf->SetXY(100, 170);
         $pdf->Cell(100, 10, $author, 0, 0, 'C');
 
         return $pdf->Output("certificate.pdf", "I", true);
