@@ -188,9 +188,9 @@ class CourseServiceImpl implements CourseService
 
         $pdf->SetTextColor(0, 0, 0);
 
-        $pdf->SetFont($fontName, 'B', '25');
+        $pdf->SetFont($fontName, 'B', '35');
 
-        $pdf->SetXY(100, 55);
+        $pdf->SetXY(100, 60);
         $pdf->Cell(100, 10,"СЕРТИФИКАТ", 0, 0, 'C');
 
         $pdf->SetFont($fontName, 'B', '20');
