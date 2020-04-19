@@ -7,14 +7,15 @@ namespace App\Services\v1\impl;
 use App\Exceptions\ApiServiceException;
 use App\Http\Errors\ErrorCode;
 use App\Models\Courses\Course;
-
 use App\Models\Education\Passing;
 use App\Models\Education\UserCourse;
 use App\Models\Profiles\Certificate;
 use App\Models\Rating;
 use App\Services\v1\CourseService;
-use Illuminate\Support\Facades\DB;
 use Auth;
+use setasign\Fpdi\Tcpdf\Fpdi;
+
+define('FPDF_FONTPATH', public_path('fonts'));
 
 class CourseServiceImpl implements CourseService
 {
@@ -154,26 +155,57 @@ class CourseServiceImpl implements CourseService
     public function getCertificate($courseId)
     {
         $user = Auth::user();
-        $courseSertificate = Certificate::where('user_id', $user->id)->where('course_id', $courseId)
+        $courseCertificate = Certificate::where('user_id', $user->id)->where('course_id', $courseId)
             ->with('course.author')
             ->first();
-        if (!$courseSertificate) return view('welcome');
-        if (!$courseSertificate->father_name) $courseSertificate->father_name = $user->father_name;
-        if (!$courseSertificate->surname) $courseSertificate->surname = $user->surname;
-        if (!$courseSertificate->name) $courseSertificate->name = $user->name;
-        $courseSertificate->save();
+        if (!$courseCertificate) return view('welcome');
+        if (!$courseCertificate->father_name) $courseCertificate->father_name = $user->father_name;
+        if (!$courseCertificate->surname) $courseCertificate->surname = $user->surname;
+        if (!$courseCertificate->name) $courseCertificate->name = $user->name;
+        $courseCertificate->save();
 
-        if (!$courseSertificate) return view('welcome');
-        $certificate = 'Сертификат';
-        $id = 'ID #' . $courseSertificate->id;
-        $middleText = '«' . $courseSertificate->course->title . '» курсына қатысқаны үшін';
-        $author = $courseSertificate->course->author ? ' курс авторы: ' .
-            $courseSertificate->course->author->surname . ' ' . $courseSertificate->course->author->name . ' '
-            . $courseSertificate->course->author->father_name : 'Курс авторы: Tensend';
-        $given = 'БЕРІЛЕДІ';
-        $fullName = $courseSertificate->name . ' ' . $courseSertificate->surname . ' ' . $courseSertificate->father_name;
-        $infoText = '';
-        return view('pdf_view', compact('certificate', 'middleText', 'given',
-            'fullName', 'infoText', 'author', 'id'));
+        if (!$courseCertificate) return view('welcome');
+        $id = 'ID #' . $courseCertificate->id;
+        $middleText = '«' . $courseCertificate->course->title . '» курсына қатысқаны үшін';
+        $author = $courseCertificate->course->author ? ' курс авторы: ' .
+            $courseCertificate->course->author->surname . ' ' . $courseCertificate->course->author->name . ' '
+            . $courseCertificate->course->author->father_name : 'Курс авторы: Tensend';
+        $fullName = $courseCertificate->name . ' ' . $courseCertificate->surname . ' ' . $courseCertificate->father_name;
+
+
+        $pdf = new Fpdi('L', 'mm', 'A4');
+        $pdf->setSourceFile(public_path('certificate.pdf'));
+        $fontName = "DejaVuSans";
+        $pdf->AddFont($fontName, '', 'DejaVuSans.php');
+        $pdf->AddFont($fontName, 'B', 'DejaVuSans.php');
+        $pdf->AddFont($fontName, 'I', 'DejaVuSans.php');
+        $tplId = $pdf->importPage(1);
+        $pdf->addPage();
+
+        $pdf->useTemplate($tplId, 0, 0);
+        $pdf->SetMargins(0, 0, 0, 0);
+        $pdf->SetAutoPageBreak(false);
+
+        $pdf->SetFont($fontName, 'B', '20');
+        $pdf->SetTextColor(60, 60, 60);
+        $pdf->SetXY(100, 80);
+        $pdf->Cell(100, 10,trim($fullName)." - ға беріледі", 0, 0, 'C');
+        $pdf->SetFont($fontName, '', '20');
+        $pdf->SetXY(50, 90);
+        $pdf->MultiCell(200, 10, $middleText, 0, 'C', false,0);
+
+        $pdf->SetFont($fontName, 'B', '20');
+        $pdf->SetXY(100, 120);
+        $pdf->Cell(100, 10, "ҚҰТТЫҚТАЙМЫЗ!", 0, 0, 'C');
+
+        $pdf->SetFont($fontName, 'B', '10');
+        $pdf->SetXY(100, 170);
+        $pdf->Cell(100, 10, "СЕРТИФИКАТ НӨМІРІ: $id", 0, 0, 'C');
+        
+        $pdf->SetFont($fontName, 'B', '10');
+        $pdf->SetXY(100, 175);
+        $pdf->Cell(100, 10, $author, 0, 0, 'C');
+
+        return $pdf->Output("certificate.pdf", "I", true);
     }
 }

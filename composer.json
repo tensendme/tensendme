@@ -11,7 +11,6 @@
         "php": "^7.2",
         "ext-curl": "*",
         "ext-json": "*",
-        "barryvdh/laravel-dompdf": "^0.8.6",
         "darkaonline/l5-swagger": "^6.0",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
@@ -25,7 +24,9 @@
         "spatie/laravel-query-builder": "^2.7",
         "tymon/jwt-auth": "1.0.0-rc.5",
         "yajra/laravel-datatables-oracle": "~9.0",
-        "zircote/swagger-php": "2.*"
+        "zircote/swagger-php": "2.*",
+        "tecnickcom/tcpdf": "6.2.*",
+        "setasign/fpdi": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
