@@ -17,11 +17,11 @@ class CertificateController extends WebBaseController
 {
 
 
-    public function getCertificate2()
+    public function getCertificate()
     {
         $certificate = 'Сертификат';
         $id = 'ID #124312';
-        $middleText = 'об участии на курсе «Cымбатты мүсін»';
+        $middleText = 'об участии на курсе «»';
         $given = 'ВЫДАЕТСЯ';
         $fullName = 'БЕКЗАТ БЕКМУРАТОВ АЗАМАТУЛЫ';
         $author = 'АСКАР К. Б.';
@@ -32,7 +32,7 @@ class CertificateController extends WebBaseController
         return view('pdf_view', compact('certificate', 'middleText', 'given', 'fullName', 'infoText', 'author', 'id'));
     }
 
-    public function getCertificate()
+    public function getCertificate2()
     {
 
         $pdf = new Fpdi('L', 'mm', 'A4');
