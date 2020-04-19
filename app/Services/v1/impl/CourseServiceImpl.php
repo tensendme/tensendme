@@ -188,11 +188,12 @@ class CourseServiceImpl implements CourseService
 
         $pdf->SetTextColor(0, 0, 0);
 
-        $pdf->SetFont($fontName, 'B', '15');
-        $pdf->SetXY(100, 82);
+        $pdf->SetFont($fontName, 'B', '20');
+        $pdf->SetXY(100, 80);
         $pdf->Cell(100, 10,trim($fullName)." - ға беріледі", 0, 0, 'C');
-        $pdf->SetFont($fontName, '', '20');
-        $pdf->SetXY(50, 90);
+
+        $pdf->SetFont($fontName, '', '17');
+        $pdf->SetXY(50, 93);
         $pdf->MultiCell(200, 10, $middleText, 0, 'C', false,0);
 
         $pdf->SetFont($fontName, 'B', '20');
