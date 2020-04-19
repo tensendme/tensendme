@@ -45,7 +45,7 @@ abstract class ApiBaseRequest extends FormRequest implements WithUser
                 }
             }
             throw new ApiServiceException(400, false, [
-                'errorCode' => ErrorCode::INVALID_FIELD,
+                'errorCode' =>  $validator->failed()['phone']['Unique'] ? ErrorCode::AUTH_ERROR : ErrorCode::INVALID_FIELD,
                 'errors' => $messages
                 ]);
         }
