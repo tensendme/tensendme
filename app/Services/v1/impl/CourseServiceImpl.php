@@ -186,9 +186,10 @@ class CourseServiceImpl implements CourseService
         $pdf->SetMargins(0, 0, 0, 0);
         $pdf->SetAutoPageBreak(false);
 
-        $pdf->SetFont($fontName, 'B', '20');
-        $pdf->SetTextColor(60, 60, 60);
-        $pdf->SetXY(100, 80);
+        $pdf->SetTextColor(0, 0, 0);
+
+        $pdf->SetFont($fontName, 'B', '15');
+        $pdf->SetXY(100, 82);
         $pdf->Cell(100, 10,trim($fullName)." - ға беріледі", 0, 0, 'C');
         $pdf->SetFont($fontName, '', '20');
         $pdf->SetXY(50, 90);
@@ -201,7 +202,7 @@ class CourseServiceImpl implements CourseService
         $pdf->SetFont($fontName, 'B', '10');
         $pdf->SetXY(100, 170);
         $pdf->Cell(100, 10, "СЕРТИФИКАТ НӨМІРІ: $id", 0, 0, 'C');
-        
+
         $pdf->SetFont($fontName, 'B', '10');
         $pdf->SetXY(100, 175);
         $pdf->Cell(100, 10, $author, 0, 0, 'C');
