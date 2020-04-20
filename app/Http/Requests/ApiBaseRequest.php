@@ -36,6 +36,19 @@ abstract class ApiBaseRequest extends FormRequest implements WithUser
 
     protected function failedValidation(Validator $validator)
     {
+        $errors = $validator->errors();
+        $messages = array();
+        if($errors->has('phone')) {
+            foreach ($errors->getMessages() as $key => $error) {
+                foreach ($error as $errorText) {
+                    $messages[] = $errorText;
+                }
+            }
+            throw new ApiServiceException(400, false, [
+                'errorCode' =>  $validator->failed()['phone']['Unique'] ? ErrorCode::AUTH_ERROR : ErrorCode::INVALID_FIELD,
+                'errors' => $messages
+                ]);
+        }
         throw new ApiServiceException(400, false, [
             'errorCode' => ErrorCode::INVALID_FIELD,
             'errors' => $validator->errors()
