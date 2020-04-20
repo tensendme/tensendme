@@ -28,6 +28,7 @@
                             <th>Email</th>
                             <th>Номер</th>
                             <th>Платформа</th>
+                            <th>Дата регистрации</th>
                         </tr>
                         </thead>
                     </table>
@@ -83,6 +84,7 @@
                     {"data": 'email', 'name': 'u.email'},
                     {"data": 'phone', 'name': 'u.phone'},
                     {"data": 'platform', 'name': 'u.platform'},
+                    {"data": 'created_at', 'name': 'u.created_at'},
                 ],
                 "language": {
                     "processing": "Подождите...",

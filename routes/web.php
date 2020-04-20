@@ -233,7 +233,7 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/link/edit/{id}', ['uses' => 'LinkController@edit', 'as' => 'link.edit'])->where('id', '[0-9]+');
                 Route::post('/link/update/{id}', ['uses' => 'LinkController@update', 'as' => 'link.update'])->where('id', '[0-9]+');
                 Route::post('/link/visible/{id}', ['uses' => 'LinkController@visibleChange', 'as' => 'link.visible'])->where('id', '[0-9]+');
-                
+
                 Route::get('/users/awaiting', ['uses' => 'SubscriptionController@subscriptionAwaitingUsers', 'as' => 'awaiting.subscribe.users']);
                 Route::get('/users/awaiting/data', ['uses' => 'SubscriptionController@awaitingUsersDataTable', 'as' => 'awaiting.data.users']);
             });
