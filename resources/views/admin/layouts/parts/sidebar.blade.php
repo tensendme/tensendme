@@ -24,15 +24,13 @@
     {{--    </form>--}}
     <div class="nav-wrapper">
         <ul class="nav flex-column">
-            @if(in_array(Auth::user()->role_id ,[1,2,3,6,4]) )
-                <li class="nav-item">
-                    <a class="nav-link {{Helper::urlActiveHelper('home')}}"
-                       href="{{route('home')}}">
-                        <i class="material-icons">edit</i>
-                        <span>Главное</span>
-                    </a>
-                </li>
-            @endif
+            <li class="nav-item">
+                <a class="nav-link {{Helper::urlActiveHelper('home')}}"
+                   href="{{route('home')}}">
+                    <i class="material-icons">edit</i>
+                    <span>Главное</span>
+                </a>
+            </li>
             @if(in_array(Auth::user()->role_id ,[1,2,3,6]) )
                 <li class="nav-item">
                     <a class="nav-link {{Helper::urlActiveHelper('users')}}"
@@ -95,7 +93,7 @@
                     </div>
                 </li>
             @endif
-            @if(in_array(Auth::user()->role_id ,[1,2,3,6]) )
+            @if(in_array(Auth::user()->role_id ,[1,2,3,6,7]) )
                 <li class="nav-item">
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
@@ -104,30 +102,33 @@
                             <span>Действия пользователей</span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="nav-link  {{Helper::urlActiveHelper('subscription')}}"
-                               href="{{route('subscription.index')}}">
-                                <i class="material-icons">people</i>
-                                <span>Подписки на приложение</span>
-                            </a>
-                            <a class="nav-link  {{Helper::urlActiveHelper('follower')}}"
-                               href="{{route('follower.index')}}">
-                                <i class="material-icons">assignment</i>
-                                <span>Подписчики</span>
-                            </a>
-                            <a href="{{route('withdrawal.index')}}"
-                               class="nav-link dropdown-item {{Helper::urlActiveHelper('withdrawal')}}">
-                                <i class=" material-icons">monetization_on</i>
-                                <span>Запросы</span>
-                            </a>
+
+                            @if(in_array(Auth::user()->role_id ,[1,2,3,6]) )
+                                <a class="nav-link  {{Helper::urlActiveHelper('subscription')}}"
+                                   href="{{route('subscription.index')}}">
+                                    <i class="material-icons">people</i>
+                                    <span>Подписки на приложение</span>
+                                </a>
+                                <a class="nav-link  {{Helper::urlActiveHelper('follower')}}"
+                                   href="{{route('follower.index')}}">
+                                    <i class="material-icons">assignment</i>
+                                    <span>Подписчики</span>
+                                </a>
+                                <a href="{{route('withdrawal.index')}}"
+                                   class="nav-link dropdown-item {{Helper::urlActiveHelper('withdrawal')}}">
+                                    <i class=" material-icons">monetization_on</i>
+                                    <span>Запросы</span>
+                                </a>
+                                <a href="{{route('history.index')}}"
+                                   class="nav-link dropdown-item {{Helper::urlActiveHelper('history')}}">
+                                    <i class=" material-icons">history</i>
+                                    <span>Истории</span>
+                                </a>
+                            @endif
                             <a href="{{route('transaction.index')}}"
                                class="nav-link dropdown-item {{Helper::urlActiveHelper('transaction')}}">
                                 <i class=" material-icons">account_balance_wallet</i>
                                 <span>Транзакции</span>
-                            </a>
-                            <a href="{{route('history.index')}}"
-                               class="nav-link dropdown-item {{Helper::urlActiveHelper('history')}}">
-                                <i class=" material-icons">history</i>
-                                <span>Истории</span>
                             </a>
                             <a href="{{route('awaiting.subscribe.users')}}"
                                class="nav-link dropdown-item {{Helper::urlActiveHelper('awaiting')}}">

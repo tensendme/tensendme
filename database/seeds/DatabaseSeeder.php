@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
 //        $this->call(SubscriptionTypeSeeder::class);
 //        $this->call(SettingsTableSeeder::class);
 //        $this->call(PushTypesTableSeeder::class);
+//        $this->call(RolesTableSeeder2::class);
     }
 }

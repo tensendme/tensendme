@@ -30,7 +30,8 @@ class SubscriptionController extends WebBaseController
         return view('admin.userActions.subscriptions.index', compact('subscriptions', 'subscription_types'));
     }
 
-    public function filter(Request $request) {
+    public function filter(Request $request)
+    {
         $subscriptions = QueryBuilder::for(Subscription::class)
             ->allowedFilters(['actual_price',
                 AllowedFilter::exact('subscription_type_id'),
@@ -100,13 +101,15 @@ class SubscriptionController extends WebBaseController
                 'u.father_name',
                 'u.email',
                 'u.phone',
-                'u.platform'
+                'u.platform',
+                'u.created_at',
             ])
             ->leftJoin('subscriptions as s', 's.user_id', '=', 'u.id')
             ->where(function ($query) {
                 $query->whereNull('s.id')
                     ->orWhereRaw('now() > s.expired_at');
-            });
+            })
+            ->orderBy('u.created_at', 'DESC');
         return DataTables::of($select)->make(true);
     }
 }
