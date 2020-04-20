@@ -233,7 +233,9 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/link/edit/{id}', ['uses' => 'LinkController@edit', 'as' => 'link.edit'])->where('id', '[0-9]+');
                 Route::post('/link/update/{id}', ['uses' => 'LinkController@update', 'as' => 'link.update'])->where('id', '[0-9]+');
                 Route::post('/link/visible/{id}', ['uses' => 'LinkController@visibleChange', 'as' => 'link.visible'])->where('id', '[0-9]+');
-
+                
+                Route::get('/users/awaiting', ['uses' => 'SubscriptionController@subscriptionAwaitingUsers', 'as' => 'awaiting.subscribe.users']);
+                Route::get('/users/awaiting/data', ['uses' => 'SubscriptionController@awaitingUsersDataTable', 'as' => 'awaiting.data.users']);
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::SUPER_ADMIN_ID]], function () {
@@ -260,8 +262,6 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/users/create', ['uses' => 'UserController@create', 'as' => 'users.create']);
                 Route::post('/users/store', ['uses' => 'UserController@store', 'as' => 'users.store']);
 
-                Route::get('/users/awaiting', ['uses' => 'SubscriptionController@subscriptionAwaitingUsers', 'as' => 'awaiting.subscribe.users']);
-                Route::get('/users/awaiting/data', ['uses' => 'SubscriptionController@awaitingUsersDataTable', 'as' => 'awaiting.data.users']);
             });
 
         });
