@@ -287,6 +287,9 @@ class UserController extends WebBaseController
                 case Role::CONTENT_MANAGER_ID:
                     $roleName = 'Контент Менеджер';
                     break;
+                case Role::QUALITY_MANAGER_ID:
+                    $roleName = 'Сапа Менеджер';
+                    break;
             }
             $role->name = $roleName;
         }
