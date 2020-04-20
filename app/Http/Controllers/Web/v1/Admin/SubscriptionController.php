@@ -102,7 +102,7 @@ class SubscriptionController extends WebBaseController
                 'u.email',
                 'u.phone',
                 'u.platform',
-                'u.created',
+                'u.created_at',
             ])
             ->leftJoin('subscriptions as s', 's.user_id', '=', 'u.id')
             ->where(function ($query) {
