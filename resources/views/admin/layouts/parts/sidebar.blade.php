@@ -24,15 +24,13 @@
     {{--    </form>--}}
     <div class="nav-wrapper">
         <ul class="nav flex-column">
-            @if(in_array(Auth::user()->role_id ,[1,2,3,6,4]) )
-                <li class="nav-item">
-                    <a class="nav-link {{Helper::urlActiveHelper('home')}}"
-                       href="{{route('home')}}">
-                        <i class="material-icons">edit</i>
-                        <span>Главное</span>
-                    </a>
-                </li>
-            @endif
+            <li class="nav-item">
+                <a class="nav-link {{Helper::urlActiveHelper('home')}}"
+                   href="{{route('home')}}">
+                    <i class="material-icons">edit</i>
+                    <span>Главное</span>
+                </a>
+            </li>
             @if(in_array(Auth::user()->role_id ,[1,2,3,6]) )
                 <li class="nav-item">
                     <a class="nav-link {{Helper::urlActiveHelper('users')}}"
