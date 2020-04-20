@@ -87,10 +87,14 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/subscriptions/filter', ['uses' => 'SubscriptionController@filter', 'as' => 'subscription.filter']);
                 Route::get('/followers', ['uses' => 'FollowerController@index', 'as' => 'follower.index']);
                 Route::get('/followers/filter', ['uses' => 'FollowerController@filter', 'as' => 'follower.filter']);
+            });
+
+            Route::group(['middleware' => ['ROLE_OR:' . Role::ACCOUNTANT_ID . ',' . Role::SUPER_ADMIN_ID . ',' . Role::CONTENT_MANAGER_ID . ',' . Role::QUALITY_MANAGER_ID]], function () {
                 Route::get('/transactions', ['uses' => 'TransactionController@index', 'as' => 'transaction.index']);
                 Route::get('/transactions/filter', ['uses' => 'TransactionController@filter', 'as' => 'transaction.filter']);
 
-
+                Route::get('/users/awaiting', ['uses' => 'SubscriptionController@subscriptionAwaitingUsers', 'as' => 'awaiting.subscribe.users']);
+                Route::get('/users/awaiting/data', ['uses' => 'SubscriptionController@awaitingUsersDataTable', 'as' => 'awaiting.data.users']);
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::ACCOUNTANT_ID . ',' . Role::SUPER_ADMIN_ID]], function () {
@@ -234,8 +238,6 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::post('/link/update/{id}', ['uses' => 'LinkController@update', 'as' => 'link.update'])->where('id', '[0-9]+');
                 Route::post('/link/visible/{id}', ['uses' => 'LinkController@visibleChange', 'as' => 'link.visible'])->where('id', '[0-9]+');
 
-                Route::get('/users/awaiting', ['uses' => 'SubscriptionController@subscriptionAwaitingUsers', 'as' => 'awaiting.subscribe.users']);
-                Route::get('/users/awaiting/data', ['uses' => 'SubscriptionController@awaitingUsersDataTable', 'as' => 'awaiting.data.users']);
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::SUPER_ADMIN_ID]], function () {
