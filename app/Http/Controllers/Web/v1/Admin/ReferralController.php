@@ -43,4 +43,32 @@ class ReferralController extends WebBaseController
             ->orderBy('u.created_at', 'DESC');
         return DataTables::of($select)->make(true);
     }
+
+    public function transactions()
+    {
+        return view('admin.referrals.transactions');
+    }
+
+    public function transactionsReferralDataTable()
+    {
+        $select = DB::table('follow_subscriptions as fs')
+            ->select([
+                'fol.name',
+                'fol.surname',
+                'fol.father_name',
+                'fol.email',
+                'fol.phone',
+                'fol.platform',
+                'fs.created_at',
+                'fs.subscription_id',
+                'sub.actual_price',
+            ])
+            ->join('users as me', 'fs.host_user_id', 'me.id')
+            ->join('users as fol', 'fs.follower_user_id', 'fol.id')
+            ->join('subscriptions as sub', 'sub.id', 'fs.subscription_id')
+            ->where('me.id', Auth::id())
+            ->orderBy('fs.created_at', 'DESC');
+        return DataTables::of($select)->make(true);
+    }
+
 }

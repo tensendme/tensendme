@@ -153,6 +153,13 @@
                         <span>Мои подписчики</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('referral.transactions')}}"
+                       class="nav-link  {{Helper::urlActiveHelper('referral.transactions')}}">
+                        <i class=" material-icons">account_balance_wallet</i>
+                        <span>Транзакции</span>
+                    </a>
+                </li>
             @endif
 
             @if(in_array(Auth::user()->role_id ,[1]) )

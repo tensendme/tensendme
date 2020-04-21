@@ -89,9 +89,11 @@ Route::group(['namespace' => 'Web\v1'], function () {
                 Route::get('/followers/filter', ['uses' => 'FollowerController@filter', 'as' => 'follower.filter']);
             });
 
-            Route::group(['middleware' => ['ROLE_OR:' . Role::USER_ID. ',' . Role::AUTHOR_ID ]], function () {
+            Route::group(['middleware' => ['ROLE_OR:' . Role::USER_ID . ',' . Role::AUTHOR_ID]], function () {
                 Route::get('/referral', ['uses' => 'ReferralController@index', 'as' => 'referral.index']);
                 Route::get('/referral/dataTable', ['uses' => 'ReferralController@referralUsersDataTable', 'as' => 'referral.dataTable']);
+                Route::get('/referral/transactions', ['uses' => 'ReferralController@transactions', 'as' => 'referral.transactions']);
+                Route::get('/referral/transactions/dataTable', ['uses' => 'ReferralController@transactionsReferralDataTable', 'as' => 'referral.transactions.dataTable']);
             });
 
             Route::group(['middleware' => ['ROLE_OR:' . Role::ACCOUNTANT_ID . ',' . Role::SUPER_ADMIN_ID . ',' . Role::CONTENT_MANAGER_ID . ',' . Role::QUALITY_MANAGER_ID]], function () {
