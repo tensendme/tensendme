@@ -58,7 +58,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#"
                                role="button" aria-haspopup="true" aria-expanded="false">
-                                @if(Auth::user() && Auth::user()->image_path)
+                                @if(Auth::user()->image_path)
                                     <img class="user-avatar rounded-circle mr-2"
                                          src="{{asset(Auth::user()->image_path)}}">
                                 @else
@@ -66,12 +66,10 @@
                                     tag_faces
                                     </span>
                                 @endif
-                                @if(Auth::user())
-                                    @if(Auth::user()->first_name || Auth::user()->last_name)
-                                        <span class="d-none d-md-inline-block">{{Auth::user()->first_name.' '.Auth::user()->last_name}}</span>
-                                    @else
-                                        <span class="d-none d-md-inline-block">Пользователь</span>
-                                    @endif
+                                @if(Auth::user()->first_name || Auth::user()->last_name)
+                                    <span class="d-none d-md-inline-block">{{Auth::user()->first_name.' '.Auth::user()->last_name}}</span>
+                                @else
+                                    <span class="d-none d-md-inline-block">Пользователь</span>
                                 @endif
                             </a>
                             <div class="dropdown-menu dropdown-menu-small">
