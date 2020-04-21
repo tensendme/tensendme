@@ -23,11 +23,11 @@
                     <table id="usersTable" class="table table-bordered" style="width:100%">
                         <thead>
                         <tr>
+                            <th>Номер</th>
                             <th>Имя</th>
                             <th>Фамилия</th>
                             <th>Отчество</th>
                             <th>Email</th>
-                            <th>Номер</th>
                             <th>Платформа</th>
                             <th>Дата регистрации</th>
                         </tr>
@@ -81,11 +81,19 @@
                 ],
                 "ajax": "{{ route('referral.dataTable') }}",
                 "columns": [
-                    {"data": 'name', 'name': 'u.name'},
-                    {"data": 'surname', 'name': 'u.surname'},
+                    {"data": 'phone', 'name': 'u.phone'},
+                    {
+                        "data": 'name',
+                        'name': 'u.name',
+                        "defaultContent": ""
+                    },
+                    {
+                        "data": 'surname',
+                        'name': 'u.surname',
+                        "defaultContent": ""
+                    },
                     {"data": 'father_name', 'name': 'u.father_name'},
                     {"data": 'email', 'name': 'u.email'},
-                    {"data": 'phone', 'name': 'u.phone'},
                     {"data": 'platform', 'name': 'u.platform'},
                     {"data": 'created_at', 'name': 'u.created_at'},
                 ],
