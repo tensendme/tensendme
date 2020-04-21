@@ -33,13 +33,13 @@ class HomeController extends WebBaseController
         $subscriptionType = SubscriptionType::where('price', 0)->first();
         $subscriptionsCount = Subscription::where('subscription_type_id', '!=', $subscriptionType->id)->count();
         $ratingsCount = Rating::all()->count();
-        $referralCount = 0; //Auth::user()->followers()->count();
+        $referralNumber = 0; //Auth::user()->followers()->count();
         return view('admin.home', compact(
             'usersCount',
             'historiesCount',
             'subscriptionsCount',
             'ratingsCount',
-            'referralCount'
+            'referralNumber'
         ));
     }
 
