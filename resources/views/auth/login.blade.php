@@ -30,7 +30,7 @@
                                         <div class="col-md-6">
 
                                             <div class="row">
-                                                <div class="col-3">
+                                                <div class="col-4">
 
                                                     <div class="dropdown">
                                                         <a class="btn btn-outline-primary dropdown-toggle" type="button"
@@ -54,7 +54,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-9">
+                                                <div class="col-8">
                                                     <input id="phone"
                                                            type="number"
                                                            class="form-control @error('phone') is-invalid @enderror"
