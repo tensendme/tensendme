@@ -59,7 +59,7 @@
                             <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#"
                                role="button" aria-haspopup="true" aria-expanded="false">
                                 @if(Auth::user()->image_path)
-                                    <img class="user-avatar rounded-circle mr-2"
+                                    <img class="user-avatar rounded-circle mr-1"
                                          src="{{asset(Auth::user()->image_path)}}">
                                 @else
                                     <span class="user-avatar rounded-circle mr-2 material-icons">
