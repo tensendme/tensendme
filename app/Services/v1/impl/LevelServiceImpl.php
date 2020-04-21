@@ -4,9 +4,13 @@
 namespace App\Services\v1\impl;
 
 
+use App\CloudMessaging\Pushes\GeneralPush;
+use App\Jobs\SendPush;
+use App\JobTemplates\PushJobTemplate;
 use App\Models\Profiles\Level;
 use App\Models\Profiles\User;
 use App\Models\Subscriptions\FollowSubscription;
+use App\Queues\QueueConstants;
 use App\Services\v1\LevelService;
 use Auth;
 
@@ -32,7 +36,11 @@ class LevelServiceImpl implements LevelService
                     if($user && $nextLevel) {
                         $user->level_id = $nextLevel->id;
                         $user->save();
-                        // Push congratulations
+                            $generalPush = new GeneralPush($user->surname . ' ' . $user->name . ' құтты болсын!👏🏻',
+                                'Сіз ' . $nextLevel->name . ' деңгейіне өттіңіз👍🏻.' . "\r\n" . 'Енді cіздің әр сатылымнан табысыңыз ' .
+                                $nextLevel->discount_percentage . '% құрайды.');
+                            $pushJobTemplate = new PushJobTemplate($user, $generalPush);
+                            SendPush::dispatch($pushJobTemplate)->onQueue(QueueConstants::NOTIFICATIONS_QUEUE);
                     }
                 }
             }
