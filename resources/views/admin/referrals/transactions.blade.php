@@ -11,13 +11,12 @@
         <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
-                    <h6 class="m-0">Все пользователи</h6>
-                    <div class="card">
-
-                    </div>
+                    <a href="{{route('home')}}" type="button" class="mb-2 btn btn-medium btn-primary mr-1">
+                        <i class="material-icons md-12">arrow_back</i> Назад
+                    </a>
                 </div>
                 <div class="card-header border-bottom">
-
+                    <h6 class="m-0">Транзакции</h6>
                 </div>
                 <div class="card-body">
                     <table id="usersTable" class="table table-bordered" style="width:100%">
