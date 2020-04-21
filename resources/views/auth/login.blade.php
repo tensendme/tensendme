@@ -15,24 +15,53 @@
 
                 <div class="row">
                     <div class="col-md-6 col-12">
-                        <div class="card  m-1">
-                            <div class="card-header">Вход через email</div>
+                        <div class="card m-1">
+                            <div class="card-header">Вход через номер телефона</div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('login') }}">
+                                <form name="phoneForm" onsubmit="return submitForm(event)" method="POST"
+                                      action="{{ route('login') }}">
                                     @csrf
 
                                     <div class="form-group row">
                                         <label for="email"
-                                               class="col-md-4 col-form-label text-md-right">Email</label>
+                                               class="col-md-4 col-form-label text-md-right">Номер телефона</label>
 
                                         <div class="col-md-6">
-                                            <input id="email" type="email"
-                                                   class="form-control @error('email') is-invalid @enderror"
-                                                   name="email" value="{{ old('email') }}" required autocomplete="email"
-                                                   autofocus>
 
-                                            @error('email')
+                                            <div class="row">
+                                                <div class="col-3">
+
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-outline-primary dropdown-toggle" type="button"
+                                                           id="dropdownMenuButton" data-toggle="dropdown"
+                                                           aria-haspopup="true" aria-expanded="false">
+
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            @foreach($countries as $country)
+                                                                <a class="dropdown-item"
+                                                                   data-image="{{$country->image_path}}"
+                                                                   data-prefix="{{$country->phone_prefix}}"
+                                                                   href="#">
+                                                                    @if($country->image_path)
+                                                                        <img src="{{$country->image_path}}"
+                                                                             style="width:30px;">
+                                                                    @endif
+                                                                    {{$country->name . " ($country->phone_prefix)" }}
+                                                                </a>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-9">
+                                                    <input id="phone"
+                                                           type="number"
+                                                           class="form-control @error('phone') is-invalid @enderror"
+                                                           name="phone">
+                                                </div>
+                                            </div>
+                                            @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -87,54 +116,26 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-6 col-12">
-                        <div class="card m-1">
-                            <div class="card-header">Вход через номер телефона</div>
+                        <div class="card  m-1">
+                            <div class="card-header">Вход через email</div>
 
                             <div class="card-body">
-                                <form name="phoneForm" onsubmit="return submitForm(event)" method="POST"
-                                      action="{{ route('login') }}">
+                                <form method="POST" action="{{ route('login') }}">
                                     @csrf
 
                                     <div class="form-group row">
                                         <label for="email"
-                                               class="col-md-4 col-form-label text-md-right">Номер телефона</label>
+                                               class="col-md-4 col-form-label text-md-right">Email</label>
 
                                         <div class="col-md-6">
+                                            <input id="email" type="email"
+                                                   class="form-control @error('email') is-invalid @enderror"
+                                                   name="email" value="{{ old('email') }}" required autocomplete="email"
+                                                   autofocus>
 
-                                            <div class="row">
-                                                <div class="col-3">
-
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-outline-primary dropdown-toggle" type="button"
-                                                           id="dropdownMenuButton" data-toggle="dropdown"
-                                                           aria-haspopup="true" aria-expanded="false">
-
-                                                        </a>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            @foreach($countries as $country)
-                                                                <a class="dropdown-item"
-                                                                   data-image="{{$country->image_path}}"
-                                                                   data-prefix="{{$country->phone_prefix}}"
-                                                                   href="#">
-                                                                    @if($country->image_path)
-                                                                        <img src="{{$country->image_path}}"
-                                                                             style="width:30px;">
-                                                                    @endif
-                                                                    {{$country->name . " ($country->phone_prefix)" }}
-                                                                </a>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <input id="phone"
-                                                           type="number"
-                                                           class="form-control @error('phone') is-invalid @enderror"
-                                                           name="phone">
-                                                </div>
-                                            </div>
-                                            @error('phone')
+                                            @error('email')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
