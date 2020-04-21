@@ -68,8 +68,12 @@
                 <div class="card-body p-0 d-flex">
                     <div class="d-flex flex-column m-auto">
                         <div class="stats-small__data text-center">
-                            <span class="stats-small__label text-uppercase">Пользователи</span>
-                            <h6 class="stats-small__value count my-3">{{$usersCount}}</h6>
+                            <span class="stats-small__label text-uppercase">Мои подписчики</span>
+                            <h6 class="stats-small__value count my-3">{{$followersCount}}</h6>
+                            <p>
+                                <a class="btn btn-link" href="{{route('referral.index')}}">Посмотреть моих ожидающих
+                                    покупки подписчиков</a>
+                            </p>
                         </div>
                     </div>
                     <canvas height="120" class="blog-overview-stats-small-4"></canvas>
