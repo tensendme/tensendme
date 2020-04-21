@@ -45,7 +45,7 @@
                                                     <div class="row">
                                                         <div class="col-4 d-flex justify-content-end">
                                                             <div class="dropdown">
-                                                                <a class="btn btn-outline-primary dropdown-toggle"
+                                                                <a class="btn-block btn btn-outline-primary dropdown-toggle"
                                                                    type="button"
                                                                    id="dropdownMenuButton" data-toggle="dropdown"
                                                                    style="min-width: 60px;"
