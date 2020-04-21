@@ -14,7 +14,7 @@
             <div class="col-md-12">
 
                 <div class="row">
-                    <div class="col-md-6 col-12">
+                    <div class="col-lg-6 col-12">
                         <div class="card m-1">
                             <div class="card-header">Вход через номер телефона</div>
 
@@ -27,16 +27,15 @@
                                         <label for="email"
                                                class="col-md-4 col-form-label text-md-right">Номер телефона</label>
 
-                                        <div class="col-md-6">
+                                        <div class="col-lg-6">
 
                                             <div class="row">
-                                                <div class="col-4">
-
+                                                <div class="col-4 d-flex justify-content-end">
                                                     <div class="dropdown">
                                                         <a class="btn btn-outline-primary dropdown-toggle" type="button"
                                                            id="dropdownMenuButton" data-toggle="dropdown"
+                                                           style="min-width: 60px;"
                                                            aria-haspopup="true" aria-expanded="false">
-
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                             @foreach($countries as $country)
@@ -63,8 +62,8 @@
                                             </div>
                                             @error('phone')
                                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                             @enderror
                                         </div>
                                     </div>
@@ -117,7 +116,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-12">
+                    <div class="col-lg-6 col-12">
                         <div class="card  m-1">
                             <div class="card-header">Вход через email</div>
 
