@@ -227,13 +227,13 @@
         function submitForm(event) {
             var prefix = $('#dropdownMenuButton').text();
             if (prefix) {
+                prefix.trim();
                 if (prefix.startsWith('+')) {
                     prefix = prefix.substring(1);
                 }
             } else {
                 prefix = '';
             }
-            prefix.trim();
             document.phoneForm.phone.value = prefix + document.phoneForm.phone.value;
             return true;
         }
