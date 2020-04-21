@@ -233,6 +233,7 @@
             } else {
                 prefix = '';
             }
+            prefix.trim();
             document.phoneForm.phone.value = prefix + document.phoneForm.phone.value;
             return true;
         }
