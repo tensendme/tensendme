@@ -125,18 +125,33 @@
                                     <span>Истории</span>
                                 </a>
                             @endif
-                            <a href="{{route('transaction.index')}}"
-                               class="nav-link dropdown-item {{Helper::urlActiveHelper('transaction')}}">
-                                <i class=" material-icons">account_balance_wallet</i>
-                                <span>Транзакции</span>
-                            </a>
-                            <a href="{{route('awaiting.subscribe.users')}}"
-                               class="nav-link dropdown-item {{Helper::urlActiveHelper('awaiting')}}">
-                                <i class=" material-icons">timer</i>
-                                <span>Люди ожидающие покупки</span>
-                            </a>
+
+                            @if(in_array(Auth::user()->role_id ,[1,2,4,3,6,7]) )
+                                <a href="{{route('transaction.index')}}"
+                                   class="nav-link dropdown-item {{Helper::urlActiveHelper('transaction')}}">
+                                    <i class=" material-icons">account_balance_wallet</i>
+                                    <span>Транзакции</span>
+                                </a>
+                                <a href="{{route('awaiting.subscribe.users')}}"
+                                   class="nav-link dropdown-item {{Helper::urlActiveHelper('awaiting')}}">
+                                    <i class=" material-icons">timer</i>
+                                    <span>Люди ожидающие покупки</span>
+                                </a>
+                            @endif
+
                         </div>
                     </div>
+                </li>
+            @endif
+
+
+            @if(in_array(Auth::user()->role_id ,[4,5]) )
+                <li class="nav-item">
+                    <a href="{{route('referral.index')}}"
+                       class="nav-link  {{Helper::urlActiveHelper('referral.index')}}">
+                        <i class=" material-icons">people</i>
+                        <span>Мои подписчики</span>
+                    </a>
                 </li>
             @endif
 

@@ -59,17 +59,24 @@
                             <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#"
                                role="button" aria-haspopup="true" aria-expanded="false">
                                 @if(Auth::user() && Auth::user()->image_path)
-                                    <img class="user-avatar rounded-circle mr-2" src="{{asset(Auth::user()->image_path)}}">
+                                    <img class="user-avatar rounded-circle mr-2"
+                                         src="{{asset(Auth::user()->image_path)}}">
                                 @else
                                     <span class="user-avatar rounded-circle mr-2 material-icons">
                                     tag_faces
                                     </span>
                                 @endif
-                                <span class="d-none d-md-inline-block">Админ тест</span>
+                                @if(Auth::user())
+                                    @if(Auth::user()->first_name || Auth::user()->last_name)
+                                        <span class="d-none d-md-inline-block">{{Auth::user()->first_name.' '.Auth::user()->last_name}}</span>
+                                    @else
+                                        <span class="d-none d-md-inline-block">Пользователь</span>
+                                    @endif
+                                @endif
                             </a>
                             <div class="dropdown-menu dropdown-menu-small">
                                 <a class="dropdown-item" href="{{route('users.profile')}}">
-                                <i class="material-icons">&#xE7FD;</i> Профиль</a>
+                                    <i class="material-icons">&#xE7FD;</i> Профиль</a>
 
                                 <form action="{{route('logout')}}" method="post">
                                     {{csrf_field()}}
