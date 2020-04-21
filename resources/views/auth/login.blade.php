@@ -128,8 +128,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-9">
-                                                    <input id="phone" class="form-control" type="text"
-                                                           inputmode="numeric"
+                                                    <input id="phone"
+                                                           type="number"
+                                                           class="form-control @error('phone') is-invalid @enderror"
                                                            name="phone">
                                                 </div>
                                             </div>
