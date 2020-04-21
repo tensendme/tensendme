@@ -49,9 +49,7 @@
                                                                    type="button"
                                                                    id="dropdownMenuButton" data-toggle="dropdown"
                                                                    style="min-width: 60px;"
-                                                                   aria-haspopup="true" aria-expanded="false">
-                                                                    +7
-                                                                </a>
+                                                                   aria-haspopup="true" aria-expanded="false">+7</a>
                                                                 <div class="dropdown-menu"
                                                                      aria-labelledby="dropdownMenuButton">
                                                                     @foreach($countries as $country)
