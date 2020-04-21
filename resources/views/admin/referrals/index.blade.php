@@ -40,6 +40,7 @@
 @endsection
 @section('scripts')
     <script src="{{asset('js/data/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('js/data/dataTables.resp.js')}}"></script>
     <script src="{{asset('js/data/buttons.flash.min.js')}}"></script>
     <script src="{{asset('js/data/jszip.min.js')}}"></script>
     <script src="{{asset('js/data/pdfmake.min.js')}}"></script>
