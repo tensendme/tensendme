@@ -69,7 +69,7 @@
                     <div class="d-flex flex-column m-auto">
                         <div class="stats-small__data text-center">
                             <span class="stats-small__label text-uppercase">Мои подписчики</span>
-                            <h6 class="stats-small__value count my-3">{{$referralNumber}}</h6>
+                            <h6 class="stats-small__value count my-3">{{$referralNumber ?? 0}}</h6>
                             <p>
                                 <a class="btn btn-link" href="{{route('referral.index')}}">Посмотреть моих ожидающих
                                     покупки подписчиков</a>
