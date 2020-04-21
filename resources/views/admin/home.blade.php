@@ -80,9 +80,8 @@
                             <span class="stats-small__label text-uppercase">Мои подписчики</span>
                             <h6 class="stats-small__value count my-3">{{$referralNumber ?? 0}}</h6>
                             <p class="p-3">
-                                <a class="btn btn-primary font-weight-bold" href="{{route('referral.index')}}">Посмотреть моих ожидающих
-                                    покупки подписчиков <span class="material-icons">search</span>
-
+                                <a class="btn btn-link font-weight-bold" href="{{route('referral.index')}}">Посмотреть моих ожидающих
+                                    покупки подписчиков
                                 </a>
                             </p>
                         </div>
