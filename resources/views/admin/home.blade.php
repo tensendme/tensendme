@@ -83,6 +83,10 @@
                                 <a class="btn btn-link font-weight-bold" href="{{route('referral.index')}}">Посмотреть моих ожидающих
                                     покупки подписчиков
                                 </a>
+
+                                <a class="btn btn-link font-weight-bold" href="{{route('referral.transactions')}}">
+                                    Транзкации
+                                </a>
                             </p>
                         </div>
                     </div>
