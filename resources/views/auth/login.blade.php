@@ -31,6 +31,8 @@
                                     <div class="card-header">Вход через номер телефона</div>
 
                                     <div class="card-body">
+                                        <img src="{{asset('1.png')}}" class="img-fluid" alt="Responsive image">
+
                                         <form name="phoneForm" onsubmit="return submitForm(event)" method="POST"
                                               action="{{ route('login') }}">
                                             @csrf
