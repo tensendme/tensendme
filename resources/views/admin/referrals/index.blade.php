@@ -51,6 +51,7 @@
 
         $(document).ready(function () {
             var table = $('#usersTable').DataTable({
+                "responsive": true,
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Все"]],
                 "processing": true,
                 "serverSide": true,
