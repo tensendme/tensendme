@@ -16,7 +16,7 @@
             <h3 class="page-title">Доска</h3>
         </div>
     </div>
-    @if(Auth::user()->isAdmin())
+    @if(!in_array(Auth::user()->role_id ,[4, 5]))
         <div class="row">
             <div class="col-lg col-md-6 col-sm-6 mb-4">
                 <div class="stats-small stats-small--1 card card-small">
