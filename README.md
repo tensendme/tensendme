@@ -4,9 +4,7 @@
 
 ### API BASE URL: https://tensend.me/api/v1/
 ### FIREBASE ACCOOUNT
-email: tensend.me@gmail.com 
-<br>
-password: tensendme2020n
+
 <hr/>
 
 <h3> Примечание: знак ' || ' значит ИЛИ </h3>
