@@ -26,6 +26,7 @@ class UsersTableSeeder extends Seeder
                 'promo_code' => '12JO3V',
                 'nickname' => 'Test',
                 'image_path' => 'test',
+                'current_token' => ''
             ],
         ]);
         \App\Models\Profiles\Balance::insert([
