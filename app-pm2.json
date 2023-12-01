@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "my-nested-app",
+            "cwd": "./nested-app",
+            "script": "php",
+            "args": "/var/www/tensendme/artisan queue:listen"
+        }
+    ]
+}
