@@ -13,9 +13,9 @@ class ApiUtil
 
     public static function generateSmsCode(): string
     {
-        $min = pow(10, 3);
-        $max = pow(10, 4) - 1;
-        return rand($min, $max);
+//        $min = pow(10, 3);
+//        $max = pow(10, 4) - 1;
+        return '0000';
     }
 
     public static function sendAuthSms(string $phone, string $code)
