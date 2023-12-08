@@ -36,6 +36,7 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::group(['namespace' => 'Web\v1'], function () {
 
     Route::get('/certificate', ['as' => 'certificates', 'uses' => 'CertificateController@getCertificate']);
+    Route::get('/confidentiality', ['as' => 'confidentiality', 'uses' => 'ConfidentialityController@index']);
 
     Route::get('lang/{locale}', ['as' => 'locale.change', 'uses' => 'HomeController@lang']);
 
